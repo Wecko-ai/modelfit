@@ -8,7 +8,7 @@ PCs) and ranks the local AI models (Ollama) you can actually run, using the
 offline**, has **zero dependencies**, and sends **no telemetry**.
 
 ```
-npx modelfit
+npx @wecko-ai/modelfit
 ```
 
 ```
@@ -29,10 +29,11 @@ Estimates, not measured benchmarks · Data: ModelFit (CC BY 4.0)
 ## Install
 
 ```bash
-npx modelfit            # no install, always latest
-npm i -g modelfit       # then: modelfit
+npx @wecko-ai/modelfit            # no install, always latest
+npm i -g @wecko-ai/modelfit       # then run: modelfit
 ```
 
+The installed command is just **`modelfit`** (the package is scoped, the binary is not).
 Requires Node.js ≥ 18.
 
 ## Usage

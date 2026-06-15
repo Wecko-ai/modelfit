@@ -24,7 +24,7 @@ ModelFit's hardware-compatibility database. Runs fully offline. No telemetry.
 
 USAGE
   modelfit [options]
-  npx modelfit
+  npx @wecko-ai/modelfit
 
 OPTIONS
   --json                 Machine-readable output (agent/script friendly)
@@ -40,7 +40,7 @@ OPTIONS
   -h, --help             Show this help
 
 EXAMPLES
-  npx modelfit
+  npx @wecko-ai/modelfit
   modelfit --use-case coding --priority quality
   modelfit --ram 64 --chip "Apple M4 Max" --json
 

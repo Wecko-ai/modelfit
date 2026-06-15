@@ -1,8 +1,11 @@
 {
-  "name": "modelfit",
+  "name": "@wecko-ai/modelfit",
   "version": "1.0.0",
   "description": "Detect your machine and get the top local LLMs (Ollama) that fit — from the ModelFit hardware database. Offline, zero-dependency.",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "modelfit": "bin/modelfit.mjs"
   },
