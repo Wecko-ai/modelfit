@@ -27,7 +27,7 @@ const same = (a, b) => a.length === b.length && a.every((x, i) => x.id === b[i].
 for (const input of GRID) {
   const recs = getRecommendations(input);
   const tag = `${input.chip} / ${input.ramGb}GB`;
-  if (recs.length !== 83) fail(`${tag}: expected 83 ranked models, got ${recs.length}`);
+  if (recs.length !== DATASET.length) fail(`${tag}: expected ${DATASET.length} ranked models, got ${recs.length}`);
   for (let i = 1; i < recs.length; i++) {
     if (recs[i - 1].score < recs[i].score) { fail(`${tag}: not sorted desc at ${i}`); break; }
   }
@@ -35,7 +35,7 @@ for (const input of GRID) {
     if (recs[0][k] === undefined) fail(`${tag}: top pick missing "${k}"`);
   }
 }
-console.log(`✓ structural sanity passed (${GRID.length} inputs × 83 models)`);
+console.log(`✓ structural sanity passed (${GRID.length} inputs × ${DATASET.length} models)`);
 
 // ── 2. Golden-snapshot parity (offline source of truth) ─────────────────────
 let goldMismatch = 0;
