@@ -1,10 +1,11 @@
-// Terminal + JSON output. Human mode is ANSI-coloured (honours NO_COLOR / --no-color /
-// non-TTY); --json mirrors the MCP recommend_local_models payload so agents get parity.
+// Terminal + JSON output. Default = THE single best model for the machine, big and
+// clear. --all/--top show the ranked list. --json emits the stable integration
+// contract ({ best, alternatives, ... }) for apps that embed ModelFit.
 
 import { modelUrl, reportUrl, gpuUrl, SOURCE } from './links.mjs';
+import { selectBest, bestContract } from './best.mjs';
 
-const useColor = (opts) =>
-  !opts.noColor && !process.env.NO_COLOR && process.stdout.isTTY;
+const useColor = (opts) => !opts.noColor && !process.env.NO_COLOR && process.stdout.isTTY;
 
 function paint(opts) {
   const on = useColor(opts);
@@ -15,16 +16,12 @@ function paint(opts) {
   };
 }
 
-const FIT_ORDER = { Excellent: 0, OK: 1, Heavy: 2 };
-
-/** Pick the best locally-runnable models (drops cloud_only + local_unlikely), top N. */
-export function pickLocal(recs, top) {
+/** Locally-runnable models (drops cloud_only + local_unlikely), best-first. */
+export function localRunnable(recs) {
   const runnable = recs.filter((r) => r.localVerdict !== 'cloud_only' && r.localVerdict !== 'local_unlikely');
-  const list = runnable.length ? runnable : recs.filter((r) => r.localVerdict !== 'cloud_only');
-  return list.slice(0, top);
+  return runnable.length ? runnable : recs.filter((r) => r.localVerdict !== 'cloud_only');
 }
 
-/** MCP-parity recommendation record (matches /api/mcp recommend_local_models). */
 function recRecord(r) {
   return {
     name: r.name,
@@ -40,8 +37,14 @@ function recRecord(r) {
   };
 }
 
-export function toJson(profile, input, recs, top) {
+/** { best: <contract>, alternatives: [...], hardware, source, reportUrl }. */
+export function toJson(profile, input, recs, opts) {
+  const best = selectBest(recs);
+  const list = localRunnable(recs);
+  const altCount = opts.all ? list.length : (opts.top ?? 3);
   return {
+    best: bestContract(best, input, profile),
+    alternatives: list.filter((r) => r.id !== best?.id).slice(0, Math.max(0, altCount)).map(recRecord),
     hardware: {
       os: profile.os,
       device: profile.deviceLabel,
@@ -52,52 +55,75 @@ export function toJson(profile, input, recs, top) {
       budgetSource: profile.budgetSource,
       engineInput: input,
     },
-    recommendations: pickLocal(recs, top).map(recRecord),
     reportUrl: reportUrl(input.ramGb),
     source: SOURCE,
     note: 'tokens/sec are estimates, not measured benchmarks.',
   };
 }
 
-export function toHuman(profile, input, recs, opts) {
-  const c = paint(opts);
-  const top = opts.top ?? 3;
-  const picks = pickLocal(recs, opts.all ? recs.length : top);
-  const L = [];
-
+function header(c, profile, input, opts) {
   const overridden = opts.ram != null || opts.chip != null || opts.device != null;
-  const detected = overridden
+  const line = overridden
     ? `${input.deviceType} · ${input.chip} · ${input.ramGb} GB ${c.dim('(override)')}`
     : profile.detail;
-  const label0 = overridden ? 'Target  ' : 'Detected';
+  return [
+    `${c.bold(c.cyan('ModelFit'))} ${c.dim('— the best local LLM for your machine')}   ${c.dim('modelfit.io')}`,
+    `${c.gray(overridden ? 'Target  ' : 'Detected')}  ${c.bold(line)}`,
+    '',
+  ];
+}
 
-  L.push(`${c.bold(c.cyan('ModelFit'))} ${c.dim('— best local LLMs for your machine')}   ${c.dim('modelfit.io')}`);
-  L.push(`${c.gray(label0)}  ${c.bold(detected)}`);
-  L.push('');
+/** Default view: THE one model, prominent, with a couple of lighter alternatives. */
+export function toBest(profile, input, recs, opts) {
+  const c = paint(opts);
+  const best = selectBest(recs);
+  const L = header(c, profile, input, opts);
 
-  if (!picks.length) {
-    L.push(c.yellow('No local model fits this memory budget.'));
-    if (profile.accelerator?.kind === 'gpu') {
-      L.push(`${c.dim('Try a bigger card or rent a cloud GPU →')} ${gpuUrl(profile.accelerator.slug)}`);
-    }
-    L.push(`${c.dim('Browse options →')} ${reportUrl(input.ramGb)}`);
+  if (!best) {
+    L.push(c.yellow('No local model fits this machine.'));
+    if (profile.accelerator?.kind === 'gpu') L.push(`${c.dim('Rent a cloud GPU →')} ${gpuUrl(profile.accelerator.slug)}`);
+    L.push(`${c.dim('Browse →')} ${reportUrl(input.ramGb)}`);
     return L.join('\n');
   }
 
-  const label = opts.all ? 'Ranked local models' : `Top ${picks.length} you can run locally`;
-  L.push(c.bold(label));
-  picks.forEach((r, i) => {
+  const tps = best.estimatedTokensPerSec != null ? `~${best.estimatedTokensPerSec} tok/s` : '';
+  const comfort = best.localVerdict === 'local_feasible'
+    ? c.green('runs comfortably')
+    : c.yellow('runs, but slower — more RAM unlocks bigger models');
+
+  L.push(`  ${c.green('▶')} ${c.bold(best.name)}   ${[tps, comfort].filter(Boolean).join(c.dim(' · '))}`);
+  if (best.ollamaCommand) L.push(`    ${c.green('$')} ${best.ollamaCommand}`);
+  L.push(`    ${c.dim('The most capable model your machine can run.')} ${c.dim('→')} ${c.dim(modelUrl(best.family))}`);
+  L.push('');
+
+  const alts = localRunnable(recs).filter((r) => r.id !== best.id).slice(0, 2);
+  if (alts.length) {
+    L.push(`${c.gray('Also fits')}  ${alts.map((r) => r.name).join(c.dim(' · '))}   ${c.dim('(modelfit --all for the full list)')}`);
+  }
+  L.push(c.dim('Estimates, not measured benchmarks · Data: ModelFit (CC BY 4.0)'));
+  return L.join('\n');
+}
+
+/** --all / --top: the ranked list (best-first). */
+export function toList(profile, input, recs, opts) {
+  const c = paint(opts);
+  const best = selectBest(recs);
+  const picks = localRunnable(recs);
+  const shown = opts.all ? picks : picks.slice(0, opts.top ?? 3);
+  const L = header(c, profile, input, opts);
+
+  L.push(c.bold(opts.all ? 'Ranked local models' : `Top ${shown.length} local models`));
+  shown.forEach((r) => {
+    const star = best && r.id === best.id ? c.green('▶') : ' ';
     const tps = r.estimatedTokensPerSec != null ? `~${r.estimatedTokensPerSec} tok/s` : '';
     const fitColor = r.fitLevel === 'Excellent' ? c.green : r.fitLevel === 'OK' ? c.yellow : c.red;
     const meta = [fitColor(`${r.fitLevel} fit`), c.dim(tps), c.dim(r.bestFor)].filter(Boolean).join(c.dim(' · '));
-    L.push(` ${c.bold(c.cyan(String(i + 1)))}  ${c.bold(r.name)}   ${meta}`);
+    L.push(` ${star} ${c.bold(r.name)}   ${meta}`);
     if (r.ollamaCommand) L.push(`    ${c.green('$')} ${r.ollamaCommand}`);
     L.push(`    ${c.dim('→')} ${c.dim(modelUrl(r.family))}`);
   });
-
   L.push('');
   L.push(`${c.gray('Full report')}  ${reportUrl(input.ramGb)}`);
   L.push(c.dim('Estimates, not measured benchmarks · Data: ModelFit (CC BY 4.0)'));
-  L.push(c.dim('Weekly local-AI cheat sheet → https://modelfit.io/blog'));
   return L.join('\n');
 }
