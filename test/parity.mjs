@@ -10,7 +10,8 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
-import { getRecommendations } from '../src/engine.mjs';
+import { getRecommendations, DATASET } from '../src/engine.mjs';
+import { bestModel } from '../src/best.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, '..', '..');
@@ -63,6 +64,26 @@ if (tsOut) {
   golden.forEach((g, gi) => { if (!same(g.ranking, tsOut[gi] ?? [])) tsMismatch++; });
   if (!tsMismatch) console.log(`✓ exact parity with lib/recommend.ts (golden.json is current)`);
   else fail(`${tsMismatch} input(s): golden.json is STALE vs lib/recommend.ts — run: node scripts/gen-golden.mjs`);
+}
+
+// ── 4. bestModel contract (the embeddable single-answer primitive) ──────────
+{
+  const SPECIALIST = ['coding', 'reasoning', 'translation'];
+  const GENERAL = ['chat', 'mixed'];
+  const general = (tags = []) =>
+    tags.some((t) => GENERAL.includes(t)) || !tags.some((t) => SPECIALIST.includes(t));
+  // capability must scale with the machine, and the pick must be a runnable, general model
+  let prevSize = 0;
+  for (const ram of [8, 16, 24, 48, 64]) {
+    const m = bestModel({ ramGb: ram, chip: 'Apple M4 Max', deviceType: 'MacBook Pro' });
+    if (!m) { fail(`bestModel(${ram}GB) returned null`); continue; }
+    if (!m.ollamaCommand) fail(`bestModel(${ram}GB) ${m.name}: no ollamaCommand (must be locally runnable)`);
+    if (m.localVerdict === 'cloud_only') fail(`bestModel(${ram}GB) returned a cloud-only model`);
+    if (!general(DATASET.find((d) => d.id === m.id)?.tags)) fail(`bestModel(${ram}GB) ${m.name}: not general-purpose`);
+    if (m.sizeB < prevSize) fail(`bestModel(${ram}GB) ${m.name} (${m.sizeB}B) smaller than the ${prevSize}B picked at less RAM`);
+    prevSize = m.sizeB;
+  }
+  console.log('✓ bestModel: scales with RAM, always a runnable general-purpose model');
 }
 
 if (failures) { console.error(`\n${failures} check(s) failed.`); process.exit(1); }

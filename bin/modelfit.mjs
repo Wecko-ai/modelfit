@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// modelfit — detect this machine and recommend the top local LLMs from the ModelFit
-// database. Offline-first, zero dependencies. https://modelfit.io
+// modelfit — detect this machine and name THE best local LLM it can run, from the
+// ModelFit database. Offline-first, zero dependencies. https://modelfit.io
 //
-// Usage:  npx modelfit            (or: npm i -g modelfit; modelfit)
+// Usage:  npx @wecko-ai/modelfit       (or: npm i -g @wecko-ai/modelfit; modelfit)
 
 import { detectHardware, toEngineInput } from '../src/detect.mjs';
 import { getRecommendations } from '../src/engine.mjs';
-import { toHuman, toJson } from '../src/render.mjs';
+import { toBest, toList, toJson } from '../src/render.mjs';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -17,37 +17,40 @@ const PKG = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf8
 const PRIORITIES = { speed: 'Speed', quality: 'Quality', balanced: 'Balanced' };
 const USE_CASES = { translation: 'Translation', coding: 'Coding', chat: 'Chat', mixed: 'Mixed' };
 
-const HELP = `modelfit ${PKG.version} — best local LLMs for your machine (https://modelfit.io)
+const HELP = `modelfit ${PKG.version} — the best local LLM for your machine (https://modelfit.io)
 
-Detects your hardware and ranks the local AI models (Ollama) that fit, using
-ModelFit's hardware-compatibility database. Runs fully offline. No telemetry.
+Detects your hardware and names THE single most capable local AI model (Ollama)
+it can run comfortably, from ModelFit's hardware-compatibility database.
+Runs fully offline. No telemetry. Also an embeddable library:
+  import { bestModel } from '@wecko-ai/modelfit'
 
 USAGE
-  modelfit [options]
+  modelfit [options]            # default: THE best model for your machine
   npx @wecko-ai/modelfit
 
 OPTIONS
-  --json                 Machine-readable output (agent/script friendly)
-  --top <n>              Number of picks to show (default 3)
-  --all                  Show the full ranked list
-  --use-case <type>      coding | chat | translation | mixed   (default mixed)
-  --priority <type>      speed | quality | balanced            (default balanced)
+  --json                 Machine-readable: { best, alternatives, hardware } (for apps/agents)
+  --all                  Show the full ranked list instead of just the best
+  --top <n>              Show the top N local models (ranked list)
   --ram <gb>             Override detected memory budget
   --chip <name>          Override detected chip (e.g. "Apple M4 Pro")
   --device <type>        Override device (MacBook Pro | Mac Studio | ...)
+  --use-case <type>      Bias the ranked list: coding | chat | translation | mixed
+  --priority <type>      Bias the ranked list: speed | quality | balanced
   --no-color             Disable ANSI colours
   -v, --version          Print version
   -h, --help             Show this help
 
 EXAMPLES
-  npx @wecko-ai/modelfit
-  modelfit --use-case coding --priority quality
-  modelfit --ram 64 --chip "Apple M4 Max" --json
+  npx @wecko-ai/modelfit                 # just tell me what to run
+  modelfit --json                        # { best: { ollamaCommand, ... }, ... }
+  modelfit --all                         # full ranked list
+  modelfit --ram 64 --chip "Apple M4 Max"
 
 tok/s figures are estimates, not measured benchmarks. Data: ModelFit (CC BY 4.0).`;
 
 function parseArgs(argv) {
-  const o = { top: 3 };
+  const o = {};
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     const next = () => argv[++i];
@@ -86,9 +89,11 @@ function main() {
   const recs = getRecommendations(input);
 
   if (opts.json) {
-    console.log(JSON.stringify(toJson(profile, input, recs, opts.top), null, 2));
+    console.log(JSON.stringify(toJson(profile, input, recs, opts), null, 2));
+  } else if (opts.all || opts.top != null) {
+    console.log(toList(profile, input, recs, opts));   // ranked list view
   } else {
-    console.log(toHuman(profile, input, recs, opts));
+    console.log(toBest(profile, input, recs, opts));   // default: THE one
   }
 }
 
