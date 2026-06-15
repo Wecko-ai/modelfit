@@ -7,6 +7,8 @@
 import { detectHardware, toEngineInput } from '../src/detect.mjs';
 import { getRecommendations } from '../src/engine.mjs';
 import { toBest, toList, toJson } from '../src/render.mjs';
+import { selectBest } from '../src/best.mjs';
+import { offerInstall } from '../src/install.mjs';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -37,13 +39,19 @@ OPTIONS
   --device <type>        Override device (MacBook Pro | Mac Studio | ...)
   --use-case <type>      Bias the ranked list: coding | chat | translation | mixed
   --priority <type>      Bias the ranked list: speed | quality | balanced
+  -y, --yes              Install the recommended model via Ollama without prompting
+  --no-install           Don't offer to install after detection
   --no-color             Disable ANSI colours
   -v, --version          Print version
   -h, --help             Show this help
 
+After naming the best model, modelfit offers to install it via Ollama (interactive
+terminals only). Use --yes to install unattended, or --no-install to skip the prompt.
+
 EXAMPLES
-  npx @wecko-ai/modelfit                 # just tell me what to run
-  modelfit --json                        # { best: { ollamaCommand, ... }, ... }
+  npx @wecko-ai/modelfit                 # name the best model, then offer to install it
+  modelfit --yes                         # detect + install the best model unattended
+  modelfit --json                        # { best: { ollamaCommand, ... }, ... } (no prompt)
   modelfit --all                         # full ranked list
   modelfit --ram 64 --chip "Apple M4 Max"
 
@@ -64,6 +72,8 @@ function parseArgs(argv) {
       case '--device': o.device = next(); break;
       case '--use-case': case '--usecase': o.useCase = USE_CASES[String(next()).toLowerCase()]; break;
       case '--priority': o.priority = PRIORITIES[String(next()).toLowerCase()]; break;
+      case '-y': case '--yes': o.yes = true; break;
+      case '--no-install': o.noInstall = true; break;
       case '-v': case '--version': o.version = true; break;
       case '-h': case '--help': o.help = true; break;
       default:
@@ -73,7 +83,7 @@ function parseArgs(argv) {
   return o;
 }
 
-function main() {
+async function main() {
   const opts = parseArgs(process.argv.slice(2));
 
   if (opts.help) { console.log(HELP); return; }
@@ -94,7 +104,11 @@ function main() {
     console.log(toList(profile, input, recs, opts));   // ranked list view
   } else {
     console.log(toBest(profile, input, recs, opts));   // default: THE one
+    await offerInstall(selectBest(recs), opts);         // then offer to pull it via Ollama
   }
 }
 
-main();
+main().catch((err) => {
+  console.error(err?.message ?? err);
+  process.exitCode = 1;
+});
