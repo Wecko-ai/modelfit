@@ -1,0 +1,43 @@
+{
+  "name": "modelfit",
+  "version": "1.0.0",
+  "description": "Detect your machine and get the top local LLMs (Ollama) that fit — from the ModelFit hardware database. Offline, zero-dependency.",
+  "type": "module",
+  "bin": {
+    "modelfit": "bin/modelfit.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md"
+  ],
+  "scripts": {
+    "start": "node bin/modelfit.mjs",
+    "sync-data": "node scripts/sync-data.mjs",
+    "gen-golden": "node scripts/gen-golden.mjs",
+    "test": "node test/parity.mjs",
+    "prepublishOnly": "node test/parity.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "llm",
+    "ollama",
+    "local-ai",
+    "apple-silicon",
+    "gpu",
+    "hardware",
+    "cli",
+    "modelfit",
+    "recommendation"
+  ],
+  "homepage": "https://modelfit.io",
+  "bugs": "https://github.com/Wecko-ai/modelfit/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wecko-ai/modelfit.git"
+  },
+  "author": "Wecko (https://modelfit.io)",
+  "license": "MIT"
+}
