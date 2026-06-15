@@ -1,0 +1,13 @@
+{
+  "_comment": "Family name (lowercased) -> /models/<slug>/ page. Synced from lib/model-families.ts by scripts/sync-data.mjs. Families absent here fall back to /models/.",
+  "families": {
+    "qwen": "qwen",
+    "llama": "llama",
+    "deepseek": "deepseek",
+    "mistral": "mistral",
+    "gemma": "gemma",
+    "phi": "phi",
+    "lfm2": "lfm2",
+    "smollm": "smollm"
+  }
+}
