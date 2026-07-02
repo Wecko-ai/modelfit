@@ -14,7 +14,7 @@
       "translation"
     ],
     "speedScore": 95,
-    "qualityScore": 58,
+    "qualityScore": 55,
     "ollamaCommand": "ollama run qwen2.5:1.5b-instruct-q4_K_M",
     "notes": "Very light general assistant for constrained devices.",
     "popularityScore": 58
@@ -35,7 +35,7 @@
       "translation"
     ],
     "speedScore": 90,
-    "qualityScore": 66,
+    "qualityScore": 62,
     "ollamaCommand": "ollama run qwen2.5:3b-instruct-q4_K_M",
     "notes": "Strong small model with better reasoning than 1.5B.",
     "popularityScore": 64
@@ -56,7 +56,7 @@
       "mixed"
     ],
     "speedScore": 80,
-    "qualityScore": 79,
+    "qualityScore": 74,
     "ollamaCommand": "ollama run qwen2.5:7b-instruct-q4_K_M",
     "notes": "Balanced option for everyday coding and chat.",
     "popularityScore": 72
@@ -77,7 +77,7 @@
       "mixed"
     ],
     "speedScore": 60,
-    "qualityScore": 90,
+    "qualityScore": 82,
     "ollamaCommand": "ollama run qwen2.5:14b-instruct-q4_K_M",
     "notes": "High quality if RAM allows.",
     "popularityScore": 68
@@ -97,7 +97,7 @@
       "mixed"
     ],
     "speedScore": 89,
-    "qualityScore": 67,
+    "qualityScore": 66,
     "ollamaCommand": "ollama run llama3.2:3b-instruct-q4_K_M",
     "notes": "Fast assistant with broad ecosystem support.",
     "popularityScore": 72
@@ -118,7 +118,7 @@
       "mixed"
     ],
     "speedScore": 78,
-    "qualityScore": 82,
+    "qualityScore": 76,
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q4_K_M",
     "notes": "Reliable default for local assistants.",
     "popularityScore": 78
@@ -138,7 +138,7 @@
       "coding"
     ],
     "speedScore": 72,
-    "qualityScore": 85,
+    "qualityScore": 78,
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q5_K_M",
     "notes": "Higher fidelity at modest speed cost.",
     "popularityScore": 68
@@ -159,7 +159,7 @@
       "coding"
     ],
     "speedScore": 25,
-    "qualityScore": 99,
+    "qualityScore": 84,
     "ollamaCommand": "ollama run llama3.1:70b-instruct-q4_K_M",
     "notes": "Top quality but very hardware heavy.",
     "popularityScore": 62
@@ -180,7 +180,7 @@
       "translation"
     ],
     "speedScore": 81,
-    "qualityScore": 78,
+    "qualityScore": 70,
     "ollamaCommand": "ollama run mistral:7b-instruct-q4_K_M",
     "notes": "Good all-around quality in a mid-size footprint.",
     "popularityScore": 74
@@ -198,13 +198,15 @@
     "tags": [
       "coding",
       "quality",
-      "mixed"
+      "mixed",
+      "moe"
     ],
-    "speedScore": 40,
-    "qualityScore": 95,
+    "speedScore": 48,
+    "qualityScore": 76,
     "ollamaCommand": "ollama run mixtral:8x7b",
     "notes": "MoE quality boost with large memory demand.",
-    "popularityScore": 72
+    "popularityScore": 72,
+    "moeActiveB": 13
   },
   {
     "id": "mistral-nemo-12b-q4",
@@ -222,7 +224,7 @@
       "translation"
     ],
     "speedScore": 64,
-    "qualityScore": 88,
+    "qualityScore": 82,
     "ollamaCommand": "ollama run mistral-nemo:12b",
     "notes": "Strong multilingual quality at moderate size.",
     "popularityScore": 78
@@ -242,7 +244,7 @@
       "translation"
     ],
     "speedScore": 93,
-    "qualityScore": 61,
+    "qualityScore": 58,
     "ollamaCommand": "ollama run gemma2:2b-instruct-q4_K_M",
     "notes": "Small and very responsive for simple tasks.",
     "popularityScore": 62
@@ -263,7 +265,7 @@
       "mixed"
     ],
     "speedScore": 73,
-    "qualityScore": 84,
+    "qualityScore": 76,
     "ollamaCommand": "ollama run gemma2:9b-instruct-q4_K_M",
     "notes": "High quality on mid-to-high RAM machines.",
     "popularityScore": 68
@@ -284,7 +286,7 @@
       "mixed"
     ],
     "speedScore": 48,
-    "qualityScore": 94,
+    "qualityScore": 80,
     "ollamaCommand": "ollama run gemma2:27b-instruct-q4_K_M",
     "notes": "Excellent output quality with high memory cost.",
     "popularityScore": 58
@@ -304,7 +306,7 @@
       "chat"
     ],
     "speedScore": 88,
-    "qualityScore": 70,
+    "qualityScore": 65,
     "ollamaCommand": "ollama run phi3:mini",
     "notes": "Fast and surprisingly capable coding assistant.",
     "popularityScore": 64
@@ -325,7 +327,7 @@
       "quality"
     ],
     "speedScore": 58,
-    "qualityScore": 89,
+    "qualityScore": 75,
     "ollamaCommand": "ollama run phi3:medium",
     "notes": "Very strong coding quality on capable systems.",
     "popularityScore": 58
@@ -346,7 +348,7 @@
       "chat"
     ],
     "speedScore": 55,
-    "qualityScore": 92,
+    "qualityScore": 87,
     "ollamaCommand": "ollama run phi4:14b-q4_K_M",
     "notes": "High reasoning quality with slower throughput.",
     "popularityScore": 64
@@ -366,7 +368,7 @@
       "chat"
     ],
     "speedScore": 79,
-    "qualityScore": 83,
+    "qualityScore": 78,
     "ollamaCommand": "ollama run qwen2.5-coder:7b",
     "notes": "Code-focused balance of speed and quality.",
     "popularityScore": 72
@@ -386,7 +388,7 @@
       "quality"
     ],
     "speedScore": 57,
-    "qualityScore": 93,
+    "qualityScore": 85,
     "ollamaCommand": "ollama run qwen2.5-coder:14b",
     "notes": "Great code generation for higher-memory machines.",
     "popularityScore": 68
@@ -406,7 +408,7 @@
       "translation"
     ],
     "speedScore": 97,
-    "qualityScore": 50,
+    "qualityScore": 48,
     "ollamaCommand": "ollama run llama3.2:1b-instruct-q4_K_M",
     "notes": "Ultra-fast baseline model for lightweight tasks.",
     "popularityScore": 60
@@ -427,7 +429,7 @@
       "mixed"
     ],
     "speedScore": 50,
-    "qualityScore": 92,
+    "qualityScore": 84,
     "ollamaCommand": "ollama run mistral-small:22b",
     "notes": "Strong quality for advanced local use.",
     "popularityScore": 61
@@ -451,13 +453,14 @@
     "speedScore": 68,
     "qualityScore": 97,
     "notes": "1T parameter MoE model (32B active). Cloud/API only — requires ~560GB RAM at Q4, not feasible locally even on Mac Studio M4 Ultra 512GB.",
-    "popularityScore": 72
+    "popularityScore": 72,
+    "moeActiveB": 32
   },
   {
     "id": "claude-3.5-sonnet-cloud",
     "name": "Claude 3.5 Sonnet",
     "family": "Claude",
-    "sizeB": 120,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -471,14 +474,14 @@
     ],
     "speedScore": 72,
     "qualityScore": 96,
-    "notes": "Cloud/API only model family, not runnable locally via Ollama.",
+    "notes": "Cloud/API only model family, not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
     "popularityScore": 90
   },
   {
     "id": "claude-3.7-sonnet-cloud",
     "name": "Claude 3.7 Sonnet",
     "family": "Claude",
-    "sizeB": 140,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -492,14 +495,14 @@
     ],
     "speedScore": 70,
     "qualityScore": 98,
-    "notes": "Cloud/API only model family, not runnable locally via Ollama.",
+    "notes": "Cloud/API only model family, not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
     "popularityScore": 94
   },
   {
     "id": "claude-opus-3-cloud",
     "name": "Claude 3 Opus",
     "family": "Claude",
-    "sizeB": 220,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -513,14 +516,14 @@
     ],
     "speedScore": 55,
     "qualityScore": 99,
-    "notes": "Cloud/API only Opus family model; not runnable locally via Ollama.",
+    "notes": "Cloud/API only Opus family model; not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
     "popularityScore": 83
   },
   {
     "id": "claude-opus-4-cloud",
     "name": "Claude 4 Opus",
     "family": "Claude",
-    "sizeB": 240,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -534,7 +537,7 @@
     ],
     "speedScore": 53,
     "qualityScore": 100,
-    "notes": "Cloud/API only Opus family model; not runnable locally via Ollama.",
+    "notes": "Cloud/API only Opus family model; not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
     "popularityScore": 88
   },
   {
@@ -553,7 +556,7 @@
       "translation"
     ],
     "speedScore": 98,
-    "qualityScore": 45,
+    "qualityScore": 42,
     "ollamaCommand": "ollama run qwen2.5:0.5b-instruct-q4_K_M",
     "notes": "Ultra-lightweight model used in Keiro, ideal for mobile devices.",
     "popularityScore": 62
@@ -594,7 +597,7 @@
       "chat"
     ],
     "speedScore": 88,
-    "qualityScore": 72,
+    "qualityScore": 73,
     "ollamaCommand": "ollama run phi4-mini:3.8b",
     "notes": "Latest Phi-4 mini variant with enhanced reasoning capabilities.",
     "popularityScore": 75
@@ -635,7 +638,7 @@
       "coding"
     ],
     "speedScore": 26,
-    "qualityScore": 98,
+    "qualityScore": 86,
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q4_K_M",
     "notes": "Latest Llama 3.3 with improved reasoning and coding capabilities.",
     "popularityScore": 82
@@ -658,7 +661,7 @@
       "quality"
     ],
     "speedScore": 12,
-    "qualityScore": 99,
+    "qualityScore": 87,
     "popularityScore": 75,
     "ollamaCommand": "ollama run llama3.1:405b-instruct-q4_K_M",
     "notes": "Requires 256GB+ RAM. Best for Mac Studio M4 Ultra and Mac Pro with large memory."
@@ -677,13 +680,15 @@
     "tags": [
       "reasoning",
       "coding",
-      "chat"
+      "chat",
+      "moe"
     ],
-    "speedScore": 6,
-    "qualityScore": 100,
+    "speedScore": 12,
+    "qualityScore": 96,
     "popularityScore": 70,
     "ollamaCommand": "ollama run deepseek-r1:671b-q4_K_M",
-    "notes": "Requires 400GB+ RAM. Runs on Mac Studio M4 Ultra 512GB only."
+    "notes": "Requires 400GB+ RAM. Runs on Mac Studio M4 Ultra 512GB only.",
+    "moeActiveB": 37
   },
   {
     "id": "qwen3-8b-q4",
@@ -722,7 +727,7 @@
       "mixed"
     ],
     "speedScore": 58,
-    "qualityScore": 91,
+    "qualityScore": 88,
     "ollamaCommand": "ollama run qwen3:14b-q4_K_M",
     "notes": "Mid-range Qwen3 with excellent coding performance.",
     "popularityScore": 84
@@ -740,13 +745,15 @@
     "tags": [
       "quality",
       "coding",
-      "mixed"
+      "mixed",
+      "moe"
     ],
-    "speedScore": 44,
-    "qualityScore": 95,
+    "speedScore": 75,
+    "qualityScore": 89,
     "ollamaCommand": "ollama run qwen3:30b",
     "notes": "Large Qwen3 variant for high-quality outputs.",
-    "popularityScore": 78
+    "popularityScore": 78,
+    "moeActiveB": 3
   },
   {
     "id": "gemma3-4b-q4",
@@ -763,7 +770,7 @@
       "coding"
     ],
     "speedScore": 86,
-    "qualityScore": 74,
+    "qualityScore": 72,
     "ollamaCommand": "ollama run gemma3:4b",
     "notes": "Latest Gemma3 with improved reasoning and efficiency.",
     "popularityScore": 81
@@ -784,7 +791,7 @@
       "quality"
     ],
     "speedScore": 66,
-    "qualityScore": 87,
+    "qualityScore": 85,
     "ollamaCommand": "ollama run gemma3:12b",
     "notes": "Mid-range Gemma3 with balanced performance.",
     "popularityScore": 76
@@ -805,7 +812,7 @@
       "mixed"
     ],
     "speedScore": 48,
-    "qualityScore": 94,
+    "qualityScore": 89,
     "ollamaCommand": "ollama run gemma3:27b",
     "notes": "Large Gemma3 variant with excellent output quality.",
     "popularityScore": 71
@@ -826,7 +833,7 @@
       "mixed"
     ],
     "speedScore": 79,
-    "qualityScore": 85,
+    "qualityScore": 80,
     "ollamaCommand": "ollama run deepseek-r1:7b",
     "notes": "Distilled DeepSeek-R1 reasoning model based on Qwen.",
     "popularityScore": 68
@@ -847,7 +854,7 @@
       "coding"
     ],
     "speedScore": 57,
-    "qualityScore": 92,
+    "qualityScore": 86,
     "ollamaCommand": "ollama run deepseek-r1:14b",
     "notes": "Larger distilled DeepSeek-R1 with enhanced reasoning capabilities.",
     "popularityScore": 66
@@ -868,7 +875,7 @@
       "coding"
     ],
     "speedScore": 25,
-    "qualityScore": 97,
+    "qualityScore": 85,
     "ollamaCommand": "ollama run deepseek-r1:70b",
     "notes": "Large distilled DeepSeek-R1 for maximum reasoning quality.",
     "popularityScore": 60
@@ -877,7 +884,7 @@
     "id": "gpt-4o-cloud",
     "name": "GPT-4o",
     "family": "OpenAI",
-    "sizeB": 200,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -891,14 +898,14 @@
     ],
     "speedScore": 75,
     "qualityScore": 98,
-    "notes": "Cloud/API only GPT-4 Omni model with multimodal capabilities.",
+    "notes": "Cloud/API only GPT-4 Omni model with multimodal capabilities. Parameter count undisclosed (cloud API).",
     "popularityScore": 95
   },
   {
     "id": "gpt-4o-mini-cloud",
     "name": "GPT-4o mini",
     "family": "OpenAI",
-    "sizeB": 40,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -912,14 +919,14 @@
     ],
     "speedScore": 88,
     "qualityScore": 82,
-    "notes": "Cloud/API only compact version of GPT-4o with faster responses.",
+    "notes": "Cloud/API only compact version of GPT-4o with faster responses. Parameter count undisclosed (cloud API).",
     "popularityScore": 91
   },
   {
     "id": "claude-4-sonnet-cloud",
     "name": "Claude 4 Sonnet",
     "family": "Claude",
-    "sizeB": 160,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -933,14 +940,14 @@
     ],
     "speedScore": 73,
     "qualityScore": 97,
-    "notes": "Cloud/API only Claude 4 Sonnet with enhanced reasoning capabilities.",
+    "notes": "Cloud/API only Claude 4 Sonnet with enhanced reasoning capabilities. Parameter count undisclosed (cloud API).",
     "popularityScore": 89
   },
   {
     "id": "gemini-2.5-pro-cloud",
     "name": "Gemini 2.5 Pro",
     "family": "Google",
-    "sizeB": 175,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -954,14 +961,14 @@
     ],
     "speedScore": 70,
     "qualityScore": 96,
-    "notes": "Cloud/API only Gemini 2.5 Pro with advanced reasoning and multimodal capabilities.",
+    "notes": "Cloud/API only Gemini 2.5 Pro with advanced reasoning and multimodal capabilities. Parameter count undisclosed (cloud API).",
     "popularityScore": 87
   },
   {
     "id": "gemini-2.5-flash-cloud",
     "name": "Gemini 2.5 Flash",
     "family": "Google",
-    "sizeB": 80,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -975,7 +982,7 @@
     ],
     "speedScore": 92,
     "qualityScore": 85,
-    "notes": "Cloud/API only Gemini 2.5 Flash optimized for speed and efficiency.",
+    "notes": "Cloud/API only Gemini 2.5 Flash optimized for speed and efficiency. Parameter count undisclosed (cloud API).",
     "popularityScore": 84
   },
   {
@@ -997,13 +1004,14 @@
     "speedScore": 65,
     "qualityScore": 99,
     "notes": "Cloud/API only DeepSeek-V3 mixture of experts model with exceptional coding capabilities.",
-    "popularityScore": 83
+    "popularityScore": 83,
+    "moeActiveB": 37
   },
   {
     "id": "glm-5-cloud",
     "name": "GLM-5",
     "family": "Zhipu",
-    "sizeB": 32,
+    "sizeB": 744,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1019,13 +1027,14 @@
     "speedScore": 72,
     "qualityScore": 87,
     "notes": "Cloud/API only GLM-5 — Zhipu AI's latest reasoning model with MoE architecture.",
-    "popularityScore": 75
+    "popularityScore": 75,
+    "moeActiveB": 40
   },
   {
     "id": "glm-4-plus-cloud",
     "name": "GLM-4 Plus",
     "family": "Zhipu",
-    "sizeB": 80,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1039,7 +1048,7 @@
     ],
     "speedScore": 68,
     "qualityScore": 92,
-    "notes": "Cloud/API only GLM-4 Plus — Zhipu AI's high-performance general purpose model.",
+    "notes": "Cloud/API only GLM-4 Plus — Zhipu AI's high-performance general purpose model. Parameter count undisclosed (cloud API).",
     "popularityScore": 68
   },
   {
@@ -1063,7 +1072,8 @@
     "qualityScore": 98,
     "ollamaCommand": "ollama run qwen3:235b-a22b-q4_K_M",
     "notes": "Massive MoE model with 22B active parameters. Requires 192GB+ RAM.",
-    "popularityScore": 85
+    "popularityScore": 85,
+    "moeActiveB": 22
   },
   {
     "id": "mistral-small-3.1-cloud",
@@ -1082,7 +1092,7 @@
       "mixed"
     ],
     "speedScore": 50,
-    "qualityScore": 88,
+    "qualityScore": 86,
     "ollamaCommand": "ollama run mistral-small3.1:24b",
     "notes": "Mistral Small 3.1 — latest iteration with improved efficiency. Runs locally on 24GB+ RAM.",
     "popularityScore": 70
@@ -1107,7 +1117,8 @@
     "speedScore": 68,
     "qualityScore": 99,
     "notes": "Cloud/API only DeepSeek-V3-0324 — March 2025 update with enhanced reasoning capabilities.",
-    "popularityScore": 90
+    "popularityScore": 90,
+    "moeActiveB": 37
   },
   {
     "id": "deepseek-r1-full-cloud",
@@ -1128,7 +1139,8 @@
     "speedScore": 58,
     "qualityScore": 100,
     "notes": "Cloud/API only full DeepSeek-R1 671B MoE with advanced reasoning capabilities.",
-    "popularityScore": 79
+    "popularityScore": 79,
+    "moeActiveB": 37
   },
   {
     "id": "qwen3.5-0.8b-q4",
@@ -1146,7 +1158,7 @@
       "translation"
     ],
     "speedScore": 96,
-    "qualityScore": 55,
+    "qualityScore": 56,
     "popularityScore": 70,
     "ollamaCommand": "ollama run qwen3.5:0.8b",
     "notes": "Ultra-light Qwen3.5 with native multimodal. 262K context. Ideal for mobile and IoT edge devices."
@@ -1167,7 +1179,7 @@
       "translation"
     ],
     "speedScore": 92,
-    "qualityScore": 68,
+    "qualityScore": 70,
     "popularityScore": 75,
     "ollamaCommand": "ollama run qwen3.5:2b",
     "notes": "Fast small Qwen3.5 with native multimodal and 262K context. Great for edge tasks and quick chat."
@@ -1188,7 +1200,7 @@
       "agent"
     ],
     "speedScore": 85,
-    "qualityScore": 82,
+    "qualityScore": 83,
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3.5:4b",
     "notes": "88.8 MMLU-Redux beats 20B-class models. Native multimodal, 262K context. Best quality-per-GB ratio in its class."
@@ -1210,7 +1222,7 @@
       "quality"
     ],
     "speedScore": 74,
-    "qualityScore": 90,
+    "qualityScore": 89,
     "popularityScore": 86,
     "ollamaCommand": "ollama run qwen3.5:9b",
     "notes": "91.1 MMLU-Redux rivals 30B+ models. Native multimodal, 262K context. Near-frontier quality under 10GB RAM."
@@ -1232,11 +1244,12 @@
       "moe",
       "agent"
     ],
-    "speedScore": 70,
-    "qualityScore": 92,
+    "speedScore": 82,
+    "qualityScore": 93,
     "popularityScore": 90,
     "ollamaCommand": "ollama run qwen3.5:35b-a3b",
-    "notes": "MoE model (35B total, 3B active). Surpasses Qwen3-235B-A22B. Runs on 24GB Mac/RAM. Better architecture beats bigger parameter counts."
+    "notes": "MoE model (35B total, 3B active). Surpasses Qwen3-235B-A22B. Runs on 24GB Mac/RAM. Better architecture beats bigger parameter counts.",
+    "moeActiveB": 3
   },
   {
     "id": "qwen3.5-27b-q4",
@@ -1254,7 +1267,7 @@
       "reasoning"
     ],
     "speedScore": 78,
-    "qualityScore": 90,
+    "qualityScore": 91,
     "popularityScore": 82,
     "ollamaCommand": "ollama run qwen3.5:27b",
     "notes": "Mid-size model narrowing the gap between medium and frontier models. Excellent for complex agent scenarios."
@@ -1276,11 +1289,12 @@
       "moe",
       "frontier"
     ],
-    "speedScore": 45,
-    "qualityScore": 96,
+    "speedScore": 58,
+    "qualityScore": 97,
     "popularityScore": 75,
     "ollamaCommand": "ollama run qwen3.5:122b-a10b",
-    "notes": "MoE model (122B total, 10B active). Closes the gap between medium-sized and frontier models. Best for complex agent scenarios. Requires high-end Mac Studio."
+    "notes": "MoE model (122B total, 10B active). Closes the gap between medium-sized and frontier models. Best for complex agent scenarios. Requires high-end Mac Studio.",
+    "moeActiveB": 10
   },
   {
     "id": "lfm2-24b-a2b-q4",
@@ -1303,7 +1317,8 @@
     "qualityScore": 85,
     "popularityScore": 80,
     "ollamaCommand": "ollama run lfm2:24b-a2b",
-    "notes": "LiquidAI flagship hybrid MoE (24B total, 2B active). Powers LocalCowork open-source agent app with 75 MCP tools. 112 tok/s on AMD CPU, 293 tok/s on H100. Requires 16GB+ unified memory. Best for privacy-sensitive enterprise workflows with zero cloud."
+    "notes": "LiquidAI flagship hybrid MoE (24B total, 2B active). Powers LocalCowork open-source agent app with 75 MCP tools. 112 tok/s on AMD CPU, 293 tok/s on H100. Requires 16GB+ unified memory. Best for privacy-sensitive enterprise workflows with zero cloud.",
+    "moeActiveB": 2
   },
   {
     "id": "lfm2.5-8b-a1b-q4",
@@ -1326,7 +1341,8 @@
     "qualityScore": 84,
     "popularityScore": 72,
     "ollamaCommand": "ollama run lfm2.5:8b-a1b-q4_K_M",
-    "notes": "LiquidAI hybrid conv+GQA model (8.3B total, 1.5B active per token). IFEval 91.84, MATH500 88.76 per official HF model card. 128K context, native tool calling, 10 languages. ~5 GB at Q4_K_M — runs on most Apple Silicon Macs. Not its strongest area: heavy coding."
+    "notes": "LiquidAI hybrid conv+GQA model (8.3B total, 1.5B active per token). IFEval 91.84, MATH500 88.76 per official HF model card. 128K context, native tool calling, 10 languages. ~5 GB at Q4_K_M — runs on most Apple Silicon Macs. Not its strongest area: heavy coding.",
+    "moeActiveB": 1.5
   },
   {
     "id": "granite4.1-3b-q4",
@@ -1411,11 +1427,12 @@
       "moe",
       "agent"
     ],
-    "speedScore": 72,
-    "qualityScore": 93,
+    "speedScore": 82,
+    "qualityScore": 95,
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3.6:35b-a3b",
-    "notes": "Apr 2026 MoE (35B total, 3B active). Successor to Qwen3.5-35B-A3B with better reasoning and tool calling. 262K context. Runs at ~55 tok/s on M5 Max via MLX."
+    "notes": "Apr 2026 MoE (35B total, 3B active). Successor to Qwen3.5-35B-A3B with better reasoning and tool calling. 262K context. Runs at ~55 tok/s on M5 Max via MLX.",
+    "moeActiveB": 3
   },
   {
     "id": "gemma4-31b-q4",
@@ -1434,7 +1451,7 @@
       "multimodal"
     ],
     "speedScore": 50,
-    "qualityScore": 92,
+    "qualityScore": 93,
     "popularityScore": 84,
     "ollamaCommand": "ollama run gemma4:31b",
     "notes": "Apr 2, 2026 release from Google DeepMind. Dense 31B. MMLU-Pro 85.2, GPQA Diamond 84.3. Apache 2.0. Multimodal text+image."
@@ -1456,11 +1473,12 @@
       "moe",
       "multimodal"
     ],
-    "speedScore": 74,
-    "qualityScore": 88,
+    "speedScore": 80,
+    "qualityScore": 91,
     "popularityScore": 86,
     "ollamaCommand": "ollama run gemma4:26b",
-    "notes": "Apr 2026 MoE (26B total, 4B active). MMLU-Pro 82.6, GPQA Diamond 82.3. Apache 2.0. Strong throughput on 24GB Mac via MLX."
+    "notes": "Apr 2026 MoE (26B total, 4B active). MMLU-Pro 82.6, GPQA Diamond 82.3. Apache 2.0. Strong throughput on 24GB Mac via MLX.",
+    "moeActiveB": 4
   },
   {
     "id": "gemma4-e4b-q4",
@@ -1478,7 +1496,7 @@
       "multimodal"
     ],
     "speedScore": 92,
-    "qualityScore": 76,
+    "qualityScore": 78,
     "popularityScore": 82,
     "ollamaCommand": "ollama run gemma4:e4b",
     "notes": "Apr 2026 on-device Gemma 4 with Per-Layer Embeddings. 4.5B effective params. Runs on 8GB Macs and high-end iPhones. Apache 2.0."
@@ -1498,7 +1516,7 @@
       "mobile"
     ],
     "speedScore": 96,
-    "qualityScore": 66,
+    "qualityScore": 68,
     "popularityScore": 76,
     "ollamaCommand": "ollama run gemma4:e2b",
     "notes": "Apr 2026 ultra-light Gemma 4. 2.3B effective. ~158 tok/s on M5 Max — fastest in the 2026 batch. iPhone-class device target."
@@ -1521,11 +1539,12 @@
       "long-context",
       "multimodal"
     ],
-    "speedScore": 42,
-    "qualityScore": 93,
+    "speedScore": 55,
+    "qualityScore": 88,
     "popularityScore": 86,
     "ollamaCommand": "ollama run llama4:scout",
-    "notes": "Meta Llama 4 Scout: 109B total, 17B active MoE. 10M context. Multimodal. Best run on Mac Studio 96GB+ or 128GB."
+    "notes": "Meta Llama 4 Scout: 109B total, 17B active MoE. 10M context. Multimodal. Best run on Mac Studio 96GB+ or 128GB.",
+    "moeActiveB": 17
   },
   {
     "id": "llama4-maverick-q4",
@@ -1545,11 +1564,12 @@
       "frontier",
       "multimodal"
     ],
-    "speedScore": 22,
-    "qualityScore": 97,
+    "speedScore": 30,
+    "qualityScore": 90,
     "popularityScore": 78,
     "ollamaCommand": "ollama run llama4:maverick",
-    "notes": "Meta Llama 4 Maverick: 400B total, 17B active MoE. 1M context. Multimodal. Requires Mac Studio M4 Ultra 256GB+ for local."
+    "notes": "Meta Llama 4 Maverick: 400B total, 17B active MoE. 1M context. Multimodal. Requires Mac Studio M4 Ultra 256GB+ for local.",
+    "moeActiveB": 17
   },
   {
     "id": "mistral-medium-3.5-cloud",
@@ -1571,7 +1591,7 @@
     "speedScore": 70,
     "qualityScore": 95,
     "popularityScore": 78,
-    "notes": "Apr 30, 2026. 128B dense. SWE-Bench Verified 77.6%. Merges Magistral + Devstral 2 + Pixtral. GGUF available but 96GB+ Mac required."
+    "notes": "Apr 30, 2026. 128B dense. SWE-Bench Verified 77.6%. Merges Magistral + Devstral 2 + Pixtral. GGUF available but 96GB+ Mac required. Parameter count undisclosed (cloud API)."
   },
   {
     "id": "deepseek-v4-flash-cloud",
@@ -1594,7 +1614,8 @@
     "speedScore": 68,
     "qualityScore": 98,
     "popularityScore": 92,
-    "notes": "Apr 24, 2026 open-weight (MIT). 284B total, 13B active MoE. 1M context. Thinking Mode rivals OpenAI o-series on STEM. Local needs 128GB+ Mac via antirez llama.cpp fork."
+    "notes": "Apr 24, 2026 open-weight (MIT). 284B total, 13B active MoE. 1M context. Thinking Mode rivals OpenAI o-series on STEM. Local needs 128GB+ Mac via antirez llama.cpp fork.",
+    "moeActiveB": 13
   },
   {
     "id": "deepseek-v4-pro-cloud",
@@ -1617,7 +1638,8 @@
     "speedScore": 60,
     "qualityScore": 100,
     "popularityScore": 86,
-    "notes": "Apr 24, 2026. 1.6T total, 49B active MoE. MIT license. Not realistically runnable on consumer Mac. API ~$3.48 per 1M output tokens."
+    "notes": "Apr 24, 2026. 1.6T total, 49B active MoE. MIT license. Not realistically runnable on consumer Mac. API ~$3.48 per 1M output tokens.",
+    "moeActiveB": 49
   },
   {
     "id": "kimi-k2.6-cloud",
@@ -1639,7 +1661,8 @@
     "speedScore": 65,
     "qualityScore": 97,
     "popularityScore": 80,
-    "notes": "Apr 20, 2026 Moonshot AI release. 1T total, 32B active MoE. SWE-Bench Pro 58.6%. GGUF available (Unsloth UD-Q4: ~250GB). Open weights, Mac Studio 192-512GB territory."
+    "notes": "Apr 20, 2026 Moonshot AI release. 1T total, 32B active MoE. SWE-Bench Pro 58.6%. GGUF available (Unsloth UD-Q4: ~250GB). Open weights, Mac Studio 192-512GB territory.",
+    "moeActiveB": 32
   },
   {
     "id": "glm-5.1-cloud",
@@ -1661,13 +1684,14 @@
     "speedScore": 66,
     "qualityScore": 95,
     "popularityScore": 76,
-    "notes": "Apr 7, 2026 from Z.ai. 744B total, 40B active MoE with DeepSeek Sparse Attention. SWE-Bench Pro 58.4. MIT license. Local GGUF available (200-220GB)."
+    "notes": "Apr 7, 2026 from Z.ai. 744B total, 40B active MoE with DeepSeek Sparse Attention. SWE-Bench Pro 58.4. MIT license. Local GGUF available (200-220GB).",
+    "moeActiveB": 40
   },
   {
     "id": "claude-opus-4.7-cloud",
     "name": "Claude Opus 4.7",
     "family": "Claude",
-    "sizeB": 260,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1683,13 +1707,13 @@
     "speedScore": 72,
     "qualityScore": 100,
     "popularityScore": 96,
-    "notes": "Apr 16, 2026 Anthropic flagship. SWE-Bench Verified 87.6% — current leader. $5 input / $25 output per 1M tokens. Cloud only."
+    "notes": "Apr 16, 2026 Anthropic flagship. SWE-Bench Verified 87.6% — current leader. $5 input / $25 output per 1M tokens. Cloud only. Parameter count undisclosed (cloud API)."
   },
   {
     "id": "claude-opus-4.8-cloud",
     "name": "Claude Opus 4.8",
     "family": "Claude",
-    "sizeB": 270,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1712,7 +1736,7 @@
     "id": "gpt-5.5-cloud",
     "name": "GPT-5.5",
     "family": "OpenAI",
-    "sizeB": 400,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1728,13 +1752,13 @@
     "speedScore": 70,
     "qualityScore": 99,
     "popularityScore": 95,
-    "notes": "Apr 23, 2026 OpenAI flagship. Pro and Instant variants follow May 5. Cloud only."
+    "notes": "Apr 23, 2026 OpenAI flagship. Pro and Instant variants follow May 5. Cloud only. Parameter count undisclosed (cloud API)."
   },
   {
     "id": "gemini-3.1-pro-cloud",
     "name": "Gemini 3.1 Pro",
     "family": "Google",
-    "sizeB": 300,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1751,13 +1775,13 @@
     "speedScore": 72,
     "qualityScore": 98,
     "popularityScore": 90,
-    "notes": "Apr 2026 Google flagship. Strong multimodal, 2M context. Cloud only."
+    "notes": "Apr 2026 Google flagship. Strong multimodal, 2M context. Cloud only. Parameter count undisclosed (cloud API)."
   },
   {
     "id": "grok-4.3-cloud",
     "name": "Grok 4.3",
     "family": "xAI",
-    "sizeB": 314,
+    "sizeB": 0,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1774,7 +1798,7 @@
     "speedScore": 74,
     "qualityScore": 96,
     "popularityScore": 82,
-    "notes": "Apr 17, 2026 xAI flagship. Full rollout May 6. 1M context (Apr 30 expansion). Cloud only."
+    "notes": "Apr 17, 2026 xAI flagship. Full rollout May 6. 1M context (Apr 30 expansion). Cloud only. Parameter count undisclosed (cloud API)."
   },
   {
     "id": "gemma4-12b-q4",
@@ -1793,7 +1817,7 @@
       "multimodal"
     ],
     "speedScore": 70,
-    "qualityScore": 86,
+    "qualityScore": 90,
     "popularityScore": 80,
     "ollamaCommand": "ollama run gemma4:12b",
     "notes": "Jun 3, 2026 Google DeepMind release. Unified encoder-free dense 12B, multimodal (text/image/audio), 256K context. MMLU-Pro 77.2, GPQA Diamond 78.8, LiveCodeBench v6 72.0. Beats Gemma 3 27B and runs comfortably on a 16GB Mac. Open weights."
@@ -1864,7 +1888,8 @@
     "speedScore": 64,
     "qualityScore": 96,
     "popularityScore": 80,
-    "notes": "Jun 12, 2026 Moonshot AI release. 1T total / 32B active MoE built on K2.6, cutting thinking-token usage ~30%. 256K context, Modified MIT license. Open weights, but 1T scale means cloud/API for nearly all users; Ollama exposes a cloud-only tag."
+    "notes": "Jun 12, 2026 Moonshot AI release. 1T total / 32B active MoE built on K2.6, cutting thinking-token usage ~30%. 256K context, Modified MIT license. Open weights, but 1T scale means cloud/API for nearly all users; Ollama exposes a cloud-only tag.",
+    "moeActiveB": 32
   },
   {
     "id": "minimax-m3-cloud",
@@ -1887,7 +1912,8 @@
     "speedScore": 66,
     "qualityScore": 93,
     "popularityScore": 72,
-    "notes": "Jun 1, 2026 MiniMax release. Native-multimodal MoE (~428B total / ~23B active) with 1M context via MiniMax Sparse Attention. SWE-Bench Pro 59.0%, Terminal-Bench 2.1 66.0%. Open weights; cloud/API for nearly all users."
+    "notes": "Jun 1, 2026 MiniMax release. Native-multimodal MoE (~428B total / ~23B active) with 1M context via MiniMax Sparse Attention. SWE-Bench Pro 59.0%, Terminal-Bench 2.1 66.0%. Open weights; cloud/API for nearly all users.",
+    "moeActiveB": 23
   },
   {
     "id": "qwen3.7-plus-cloud",
@@ -1933,6 +1959,148 @@
     "speedScore": 55,
     "qualityScore": 94,
     "popularityScore": 66,
-    "notes": "Jun 4, 2026 NVIDIA release. 550B total / 55B active hybrid Mamba-2 + MoE, up to 1M context. SWE-Bench Verified 70.7; Artificial Analysis Intelligence Index 48 (leading US open-weights model). Datacenter-class hardware (8x B200 or 16x H100), so cloud/API for nearly all users; Ollama exposes a cloud-only tag."
+    "notes": "Jun 4, 2026 NVIDIA release. 550B total / 55B active hybrid Mamba-2 + MoE, up to 1M context. SWE-Bench Verified 70.7; Artificial Analysis Intelligence Index 48 (leading US open-weights model). Datacenter-class hardware (8x B200 or 16x H100), so cloud/API for nearly all users; Ollama exposes a cloud-only tag.",
+    "moeActiveB": 55
+  },
+  {
+    "id": "nemotron-cascade-2-30b-a3b-q6",
+    "name": "NVIDIA Nemotron Cascade 2 30B-A3B",
+    "family": "Nemotron",
+    "sizeB": 30,
+    "quantization": "Q6_K",
+    "minRamGb": 32,
+    "estimatedLoadGb": 24,
+    "bestFor": "Reasoning, Math, Agentic tasks",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "reasoning",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 70,
+    "qualityScore": 90,
+    "popularityScore": 60,
+    "ollamaCommand": "ollama run nemotron-cascade-2:30b",
+    "notes": "NVIDIA release (Mar 19, 2026; Ollama tag added Jun 2026). 30B MoE with 3B active params, 256K context, thinking + instruct modes. Gold-medal performance at the 2025 IMO and IOI (IOI score 439.3) per NVIDIA's model card. The :30b tag ships ~24GB (Q6_K), so it wants a 32GB machine.",
+    "moeActiveB": 3
+  },
+  {
+    "id": "laguna-xs2-q4",
+    "name": "Poolside Laguna XS.2",
+    "family": "Laguna",
+    "sizeB": 33,
+    "quantization": "Q4_K_M",
+    "minRamGb": 32,
+    "estimatedLoadGb": 23,
+    "bestFor": "Agentic coding, long-horizon software engineering",
+    "publisherTier": "emerging",
+    "tags": [
+      "coding",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 72,
+    "qualityScore": 88,
+    "popularityScore": 45,
+    "ollamaCommand": "ollama run laguna-xs.2:q4_K_M",
+    "notes": "Poolside AI open-weight (Apache 2.0) coding model, June 2026. 33B MoE / 3B active, 128K context. Per Poolside: SWE-bench Verified 68.2%, SWE-bench Multilingual 62.4%, SWE-bench Pro 44.5%, Terminal-Bench 2.0 30.1%. Coding specialist (not a general chat model).",
+    "moeActiveB": 3
+  },
+  {
+    "id": "north-mini-code-1-q4",
+    "name": "Cohere North Mini Code",
+    "family": "North",
+    "sizeB": 30,
+    "quantization": "Q4_K_M",
+    "minRamGb": 24,
+    "estimatedLoadGb": 19,
+    "bestFor": "Agentic coding, repo-scale software engineering",
+    "publisherTier": "major",
+    "tags": [
+      "coding",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 75,
+    "qualityScore": 85,
+    "popularityScore": 45,
+    "ollamaCommand": "ollama run north-mini-code-1.0:q4_K_M",
+    "notes": "Cohere's first developer-focused model (Jun 11, 2026), Apache 2.0. 30B MoE / 3B active, 256K context, up to 64K output. Artificial Analysis Coding Index 33.4 per Cohere. Coding specialist (not a general chat model).",
+    "moeActiveB": 3
+  },
+  {
+    "id": "gpt-oss-120b",
+    "name": "GPT-OSS 120B",
+    "family": "GPT-OSS",
+    "sizeB": 117,
+    "moeActiveB": 5.1,
+    "quantization": "MXFP4",
+    "minRamGb": 96,
+    "estimatedLoadGb": 65.4,
+    "bestFor": "Reasoning, Coding, Agents",
+    "publisherTier": "major",
+    "tags": [
+      "reasoning",
+      "coding",
+      "chat",
+      "moe",
+      "agent"
+    ],
+    "speedScore": 60,
+    "qualityScore": 94,
+    "popularityScore": 88,
+    "ollamaCommand": "ollama run gpt-oss:120b",
+    "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 117B total, 5.1B active per token (per official HF card). Native MXFP4, 65GB via Ollama, strong reasoning and tool use on 96GB+ machines."
+  },
+  {
+    "id": "gpt-oss-20b",
+    "name": "GPT-OSS 20B",
+    "family": "GPT-OSS",
+    "sizeB": 21,
+    "moeActiveB": 3.6,
+    "quantization": "MXFP4",
+    "minRamGb": 24,
+    "estimatedLoadGb": 13.8,
+    "bestFor": "Chat, Coding, Reasoning",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "reasoning",
+      "moe"
+    ],
+    "speedScore": 80,
+    "qualityScore": 86,
+    "popularityScore": 85,
+    "ollamaCommand": "ollama run gpt-oss:20b",
+    "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 21B total, 3.6B active per token (per official HF card). Native MXFP4, 14GB via Ollama, fits 24GB machines with headroom."
+  },
+  {
+    "id": "qwen3-next-80b-a3b",
+    "name": "Qwen3-Next 80B-A3B",
+    "family": "Qwen",
+    "sizeB": 80,
+    "moeActiveB": 3,
+    "quantization": "Q4_K_M",
+    "minRamGb": 72,
+    "estimatedLoadGb": 50.4,
+    "bestFor": "Chat, Coding, Long Context",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "reasoning",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 68,
+    "qualityScore": 94,
+    "popularityScore": 80,
+    "ollamaCommand": "ollama run qwen3-next:80b",
+    "notes": "Qwen hybrid-attention MoE (Sep 2025): 80B total, 3B activated (per official HF card). 50GB via Ollama, the sweet spot for 72-96GB workstations and Macs."
   }
 ]
