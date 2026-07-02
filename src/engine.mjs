@@ -14,7 +14,14 @@ export const DATASET = JSON.parse(
   readFileSync(join(__dirname, 'data', 'models.json'), 'utf8')
 );
 
-const RAM_BUDGET_RATIO = 0.7;
+// Usable share of unified memory for model weights. macOS caps GPU-wired memory
+// well below total RAM on small machines, but the cap scales up with RAM, and
+// high-RAM users routinely raise it further via iogpu.wired_limit_mb (community
+// reports ~118 GB usable of 128 GB). Linear ramp: 0.70 at <=32 GB up to 0.85 at
+// >=128 GB. 1:1 port of lib/recommend.ts ramBudgetRatio.
+export function ramBudgetRatio(ramGb) {
+  return 0.70 + Math.min(0.15, Math.max(0, (ramGb - 32) * (0.15 / 96)));
+}
 
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
@@ -152,7 +159,7 @@ function buildWhy(model, fitLevel, input, localVerdict) {
  * @returns {Array} ranked recommendations (highest score first)
  */
 export function getRecommendations(input) {
-  const ramBudget = input.ramGb * RAM_BUDGET_RATIO;
+  const ramBudget = input.ramGb * ramBudgetRatio(input.ramGb);
 
   let speedW, qualW;
   if (input.priority === 'Speed') { speedW = 0.3; qualW = 0.15; }
@@ -165,7 +172,7 @@ export function getRecommendations(input) {
   return [...DATASET]
     .map((model) => {
       const utilizationRatio = model.cloud_only ? 0 : model.estimatedLoadGb / ramBudget;
-      // Utilization is measured against the ~70% RAM budget, so even 100% here still
+      // Utilization is measured against the 70-85% RAM budget (ramBudgetRatio), so even 100% here still
       // leaves ~30% of physical memory for OS/context: high utilization is good use
       // of the machine, not risk.
       const sweetSpotScore = model.cloud_only ? 30
