@@ -39,7 +39,7 @@ const CHIP_BASE_TPS = {
   'Apple A19 Pro': 18, 'Apple A18 Pro': 15, 'Apple A19': 14, 'Apple A18': 12,
   'Apple A17 Pro': 10, 'Apple A16': 6,
 };
-// Unknown/non-enum chip: no basis for a throughput estimate — null, not a made-up number (gate #7).
+// Unknown/non-enum chip: no basis for a throughput estimate, so null, not a made-up number (gate #7).
 const chipBaseTokensPerSec = (chip) => CHIP_BASE_TPS[chip] ?? null;
 
 const getFitLevel = (fitPct) => (fitPct >= 60 ? 'Excellent' : fitPct >= 25 ? 'OK' : 'Heavy');
@@ -166,7 +166,7 @@ export function getRecommendations(input) {
     .map((model) => {
       const utilizationRatio = model.cloud_only ? 0 : model.estimatedLoadGb / ramBudget;
       // Utilization is measured against the ~70% RAM budget, so even 100% here still
-      // leaves ~30% of physical memory for OS/context — high utilization is good use
+      // leaves ~30% of physical memory for OS/context: high utilization is good use
       // of the machine, not risk.
       const sweetSpotScore = model.cloud_only ? 30
         : utilizationRatio < 0.15 ? 20
