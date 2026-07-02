@@ -10,11 +10,12 @@ const round = (n) => Math.round(n);
 
 // Exact ChipType / DeviceType enums accepted by the engine (lib/recommend.ts).
 const KNOWN_CHIPS = new Set([
-  'Apple M1', 'Apple M2', 'Apple M3', 'Apple M4',
+  'Apple M1', 'Apple M2', 'Apple M3', 'Apple M4', 'Apple M5',
   'Apple M1 Pro', 'Apple M1 Max', 'Apple M1 Ultra',
   'Apple M2 Pro', 'Apple M2 Max', 'Apple M2 Ultra',
   'Apple M3 Pro', 'Apple M3 Max',
   'Apple M4 Pro', 'Apple M4 Max', 'Apple M4 Ultra',
+  'Apple M5 Pro', 'Apple M5 Max',
   'Apple A16', 'Apple A17 Pro', 'Apple A18', 'Apple A18 Pro', 'Apple A19', 'Apple A19 Pro',
 ]);
 const KNOWN_DEVICES = new Set([
