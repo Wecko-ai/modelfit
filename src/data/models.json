@@ -68,7 +68,7 @@
     "sizeB": 14,
     "quantization": "Q4_K_M",
     "minRamGb": 20,
-    "estimatedLoadGb": 11.0,
+    "estimatedLoadGb": 11,
     "bestFor": "Coding, Chat",
     "publisherTier": "major",
     "tags": [
@@ -130,7 +130,7 @@
     "sizeB": 8,
     "quantization": "Q5_K_M",
     "minRamGb": 14,
-    "estimatedLoadGb": 8.0,
+    "estimatedLoadGb": 8,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
     "tags": [
@@ -150,7 +150,7 @@
     "sizeB": 70,
     "quantization": "Q4_K_M",
     "minRamGb": 48,
-    "estimatedLoadGb": 42.0,
+    "estimatedLoadGb": 42,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
     "tags": [
@@ -192,7 +192,7 @@
     "sizeB": 46.7,
     "quantization": "Q4_K_M",
     "minRamGb": 36,
-    "estimatedLoadGb": 30.0,
+    "estimatedLoadGb": 30,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
     "tags": [
@@ -256,7 +256,7 @@
     "sizeB": 9,
     "quantization": "Q4_K_M",
     "minRamGb": 14,
-    "estimatedLoadGb": 7.0,
+    "estimatedLoadGb": 7,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
     "tags": [
@@ -277,7 +277,7 @@
     "sizeB": 27,
     "quantization": "Q4_K_M",
     "minRamGb": 28,
-    "estimatedLoadGb": 21.0,
+    "estimatedLoadGb": 21,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
     "tags": [
@@ -318,7 +318,7 @@
     "sizeB": 14,
     "quantization": "Q4_K_M",
     "minRamGb": 20,
-    "estimatedLoadGb": 11.0,
+    "estimatedLoadGb": 11,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
     "tags": [
@@ -380,7 +380,7 @@
     "sizeB": 14,
     "quantization": "Q4_K_M",
     "minRamGb": 22,
-    "estimatedLoadGb": 11.0,
+    "estimatedLoadGb": 11,
     "bestFor": "Coding",
     "publisherTier": "major",
     "tags": [
@@ -400,7 +400,7 @@
     "sizeB": 1,
     "quantization": "Q4_K_M",
     "minRamGb": 3,
-    "estimatedLoadGb": 1.0,
+    "estimatedLoadGb": 1,
     "bestFor": "Chat",
     "publisherTier": "major",
     "tags": [
@@ -420,7 +420,7 @@
     "sizeB": 22,
     "quantization": "Q4_K_M",
     "minRamGb": 26,
-    "estimatedLoadGb": 17.0,
+    "estimatedLoadGb": 17,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
     "tags": [
@@ -452,7 +452,7 @@
     ],
     "speedScore": 68,
     "qualityScore": 97,
-    "notes": "1T parameter MoE model (32B active). Cloud/API only — requires ~560GB RAM at Q4, not feasible locally even on Mac Studio M4 Ultra 512GB.",
+    "notes": "1T parameter MoE model (32B active). Cloud/API only, requires ~560GB RAM at Q4, not feasible locally even on Mac Studio M4 Ultra 512GB.",
     "popularityScore": 72,
     "moeActiveB": 32
   },
@@ -568,7 +568,7 @@
     "sizeB": 1,
     "quantization": "Q4_K_M",
     "minRamGb": 3,
-    "estimatedLoadGb": 1.0,
+    "estimatedLoadGb": 1,
     "bestFor": "Chat, Mobile",
     "publisherTier": "major",
     "tags": [
@@ -629,7 +629,7 @@
     "sizeB": 70,
     "quantization": "Q4_K_M",
     "minRamGb": 48,
-    "estimatedLoadGb": 42.0,
+    "estimatedLoadGb": 42,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
     "tags": [
@@ -718,7 +718,7 @@
     "sizeB": 14,
     "quantization": "Q4_K_M",
     "minRamGb": 20,
-    "estimatedLoadGb": 11.0,
+    "estimatedLoadGb": 11,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
     "tags": [
@@ -739,7 +739,7 @@
     "sizeB": 30,
     "quantization": "Q4_K_M",
     "minRamGb": 28,
-    "estimatedLoadGb": 22.0,
+    "estimatedLoadGb": 22,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
     "tags": [
@@ -803,7 +803,7 @@
     "sizeB": 27,
     "quantization": "Q4_K_M",
     "minRamGb": 28,
-    "estimatedLoadGb": 21.0,
+    "estimatedLoadGb": 21,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
     "tags": [
@@ -845,7 +845,7 @@
     "sizeB": 14,
     "quantization": "Q4_K_M",
     "minRamGb": 22,
-    "estimatedLoadGb": 11.0,
+    "estimatedLoadGb": 11,
     "bestFor": "Reasoning, Quality",
     "publisherTier": "major",
     "tags": [
@@ -866,7 +866,7 @@
     "sizeB": 70,
     "quantization": "Q4_K_M",
     "minRamGb": 48,
-    "estimatedLoadGb": 42.0,
+    "estimatedLoadGb": 42,
     "bestFor": "Reasoning, Quality",
     "publisherTier": "major",
     "tags": [
@@ -1026,7 +1026,7 @@
     ],
     "speedScore": 72,
     "qualityScore": 87,
-    "notes": "Cloud/API only GLM-5 — Zhipu AI's latest reasoning model with MoE architecture.",
+    "notes": "Cloud/API only GLM-5, Zhipu AI's latest reasoning model with MoE architecture.",
     "popularityScore": 75,
     "moeActiveB": 40
   },
@@ -1048,7 +1048,7 @@
     ],
     "speedScore": 68,
     "qualityScore": 92,
-    "notes": "Cloud/API only GLM-4 Plus — Zhipu AI's high-performance general purpose model. Parameter count undisclosed (cloud API).",
+    "notes": "Cloud/API only GLM-4 Plus, Zhipu AI's high-performance general purpose model. Parameter count undisclosed (cloud API).",
     "popularityScore": 68
   },
   {
@@ -1094,7 +1094,7 @@
     "speedScore": 50,
     "qualityScore": 86,
     "ollamaCommand": "ollama run mistral-small3.1:24b",
-    "notes": "Mistral Small 3.1 — latest iteration with improved efficiency. Runs locally on 24GB+ RAM.",
+    "notes": "Mistral Small 3.1, latest iteration with improved efficiency. Runs locally on 24GB+ RAM.",
     "popularityScore": 70
   },
   {
@@ -1116,7 +1116,7 @@
     ],
     "speedScore": 68,
     "qualityScore": 99,
-    "notes": "Cloud/API only DeepSeek-V3-0324 — March 2025 update with enhanced reasoning capabilities.",
+    "notes": "Cloud/API only DeepSeek-V3-0324, March 2025 update with enhanced reasoning capabilities.",
     "popularityScore": 90,
     "moeActiveB": 37
   },
@@ -1212,7 +1212,7 @@
     "sizeB": 9,
     "quantization": "Q4_K_M",
     "minRamGb": 14,
-    "estimatedLoadGb": 7.0,
+    "estimatedLoadGb": 7,
     "bestFor": "Quality, Coding, Reasoning",
     "publisherTier": "top",
     "tags": [
@@ -1341,7 +1341,7 @@
     "qualityScore": 84,
     "popularityScore": 72,
     "ollamaCommand": "ollama run lfm2.5:8b-a1b-q4_K_M",
-    "notes": "LiquidAI hybrid conv+GQA model (8.3B total, 1.5B active per token). IFEval 91.84, MATH500 88.76 per official HF model card. 128K context, native tool calling, 10 languages. ~5 GB at Q4_K_M — runs on most Apple Silicon Macs. Not its strongest area: heavy coding.",
+    "notes": "LiquidAI hybrid conv+GQA model (8.3B total, 1.5B active per token). IFEval 91.84, MATH500 88.76 per official HF model card. 128K context, native tool calling, 10 languages. ~5 GB at Q4_K_M, runs on most Apple Silicon Macs. Not its strongest area: heavy coding.",
     "moeActiveB": 1.5
   },
   {
@@ -1351,7 +1351,7 @@
     "sizeB": 3,
     "quantization": "Q4_K_M",
     "minRamGb": 6,
-    "estimatedLoadGb": 2.0,
+    "estimatedLoadGb": 2,
     "bestFor": "Lightweight chat, classification, edge tasks",
     "publisherTier": "major",
     "tags": [
@@ -1519,7 +1519,7 @@
     "qualityScore": 68,
     "popularityScore": 76,
     "ollamaCommand": "ollama run gemma4:e2b",
-    "notes": "Apr 2026 ultra-light Gemma 4. 2.3B effective. ~158 tok/s on M5 Max — fastest in the 2026 batch. iPhone-class device target."
+    "notes": "Apr 2026 ultra-light Gemma 4. 2.3B effective. ~158 tok/s on M5 Max, fastest in the 2026 batch. iPhone-class device target."
   },
   {
     "id": "llama4-scout-q4",
@@ -1707,7 +1707,7 @@
     "speedScore": 72,
     "qualityScore": 100,
     "popularityScore": 96,
-    "notes": "Apr 16, 2026 Anthropic flagship. SWE-Bench Verified 87.6% — current leader. $5 input / $25 output per 1M tokens. Cloud only. Parameter count undisclosed (cloud API)."
+    "notes": "Apr 16, 2026 Anthropic flagship. SWE-Bench Verified 87.6%, current leader. $5 input / $25 output per 1M tokens. Cloud only. Parameter count undisclosed (cloud API)."
   },
   {
     "id": "claude-opus-4.8-cloud",
@@ -2102,5 +2102,230 @@
     "popularityScore": 80,
     "ollamaCommand": "ollama run qwen3-next:80b",
     "notes": "Qwen hybrid-attention MoE (Sep 2025): 80B total, 3B activated (per official HF card). 50GB via Ollama, the sweet spot for 72-96GB workstations and Macs."
+  },
+  {
+    "id": "qwen3.6-35b-a3b-q8",
+    "name": "Qwen3.6 35B-A3B (Q8)",
+    "family": "Qwen",
+    "sizeB": 35,
+    "quantization": "Q8_0",
+    "minRamGb": 64,
+    "estimatedLoadGb": 38.7,
+    "bestFor": "Reasoning, Coding, Agents",
+    "publisherTier": "top",
+    "tags": [
+      "chat",
+      "coding",
+      "reasoning",
+      "moe",
+      "agent"
+    ],
+    "speedScore": 74,
+    "qualityScore": 97,
+    "popularityScore": 88,
+    "ollamaCommand": "ollama run qwen3.6:35b-a3b-q8_0",
+    "notes": "Q8_0 higher precision variant of Qwen3.6 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the larger 38.7GB weight file. Tag registry-verified 200 on the ollama.ai manifest API.",
+    "moeActiveB": 3
+  },
+  {
+    "id": "qwen3.5-35b-a3b-q8",
+    "name": "Qwen3.5 35B-A3B Instruct (Q8)",
+    "family": "Qwen",
+    "sizeB": 35,
+    "quantization": "Q8_0",
+    "minRamGb": 64,
+    "estimatedLoadGb": 38.7,
+    "bestFor": "Reasoning, Coding, Agent scenarios",
+    "publisherTier": "top",
+    "tags": [
+      "chat",
+      "coding",
+      "reasoning",
+      "moe",
+      "agent"
+    ],
+    "speedScore": 74,
+    "qualityScore": 95,
+    "popularityScore": 90,
+    "ollamaCommand": "ollama run qwen3.5:35b-a3b-q8_0",
+    "notes": "Q8_0 higher precision variant of Qwen3.5 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the 38.7GB weight file. Tag registry-verified 200.",
+    "moeActiveB": 3
+  },
+  {
+    "id": "qwen3.5-9b-q8",
+    "name": "Qwen3.5 9B Instruct (Q8)",
+    "family": "Qwen",
+    "sizeB": 9,
+    "quantization": "Q8_0",
+    "minRamGb": 16,
+    "estimatedLoadGb": 10.7,
+    "bestFor": "Quality, Coding, Reasoning",
+    "publisherTier": "top",
+    "tags": [
+      "chat",
+      "coding",
+      "reasoning",
+      "quality"
+    ],
+    "speedScore": 66,
+    "qualityScore": 91,
+    "popularityScore": 86,
+    "ollamaCommand": "ollama run qwen3.5:9b-q8_0",
+    "notes": "Q8_0 higher precision variant of Qwen3.5 9B, near lossless quality versus the Q4 default. Prefer it on 16GB or more RAM where the 10.7GB weight file still leaves headroom. Tag registry-verified 200."
+  },
+  {
+    "id": "qwen3.6-27b-q8",
+    "name": "Qwen3.6 27B (Q8)",
+    "family": "Qwen",
+    "sizeB": 27,
+    "quantization": "Q8_0",
+    "minRamGb": 48,
+    "estimatedLoadGb": 30,
+    "bestFor": "Coding, Quality, Long context",
+    "publisherTier": "top",
+    "tags": [
+      "chat",
+      "coding",
+      "quality",
+      "long-context"
+    ],
+    "speedScore": 54,
+    "qualityScore": 96,
+    "popularityScore": 92,
+    "ollamaCommand": "ollama run qwen3.6:27b-q8_0",
+    "notes": "Q8_0 higher precision variant of Qwen3.6 27B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 30GB weight file. Tag registry-verified 200."
+  },
+  {
+    "id": "gemma4-12b-q8",
+    "name": "Gemma 4 12B (Q8)",
+    "family": "Gemma",
+    "sizeB": 12,
+    "quantization": "Q8_0",
+    "minRamGb": 24,
+    "estimatedLoadGb": 12.8,
+    "bestFor": "Chat, Coding, Multimodal",
+    "publisherTier": "top",
+    "tags": [
+      "chat",
+      "coding",
+      "quality",
+      "multimodal"
+    ],
+    "speedScore": 62,
+    "qualityScore": 92,
+    "popularityScore": 80,
+    "ollamaCommand": "ollama run gemma4:12b-it-q8_0",
+    "notes": "Q8_0 higher precision variant of Gemma 4 12B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 12.8GB weight file. Tag registry-verified 200."
+  },
+  {
+    "id": "gemma4-26b-a4b-q8",
+    "name": "Gemma 4 26B-A4B (Q8)",
+    "family": "Gemma",
+    "sizeB": 26,
+    "quantization": "Q8_0",
+    "minRamGb": 48,
+    "estimatedLoadGb": 28.1,
+    "bestFor": "Chat, Coding, Multimodal",
+    "publisherTier": "top",
+    "tags": [
+      "chat",
+      "coding",
+      "quality",
+      "moe",
+      "multimodal"
+    ],
+    "speedScore": 72,
+    "qualityScore": 93,
+    "popularityScore": 86,
+    "ollamaCommand": "ollama run gemma4:26b-a4b-it-q8_0",
+    "notes": "Q8_0 higher precision variant of Gemma 4 26B-A4B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 28.1GB weight file. Tag registry-verified 200.",
+    "moeActiveB": 4
+  },
+  {
+    "id": "qwen3-next-80b-a3b-q8",
+    "name": "Qwen3-Next 80B-A3B (Q8)",
+    "family": "Qwen",
+    "sizeB": 80,
+    "moeActiveB": 3,
+    "quantization": "Q8_0",
+    "minRamGb": 128,
+    "estimatedLoadGb": 84.8,
+    "bestFor": "Chat, Coding, Long Context",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "reasoning",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 60,
+    "qualityScore": 96,
+    "popularityScore": 80,
+    "ollamaCommand": "ollama run qwen3-next:80b-a3b-instruct-q8_0",
+    "notes": "Q8_0 higher precision variant of Qwen3-Next 80B-A3B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 84.8GB weight file still leaves headroom. Tag registry-verified 200."
+  },
+  {
+    "id": "qwen3-14b-q8",
+    "name": "Qwen3 14B (Q8)",
+    "family": "Qwen",
+    "sizeB": 14,
+    "quantization": "Q8_0",
+    "minRamGb": 24,
+    "estimatedLoadGb": 15.9,
+    "bestFor": "Coding, Quality",
+    "publisherTier": "major",
+    "tags": [
+      "coding",
+      "quality",
+      "mixed"
+    ],
+    "speedScore": 50,
+    "qualityScore": 90,
+    "popularityScore": 84,
+    "ollamaCommand": "ollama run qwen3:14b-q8_0",
+    "notes": "Q8_0 higher precision variant of Qwen3 14B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 15.9GB weight file. Tag registry-verified 200."
+  },
+  {
+    "id": "llama3.3-70b-q8",
+    "name": "Llama 3.3 70B Instruct (Q8)",
+    "family": "Llama",
+    "sizeB": 70,
+    "quantization": "Q8_0",
+    "minRamGb": 128,
+    "estimatedLoadGb": 75,
+    "bestFor": "Quality, Coding",
+    "publisherTier": "major",
+    "tags": [
+      "quality",
+      "mixed",
+      "coding"
+    ],
+    "speedScore": 18,
+    "qualityScore": 88,
+    "popularityScore": 82,
+    "ollamaCommand": "ollama run llama3.3:70b-instruct-q8_0",
+    "notes": "Q8_0 higher precision variant of Llama 3.3 70B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 75GB weight file still leaves headroom. Tag registry-verified 200."
+  },
+  {
+    "id": "llama3.3-70b-q6",
+    "name": "Llama 3.3 70B Instruct (Q6)",
+    "family": "Llama",
+    "sizeB": 70,
+    "quantization": "Q6_K",
+    "minRamGb": 96,
+    "estimatedLoadGb": 57.9,
+    "bestFor": "Quality, Coding",
+    "publisherTier": "major",
+    "tags": [
+      "quality",
+      "mixed",
+      "coding"
+    ],
+    "speedScore": 22,
+    "qualityScore": 87,
+    "popularityScore": 82,
+    "ollamaCommand": "ollama run llama3.3:70b-instruct-q6_K",
+    "notes": "Q6_K middle ground variant of Llama 3.3 70B, between the Q4 default and the near lossless Q8 sibling. Prefer it on 96GB or more workstations where the 57.9GB weight file balances quality against RAM cost. Tag registry-verified 200."
   }
 ]
