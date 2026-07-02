@@ -19,6 +19,7 @@ const RAM_BUDGET_RATIO = 0.7;
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
 const CHIP_SPEED_BOOST = {
+  'Apple M5 Max': 13, 'Apple M5 Pro': 10, 'Apple M5': 8,
   'Apple M4 Ultra': 15, 'Apple M4 Max': 12, 'Apple M4 Pro': 9, 'Apple M4': 7,
   'Apple M3 Max': 9, 'Apple M3 Pro': 7, 'Apple M3': 4,
   'Apple M2 Ultra': 9, 'Apple M2 Max': 7, 'Apple M2 Pro': 5, 'Apple M2': 3,
@@ -29,6 +30,8 @@ const CHIP_SPEED_BOOST = {
 const chipSpeedBoost = (chip) => CHIP_SPEED_BOOST[chip] ?? 0;
 
 const CHIP_BASE_TPS = {
+  // M5 gen — bandwidth-derived est. (M5 base 153 GB/s ≈ +28% vs M4), tapering by tier.
+  'Apple M5 Max': 158, 'Apple M5 Pro': 112, 'Apple M5': 80,
   'Apple M4 Ultra': 180, 'Apple M4 Max': 130, 'Apple M4 Pro': 95, 'Apple M4': 65,
   'Apple M3 Max': 95, 'Apple M3 Pro': 72, 'Apple M3': 52,
   'Apple M2 Ultra': 110, 'Apple M2 Max': 78, 'Apple M2 Pro': 58, 'Apple M2': 40,
@@ -36,8 +39,8 @@ const CHIP_BASE_TPS = {
   'Apple A19 Pro': 18, 'Apple A18 Pro': 15, 'Apple A19': 14, 'Apple A18': 12,
   'Apple A17 Pro': 10, 'Apple A16': 6,
 };
-// default 17 matches the TS `default:` branch (used for non-Apple / unknown chips)
-const chipBaseTokensPerSec = (chip) => CHIP_BASE_TPS[chip] ?? 17;
+// Unknown/non-enum chip: no basis for a throughput estimate — null, not a made-up number (gate #7).
+const chipBaseTokensPerSec = (chip) => CHIP_BASE_TPS[chip] ?? null;
 
 const getFitLevel = (fitPct) => (fitPct >= 60 ? 'Excellent' : fitPct >= 25 ? 'OK' : 'Heavy');
 
@@ -75,9 +78,17 @@ function deviceThroughputFactor(deviceType) {
 function estimateLocalPerformance(model, input, ramBudget) {
   if (model.cloud_only) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null };
 
-  const base = chipBaseTokensPerSec(input.chip) * deviceThroughputFactor(input.deviceType);
+  const chipBase = chipBaseTokensPerSec(input.chip);
+  if (chipBase === null) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null };
+
+  const base = chipBase * deviceThroughputFactor(input.deviceType);
   const quantFactor = quantizationSpeedFactor(model.quantization);
-  const sizeFactor = Math.pow(7 / Math.max(model.sizeB, 1), 0.9);
+  // MoE decode speed tracks active params, blended with total: effective = sqrt(active * total).
+  // Dense models (no moeActiveB) use total params.
+  const effectiveSizeB = model.moeActiveB
+    ? Math.sqrt(model.moeActiveB * Math.max(model.sizeB, 1))
+    : model.sizeB;
+  const sizeFactor = Math.pow(7 / Math.max(effectiveSizeB, 1), 0.9);
   const ramPressure = clamp(0.35, 1.15, (ramBudget / Math.max(model.estimatedLoadGb, 1)) * 0.9);
 
   const estimatedTokensPerSec = clamp(0.4, 180, base * quantFactor * sizeFactor * ramPressure);
@@ -154,12 +165,15 @@ export function getRecommendations(input) {
   return [...DATASET]
     .map((model) => {
       const utilizationRatio = model.cloud_only ? 0 : model.estimatedLoadGb / ramBudget;
+      // Utilization is measured against the ~70% RAM budget, so even 100% here still
+      // leaves ~30% of physical memory for OS/context — high utilization is good use
+      // of the machine, not risk.
       const sweetSpotScore = model.cloud_only ? 30
         : utilizationRatio < 0.15 ? 20
-          : utilizationRatio < 0.3 ? 50
-            : utilizationRatio <= 0.7 ? 90
-              : utilizationRatio <= 0.9 ? 65
-                : utilizationRatio <= 1.0 ? 40
+          : utilizationRatio < 0.3 ? 45
+            : utilizationRatio < 0.5 ? 70
+              : utilizationRatio <= 0.85 ? 92
+                : utilizationRatio <= 1.0 ? 72
                   : 10;
 
       const fitPct = clamp(0, 100, ((ramBudget - model.estimatedLoadGb) / ramBudget) * 100);
