@@ -14,6 +14,7 @@ const GRID = [
   { deviceType: 'MacBook Pro', chip: 'Apple M4', ramGb: 16, priority: 'Balanced', useCase: 'Coding' },
   { deviceType: 'MacBook Pro', chip: 'Apple M4 Pro', ramGb: 48, priority: 'Quality', useCase: 'Coding' },
   { deviceType: 'Mac Studio', chip: 'Apple M2 Ultra', ramGb: 192, priority: 'Speed', useCase: 'Chat' },
+  { deviceType: 'Mac Studio', chip: 'Apple M3 Ultra', ramGb: 512, priority: 'Quality', useCase: 'Mixed' },
   { deviceType: 'Mac Mini', chip: 'Apple M4', ramGb: 24, priority: 'Balanced', useCase: 'Translation' },
   { deviceType: 'iPhone 16 Pro', chip: 'Apple A18 Pro', ramGb: 8, priority: 'Speed', useCase: 'Chat' },
   { deviceType: 'Linux PC', chip: 'Unknown', ramGb: 24, priority: 'Balanced', useCase: 'Coding' },

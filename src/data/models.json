@@ -452,7 +452,7 @@
     ],
     "speedScore": 68,
     "qualityScore": 97,
-    "notes": "1T parameter MoE model (32B active). Cloud/API only, requires ~560GB RAM at Q4, not feasible locally even on Mac Studio M4 Ultra 512GB.",
+    "notes": "1T parameter MoE model (32B active). Cloud/API only, requires ~560GB RAM at Q4, not feasible locally even on Mac Studio M3 Ultra 512GB.",
     "popularityScore": 72,
     "moeActiveB": 32
   },
@@ -664,7 +664,7 @@
     "qualityScore": 87,
     "popularityScore": 75,
     "ollamaCommand": "ollama run llama3.1:405b-instruct-q4_K_M",
-    "notes": "Requires 256GB+ RAM. Best for Mac Studio M4 Ultra and Mac Pro with large memory."
+    "notes": "Requires 256GB+ RAM. Best for Mac Studio M3 Ultra and Mac Pro with large memory."
   },
   {
     "id": "deepseek-r1-671b-q4",
@@ -687,7 +687,7 @@
     "qualityScore": 96,
     "popularityScore": 70,
     "ollamaCommand": "ollama run deepseek-r1:671b-q4_K_M",
-    "notes": "Requires 400GB+ RAM. Runs on Mac Studio M4 Ultra 512GB only.",
+    "notes": "Requires 400GB+ RAM. Runs on Mac Studio M3 Ultra 512GB only.",
     "moeActiveB": 37
   },
   {
@@ -1568,7 +1568,7 @@
     "qualityScore": 90,
     "popularityScore": 78,
     "ollamaCommand": "ollama run llama4:maverick",
-    "notes": "Meta Llama 4 Maverick: 400B total, 17B active MoE. 1M context. Multimodal. Requires Mac Studio M4 Ultra 256GB+ for local.",
+    "notes": "Meta Llama 4 Maverick: 400B total, 17B active MoE. 1M context. Multimodal. Requires Mac Studio M3 Ultra 256GB+ for local.",
     "moeActiveB": 17
   },
   {
@@ -1591,7 +1591,7 @@
     "speedScore": 70,
     "qualityScore": 95,
     "popularityScore": 78,
-    "notes": "Apr 30, 2026. 128B dense. SWE-Bench Verified 77.6%. Merges Magistral + Devstral 2 + Pixtral. GGUF available but 96GB+ Mac required. Parameter count undisclosed (cloud API)."
+    "notes": "Apr 30, 2026. 128B dense. SWE-Bench Verified 77.6%. Merges Magistral + Devstral 2 + Pixtral. GGUF available but 96GB+ Mac required. Open weights: mistralai/Mistral-Medium-3.5-128B on Hugging Face (modified MIT)."
   },
   {
     "id": "deepseek-v4-flash-cloud",
