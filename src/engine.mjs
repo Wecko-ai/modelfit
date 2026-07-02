@@ -27,8 +27,9 @@ const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
 const CHIP_SPEED_BOOST = {
   'Apple M5 Max': 13, 'Apple M5 Pro': 10, 'Apple M5': 8,
-  'Apple M4 Ultra': 15, 'Apple M4 Max': 12, 'Apple M4 Pro': 9, 'Apple M4': 7,
-  'Apple M3 Max': 9, 'Apple M3 Pro': 7, 'Apple M3': 4,
+  'Apple M4 Max': 12, 'Apple M4 Pro': 9, 'Apple M4': 7,
+  // No M4 Ultra exists: the 2025 Mac Studio tops out at M3 Ultra (819 GB/s).
+  'Apple M3 Ultra': 11, 'Apple M3 Max': 9, 'Apple M3 Pro': 7, 'Apple M3': 4,
   'Apple M2 Ultra': 9, 'Apple M2 Max': 7, 'Apple M2 Pro': 5, 'Apple M2': 3,
   'Apple M1 Ultra': 6, 'Apple M1 Max': 5, 'Apple M1 Pro': 4, 'Apple M1': 2,
   'Apple A19 Pro': 6, 'Apple A18 Pro': 5, 'Apple A19': 4, 'Apple A18': 3,
@@ -39,8 +40,9 @@ const chipSpeedBoost = (chip) => CHIP_SPEED_BOOST[chip] ?? 0;
 const CHIP_BASE_TPS = {
   // M5 gen — bandwidth-derived est. (M5 base 153 GB/s ≈ +28% vs M4), tapering by tier.
   'Apple M5 Max': 158, 'Apple M5 Pro': 112, 'Apple M5': 80,
-  'Apple M4 Ultra': 180, 'Apple M4 Max': 130, 'Apple M4 Pro': 95, 'Apple M4': 65,
-  'Apple M3 Max': 95, 'Apple M3 Pro': 72, 'Apple M3': 52,
+  'Apple M4 Max': 130, 'Apple M4 Pro': 95, 'Apple M4': 65,
+  // M3 Ultra: 819 GB/s, just above M2 Ultra's 800 GB/s (base 110).
+  'Apple M3 Ultra': 115, 'Apple M3 Max': 95, 'Apple M3 Pro': 72, 'Apple M3': 52,
   'Apple M2 Ultra': 110, 'Apple M2 Max': 78, 'Apple M2 Pro': 58, 'Apple M2': 40,
   'Apple M1 Ultra': 90, 'Apple M1 Max': 62, 'Apple M1 Pro': 45, 'Apple M1': 28,
   'Apple A19 Pro': 18, 'Apple A18 Pro': 15, 'Apple A19': 14, 'Apple A18': 12,
