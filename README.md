@@ -34,6 +34,13 @@ npx @modelfit/cli            # no install, always latest
 npm i -g @modelfit/cli       # then run: modelfit
 ```
 
+Or via [Homebrew](https://github.com/modelfit-io/homebrew-tap):
+
+```bash
+brew tap modelfit-io/tap
+brew install modelfit
+```
+
 The installed command is just **`modelfit`** (the package is scoped, the binary is not).
 Requires Node.js ≥ 18.
 
