@@ -34,6 +34,13 @@ npx @wecko-ai/modelfit            # no install, always latest
 npm i -g @wecko-ai/modelfit       # then run: modelfit
 ```
 
+Or via [Homebrew](https://github.com/Wecko-ai/homebrew-tap):
+
+```bash
+brew tap wecko-ai/tap
+brew install modelfit
+```
+
 The installed command is just **`modelfit`** (the package is scoped, the binary is not).
 Requires Node.js ≥ 18.
 
