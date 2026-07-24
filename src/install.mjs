@@ -5,21 +5,39 @@
 
 import { spawnSync } from 'node:child_process';
 import { createInterface } from 'node:readline';
+import { existsSync } from 'node:fs';
+
+// Prefer a known absolute install path over a bare $PATH lookup (CWE-426).
+const OLLAMA_PATHS = [
+  '/usr/local/bin/ollama',
+  '/opt/homebrew/bin/ollama',
+  `${process.env.ProgramFiles || 'C:\\Program Files'}\\Ollama\\ollama.exe`,
+];
+
+function ollamaBin() {
+  for (const p of OLLAMA_PATHS) {
+    if (existsSync(p)) return p;
+  }
+  return 'ollama'; // fall back to $PATH lookup
+}
 
 /** Is the `ollama` binary on PATH? */
 export function ollamaInstalled() {
   try {
-    return spawnSync('ollama', ['--version'], { stdio: 'ignore' }).status === 0;
+    return spawnSync(ollamaBin(), ['--version'], { stdio: 'ignore' }).status === 0;
   } catch {
     return false;
   }
 }
 
-/** "ollama run qwen3:14b-q4_K_M" -> "qwen3:14b-q4_K_M". Null if unparseable. */
+/** "ollama run qwen3:14b-q4_K_M" -> "qwen3:14b-q4_K_M". Null if unparseable/unsafe. */
 export function parseModelTag(ollamaCommand) {
   if (!ollamaCommand) return null;
   const m = ollamaCommand.match(/ollama\s+(?:run|pull)\s+(\S+)/);
-  return m ? m[1] : null;
+  if (!m) return null;
+  // A tag must look like a model tag — anything else (e.g. "-rf", "--insecure")
+  // would reach ollama as a flag (CWE-88).
+  return /^[a-z0-9][a-z0-9._:\/-]*$/i.test(m[1]) ? m[1] : null;
 }
 
 function ask(question) {
@@ -31,7 +49,8 @@ function ask(question) {
 
 /** Pull the model, streaming Ollama's own progress to the terminal. Returns exit code. */
 export function pullModel(tag) {
-  return spawnSync('ollama', ['pull', tag], { stdio: 'inherit' }).status ?? 1;
+  // '--' stops option parsing: a tag can never be read as a flag (CWE-88).
+  return spawnSync(ollamaBin(), ['pull', '--', tag], { stdio: 'inherit' }).status ?? 1;
 }
 
 /**

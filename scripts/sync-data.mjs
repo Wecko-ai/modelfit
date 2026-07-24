@@ -28,10 +28,41 @@ function findRepo() {
 
 function syncModels(repo) {
   const src = join(repo, 'data', 'models.json');
-  JSON.parse(readFileSync(src, 'utf8')); // validate
+  const data = JSON.parse(readFileSync(src, 'utf8')); // parse
+  validateModels(data, src); // validate content before it can ship (CWE-20/345)
+  console.log(`· source: ${src}`);
   copyFileSync(src, join(OUT, 'models.json'));
   const n = JSON.parse(readFileSync(join(OUT, 'models.json'), 'utf8')).length;
   console.log(`✓ models.json synced from ${repo} (${n} models)`);
+}
+
+// Content validation for the synced dataset — JSON.parse alone only checks syntax.
+const OLLAMA_CMD_RE = /^ollama (run|pull) [a-z0-9][a-z0-9._:\/-]+$/i;
+const CONTROL_RE = /[\x00-\x1f\x7f]/;
+
+function invalid(msg, src) {
+  console.error(`✗ models.json failed validation: ${msg}`);
+  console.error(`  source: ${src}`);
+  process.exit(1);
+}
+
+function validateModels(data, src) {
+  if (!Array.isArray(data) || data.length < 1 || data.length > 1000) {
+    invalid(`expected a non-empty array of 1-1000 models, got ${Array.isArray(data) ? data.length : typeof data}`, src);
+  }
+  data.forEach((m, i) => {
+    const where = `entry #${i} (${typeof m?.name === 'string' ? m.name : 'unnamed'})`;
+    if (typeof m?.name !== 'string') invalid(`${where}: missing string "name"`, src);
+    if (m.ollamaCommand != null) {
+      if (typeof m.ollamaCommand !== 'string') invalid(`${where}: "ollamaCommand" must be a string`, src);
+      if (!OLLAMA_CMD_RE.test(m.ollamaCommand)) invalid(`${where}: unsafe "ollamaCommand": ${JSON.stringify(m.ollamaCommand)}`, src);
+    }
+    for (const key of ['name', 'bestFor', 'why']) {
+      if (typeof m[key] === 'string' && CONTROL_RE.test(m[key])) {
+        invalid(`${where}: control character in "${key}"`, src);
+      }
+    }
+  });
 }
 
 function syncSlugs(repo) {

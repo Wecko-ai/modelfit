@@ -4,9 +4,28 @@
 
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
+import { existsSync } from 'node:fs';
 
 const GB = 1024 ** 3;
 const round = (n) => Math.round(n);
+
+// Prefer known absolute install paths over a bare $PATH lookup (CWE-426).
+// macOS guarantees /usr/sbin locations; ollama/nvidia-smi vary by install method.
+const KNOWN_BIN_PATHS = {
+  system_profiler: ['/usr/sbin/system_profiler'],
+  sysctl: ['/usr/sbin/sysctl'],
+  'nvidia-smi': [
+    '/usr/bin/nvidia-smi',
+    `${process.env.SystemRoot || 'C:\\Windows'}\\System32\\nvidia-smi.exe`,
+  ],
+};
+
+function resolveBin(name) {
+  for (const p of KNOWN_BIN_PATHS[name] ?? []) {
+    if (existsSync(p)) return p;
+  }
+  return name; // fall back to $PATH lookup
+}
 
 // Exact ChipType / DeviceType enums accepted by the engine (lib/recommend.ts).
 const KNOWN_CHIPS = new Set([
@@ -25,7 +44,7 @@ const KNOWN_DEVICES = new Set([
 
 function sh(cmd, args, timeout = 4000) {
   try {
-    return execFileSync(cmd, args, { encoding: 'utf8', timeout, stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    return execFileSync(resolveBin(cmd), args, { encoding: 'utf8', timeout, stdio: ['ignore', 'pipe', 'ignore'] }).trim();
   } catch {
     return '';
   }

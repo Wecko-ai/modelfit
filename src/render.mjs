@@ -7,6 +7,11 @@ import { selectBest, bestContract } from './best.mjs';
 
 const useColor = (opts) => !opts.noColor && !process.env.NO_COLOR && process.stdout.isTTY;
 
+// Strip control chars from any dataset/hardware string before it reaches the
+// terminal — a poisoned dataset must not inject ANSI/cursor sequences (CWE-150).
+// Apply BEFORE paint(): paint's own color codes are internal and safe.
+const clean = (s) => String(s ?? '').replace(/[\x00-\x1f\x7f]/g, '');
+
 function paint(opts) {
   const on = useColor(opts);
   const w = (code) => (s) => (on ? `\x1b[${code}m${s}\x1b[0m` : String(s));
@@ -24,15 +29,15 @@ export function localRunnable(recs) {
 
 function recRecord(r) {
   return {
-    name: r.name,
+    name: clean(r.name),
     params: `${r.sizeB}B`,
     quantization: r.quantization,
-    ollamaCommand: r.ollamaCommand ?? null,
+    ollamaCommand: r.ollamaCommand != null ? clean(r.ollamaCommand) : null,
     fit: r.fitLevel,
     localVerdict: r.localVerdict,
     estimatedTokensPerSec: r.estimatedTokensPerSec,
-    bestFor: r.bestFor,
-    why: r.why,
+    bestFor: clean(r.bestFor),
+    why: clean(r.why),
     learnMoreUrl: modelUrl(r.family),
   };
 }
@@ -64,8 +69,8 @@ export function toJson(profile, input, recs, opts) {
 function header(c, profile, input, opts) {
   const overridden = opts.ram != null || opts.chip != null || opts.device != null;
   const line = overridden
-    ? `${input.deviceType} · ${input.chip} · ${input.ramGb} GB ${c.dim('(override)')}`
-    : profile.detail;
+    ? `${clean(input.deviceType)} · ${clean(input.chip)} · ${input.ramGb} GB ${c.dim('(override)')}`
+    : clean(profile.detail);
   return [
     `${c.bold(c.cyan('ModelFit'))} ${c.dim('— the best local LLM for your machine')}   ${c.dim('modelfit.io')}`,
     `${c.gray(overridden ? 'Target  ' : 'Detected')}  ${c.bold(line)}`,
@@ -91,14 +96,14 @@ export function toBest(profile, input, recs, opts) {
     ? c.green('runs comfortably')
     : c.yellow('runs, but slower — more RAM unlocks bigger models');
 
-  L.push(`  ${c.green('▶')} ${c.bold(best.name)}   ${[tps, comfort].filter(Boolean).join(c.dim(' · '))}`);
-  if (best.ollamaCommand) L.push(`    ${c.green('$')} ${best.ollamaCommand}`);
+  L.push(`  ${c.green('▶')} ${c.bold(clean(best.name))}   ${[tps, comfort].filter(Boolean).join(c.dim(' · '))}`);
+  if (best.ollamaCommand) L.push(`    ${c.green('$')} ${clean(best.ollamaCommand)}`);
   L.push(`    ${c.dim('The most capable model your machine can run.')} ${c.dim('→')} ${c.dim(modelUrl(best.family))}`);
   L.push('');
 
   const alts = localRunnable(recs).filter((r) => r.id !== best.id).slice(0, 2);
   if (alts.length) {
-    L.push(`${c.gray('Also fits')}  ${alts.map((r) => r.name).join(c.dim(' · '))}   ${c.dim('(modelfit --all for the full list)')}`);
+    L.push(`${c.gray('Also fits')}  ${alts.map((r) => clean(r.name)).join(c.dim(' · '))}   ${c.dim('(modelfit --all for the full list)')}`);
   }
   L.push(c.dim('Estimates, not measured benchmarks · Data: ModelFit (CC BY 4.0)'));
   return L.join('\n');
@@ -117,9 +122,9 @@ export function toList(profile, input, recs, opts) {
     const star = best && r.id === best.id ? c.green('▶') : ' ';
     const tps = r.estimatedTokensPerSec != null ? `~${r.estimatedTokensPerSec} tok/s` : '';
     const fitColor = r.fitLevel === 'Excellent' ? c.green : r.fitLevel === 'OK' ? c.yellow : c.red;
-    const meta = [fitColor(`${r.fitLevel} fit`), c.dim(tps), c.dim(r.bestFor)].filter(Boolean).join(c.dim(' · '));
-    L.push(` ${star} ${c.bold(r.name)}   ${meta}`);
-    if (r.ollamaCommand) L.push(`    ${c.green('$')} ${r.ollamaCommand}`);
+    const meta = [fitColor(`${r.fitLevel} fit`), c.dim(tps), c.dim(clean(r.bestFor))].filter(Boolean).join(c.dim(' · '));
+    L.push(` ${star} ${c.bold(clean(r.name))}   ${meta}`);
+    if (r.ollamaCommand) L.push(`    ${c.green('$')} ${clean(r.ollamaCommand)}`);
     L.push(`    ${c.dim('→')} ${c.dim(modelUrl(r.family))}`);
   });
   L.push('');
