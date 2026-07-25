@@ -142,7 +142,11 @@ function estimateLocalPerformance(model, input, ramBudget) {
   const bandwidthGbs = chipBandwidthGbs(input.chip);
   const roofline = bandwidthGbs === null ? Infinity : bandwidthGbs / weightsGb;
 
-  const estimatedTokensPerSec = clamp(0.4, 180, Math.min(base * sizeFactor * ramPressure, roofline));
+  // Order matters: the roofline is applied LAST, so the lower bound can never lift an
+  // estimate back above physics. A 405B at Q4 is ~235GB of weights, so an M1 at
+  // 68 GB/s tops out near 0.29 tok/s; a 0.4 floor applied afterwards would have
+  // published 137% of the ceiling. The floor only keeps the value positive.
+  const estimatedTokensPerSec = Math.min(clamp(0.05, 180, base * sizeFactor * ramPressure), roofline);
   const estimatedFirstTokenSec = clamp(
     0.5, 30,
     0.45 + 10 / estimatedTokensPerSec + (model.sizeB >= 30 ? 0.8 : 0) +
