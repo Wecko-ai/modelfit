@@ -25,7 +25,7 @@
     "family": "Qwen",
     "sizeB": 3,
     "quantization": "Q4_K_M",
-    "minRamGb": 6,
+    "minRamGb": 4,
     "estimatedLoadGb": 2.5,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
@@ -46,7 +46,7 @@
     "family": "Qwen",
     "sizeB": 7,
     "quantization": "Q4_K_M",
-    "minRamGb": 10,
+    "minRamGb": 8,
     "estimatedLoadGb": 5.5,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
@@ -67,7 +67,7 @@
     "family": "Qwen",
     "sizeB": 14,
     "quantization": "Q4_K_M",
-    "minRamGb": 20,
+    "minRamGb": 16,
     "estimatedLoadGb": 11,
     "bestFor": "Coding, Chat",
     "publisherTier": "major",
@@ -88,7 +88,7 @@
     "family": "Llama",
     "sizeB": 3,
     "quantization": "Q4_K_M",
-    "minRamGb": 6,
+    "minRamGb": 4,
     "estimatedLoadGb": 2.5,
     "bestFor": "Chat",
     "publisherTier": "major",
@@ -129,7 +129,7 @@
     "family": "Llama",
     "sizeB": 8,
     "quantization": "Q5_K_M",
-    "minRamGb": 14,
+    "minRamGb": 12,
     "estimatedLoadGb": 8,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
@@ -149,7 +149,7 @@
     "family": "Llama",
     "sizeB": 70,
     "quantization": "Q4_K_M",
-    "minRamGb": 48,
+    "minRamGb": 64,
     "estimatedLoadGb": 42,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
@@ -170,7 +170,7 @@
     "family": "Mistral",
     "sizeB": 7,
     "quantization": "Q4_K_M",
-    "minRamGb": 10,
+    "minRamGb": 8,
     "estimatedLoadGb": 5.5,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
@@ -191,7 +191,7 @@
     "family": "Mistral",
     "sizeB": 46.7,
     "quantization": "Q4_K_M",
-    "minRamGb": 36,
+    "minRamGb": 48,
     "estimatedLoadGb": 30,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
@@ -214,7 +214,7 @@
     "family": "Mistral",
     "sizeB": 12,
     "quantization": "Q4_K_M",
-    "minRamGb": 18,
+    "minRamGb": 16,
     "estimatedLoadGb": 9.5,
     "bestFor": "Chat, Translation",
     "publisherTier": "major",
@@ -235,7 +235,7 @@
     "family": "Gemma",
     "sizeB": 2,
     "quantization": "Q4_K_M",
-    "minRamGb": 5,
+    "minRamGb": 4,
     "estimatedLoadGb": 1.8,
     "bestFor": "Chat",
     "publisherTier": "major",
@@ -255,7 +255,7 @@
     "family": "Gemma",
     "sizeB": 9,
     "quantization": "Q4_K_M",
-    "minRamGb": 14,
+    "minRamGb": 12,
     "estimatedLoadGb": 7,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
@@ -276,7 +276,7 @@
     "family": "Gemma",
     "sizeB": 27,
     "quantization": "Q4_K_M",
-    "minRamGb": 28,
+    "minRamGb": 32,
     "estimatedLoadGb": 21,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
@@ -297,7 +297,7 @@
     "family": "Phi",
     "sizeB": 3.8,
     "quantization": "Q4_K_M",
-    "minRamGb": 7,
+    "minRamGb": 6,
     "estimatedLoadGb": 3.2,
     "bestFor": "Coding, Chat",
     "publisherTier": "major",
@@ -317,7 +317,7 @@
     "family": "Phi",
     "sizeB": 14,
     "quantization": "Q4_K_M",
-    "minRamGb": 20,
+    "minRamGb": 16,
     "estimatedLoadGb": 11,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
@@ -338,7 +338,7 @@
     "family": "Phi",
     "sizeB": 14,
     "quantization": "Q4_K_M",
-    "minRamGb": 22,
+    "minRamGb": 24,
     "estimatedLoadGb": 11.5,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
@@ -359,7 +359,7 @@
     "family": "Qwen",
     "sizeB": 7,
     "quantization": "Q4_K_M",
-    "minRamGb": 10,
+    "minRamGb": 8,
     "estimatedLoadGb": 5.5,
     "bestFor": "Coding",
     "publisherTier": "major",
@@ -379,7 +379,7 @@
     "family": "Qwen",
     "sizeB": 14,
     "quantization": "Q4_K_M",
-    "minRamGb": 22,
+    "minRamGb": 16,
     "estimatedLoadGb": 11,
     "bestFor": "Coding",
     "publisherTier": "major",
@@ -399,7 +399,7 @@
     "family": "Llama",
     "sizeB": 1,
     "quantization": "Q4_K_M",
-    "minRamGb": 3,
+    "minRamGb": 2,
     "estimatedLoadGb": 1,
     "bestFor": "Chat",
     "publisherTier": "major",
@@ -419,7 +419,7 @@
     "family": "Mistral",
     "sizeB": 22,
     "quantization": "Q4_K_M",
-    "minRamGb": 26,
+    "minRamGb": 32,
     "estimatedLoadGb": 17,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
@@ -455,7 +455,10 @@
     "qualityScore": 97,
     "notes": "1T parameter MoE model (32B active). Cloud/API only, requires ~560GB RAM at Q4, not feasible locally even on Mac Studio M3 Ultra 512GB.",
     "popularityScore": 72,
-    "moeActiveB": 32
+    "moeActiveB": 32,
+    "sources": [
+      "https://huggingface.co/moonshotai/Kimi-K2-Instruct"
+    ]
   },
   {
     "id": "claude-3.5-sonnet-cloud",
@@ -568,7 +571,7 @@
     "family": "Gemma",
     "sizeB": 1,
     "quantization": "Q4_K_M",
-    "minRamGb": 3,
+    "minRamGb": 2,
     "estimatedLoadGb": 1,
     "bestFor": "Chat, Mobile",
     "publisherTier": "major",
@@ -589,7 +592,7 @@
     "family": "Phi",
     "sizeB": 3.8,
     "quantization": "Q4_K_M",
-    "minRamGb": 7,
+    "minRamGb": 6,
     "estimatedLoadGb": 3.2,
     "bestFor": "Coding, Chat",
     "publisherTier": "major",
@@ -629,7 +632,7 @@
     "family": "Llama",
     "sizeB": 70,
     "quantization": "Q4_K_M",
-    "minRamGb": 48,
+    "minRamGb": 64,
     "estimatedLoadGb": 42,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
@@ -651,7 +654,7 @@
     "sizeB": 405,
     "quantization": "Q4_K_M",
     "cloud_only": false,
-    "minRamGb": 256,
+    "minRamGb": 320,
     "estimatedLoadGb": 243,
     "bestFor": "Quality, Reasoning, Coding",
     "publisherTier": "top",
@@ -674,7 +677,7 @@
     "sizeB": 671,
     "quantization": "Q4_K_M",
     "cloud_only": false,
-    "minRamGb": 400,
+    "minRamGb": 512,
     "estimatedLoadGb": 380,
     "bestFor": "Reasoning, Coding",
     "publisherTier": "top",
@@ -718,7 +721,7 @@
     "family": "Qwen",
     "sizeB": 14,
     "quantization": "Q4_K_M",
-    "minRamGb": 20,
+    "minRamGb": 16,
     "estimatedLoadGb": 11,
     "bestFor": "Coding, Quality",
     "publisherTier": "major",
@@ -739,7 +742,7 @@
     "family": "Qwen",
     "sizeB": 30,
     "quantization": "Q4_K_M",
-    "minRamGb": 28,
+    "minRamGb": 32,
     "estimatedLoadGb": 22,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
@@ -762,7 +765,7 @@
     "family": "Gemma",
     "sizeB": 4,
     "quantization": "Q4_K_M",
-    "minRamGb": 8,
+    "minRamGb": 6,
     "estimatedLoadGb": 3.5,
     "bestFor": "Chat, Coding",
     "publisherTier": "major",
@@ -782,7 +785,7 @@
     "family": "Gemma",
     "sizeB": 12,
     "quantization": "Q4_K_M",
-    "minRamGb": 18,
+    "minRamGb": 16,
     "estimatedLoadGb": 9.5,
     "bestFor": "Chat, Quality",
     "publisherTier": "major",
@@ -803,7 +806,7 @@
     "family": "Gemma",
     "sizeB": 27,
     "quantization": "Q4_K_M",
-    "minRamGb": 28,
+    "minRamGb": 32,
     "estimatedLoadGb": 21,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
@@ -824,7 +827,7 @@
     "family": "DeepSeek",
     "sizeB": 7,
     "quantization": "Q4_K_M",
-    "minRamGb": 10,
+    "minRamGb": 8,
     "estimatedLoadGb": 5.5,
     "bestFor": "Reasoning, Coding",
     "publisherTier": "major",
@@ -845,7 +848,7 @@
     "family": "DeepSeek",
     "sizeB": 14,
     "quantization": "Q4_K_M",
-    "minRamGb": 22,
+    "minRamGb": 16,
     "estimatedLoadGb": 11,
     "bestFor": "Reasoning, Quality",
     "publisherTier": "major",
@@ -866,7 +869,7 @@
     "family": "DeepSeek",
     "sizeB": 70,
     "quantization": "Q4_K_M",
-    "minRamGb": 48,
+    "minRamGb": 64,
     "estimatedLoadGb": 42,
     "bestFor": "Reasoning, Quality",
     "publisherTier": "major",
@@ -1166,7 +1169,8 @@
     "qualityScore": 56,
     "popularityScore": 70,
     "ollamaCommand": "ollama run qwen3.5:0.8b",
-    "notes": "Ultra-light Qwen3.5 with native multimodal. 262K context. Ideal for mobile and IoT edge devices."
+    "notes": "Ultra-light Qwen3.5 with native multimodal. 262K context. Ideal for mobile and IoT edge devices.",
+    "kvKbPerToken": 12
   },
   {
     "id": "qwen3.5-2b-q4",
@@ -1187,7 +1191,8 @@
     "qualityScore": 70,
     "popularityScore": 75,
     "ollamaCommand": "ollama run qwen3.5:2b",
-    "notes": "Fast small Qwen3.5 with native multimodal and 262K context. Great for edge tasks and quick chat."
+    "notes": "Fast small Qwen3.5 with native multimodal and 262K context. Great for edge tasks and quick chat.",
+    "kvKbPerToken": 12
   },
   {
     "id": "qwen3.5-4b-q4",
@@ -1195,7 +1200,7 @@
     "family": "Qwen",
     "sizeB": 4,
     "quantization": "Q4_K_M",
-    "minRamGb": 8,
+    "minRamGb": 6,
     "estimatedLoadGb": 3.5,
     "bestFor": "Coding, Agents, Multimodal",
     "publisherTier": "top",
@@ -1208,7 +1213,11 @@
     "qualityScore": 83,
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3.5:4b",
-    "notes": "88.8 MMLU-Redux beats 20B-class models. Native multimodal, 262K context. Best quality-per-GB ratio in its class."
+    "notes": "88.8 MMLU-Redux beats 20B-class models. Native multimodal, 262K context. Best quality-per-GB ratio in its class.",
+    "kvKbPerToken": 32,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-4B"
+    ]
   },
   {
     "id": "qwen3.5-9b-q4",
@@ -1216,7 +1225,7 @@
     "family": "Qwen",
     "sizeB": 9,
     "quantization": "Q4_K_M",
-    "minRamGb": 14,
+    "minRamGb": 12,
     "estimatedLoadGb": 7,
     "bestFor": "Quality, Coding, Reasoning",
     "publisherTier": "top",
@@ -1230,7 +1239,11 @@
     "qualityScore": 89,
     "popularityScore": 86,
     "ollamaCommand": "ollama run qwen3.5:9b",
-    "notes": "91.1 MMLU-Redux rivals 30B+ models. Native multimodal, 262K context. Near-frontier quality under 10GB RAM."
+    "notes": "91.1 MMLU-Redux rivals 30B+ models. Native multimodal, 262K context. Near-frontier quality under 10GB RAM.",
+    "kvKbPerToken": 32,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-9B"
+    ]
   },
   {
     "id": "qwen3.5-35b-a3b-q4",
@@ -1238,7 +1251,7 @@
     "family": "Qwen",
     "sizeB": 35,
     "quantization": "Q4_K_M",
-    "minRamGb": 24,
+    "minRamGb": 32,
     "estimatedLoadGb": 20,
     "bestFor": "Reasoning, Coding, Agent scenarios",
     "publisherTier": "top",
@@ -1254,7 +1267,8 @@
     "popularityScore": 90,
     "ollamaCommand": "ollama run qwen3.5:35b-a3b",
     "notes": "MoE model (35B total, 3B active). Surpasses Qwen3-235B-A22B. Runs on 24GB Mac/RAM. Better architecture beats bigger parameter counts.",
-    "moeActiveB": 3
+    "moeActiveB": 3,
+    "kvKbPerToken": 20
   },
   {
     "id": "qwen3.5-27b-q4",
@@ -1262,7 +1276,7 @@
     "family": "Qwen",
     "sizeB": 27,
     "quantization": "Q4_K_M",
-    "minRamGb": 20,
+    "minRamGb": 24,
     "estimatedLoadGb": 16,
     "bestFor": "Chat, Coding, Complex reasoning",
     "publisherTier": "top",
@@ -1275,7 +1289,11 @@
     "qualityScore": 91,
     "popularityScore": 82,
     "ollamaCommand": "ollama run qwen3.5:27b",
-    "notes": "Mid-size model narrowing the gap between medium and frontier models. Excellent for complex agent scenarios."
+    "notes": "Mid-size model narrowing the gap between medium and frontier models. Excellent for complex agent scenarios.",
+    "kvKbPerToken": 64,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-27B"
+    ]
   },
   {
     "id": "qwen3.5-122b-a10b-q4",
@@ -1299,7 +1317,8 @@
     "popularityScore": 75,
     "ollamaCommand": "ollama run qwen3.5:122b-a10b",
     "notes": "MoE model (122B total, 10B active). Closes the gap between medium-sized and frontier models. Best for complex agent scenarios. Requires high-end Mac Studio.",
-    "moeActiveB": 10
+    "moeActiveB": 10,
+    "kvKbPerToken": 24
   },
   {
     "id": "lfm2-24b-a2b-q4",
@@ -1307,7 +1326,7 @@
     "family": "LFM2",
     "sizeB": 24,
     "quantization": "Q4_K_M",
-    "minRamGb": 16,
+    "minRamGb": 24,
     "estimatedLoadGb": 14,
     "bestFor": "Local AI agents, privacy-first tool calling, MCP workflows",
     "publisherTier": "top",
@@ -1322,8 +1341,11 @@
     "qualityScore": 85,
     "popularityScore": 80,
     "ollamaCommand": "ollama run lfm2:24b-a2b",
-    "notes": "LiquidAI flagship hybrid MoE (24B total, 2B active). Powers LocalCowork open-source agent app with 75 MCP tools. 112 tok/s on AMD CPU, 293 tok/s on H100. Requires 16GB+ unified memory. Best for privacy-sensitive enterprise workflows with zero cloud.",
-    "moeActiveB": 2
+    "notes": "LiquidAI flagship hybrid MoE (24B total, 2.3B active per the model card). Powers the LocalCowork open-source agent app over MCP. 112 tok/s on AMD CPU, 293 tok/s on H100, per LiquidAI. Requires 16GB+ unified memory. Best for privacy-sensitive enterprise workflows with zero cloud.",
+    "moeActiveB": 2,
+    "sources": [
+      "https://huggingface.co/LiquidAI/LFM2-24B-A2B"
+    ]
   },
   {
     "id": "lfm2.5-8b-a1b-q4",
@@ -1331,7 +1353,7 @@
     "family": "LFM2",
     "sizeB": 8.3,
     "quantization": "Q4_K_M",
-    "minRamGb": 10,
+    "minRamGb": 8,
     "estimatedLoadGb": 5.5,
     "bestFor": "On-device agents, tool calling, multilingual chat",
     "publisherTier": "top",
@@ -1347,7 +1369,10 @@
     "popularityScore": 72,
     "ollamaCommand": "ollama run lfm2.5:8b-a1b-q4_K_M",
     "notes": "LiquidAI hybrid conv+GQA model (8.3B total, 1.5B active per token). IFEval 91.84, MATH500 88.76 per official HF model card. 128K context, native tool calling, 10 languages. ~5 GB at Q4_K_M, runs on most Apple Silicon Macs. Not its strongest area: heavy coding.",
-    "moeActiveB": 1.5
+    "moeActiveB": 1.5,
+    "sources": [
+      "https://huggingface.co/LiquidAI/LFM2.5-8B-A1B"
+    ]
   },
   {
     "id": "granite4.1-3b-q4",
@@ -1355,7 +1380,7 @@
     "family": "Granite",
     "sizeB": 3,
     "quantization": "Q4_K_M",
-    "minRamGb": 6,
+    "minRamGb": 4,
     "estimatedLoadGb": 2,
     "bestFor": "Lightweight chat, classification, edge tasks",
     "publisherTier": "major",
@@ -1369,7 +1394,10 @@
     "qualityScore": 65,
     "popularityScore": 56,
     "ollamaCommand": "ollama run granite4.1:3b",
-    "notes": "IBM dense 3B (June 2026), Apache 2.0. MMLU 67.02 per IBM model card. 131K context, 12 languages. Safe pick for any Apple Silicon Mac, including 8 GB machines."
+    "notes": "IBM dense 3B (June 2026), Apache 2.0. MMLU 67.02 per IBM model card. 131K context, 12 languages. Safe pick for any Apple Silicon Mac, including 8 GB machines.",
+    "sources": [
+      "https://huggingface.co/ibm-granite/granite-4.1-3b"
+    ]
   },
   {
     "id": "granite4.1-8b-q4",
@@ -1377,7 +1405,7 @@
     "family": "Granite",
     "sizeB": 8,
     "quantization": "Q4_K_M",
-    "minRamGb": 12,
+    "minRamGb": 8,
     "estimatedLoadGb": 5.5,
     "bestFor": "Enterprise assistant, tool calling, instruction following",
     "publisherTier": "major",
@@ -1391,7 +1419,10 @@
     "qualityScore": 80,
     "popularityScore": 62,
     "ollamaCommand": "ollama run granite4.1:8b",
-    "notes": "IBM dense 8B (June 2026), Apache 2.0. MMLU 73.84 per IBM model card. 131K context, OpenAI-style tool calling, 12 languages. IBM states it matches the older Granite 4.0-H-Small 32B MoE on enterprise benchmarks."
+    "notes": "IBM dense 8B (June 2026), Apache 2.0. MMLU 73.84 per IBM model card. 131K context, OpenAI-style tool calling, 12 languages. Safe general-purpose pick for a 16GB Mac.",
+    "sources": [
+      "https://huggingface.co/ibm-granite/granite-4.1-8b"
+    ]
   },
   {
     "id": "qwen3.6-27b-q4",
@@ -1399,7 +1430,7 @@
     "family": "Qwen",
     "sizeB": 27,
     "quantization": "Q4_K_M",
-    "minRamGb": 24,
+    "minRamGb": 32,
     "estimatedLoadGb": 18,
     "bestFor": "Coding, Quality, Long context",
     "publisherTier": "top",
@@ -1413,7 +1444,11 @@
     "qualityScore": 94,
     "popularityScore": 92,
     "ollamaCommand": "ollama run qwen3.6:27b",
-    "notes": "Apr 2026 flagship dense Qwen. 262K context, extensible to 1M. SWE-Bench Verified 77.2, MMLU-Pro 86.2. Apache 2.0. Best dense open-source coding model in its class."
+    "notes": "Apr 2026 flagship dense Qwen. 262K context, extensible to 1M. SWE-Bench Verified 77.2, MMLU-Pro 86.2 per Qwen's model card. Apache 2.0. Strongest dense open-weight coder ModelFit tracks at this size.",
+    "kvKbPerToken": 64,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.6-27B"
+    ]
   },
   {
     "id": "qwen3.6-35b-a3b-q4",
@@ -1421,7 +1456,7 @@
     "family": "Qwen",
     "sizeB": 35,
     "quantization": "Q4_K_M",
-    "minRamGb": 24,
+    "minRamGb": 32,
     "estimatedLoadGb": 22,
     "bestFor": "Reasoning, Coding, Agents",
     "publisherTier": "top",
@@ -1436,8 +1471,12 @@
     "qualityScore": 95,
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3.6:35b-a3b",
-    "notes": "Apr 2026 MoE (35B total, 3B active). Successor to Qwen3.5-35B-A3B with better reasoning and tool calling. 262K context. Runs at ~55 tok/s on M5 Max via MLX.",
-    "moeActiveB": 3
+    "notes": "Apr 2026 MoE (35B total, 3B active). Successor to Qwen3.5-35B-A3B with better reasoning and tool calling. 262K context. MoE routing keeps decode fast for its size on Apple Silicon.",
+    "moeActiveB": 3,
+    "kvKbPerToken": 20,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+    ]
   },
   {
     "id": "gemma4-31b-q4",
@@ -1459,7 +1498,10 @@
     "qualityScore": 93,
     "popularityScore": 84,
     "ollamaCommand": "ollama run gemma4:31b",
-    "notes": "Apr 2, 2026 release from Google DeepMind. Dense 31B. MMLU-Pro 85.2, GPQA Diamond 84.3. Apache 2.0. Multimodal text+image."
+    "notes": "Apr 2, 2026 release from Google DeepMind. Dense 31B. MMLU-Pro 85.2, GPQA Diamond 84.3. Apache 2.0. Multimodal text+image.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-31B"
+    ]
   },
   {
     "id": "gemma4-26b-a4b-q4",
@@ -1482,8 +1524,11 @@
     "qualityScore": 91,
     "popularityScore": 86,
     "ollamaCommand": "ollama run gemma4:26b",
-    "notes": "Apr 2026 MoE (26B total, 4B active). MMLU-Pro 82.6, GPQA Diamond 82.3. Apache 2.0. Strong throughput on 24GB Mac via MLX.",
-    "moeActiveB": 4
+    "notes": "Apr 2026 MoE, named 26B-A4B but 25.2B total / 3.8B active per Google's spec table. MMLU-Pro 82.6, GPQA Diamond 82.3. Apache 2.0. Strong throughput on 24GB Mac via MLX.",
+    "moeActiveB": 4,
+    "sources": [
+      "https://huggingface.co/google/gemma-4-26B-A4B"
+    ]
   },
   {
     "id": "gemma4-e4b-q4",
@@ -1491,7 +1536,7 @@
     "family": "Gemma",
     "sizeB": 4.5,
     "quantization": "Q4_K_M",
-    "minRamGb": 8,
+    "minRamGb": 6,
     "estimatedLoadGb": 4,
     "bestFor": "On-device, Mobile, Chat",
     "publisherTier": "top",
@@ -1524,7 +1569,10 @@
     "qualityScore": 68,
     "popularityScore": 76,
     "ollamaCommand": "ollama run gemma4:e2b",
-    "notes": "Apr 2026 ultra-light Gemma 4. 2.3B effective. ~158 tok/s on M5 Max, fastest in the 2026 batch. iPhone-class device target."
+    "notes": "Apr 2026 ultra-light Gemma 4. 2.3B effective params per Google's card. Among the fastest builds in the 2026 batch on Apple Silicon. iPhone-class device target.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-26B-A4B"
+    ]
   },
   {
     "id": "llama4-scout-q4",
@@ -1532,7 +1580,7 @@
     "family": "Llama",
     "sizeB": 109,
     "quantization": "Q4_K_M",
-    "minRamGb": 80,
+    "minRamGb": 96,
     "estimatedLoadGb": 67,
     "bestFor": "Long context, Quality, Multimodal",
     "publisherTier": "top",
@@ -1557,7 +1605,7 @@
     "family": "Llama",
     "sizeB": 400,
     "quantization": "Q4_K_M",
-    "minRamGb": 256,
+    "minRamGb": 320,
     "estimatedLoadGb": 245,
     "bestFor": "Frontier quality, Long context",
     "publisherTier": "top",
@@ -1597,7 +1645,10 @@
     "speedScore": 70,
     "qualityScore": 95,
     "popularityScore": 78,
-    "notes": "Apr 30, 2026. 128B dense. SWE-Bench Verified 77.6%. Merges Magistral + Devstral 2 + Pixtral. GGUF available but 96GB+ Mac required. Open weights: mistralai/Mistral-Medium-3.5-128B on Hugging Face (modified MIT)."
+    "notes": "Apr 30, 2026. 128B dense. SWE-Bench Verified 77.6%. Merges Magistral + Devstral 2 + Pixtral. GGUF available but 96GB+ Mac required. Open weights: mistralai/Mistral-Medium-3.5-128B on Hugging Face (modified MIT).",
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B"
+    ]
   },
   {
     "id": "deepseek-v4-flash-cloud",
@@ -1646,8 +1697,12 @@
     "speedScore": 60,
     "qualityScore": 100,
     "popularityScore": 86,
-    "notes": "Apr 24, 2026. 1.6T total, 49B active MoE. MIT license. Not realistically runnable on consumer Mac. API ~$3.48 per 1M output tokens.",
-    "moeActiveB": 49
+    "notes": "Apr 24, 2026. 1.6T total, 49B active MoE. MIT license. Not realistically runnable on consumer Mac. API $0.87 per 1M output tokens (DeepSeek pricing page, Jul 2026).",
+    "moeActiveB": 49,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+      "https://api-docs.deepseek.com/quick_start/pricing"
+    ]
   },
   {
     "id": "kimi-k2.6-cloud",
@@ -1671,7 +1726,10 @@
     "qualityScore": 97,
     "popularityScore": 80,
     "notes": "Apr 20, 2026 Moonshot AI release. 1T total, 32B active MoE. SWE-Bench Pro 58.6%. GGUF available (Unsloth UD-Q4: ~250GB). Open weights, Mac Studio 192-512GB territory.",
-    "moeActiveB": 32
+    "moeActiveB": 32,
+    "sources": [
+      "https://huggingface.co/moonshotai/Kimi-K2.6"
+    ]
   },
   {
     "id": "glm-5.1-cloud",
@@ -1694,8 +1752,11 @@
     "speedScore": 66,
     "qualityScore": 95,
     "popularityScore": 76,
-    "notes": "Apr 7, 2026 from Z.ai. 744B total, 40B active MoE with DeepSeek Sparse Attention. SWE-Bench Pro 58.4. MIT license. Local GGUF available (200-220GB).",
-    "moeActiveB": 40
+    "notes": "Apr 7, 2026 from Z.ai. 754B total, 40B active MoE with DeepSeek Sparse Attention. SWE-Bench Pro 58.4. MIT license. Local GGUF available (200-220GB).",
+    "moeActiveB": 40,
+    "sources": [
+      "https://huggingface.co/zai-org/GLM-5.1"
+    ]
   },
   {
     "id": "claude-opus-4.7-cloud",
@@ -1717,7 +1778,11 @@
     "speedScore": 72,
     "qualityScore": 100,
     "popularityScore": 96,
-    "notes": "Apr 16, 2026 Anthropic flagship. SWE-Bench Verified 87.6%, current leader. $5 input / $25 output per 1M tokens. Cloud only. Parameter count undisclosed (cloud API)."
+    "notes": "Apr 16, 2026 Anthropic flagship. SWE-Bench Verified 87.6%. $5 input / $25 output per 1M tokens. Superseded by Opus 4.8. Cloud only. Parameter count undisclosed (cloud API).",
+    "sources": [
+      "https://www.anthropic.com/pricing",
+      "https://www.vals.ai/benchmarks/swebench"
+    ]
   },
   {
     "id": "claude-opus-4.8-cloud",
@@ -1816,7 +1881,7 @@
     "family": "Gemma",
     "sizeB": 12,
     "quantization": "Q4_K_M",
-    "minRamGb": 16,
+    "minRamGb": 12,
     "estimatedLoadGb": 8,
     "bestFor": "Chat, Coding, Multimodal",
     "publisherTier": "top",
@@ -1830,7 +1895,10 @@
     "qualityScore": 90,
     "popularityScore": 80,
     "ollamaCommand": "ollama run gemma4:12b",
-    "notes": "Jun 3, 2026 Google DeepMind release. Unified encoder-free dense 12B, multimodal (text/image/audio), 256K context. MMLU-Pro 77.2, GPQA Diamond 78.8, LiveCodeBench v6 72.0. Beats Gemma 3 27B and runs comfortably on a 16GB Mac. Open weights."
+    "notes": "Jun 3, 2026 Google DeepMind release. Unified encoder-free dense 12B, multimodal (text/image/audio), 256K context. MMLU-Pro 77.2, GPQA Diamond 78.8, LiveCodeBench v6 72.0. Beats Gemma 3 27B and runs comfortably on a 16GB Mac. Open weights.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-12b"
+    ]
   },
   {
     "id": "claude-fable-5-cloud",
@@ -1899,8 +1967,11 @@
     "speedScore": 64,
     "qualityScore": 96,
     "popularityScore": 80,
-    "notes": "Jun 12, 2026 Moonshot AI release. 1T total / 32B active MoE built on K2.6, cutting thinking-token usage ~30%. 256K context, Modified MIT license. Open weights, but 1T scale means cloud/API for nearly all users; Ollama exposes a cloud-only tag.",
-    "moeActiveB": 32
+    "notes": "Jun 12, 2026 Moonshot AI release. 1T total / 32B active MoE built on K2.6. Moonshot reports it cuts thinking-token usage ~30%, a self-reported figure. 256K context, Modified MIT license. Open weights, but 1T scale means cloud/API for nearly all users; Ollama exposes a cloud-only tag.",
+    "moeActiveB": 32,
+    "sources": [
+      "https://huggingface.co/moonshotai/Kimi-K2.7-Code"
+    ]
   },
   {
     "id": "minimax-m3-cloud",
@@ -1925,7 +1996,11 @@
     "qualityScore": 93,
     "popularityScore": 72,
     "notes": "Jun 1, 2026 MiniMax release. Native-multimodal MoE (~428B total / ~23B active) with 1M context via MiniMax Sparse Attention. SWE-Bench Pro 59.0%, Terminal-Bench 2.1 66.0%. Open weights; cloud/API for nearly all users.",
-    "moeActiveB": 23
+    "moeActiveB": 23,
+    "sources": [
+      "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+      "https://www.minimax.io/blog/minimax-m3"
+    ]
   },
   {
     "id": "qwen3.7-plus-cloud",
@@ -1972,8 +2047,11 @@
     "speedScore": 55,
     "qualityScore": 94,
     "popularityScore": 66,
-    "notes": "Jun 4, 2026 NVIDIA release. 550B total / 55B active hybrid Mamba-2 + MoE, up to 1M context. SWE-Bench Verified 70.7; Artificial Analysis Intelligence Index 48 (leading US open-weights model). Weights are open (OpenMDW-1.1, nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 on HF; community GGUF is ~188GB even at 2-bit), so self-hosting needs a ~256GB-class multi-node rig. No consumer tier fits it and Ollama's tag is cloud-only, hence listed as cloud.",
-    "moeActiveB": 55
+    "notes": "Jun 4, 2026 NVIDIA release. 550B total / 55B active hybrid Mamba-2 + MoE, up to 1M context. SWE-Bench Verified 70.7. Weights are open (OpenMDW-1.1, nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16 on HF; community GGUF is ~188GB even at 2-bit), so self-hosting needs a ~256GB-class multi-node rig. No consumer tier fits it and Ollama's tag is cloud-only, hence listed as cloud.",
+    "moeActiveB": 55,
+    "sources": [
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16"
+    ]
   },
   {
     "id": "mimo-v2-flash-cloud",
@@ -1998,7 +2076,10 @@
     "qualityScore": 95,
     "popularityScore": 55,
     "notes": "Dec 16, 2025 Xiaomi release (MIT, XiaomiMiMo/MiMo-V2-Flash on HF). 309B total / 15B active MoE with hybrid attention and Multi-Token Prediction, 256K context. SWE-Bench Verified 73.4 and AIME 2025 94.1 per Xiaomi's model card. No Ollama build, but community GGUFs exist (bartowski, unsloth), so a ~Q4 build fits a 256GB-class machine via llama.cpp.",
-    "moeActiveB": 15
+    "moeActiveB": 15,
+    "sources": [
+      "https://huggingface.co/XiaomiMiMo/MiMo-V2-Flash"
+    ]
   },
   {
     "id": "nemotron-cascade-2-30b-a3b-q6",
@@ -2006,7 +2087,7 @@
     "family": "Nemotron",
     "sizeB": 30,
     "quantization": "Q6_K",
-    "minRamGb": 32,
+    "minRamGb": 36,
     "estimatedLoadGb": 24,
     "bestFor": "Reasoning, Math, Agentic tasks",
     "publisherTier": "major",
@@ -2022,7 +2103,10 @@
     "popularityScore": 60,
     "ollamaCommand": "ollama run nemotron-cascade-2:30b",
     "notes": "NVIDIA release (Mar 19, 2026; Ollama tag added Jun 2026). 30B MoE with 3B active params, 256K context, thinking + instruct modes. Gold-medal performance at the 2025 IMO and IOI (IOI score 439.3) per NVIDIA's model card. The :30b tag ships ~24GB (Q6_K), so it wants a 32GB machine.",
-    "moeActiveB": 3
+    "moeActiveB": 3,
+    "sources": [
+      "https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B"
+    ]
   },
   {
     "id": "laguna-xs2-q4",
@@ -2030,7 +2114,7 @@
     "family": "Laguna",
     "sizeB": 33,
     "quantization": "Q4_K_M",
-    "minRamGb": 32,
+    "minRamGb": 36,
     "estimatedLoadGb": 23,
     "bestFor": "Agentic coding, long-horizon software engineering",
     "publisherTier": "emerging",
@@ -2044,8 +2128,11 @@
     "qualityScore": 88,
     "popularityScore": 45,
     "ollamaCommand": "ollama run laguna-xs.2:q4_K_M",
-    "notes": "Poolside AI open-weight (Apache 2.0) coding model, June 2026. 33B MoE / 3B active, 128K context. Per Poolside: SWE-bench Verified 68.2%, SWE-bench Multilingual 62.4%, SWE-bench Pro 44.5%, Terminal-Bench 2.0 30.1%. Coding specialist (not a general chat model).",
-    "moeActiveB": 3
+    "notes": "Poolside AI open-weight (Apache 2.0) coding model, June 2026. 33B MoE / 3B active, 128K context. Per Poolside's model card: SWE-bench Verified 69.9%, SWE-bench Multilingual 57.7%, SWE-bench Pro 46.3%, Terminal-Bench 2.0 35.7%. Coding specialist (not a general chat model).",
+    "moeActiveB": 3,
+    "sources": [
+      "https://huggingface.co/poolside/Laguna-XS.2"
+    ]
   },
   {
     "id": "north-mini-code-1-q4",
@@ -2053,7 +2140,7 @@
     "family": "North",
     "sizeB": 30,
     "quantization": "Q4_K_M",
-    "minRamGb": 24,
+    "minRamGb": 32,
     "estimatedLoadGb": 19,
     "bestFor": "Agentic coding, repo-scale software engineering",
     "publisherTier": "major",
@@ -2068,7 +2155,10 @@
     "popularityScore": 45,
     "ollamaCommand": "ollama run north-mini-code-1.0:q4_K_M",
     "notes": "Cohere's first developer-focused model (Jun 11, 2026), Apache 2.0. 30B MoE / 3B active, 256K context, up to 64K output. Artificial Analysis Coding Index 33.4 per Cohere. Coding specialist (not a general chat model).",
-    "moeActiveB": 3
+    "moeActiveB": 3,
+    "sources": [
+      "https://artificialanalysis.ai/"
+    ]
   },
   {
     "id": "gpt-oss-120b",
@@ -2092,7 +2182,10 @@
     "qualityScore": 94,
     "popularityScore": 88,
     "ollamaCommand": "ollama run gpt-oss:120b",
-    "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 117B total, 5.1B active per token (per official HF card). Native MXFP4, 65GB via Ollama, strong reasoning and tool use on 96GB+ machines."
+    "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 117B total, 5.1B active per token (per official HF card). Native MXFP4, 65GB via Ollama, strong reasoning and tool use on 96GB+ machines.",
+    "sources": [
+      "https://huggingface.co/openai/gpt-oss-120b"
+    ]
   },
   {
     "id": "gpt-oss-20b",
@@ -2115,7 +2208,10 @@
     "qualityScore": 86,
     "popularityScore": 85,
     "ollamaCommand": "ollama run gpt-oss:20b",
-    "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 21B total, 3.6B active per token (per official HF card). Native MXFP4, 14GB via Ollama, fits 24GB machines with headroom."
+    "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 21B total, 3.6B active per token (per official HF card). Native MXFP4, 14GB via Ollama, fits 24GB machines with headroom.",
+    "sources": [
+      "https://huggingface.co/openai/gpt-oss-20b"
+    ]
   },
   {
     "id": "qwen3-next-80b-a3b",
@@ -2139,7 +2235,11 @@
     "qualityScore": 94,
     "popularityScore": 80,
     "ollamaCommand": "ollama run qwen3-next:80b",
-    "notes": "Qwen hybrid-attention MoE (Sep 2025): 80B total, 3B activated (per official HF card). 50GB via Ollama, the sweet spot for 72-96GB workstations and Macs."
+    "notes": "Qwen hybrid-attention MoE (Sep 2025): 80B total, 3B activated (per official HF card). 50GB via Ollama, the sweet spot for 72-96GB workstations and Macs.",
+    "kvKbPerToken": 24,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct"
+    ]
   },
   {
     "id": "qwen3.6-35b-a3b-q8",
@@ -2163,7 +2263,8 @@
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3.6:35b-a3b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.6 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the larger 38.7GB weight file. Tag registry-verified 200 on the ollama.ai manifest API.",
-    "moeActiveB": 3
+    "moeActiveB": 3,
+    "kvKbPerToken": 20
   },
   {
     "id": "qwen3.5-35b-a3b-q8",
@@ -2187,7 +2288,8 @@
     "popularityScore": 90,
     "ollamaCommand": "ollama run qwen3.5:35b-a3b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.5 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the 38.7GB weight file. Tag registry-verified 200.",
-    "moeActiveB": 3
+    "moeActiveB": 3,
+    "kvKbPerToken": 20
   },
   {
     "id": "qwen3.5-9b-q8",
@@ -2209,7 +2311,8 @@
     "qualityScore": 91,
     "popularityScore": 86,
     "ollamaCommand": "ollama run qwen3.5:9b-q8_0",
-    "notes": "Q8_0 higher precision variant of Qwen3.5 9B, near lossless quality versus the Q4 default. Prefer it on 16GB or more RAM where the 10.7GB weight file still leaves headroom. Tag registry-verified 200."
+    "notes": "Q8_0 higher precision variant of Qwen3.5 9B, near lossless quality versus the Q4 default. Prefer it on 16GB or more RAM where the 10.7GB weight file still leaves headroom. Tag registry-verified 200.",
+    "kvKbPerToken": 32
   },
   {
     "id": "qwen3.6-27b-q8",
@@ -2231,7 +2334,8 @@
     "qualityScore": 96,
     "popularityScore": 92,
     "ollamaCommand": "ollama run qwen3.6:27b-q8_0",
-    "notes": "Q8_0 higher precision variant of Qwen3.6 27B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 30GB weight file. Tag registry-verified 200."
+    "notes": "Q8_0 higher precision variant of Qwen3.6 27B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 30GB weight file. Tag registry-verified 200.",
+    "kvKbPerToken": 64
   },
   {
     "id": "gemma4-12b-q8",
@@ -2301,7 +2405,8 @@
     "qualityScore": 96,
     "popularityScore": 80,
     "ollamaCommand": "ollama run qwen3-next:80b-a3b-instruct-q8_0",
-    "notes": "Q8_0 higher precision variant of Qwen3-Next 80B-A3B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 84.8GB weight file still leaves headroom. Tag registry-verified 200."
+    "notes": "Q8_0 higher precision variant of Qwen3-Next 80B-A3B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 84.8GB weight file still leaves headroom. Tag registry-verified 200.",
+    "kvKbPerToken": 24
   },
   {
     "id": "qwen3-14b-q8",
@@ -2330,7 +2435,7 @@
     "family": "Llama",
     "sizeB": 70,
     "quantization": "Q8_0",
-    "minRamGb": 128,
+    "minRamGb": 96,
     "estimatedLoadGb": 75,
     "bestFor": "Quality, Coding",
     "publisherTier": "major",
