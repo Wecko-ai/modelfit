@@ -37,16 +37,39 @@ const CHIP_SPEED_BOOST = {
 };
 const chipSpeedBoost = (chip) => CHIP_SPEED_BOOST[chip] ?? 0;
 
+// Published unified-memory bandwidth (GB/s). Apple states the M-series figures;
+// A-series are the widely reported LPDDR5/5X numbers. Used only for the roofline
+// ceiling below, never displayed, and a ceiling can only lower an estimate.
+// Max tiers are the top bin; lower-binned 14-inch SKUs run roughly 25% under.
+const CHIP_BANDWIDTH_GBS = {
+  'Apple M5 Max': 614, 'Apple M5 Pro': 307, 'Apple M5': 153,
+  'Apple M4 Max': 546, 'Apple M4 Pro': 273, 'Apple M4': 120,
+  // No M4 Ultra exists: the 2025 Mac Studio tops out at M3 Ultra (819 GB/s).
+  'Apple M3 Ultra': 819, 'Apple M3 Max': 400, 'Apple M3 Pro': 150, 'Apple M3': 100,
+  'Apple M2 Ultra': 800, 'Apple M2 Max': 400, 'Apple M2 Pro': 200, 'Apple M2': 100,
+  'Apple M1 Ultra': 800, 'Apple M1 Max': 400, 'Apple M1 Pro': 200, 'Apple M1': 68.25,
+  'Apple A19 Pro': 68, 'Apple A19': 68, 'Apple A18 Pro': 60, 'Apple A18': 60,
+  'Apple A17 Pro': 51.2, 'Apple A16': 51.2,
+};
+const chipBandwidthGbs = (chip) => CHIP_BANDWIDTH_GBS[chip] ?? null;
+
+// Throughput for the reference workload: 7B at Q4 (~4.1 GB of weights) on a well-cooled
+// machine with ample headroom. NOT hand-tuned. Values marked measured come from the
+// canonical llama.cpp Apple Silicon table (LLaMA 7B Q4_0, Metal, ngl=99):
+// https://github.com/ggml-org/llama.cpp/discussions/4167
+// The rest are bandwidth-derived: GB/s / reference weight size x the measured bandwidth
+// efficiency of that tier (base ~0.80, Pro ~0.71, Max ~0.60, Ultra ~0.42).
 const CHIP_BASE_TPS = {
-  // M5 gen — bandwidth-derived est. (M5 base 153 GB/s ≈ +28% vs M4), tapering by tier.
-  'Apple M5 Max': 158, 'Apple M5 Pro': 112, 'Apple M5': 80,
-  'Apple M4 Max': 130, 'Apple M4 Pro': 95, 'Apple M4': 65,
-  // M3 Ultra: 819 GB/s, just above M2 Ultra's 800 GB/s (base 110).
-  'Apple M3 Ultra': 115, 'Apple M3 Max': 95, 'Apple M3 Pro': 72, 'Apple M3': 52,
-  'Apple M2 Ultra': 110, 'Apple M2 Max': 78, 'Apple M2 Pro': 58, 'Apple M2': 40,
-  'Apple M1 Ultra': 90, 'Apple M1 Max': 62, 'Apple M1 Pro': 45, 'Apple M1': 28,
-  'Apple A19 Pro': 18, 'Apple A18 Pro': 15, 'Apple A19': 14, 'Apple A18': 12,
-  'Apple A17 Pro': 10, 'Apple A16': 6,
+  'Apple M5 Max': 97, 'Apple M5 Pro': 57, 'Apple M5': 32,          // derived
+  'Apple M4 Max': 83, 'Apple M4 Pro': 51, 'Apple M4': 24,          // measured
+  'Apple M3 Ultra': 90,                                             // derived
+  'Apple M3 Max': 66, 'Apple M3 Pro': 28, 'Apple M3': 21,          // M3 Pro derived
+  'Apple M2 Ultra': 94, 'Apple M2 Max': 66, 'Apple M2 Pro': 39, 'Apple M2': 22,
+  'Apple M1 Ultra': 84, 'Apple M1 Max': 61, 'Apple M1 Pro': 36, 'Apple M1': 14,
+  // A-series: no comparable public measurement set, bandwidth-derived at a
+  // conservative on-device efficiency, then cut further by the iPhone thermal factor.
+  'Apple A19 Pro': 12, 'Apple A19': 11, 'Apple A18 Pro': 10, 'Apple A18': 9,
+  'Apple A17 Pro': 8, 'Apple A16': 6,
 };
 // Unknown/non-enum chip: no basis for a throughput estimate, so null, not a made-up number (gate #7).
 const chipBaseTokensPerSec = (chip) => CHIP_BASE_TPS[chip] ?? null;
@@ -64,24 +87,35 @@ function quantizationPenalty(q) {
   return 0;
 }
 
-function quantizationSpeedFactor(q) {
+// Weight size in GB per billion params, by quantization. Decode is memory-bound, so
+// this is what sets throughput: Q8 reads roughly twice the bytes per token of Q4 and
+// runs at roughly half the speed. Folding quant into bytes replaces the old standalone
+// speed multiplier, which double-counted.
+function quantBytesPerParamGb(q) {
   const n = q.toUpperCase();
-  if (n.startsWith('Q4')) return 1;
-  if (n.startsWith('Q5')) return 0.86;
-  if (n.startsWith('Q6')) return 0.74;
-  if (n.startsWith('Q8')) return 0.62;
-  if (n.includes('FP16')) return 0.45;
-  return 0.9;
+  if (n.startsWith('Q4')) return 0.58;
+  if (n.startsWith('Q5')) return 0.7;
+  if (n.startsWith('Q6')) return 0.82;
+  if (n.startsWith('Q8')) return 1.06;
+  if (n.includes('FP16') || n.includes('F16')) return 2;
+  if (n.includes('MXFP4')) return 0.55;
+  return 0.65;
 }
 
+// The reference workload CHIP_BASE_TPS is quoted against: 7B at Q4.
+const REF_SIZE_B = 7;
+const REF_WEIGHTS_GB = REF_SIZE_B * 0.58;
+
 function deviceThroughputFactor(deviceType) {
-  if (deviceType === 'Mac Studio') return 1.3;
-  if (deviceType === 'Mac Mini') return 1.05;
+  // The chip carries the bandwidth, which is what sets decode speed. This factor only
+  // models sustained thermals, so the spread is small.
+  if (deviceType === 'Mac Studio') return 1.05;
+  if (deviceType === 'Mac Mini') return 1;
   if (deviceType === 'MacBook Pro') return 1;
-  if (deviceType === 'MacBook Air') return 0.8;
+  if (deviceType === 'MacBook Air') return 0.9;
   if (deviceType === 'iPhone 17 Pro Max') return 0.7;
   if (deviceType.startsWith('iPhone')) return 0.65;
-  return 0.8;
+  return 0.9;
 }
 
 function estimateLocalPerformance(model, input, ramBudget) {
@@ -91,16 +125,24 @@ function estimateLocalPerformance(model, input, ramBudget) {
   if (chipBase === null) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null };
 
   const base = chipBase * deviceThroughputFactor(input.deviceType);
-  const quantFactor = quantizationSpeedFactor(model.quantization);
   // MoE decode speed tracks active params, blended with total: effective = sqrt(active * total).
   // Dense models (no moeActiveB) use total params.
   const effectiveSizeB = model.moeActiveB
     ? Math.sqrt(model.moeActiveB * Math.max(model.sizeB, 1))
     : model.sizeB;
-  const sizeFactor = Math.pow(7 / Math.max(effectiveSizeB, 1), 0.9);
-  const ramPressure = clamp(0.35, 1.15, (ramBudget / Math.max(model.estimatedLoadGb, 1)) * 0.9);
+  // Decode is memory-bound, so throughput scales with BYTES read per token, not with a
+  // power of the parameter count. Quantization is part of that byte count.
+  const weightsGb = Math.max(effectiveSizeB, 0.1) * quantBytesPerParamGb(model.quantization);
+  const sizeFactor = REF_WEIGHTS_GB / weightsGb;
+  // Extra headroom does not make hardware faster, so this only ever penalises.
+  const ramPressure = clamp(0.35, 1, (ramBudget / Math.max(model.estimatedLoadGb, 1)) * 0.9);
 
-  const estimatedTokensPerSec = clamp(0.4, 180, base * quantFactor * sizeFactor * ramPressure);
+  // Hard physical ceiling: a decoder cannot emit tokens faster than it streams the
+  // weights it reads per token. Can only ever lower an estimate, never raise one.
+  const bandwidthGbs = chipBandwidthGbs(input.chip);
+  const roofline = bandwidthGbs === null ? Infinity : bandwidthGbs / weightsGb;
+
+  const estimatedTokensPerSec = clamp(0.4, 180, Math.min(base * sizeFactor * ramPressure, roofline));
   const estimatedFirstTokenSec = clamp(
     0.5, 30,
     0.45 + 10 / estimatedTokensPerSec + (model.sizeB >= 30 ? 0.8 : 0) +
