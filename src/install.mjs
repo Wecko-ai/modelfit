@@ -14,7 +14,8 @@ const OLLAMA_PATHS = [
   `${process.env.ProgramFiles || 'C:\\Program Files'}\\Ollama\\ollama.exe`,
 ];
 
-function ollamaBin() {
+/** Resolved ollama binary path (absolute when a known install path exists). */
+export function ollamaBin() {
   for (const p of OLLAMA_PATHS) {
     if (existsSync(p)) return p;
   }
