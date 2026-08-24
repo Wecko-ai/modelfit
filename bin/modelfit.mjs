@@ -9,6 +9,7 @@ import { getRecommendations } from '../src/engine.mjs';
 import { toBest, toList, toJson } from '../src/render.mjs';
 import { selectBest } from '../src/best.mjs';
 import { offerInstall } from '../src/install.mjs';
+import { runBench, renderBench } from '../src/bench.mjs';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -45,6 +46,14 @@ OPTIONS
   -v, --version          Print version
   -h, --help             Show this help
 
+BENCH
+  modelfit bench         Measure REAL tokens/sec on this machine (fixed reference
+                         model + prompt, comparable across machines; needs Ollama)
+    --submit             Contribute the result to the public measured dataset at
+                         modelfit.io (CC BY 4.0). The only network call, opt-in.
+    --model <tag>        Bench a different Ollama tag instead of the reference
+    --no-pull            Never download the model; fail if it is not local
+
 After naming the best model, modelfit offers to install it via Ollama (interactive
 terminals only). Use --yes to install unattended, or --no-install to skip the prompt.
 
@@ -74,6 +83,9 @@ function parseArgs(argv) {
       case '--priority': o.priority = PRIORITIES[String(next()).toLowerCase()]; break;
       case '-y': case '--yes': o.yes = true; break;
       case '--no-install': o.noInstall = true; break;
+      case '--submit': o.submit = true; break;
+      case '--no-pull': o.noPull = true; break;
+      case '--model': o.model = next(); break;
       case '-v': case '--version': o.version = true; break;
       case '-h': case '--help': o.help = true; break;
       default:
@@ -84,10 +96,29 @@ function parseArgs(argv) {
 }
 
 async function main() {
-  const opts = parseArgs(process.argv.slice(2));
+  const argv = process.argv.slice(2);
+  const opts = parseArgs(argv);
 
   if (opts.help) { console.log(HELP); return; }
   if (opts.version) { console.log(PKG.version); return; }
+
+  // `modelfit bench` subcommand: positional, must be the first token.
+  if (argv[0] === 'bench') {
+    const result = await runBench({
+      submit: opts.submit,
+      model: opts.model,
+      noPull: opts.noPull,
+      version: PKG.version,
+    });
+    if (opts.json) {
+      console.log(JSON.stringify(result.ok ? result.payload : result, null, 2));
+    } else {
+      console.log(renderBench(result, { color: !opts.noColor && !process.env.NO_COLOR }));
+    }
+    if (!result.ok) process.exitCode = 1;
+    return;
+  }
+
   if (opts.unknown) {
     console.error(`Unknown option: ${opts.unknown}\nRun "modelfit --help".`);
     process.exitCode = 2;
