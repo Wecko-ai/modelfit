@@ -1446,12 +1446,41 @@
     "ollamaCommand": "ollama run qwen3.6:27b",
     "notes": "Apr 2026 flagship dense Qwen. 262K context, extensible to 1M. SWE-Bench Verified 77.2, MMLU-Pro 86.2 per Qwen's model card. Apache 2.0. Strongest dense open-weight coder ModelFit tracks at this size.",
     "kvKbPerToken": 64,
-    "sources": [
-      "https://huggingface.co/Qwen/Qwen3.6-27B"
-    ]
-  },
-  {
-    "id": "qwen3.6-35b-a3b-q4",
+  "sources": [
+    "https://huggingface.co/Qwen/Qwen3.6-27B"
+  ]
+},
+{
+  "id": "qwen3.8-27b-q4",
+  "name": "Qwen3.8 27B",
+  "family": "Qwen",
+  "sizeB": 27,
+  "quantization": "Q4_K_M",
+  "minRamGb": 24,
+  "estimatedLoadGb": 16.5,
+  "bestFor": "Coding, Agent, Vision, Long context",
+  "publisherTier": "top",
+  "tags": [
+    "chat",
+    "coding",
+    "agent",
+    "vision",
+    "long-context"
+  ],
+  "speedScore": 62,
+  "qualityScore": 94,
+  "popularityScore": 95,
+  "ollamaCommand": "ollama run qwen3.8:27b",
+  "notes": "Aug 2026 flagship dense Qwen with native vision-language. Apache 2.0. 262K context, extensible to 1M. MTP decoding. Terminal Bench 2.1 73.0, SWE-bench Pro 61.7 per Qwen card.",
+  "kvKbPerToken": 64,
+  "sources": [
+    "https://huggingface.co/Qwen/Qwen3.8-27B",
+    "https://huggingface.co/bartowski/Qwen3.8-27B-GGUF",
+    "https://www.amd.com/en/blogs/2026/run-qwen-3-8-27b-on-amd-ryzen-ai-max-and-radeon-graphics-cards-day-0.html"
+  ]
+},
+{
+  "id": "qwen3.6-35b-a3b-q4",
     "name": "Qwen3.6 35B-A3B",
     "family": "Qwen",
     "sizeB": 35,
@@ -1652,7 +1681,7 @@
   },
   {
     "id": "deepseek-v4-flash-cloud",
-    "name": "DeepSeek V4 Flash",
+    "name": "DeepSeek V4 Flash 0731",
     "family": "DeepSeek",
     "sizeB": 284,
     "quantization": "API",
@@ -1672,8 +1701,12 @@
     "speedScore": 68,
     "qualityScore": 98,
     "popularityScore": 92,
-    "notes": "Apr 24, 2026 open-weight (MIT). 284B total, 13B active MoE. 1M context. Thinking Mode rivals OpenAI o-series on STEM. Local needs 128GB+ Mac via antirez llama.cpp fork.",
-    "moeActiveB": 13
+    "notes": "Official 0731 release (Jul 31, 2026, MIT), superseding the April preview: same architecture, re-post-trained with far stronger agent skills. 284B total, 13B active MoE, 1M context. Community 2-bit dynamic quants fit 128GB Macs via MLX, llama.cpp and the ds4 engine. No Ollama library tag yet.",
+    "moeActiveB": 13,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+      "https://api-docs.deepseek.com/updates/"
+    ]
   },
   {
     "id": "deepseek-v4-pro-cloud",
@@ -1927,7 +1960,7 @@
     "id": "glm-5.2-cloud",
     "name": "GLM-5.2",
     "family": "Zhipu",
-    "sizeB": 0,
+    "sizeB": 753,
     "quantization": "API",
     "cloud_only": true,
     "minRamGb": 0,
@@ -1944,7 +1977,11 @@
     "speedScore": 66,
     "qualityScore": 95,
     "popularityScore": 76,
-    "notes": "Jun 13, 2026 from Z.ai. Coding-first flagship positioned to rival Claude Opus; available via the GLM Coding Plan and API, works with Claude Code, Cline and OpenCode. MIT open weights expected shortly after launch. Reported 1M context (not yet confirmed first-party)."
+    "notes": "Jun 13, 2026 coding-first flagship from Z.ai; MIT weights published on HuggingFace in July 2026 (753B total MoE). Works with Claude Code, Cline and OpenCode via the API. Weights are far beyond consumer hardware; use the API or hosted providers.",
+    "openWeights": true,
+    "sources": [
+      "https://huggingface.co/zai-org/GLM-5.2"
+    ]
   },
   {
     "id": "kimi-k2.7-code-cloud",
@@ -2470,5 +2507,130 @@
     "popularityScore": 82,
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q6_K",
     "notes": "Q6_K middle ground variant of Llama 3.3 70B, between the Q4 default and the near lossless Q8 sibling. Prefer it on 96GB or more workstations where the 57.9GB weight file balances quality against RAM cost. Tag registry-verified 200."
+  },
+  {
+    "id": "kimi-k3-cloud",
+    "name": "Kimi K3",
+    "family": "Kimi",
+    "sizeB": 2800,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Agents, Multimodal, Long context",
+    "publisherTier": "top",
+    "tags": [
+      "reasoning",
+      "agent",
+      "quality",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 60,
+    "qualityScore": 98,
+    "popularityScore": 90,
+    "notes": "Jul 2026 open-weight multimodal agentic MoE from Moonshot (weights on HuggingFace). Official checkpoint is far beyond any consumer machine; ollama run kimi-k3:cloud streams it from Ollama Cloud rather than running locally.",
+    "sources": [
+      "https://huggingface.co/moonshotai/Kimi-K3"
+    ]
+  },
+  {
+    "id": "laguna-xs-2.1-q4",
+    "name": "Laguna XS 2.1",
+    "family": "Laguna",
+    "sizeB": 33,
+    "quantization": "Q4_K_M",
+    "minRamGb": 32,
+    "estimatedLoadGb": 20.3,
+    "bestFor": "Agentic coding, Long-horizon tasks",
+    "publisherTier": "top",
+    "tags": [
+      "coding",
+      "agent",
+      "moe"
+    ],
+    "speedScore": 84,
+    "qualityScore": 90,
+    "popularityScore": 72,
+    "ollamaCommand": "ollama run laguna-xs-2.1:q4_K_M",
+    "moeActiveB": 3,
+    "notes": "Jul 2026 MoE from poolside (33B total, 3B active) built for agentic coding and long-horizon work on local machines. Fast decode for its size thanks to the small active set.",
+    "sources": [
+      "https://huggingface.co/poolside/Laguna-XS-2.1"
+    ]
+  },
+  {
+    "id": "laguna-s-2.1-q4",
+    "name": "Laguna S 2.1",
+    "family": "Laguna",
+    "sizeB": 118,
+    "quantization": "Q4_K_M",
+    "minRamGb": 128,
+    "estimatedLoadGb": 96.0,
+    "bestFor": "Agentic coding, Long-horizon tasks",
+    "publisherTier": "top",
+    "tags": [
+      "coding",
+      "agent",
+      "moe",
+      "quality"
+    ],
+    "speedScore": 72,
+    "qualityScore": 95,
+    "popularityScore": 70,
+    "ollamaCommand": "ollama run laguna-s-2.1:q4_K_M",
+    "moeActiveB": 8,
+    "notes": "Jul 2026 flagship coding MoE from poolside (118B total, 8B active), aimed at long-horizon agentic work. Q4 load fills a 128GB machine; the largest open coding model with a native Ollama library tag.",
+    "sources": [
+      "https://huggingface.co/poolside/Laguna-S-2.1"
+    ]
+  },
+  {
+    "id": "ornith-9b-q4",
+    "name": "Ornith 1.0 9B",
+    "family": "Ornith",
+    "sizeB": 9,
+    "quantization": "Q4_K_M",
+    "minRamGb": 8,
+    "estimatedLoadGb": 5.6,
+    "bestFor": "Agentic coding on small machines",
+    "publisherTier": "community",
+    "tags": [
+      "coding",
+      "agent"
+    ],
+    "speedScore": 76,
+    "qualityScore": 88,
+    "popularityScore": 76,
+    "ollamaCommand": "ollama run ornith:9b",
+    "notes": "Jul 2026 self-improving agentic coder from Deep Reinforce (MIT), post-trained on top of Gemma 4 and Qwen 3.5. Publisher reports coding-agent results near 35B-class models; a standout pick for 16GB Macs.",
+    "sources": [
+      "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B"
+    ]
+  },
+  {
+    "id": "ornith-35b-q4",
+    "name": "Ornith 1.0 35B",
+    "family": "Ornith",
+    "sizeB": 35,
+    "quantization": "Q4_K_M",
+    "minRamGb": 32,
+    "estimatedLoadGb": 21.2,
+    "bestFor": "Agentic coding",
+    "publisherTier": "community",
+    "tags": [
+      "coding",
+      "agent",
+      "moe"
+    ],
+    "speedScore": 78,
+    "qualityScore": 92,
+    "popularityScore": 72,
+    "ollamaCommand": "ollama run ornith:35b",
+    "notes": "Jul 2026 MoE member of the Ornith agentic-coding family (MIT), sized for single-GPU and 32GB-Mac deployment. Publisher claims state-of-the-art coding-agent results among open models of its size.",
+    "sources": [
+      "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B"
+    ]
   }
 ]
