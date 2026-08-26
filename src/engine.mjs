@@ -26,6 +26,8 @@ export function ramBudgetRatio(ramGb) {
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
 const CHIP_SPEED_BOOST = {
+  'Apple M5 Ultra': 15,
+  'Apple M6': 9,
   'Apple M5 Max': 13, 'Apple M5 Pro': 10, 'Apple M5': 8,
   'Apple M4 Max': 12, 'Apple M4 Pro': 9, 'Apple M4': 7,
   // No M4 Ultra exists: the 2025 Mac Studio tops out at M3 Ultra (819 GB/s).
@@ -42,6 +44,8 @@ const chipSpeedBoost = (chip) => CHIP_SPEED_BOOST[chip] ?? 0;
 // ceiling below, never displayed, and a ceiling can only lower an estimate.
 // Max tiers are the top bin; lower-binned 14-inch SKUs run roughly 25% under.
 const CHIP_BANDWIDTH_GBS = {
+  'Apple M5 Ultra': 1228.8, // 1.2 TB/s, apple.com/mac-studio/specs (2026-08-26)
+  'Apple M6': 153,          // 16GB config; 24/32GB configs run 170 GB/s
   'Apple M5 Max': 614, 'Apple M5 Pro': 307, 'Apple M5': 153,
   'Apple M4 Max': 546, 'Apple M4 Pro': 273, 'Apple M4': 120,
   // No M4 Ultra exists: the 2025 Mac Studio tops out at M3 Ultra (819 GB/s).
@@ -60,6 +64,8 @@ const chipBandwidthGbs = (chip) => CHIP_BANDWIDTH_GBS[chip] ?? null;
 // The rest are bandwidth-derived: GB/s / reference weight size x the measured bandwidth
 // efficiency of that tier (base ~0.80, Pro ~0.71, Max ~0.60, Ultra ~0.42).
 const CHIP_BASE_TPS = {
+  'Apple M5 Ultra': 135,                                      // derived: 1228.8 x 0.45
+  'Apple M6': 32,                                             // derived: 153 x 0.80 (same bw as M5 at 16GB)
   'Apple M5 Max': 97, 'Apple M5 Pro': 57, 'Apple M5': 32,          // derived
   'Apple M4 Max': 83, 'Apple M4 Pro': 51, 'Apple M4': 24,          // measured
   'Apple M3 Ultra': 90,                                             // derived
