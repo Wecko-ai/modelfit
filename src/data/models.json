@@ -17,7 +17,10 @@
     "qualityScore": 55,
     "ollamaCommand": "ollama run qwen2.5:1.5b-instruct-q4_K_M",
     "notes": "Very light general assistant for constrained devices.",
-    "popularityScore": 58
+    "popularityScore": 58,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct"
+    ]
   },
   {
     "id": "qwen2.5-3b-q4",
@@ -38,7 +41,10 @@
     "qualityScore": 62,
     "ollamaCommand": "ollama run qwen2.5:3b-instruct-q4_K_M",
     "notes": "Strong small model with better reasoning than 1.5B.",
-    "popularityScore": 64
+    "popularityScore": 64,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct"
+    ]
   },
   {
     "id": "qwen2.5-7b-q4",
@@ -59,7 +65,10 @@
     "qualityScore": 74,
     "ollamaCommand": "ollama run qwen2.5:7b-instruct-q4_K_M",
     "notes": "Balanced option for everyday coding and chat.",
-    "popularityScore": 72
+    "popularityScore": 72,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct"
+    ]
   },
   {
     "id": "qwen2.5-14b-q4",
@@ -80,7 +89,10 @@
     "qualityScore": 82,
     "ollamaCommand": "ollama run qwen2.5:14b-instruct-q4_K_M",
     "notes": "High quality if RAM allows.",
-    "popularityScore": 68
+    "popularityScore": 68,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct"
+    ]
   },
   {
     "id": "llama3.2-3b-q4",
@@ -100,7 +112,10 @@
     "qualityScore": 66,
     "ollamaCommand": "ollama run llama3.2:3b-instruct-q4_K_M",
     "notes": "Fast assistant with broad ecosystem support.",
-    "popularityScore": 72
+    "popularityScore": 72,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct"
+    ]
   },
   {
     "id": "llama3.1-8b-q4",
@@ -121,7 +136,10 @@
     "qualityScore": 76,
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q4_K_M",
     "notes": "Reliable default for local assistants.",
-    "popularityScore": 78
+    "popularityScore": 78,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
+    ]
   },
   {
     "id": "llama3.1-8b-q8",
@@ -142,7 +160,10 @@
     "qualityScore": 78,
     "popularityScore": 78,
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q8_0",
-    "notes": "Q8_0 variant of Llama 3.1 8B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Meta-Llama-3.1-8B-Instruct-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Llama 3.1 8B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Meta-Llama-3.1-8B-Instruct-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
+    ]
   },
   {
     "id": "llama3.1-8b-q5",
@@ -162,7 +183,10 @@
     "qualityScore": 78,
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q5_K_M",
     "notes": "Higher fidelity at modest speed cost.",
-    "popularityScore": 68
+    "popularityScore": 68,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
+    ]
   },
   {
     "id": "llama3.1-70b-q4",
@@ -183,7 +207,10 @@
     "qualityScore": 84,
     "ollamaCommand": "ollama run llama3.1:70b-instruct-q4_K_M",
     "notes": "Top quality but very hardware heavy.",
-    "popularityScore": 62
+    "popularityScore": 62,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct"
+    ]
   },
   {
     "id": "mistral-7b-q4",
@@ -204,7 +231,10 @@
     "qualityScore": 70,
     "ollamaCommand": "ollama run mistral:7b-instruct-q4_K_M",
     "notes": "Good all-around quality in a mid-size footprint.",
-    "popularityScore": 74
+    "popularityScore": 74,
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
+    ]
   },
   {
     "id": "mistral-7b-q5",
@@ -225,7 +255,10 @@
     "qualityScore": 71,
     "popularityScore": 74,
     "ollamaCommand": "ollama run mistral:7b-instruct-q5_K_M",
-    "notes": "Q5_K_M variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q5_K_M variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
+    ]
   },
   {
     "id": "mistral-7b-q8",
@@ -246,7 +279,10 @@
     "qualityScore": 72,
     "popularityScore": 74,
     "ollamaCommand": "ollama run mistral:7b-instruct-q8_0",
-    "notes": "Q8_0 variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
+    ]
   },
   {
     "id": "mixtral-8x7b-q4",
@@ -269,7 +305,10 @@
     "ollamaCommand": "ollama run mixtral:8x7b",
     "notes": "MoE quality boost with large memory demand.",
     "popularityScore": 72,
-    "moeActiveB": 13
+    "moeActiveB": 13,
+    "sources": [
+      "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1"
+    ]
   },
   {
     "id": "mistral-nemo-12b-q4",
@@ -290,7 +329,10 @@
     "qualityScore": 82,
     "ollamaCommand": "ollama run mistral-nemo:12b",
     "notes": "Strong multilingual quality at moderate size.",
-    "popularityScore": 78
+    "popularityScore": 78,
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407"
+    ]
   },
   {
     "id": "mistral-nemo-12b-q8",
@@ -311,7 +353,10 @@
     "qualityScore": 84,
     "popularityScore": 78,
     "ollamaCommand": "ollama run mistral-nemo:12b-instruct-2407-q8_0",
-    "notes": "Q8_0 variant of Mistral Nemo 12B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-Nemo-Instruct-2407-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Mistral Nemo 12B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-Nemo-Instruct-2407-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407"
+    ]
   },
   {
     "id": "gemma2-2b-q4",
@@ -331,7 +376,10 @@
     "qualityScore": 58,
     "ollamaCommand": "ollama run gemma2:2b-instruct-q4_K_M",
     "notes": "Small and very responsive for simple tasks.",
-    "popularityScore": 62
+    "popularityScore": 62,
+    "sources": [
+      "https://huggingface.co/google/gemma-2-2b-it"
+    ]
   },
   {
     "id": "gemma2-9b-q4",
@@ -352,7 +400,10 @@
     "qualityScore": 76,
     "ollamaCommand": "ollama run gemma2:9b-instruct-q4_K_M",
     "notes": "High quality on mid-to-high RAM machines.",
-    "popularityScore": 68
+    "popularityScore": 68,
+    "sources": [
+      "https://huggingface.co/google/gemma-2-9b-it"
+    ]
   },
   {
     "id": "gemma2-27b-q4",
@@ -373,7 +424,10 @@
     "qualityScore": 80,
     "ollamaCommand": "ollama run gemma2:27b-instruct-q4_K_M",
     "notes": "Excellent output quality with high memory cost.",
-    "popularityScore": 58
+    "popularityScore": 58,
+    "sources": [
+      "https://huggingface.co/google/gemma-2-27b-it"
+    ]
   },
   {
     "id": "phi3-mini-q4",
@@ -393,7 +447,10 @@
     "qualityScore": 65,
     "ollamaCommand": "ollama run phi3:mini",
     "notes": "Fast and surprisingly capable coding assistant.",
-    "popularityScore": 64
+    "popularityScore": 64,
+    "sources": [
+      "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct"
+    ]
   },
   {
     "id": "phi3-medium-q4",
@@ -414,7 +471,10 @@
     "qualityScore": 75,
     "ollamaCommand": "ollama run phi3:medium",
     "notes": "Very strong coding quality on capable systems.",
-    "popularityScore": 58
+    "popularityScore": 58,
+    "sources": [
+      "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct"
+    ]
   },
   {
     "id": "phi4-14b-q4",
@@ -435,7 +495,10 @@
     "qualityScore": 87,
     "ollamaCommand": "ollama run phi4:14b-q4_K_M",
     "notes": "High reasoning quality with slower throughput.",
-    "popularityScore": 64
+    "popularityScore": 64,
+    "sources": [
+      "https://huggingface.co/microsoft/phi-4"
+    ]
   },
   {
     "id": "phi4-14b-q8",
@@ -456,7 +519,10 @@
     "qualityScore": 89,
     "popularityScore": 64,
     "ollamaCommand": "ollama run phi4:14b-q8_0",
-    "notes": "Q8_0 variant of Phi-4 14B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Phi-4-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Phi-4 14B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Phi-4-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/microsoft/phi-4"
+    ]
   },
   {
     "id": "qwen2.5-coder-7b-q4",
@@ -476,7 +542,10 @@
     "qualityScore": 78,
     "ollamaCommand": "ollama run qwen2.5-coder:7b",
     "notes": "Code-focused balance of speed and quality.",
-    "popularityScore": 72
+    "popularityScore": 72,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct"
+    ]
   },
   {
     "id": "qwen2.5-coder-14b-q4",
@@ -496,7 +565,10 @@
     "qualityScore": 85,
     "ollamaCommand": "ollama run qwen2.5-coder:14b",
     "notes": "Great code generation for higher-memory machines.",
-    "popularityScore": 68
+    "popularityScore": 68,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct"
+    ]
   },
   {
     "id": "llama3.2-1b-q4",
@@ -516,7 +588,10 @@
     "qualityScore": 48,
     "ollamaCommand": "ollama run llama3.2:1b-instruct-q4_K_M",
     "notes": "Ultra-fast baseline model for lightweight tasks.",
-    "popularityScore": 60
+    "popularityScore": 60,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct"
+    ]
   },
   {
     "id": "mistral-small-22b-q4",
@@ -537,7 +612,10 @@
     "qualityScore": 84,
     "ollamaCommand": "ollama run mistral-small:22b",
     "notes": "Strong quality for advanced local use.",
-    "popularityScore": 61
+    "popularityScore": 61,
+    "sources": [
+      "https://huggingface.co/mistralai"
+    ]
   },
   {
     "id": "kimi-k2-instruct-cloud",
@@ -584,7 +662,10 @@
     "speedScore": 72,
     "qualityScore": 96,
     "notes": "Cloud/API only model family, not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
-    "popularityScore": 90
+    "popularityScore": 90,
+    "sources": [
+      "https://www.anthropic.com/claude"
+    ]
   },
   {
     "id": "claude-3.7-sonnet-cloud",
@@ -605,7 +686,10 @@
     "speedScore": 70,
     "qualityScore": 98,
     "notes": "Cloud/API only model family, not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
-    "popularityScore": 94
+    "popularityScore": 94,
+    "sources": [
+      "https://www.anthropic.com/claude"
+    ]
   },
   {
     "id": "claude-opus-3-cloud",
@@ -626,7 +710,10 @@
     "speedScore": 55,
     "qualityScore": 99,
     "notes": "Cloud/API only Opus family model; not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
-    "popularityScore": 83
+    "popularityScore": 83,
+    "sources": [
+      "https://www.anthropic.com/claude"
+    ]
   },
   {
     "id": "claude-opus-4-cloud",
@@ -647,7 +734,10 @@
     "speedScore": 53,
     "qualityScore": 100,
     "notes": "Cloud/API only Opus family model; not runnable locally via Ollama. Parameter count undisclosed (cloud API).",
-    "popularityScore": 88
+    "popularityScore": 88,
+    "sources": [
+      "https://www.anthropic.com/claude"
+    ]
   },
   {
     "id": "qwen2.5-0.5b-q4",
@@ -668,7 +758,10 @@
     "qualityScore": 42,
     "ollamaCommand": "ollama run qwen2.5:0.5b-instruct-q4_K_M",
     "notes": "Ultra-lightweight model used in Keiro, ideal for mobile devices.",
-    "popularityScore": 62
+    "popularityScore": 62,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct"
+    ]
   },
   {
     "id": "gemma-3-1b-q4",
@@ -689,7 +782,10 @@
     "qualityScore": 52,
     "ollamaCommand": "ollama run gemma3:1b",
     "notes": "Latest Gemma generation with improved efficiency for mobile use.",
-    "popularityScore": 78
+    "popularityScore": 78,
+    "sources": [
+      "https://huggingface.co/google/gemma-3-1b-it"
+    ]
   },
   {
     "id": "gemma-3-1b-q8",
@@ -710,7 +806,10 @@
     "qualityScore": 54,
     "popularityScore": 78,
     "ollamaCommand": "ollama run gemma3:1b-it-q8_0",
-    "notes": "Q8_0 variant of Gemma 3 1B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/gemma-3-1b-it-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Gemma 3 1B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/gemma-3-1b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/google/gemma-3-1b-it"
+    ]
   },
   {
     "id": "phi4-mini-3.8b-q4",
@@ -730,7 +829,10 @@
     "qualityScore": 73,
     "ollamaCommand": "ollama run phi4-mini:3.8b",
     "notes": "Latest Phi-4 mini variant with enhanced reasoning capabilities.",
-    "popularityScore": 75
+    "popularityScore": 75,
+    "sources": [
+      "https://huggingface.co/microsoft/Phi-4-mini-instruct"
+    ]
   },
   {
     "id": "phi4-mini-3.8b-q8",
@@ -750,7 +852,10 @@
     "qualityScore": 75,
     "popularityScore": 75,
     "ollamaCommand": "ollama run phi4-mini:3.8b-q8_0",
-    "notes": "Q8_0 variant of Phi-4 Mini 3.8B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Phi-4-mini-instruct-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Phi-4 Mini 3.8B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Phi-4-mini-instruct-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/microsoft/Phi-4-mini-instruct"
+    ]
   },
   {
     "id": "smollm2-360m-q4",
@@ -770,7 +875,10 @@
     "qualityScore": 38,
     "ollamaCommand": "ollama run smollm2:360m",
     "notes": "Extremely lightweight model for embedded devices and IoT.",
-    "popularityScore": 65
+    "popularityScore": 65,
+    "sources": [
+      "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct"
+    ]
   },
   {
     "id": "llama3.3-70b-q4",
@@ -791,7 +899,10 @@
     "qualityScore": 86,
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q4_K_M",
     "notes": "Latest Llama 3.3 with improved reasoning and coding capabilities.",
-    "popularityScore": 82
+    "popularityScore": 82,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
+    ]
   },
   {
     "id": "llama-3.1-405b-q4",
@@ -814,7 +925,10 @@
     "qualityScore": 87,
     "popularityScore": 75,
     "ollamaCommand": "ollama run llama3.1:405b-instruct-q4_K_M",
-    "notes": "Requires 256GB+ RAM. Best for Mac Studio M3 Ultra and Mac Pro with large memory."
+    "notes": "Requires 256GB+ RAM. Best for Mac Studio M3 Ultra and Mac Pro with large memory.",
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct"
+    ]
   },
   {
     "id": "deepseek-r1-671b-q4",
@@ -838,7 +952,10 @@
     "popularityScore": 70,
     "ollamaCommand": "ollama run deepseek-r1:671b-q4_K_M",
     "notes": "Requires 400GB+ RAM. Runs on Mac Studio M3 Ultra 512GB only.",
-    "moeActiveB": 37
+    "moeActiveB": 37,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+    ]
   },
   {
     "id": "qwen3-8b-q4",
@@ -859,7 +976,10 @@
     "qualityScore": 84,
     "ollamaCommand": "ollama run qwen3:8b-q4_K_M",
     "notes": "Latest Qwen3 generation with enhanced reasoning.",
-    "popularityScore": 88
+    "popularityScore": 88,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-8B"
+    ]
   },
   {
     "id": "qwen3-8b-q8",
@@ -880,7 +1000,10 @@
     "qualityScore": 86,
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3:8b-q8_0",
-    "notes": "Q8_0 variant of Qwen3 8B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3-8B-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Qwen3 8B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3-8B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-8B"
+    ]
   },
   {
     "id": "qwen3-14b-q4",
@@ -901,7 +1024,10 @@
     "qualityScore": 88,
     "ollamaCommand": "ollama run qwen3:14b-q4_K_M",
     "notes": "Mid-range Qwen3 with excellent coding performance.",
-    "popularityScore": 84
+    "popularityScore": 84,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-14B"
+    ]
   },
   {
     "id": "qwen3-30b-q4",
@@ -924,7 +1050,10 @@
     "ollamaCommand": "ollama run qwen3:30b",
     "notes": "Large Qwen3 variant for high-quality outputs.",
     "popularityScore": 78,
-    "moeActiveB": 3
+    "moeActiveB": 3,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-30B-A3B"
+    ]
   },
   {
     "id": "qwen3-30b-a3b-q8",
@@ -947,7 +1076,10 @@
     "qualityScore": 91,
     "popularityScore": 78,
     "ollamaCommand": "ollama run qwen3:30b-a3b-q8_0",
-    "notes": "Q8_0 variant of Qwen3 30B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3-30B-A3B-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Qwen3 30B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3-30B-A3B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-30B-A3B"
+    ]
   },
   {
     "id": "gemma3-4b-q4",
@@ -967,7 +1099,10 @@
     "qualityScore": 72,
     "ollamaCommand": "ollama run gemma3:4b",
     "notes": "Latest Gemma3 with improved reasoning and efficiency.",
-    "popularityScore": 81
+    "popularityScore": 81,
+    "sources": [
+      "https://huggingface.co/google/gemma-3-4b-it"
+    ]
   },
   {
     "id": "gemma3-4b-q8",
@@ -987,7 +1122,10 @@
     "qualityScore": 74,
     "popularityScore": 81,
     "ollamaCommand": "ollama run gemma3:4b-it-q8_0",
-    "notes": "Q8_0 variant of Gemma 3 4B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/gemma-3-4b-it-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Gemma 3 4B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/gemma-3-4b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/google/gemma-3-4b-it"
+    ]
   },
   {
     "id": "gemma3-12b-q4",
@@ -1008,7 +1146,10 @@
     "qualityScore": 85,
     "ollamaCommand": "ollama run gemma3:12b",
     "notes": "Mid-range Gemma3 with balanced performance.",
-    "popularityScore": 76
+    "popularityScore": 76,
+    "sources": [
+      "https://huggingface.co/google/gemma-3-12b-it"
+    ]
   },
   {
     "id": "gemma3-27b-q4",
@@ -1029,7 +1170,10 @@
     "qualityScore": 89,
     "ollamaCommand": "ollama run gemma3:27b",
     "notes": "Large Gemma3 variant with excellent output quality.",
-    "popularityScore": 71
+    "popularityScore": 71,
+    "sources": [
+      "https://huggingface.co/google/gemma-3-27b-it"
+    ]
   },
   {
     "id": "deepseek-r1-distill-qwen-7b-q4",
@@ -1050,7 +1194,10 @@
     "qualityScore": 80,
     "ollamaCommand": "ollama run deepseek-r1:7b",
     "notes": "Distilled DeepSeek-R1 reasoning model based on Qwen.",
-    "popularityScore": 68
+    "popularityScore": 68,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+    ]
   },
   {
     "id": "deepseek-r1-distill-qwen-7b-q8",
@@ -1071,7 +1218,10 @@
     "qualityScore": 82,
     "popularityScore": 68,
     "ollamaCommand": "ollama run deepseek-r1:7b-qwen-distill-q8_0",
-    "notes": "Q8_0 variant of DeepSeek-R1 Distill Qwen 7B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/DeepSeek-R1-Distill-Qwen-7B-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of DeepSeek-R1 Distill Qwen 7B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/DeepSeek-R1-Distill-Qwen-7B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+    ]
   },
   {
     "id": "deepseek-r1-distill-qwen-14b-q4",
@@ -1092,7 +1242,10 @@
     "qualityScore": 86,
     "ollamaCommand": "ollama run deepseek-r1:14b",
     "notes": "Larger distilled DeepSeek-R1 with enhanced reasoning capabilities.",
-    "popularityScore": 66
+    "popularityScore": 66,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+    ]
   },
   {
     "id": "deepseek-r1-distill-qwen-14b-q8",
@@ -1113,7 +1266,10 @@
     "qualityScore": 88,
     "popularityScore": 66,
     "ollamaCommand": "ollama run deepseek-r1:14b-qwen-distill-q8_0",
-    "notes": "Q8_0 variant of DeepSeek-R1 Distill Qwen 14B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of DeepSeek-R1 Distill Qwen 14B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+    ]
   },
   {
     "id": "deepseek-r1-distill-llama-70b-q4",
@@ -1134,7 +1290,10 @@
     "qualityScore": 85,
     "ollamaCommand": "ollama run deepseek-r1:70b",
     "notes": "Large distilled DeepSeek-R1 for maximum reasoning quality.",
-    "popularityScore": 60
+    "popularityScore": 60,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
+    ]
   },
   {
     "id": "gpt-4o-cloud",
@@ -1155,7 +1314,10 @@
     "speedScore": 75,
     "qualityScore": 98,
     "notes": "Cloud/API only GPT-4 Omni model with multimodal capabilities. Parameter count undisclosed (cloud API).",
-    "popularityScore": 95
+    "popularityScore": 95,
+    "sources": [
+      "https://platform.openai.com/docs/models"
+    ]
   },
   {
     "id": "gpt-4o-mini-cloud",
@@ -1176,7 +1338,10 @@
     "speedScore": 88,
     "qualityScore": 82,
     "notes": "Cloud/API only compact version of GPT-4o with faster responses. Parameter count undisclosed (cloud API).",
-    "popularityScore": 91
+    "popularityScore": 91,
+    "sources": [
+      "https://platform.openai.com/docs/models"
+    ]
   },
   {
     "id": "claude-4-sonnet-cloud",
@@ -1197,7 +1362,10 @@
     "speedScore": 73,
     "qualityScore": 97,
     "notes": "Cloud/API only Claude 4 Sonnet with enhanced reasoning capabilities. Parameter count undisclosed (cloud API).",
-    "popularityScore": 89
+    "popularityScore": 89,
+    "sources": [
+      "https://www.anthropic.com/claude"
+    ]
   },
   {
     "id": "gemini-2.5-pro-cloud",
@@ -1218,7 +1386,10 @@
     "speedScore": 70,
     "qualityScore": 96,
     "notes": "Cloud/API only Gemini 2.5 Pro with advanced reasoning and multimodal capabilities. Parameter count undisclosed (cloud API).",
-    "popularityScore": 87
+    "popularityScore": 87,
+    "sources": [
+      "https://deepmind.google/technologies/gemini/"
+    ]
   },
   {
     "id": "gemini-2.5-flash-cloud",
@@ -1239,7 +1410,10 @@
     "speedScore": 92,
     "qualityScore": 85,
     "notes": "Cloud/API only Gemini 2.5 Flash optimized for speed and efficiency. Parameter count undisclosed (cloud API).",
-    "popularityScore": 84
+    "popularityScore": 84,
+    "sources": [
+      "https://deepmind.google/technologies/gemini/"
+    ]
   },
   {
     "id": "deepseek-v3-cloud",
@@ -1262,7 +1436,10 @@
     "qualityScore": 99,
     "notes": "Cloud/API only DeepSeek-V3 mixture of experts model with exceptional coding capabilities.",
     "popularityScore": 83,
-    "moeActiveB": 37
+    "moeActiveB": 37,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-V3"
+    ]
   },
   {
     "id": "glm-5-cloud",
@@ -1286,7 +1463,10 @@
     "qualityScore": 87,
     "notes": "Cloud/API only GLM-5, Zhipu AI's latest reasoning model with MoE architecture.",
     "popularityScore": 75,
-    "moeActiveB": 40
+    "moeActiveB": 40,
+    "sources": [
+      "https://huggingface.co/zai-org/GLM-5"
+    ]
   },
   {
     "id": "glm-4-plus-cloud",
@@ -1307,7 +1487,10 @@
     "speedScore": 68,
     "qualityScore": 92,
     "notes": "Cloud/API only GLM-4 Plus, Zhipu AI's high-performance general purpose model. Parameter count undisclosed (cloud API).",
-    "popularityScore": 68
+    "popularityScore": 68,
+    "sources": [
+      "https://z.ai/"
+    ]
   },
   {
     "id": "qwen3-235b-a22b-cloud",
@@ -1331,7 +1514,10 @@
     "ollamaCommand": "ollama run qwen3:235b-a22b-q4_K_M",
     "notes": "Massive MoE model with 22B active parameters. Requires 192GB+ RAM.",
     "popularityScore": 85,
-    "moeActiveB": 22
+    "moeActiveB": 22,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507"
+    ]
   },
   {
     "id": "mistral-small-3.1-cloud",
@@ -1353,7 +1539,10 @@
     "qualityScore": 86,
     "ollamaCommand": "ollama run mistral-small3.1:24b",
     "notes": "Mistral Small 3.1, latest iteration with improved efficiency. Runs locally on 24GB+ RAM.",
-    "popularityScore": 70
+    "popularityScore": 70,
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503"
+    ]
   },
   {
     "id": "mistral-small-3.1-24b-q8",
@@ -1374,7 +1563,10 @@
     "qualityScore": 88,
     "popularityScore": 70,
     "ollamaCommand": "ollama run mistral-small3.1:24b-instruct-2503-q8_0",
-    "notes": "Q8_0 variant of Mistral Small 3.1. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Mistral-Small-3.1-24B-Instruct-2503-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Mistral Small 3.1. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Mistral-Small-3.1-24B-Instruct-2503-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503"
+    ]
   },
   {
     "id": "deepseek-v3-0324-cloud",
@@ -1398,7 +1590,10 @@
     "qualityScore": 99,
     "notes": "Cloud/API only DeepSeek-V3-0324, March 2025 update with enhanced reasoning capabilities.",
     "popularityScore": 90,
-    "moeActiveB": 37
+    "moeActiveB": 37,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324"
+    ]
   },
   {
     "id": "deepseek-r1-full-cloud",
@@ -1421,7 +1616,10 @@
     "qualityScore": 100,
     "notes": "Cloud/API only full DeepSeek-R1 671B MoE with advanced reasoning capabilities.",
     "popularityScore": 79,
-    "moeActiveB": 37
+    "moeActiveB": 37,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+    ]
   },
   {
     "id": "qwen3.5-0.8b-q4",
@@ -1443,7 +1641,10 @@
     "popularityScore": 70,
     "ollamaCommand": "ollama run qwen3.5:0.8b",
     "notes": "Ultra-light Qwen3.5 with native multimodal. 262K context. Ideal for mobile and IoT edge devices.",
-    "kvKbPerToken": 12
+    "kvKbPerToken": 12,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-0.8B"
+    ]
   },
   {
     "id": "qwen3.5-2b-q4",
@@ -1465,7 +1666,10 @@
     "popularityScore": 75,
     "ollamaCommand": "ollama run qwen3.5:2b",
     "notes": "Fast small Qwen3.5 with native multimodal and 262K context. Great for edge tasks and quick chat.",
-    "kvKbPerToken": 12
+    "kvKbPerToken": 12,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-2B"
+    ]
   },
   {
     "id": "qwen3.5-4b-q4",
@@ -1512,7 +1716,10 @@
     "qualityScore": 85,
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3.5:4b-q8_0",
-    "notes": "Q8_0 variant of Qwen3.5 4B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3.5-4B-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Qwen3.5 4B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3.5-4B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-4B"
+    ]
   },
   {
     "id": "qwen3.5-9b-q4",
@@ -1563,7 +1770,10 @@
     "ollamaCommand": "ollama run qwen3.5:35b-a3b",
     "notes": "MoE model (35B total, 3B active). Surpasses Qwen3-235B-A22B. Runs on 24GB Mac/RAM. Better architecture beats bigger parameter counts.",
     "moeActiveB": 3,
-    "kvKbPerToken": 20
+    "kvKbPerToken": 20,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-35B-A3B"
+    ]
   },
   {
     "id": "qwen3.5-27b-q4",
@@ -1610,7 +1820,10 @@
     "qualityScore": 93,
     "popularityScore": 82,
     "ollamaCommand": "ollama run qwen3.5:27b-q8_0",
-    "notes": "Q8_0 variant of Qwen3.5 27B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3.5-27B-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Qwen3.5 27B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3.5-27B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-27B"
+    ]
   },
   {
     "id": "qwen3.5-122b-a10b-q4",
@@ -1635,7 +1848,10 @@
     "ollamaCommand": "ollama run qwen3.5:122b-a10b",
     "notes": "MoE model (122B total, 10B active). Closes the gap between medium-sized and frontier models. Best for complex agent scenarios. Requires high-end Mac Studio.",
     "moeActiveB": 10,
-    "kvKbPerToken": 24
+    "kvKbPerToken": 24,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-122B-A10B"
+    ]
   },
   {
     "id": "lfm2-24b-a2b-q4",
@@ -1818,7 +2034,12 @@
     "qualityScore": 96,
     "popularityScore": 95,
     "ollamaCommand": "ollama run qwen3.8:27b-q8_0",
-    "notes": "Q8_0 variant of Qwen3.8 27B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Qwen3.8-27B-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Qwen3.8 27B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Qwen3.8-27B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "https://huggingface.co/bartowski/Qwen3.8-27B-GGUF",
+      "https://www.amd.com/en/blogs/2026/run-qwen-3-8-27b-on-amd-ryzen-ai-max-and-radeon-graphics-cards-day-0.html"
+    ]
   },
   {
     "id": "qwen3.6-35b-a3b-q4",
@@ -1893,7 +2114,10 @@
     "qualityScore": 95,
     "popularityScore": 84,
     "ollamaCommand": "ollama run gemma4:31b-it-q8_0",
-    "notes": "Q8_0 variant of Gemma 4 31B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-31b-it-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Gemma 4 31B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-31b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-31B"
+    ]
   },
   {
     "id": "gemma4-26b-a4b-q4",
@@ -1941,7 +2165,10 @@
     "qualityScore": 78,
     "popularityScore": 82,
     "ollamaCommand": "ollama run gemma4:e4b",
-    "notes": "Apr 2026 on-device Gemma 4 with Per-Layer Embeddings. 4.5B effective params. Runs on 8GB Macs and high-end iPhones. Apache 2.0."
+    "notes": "Apr 2026 on-device Gemma 4 with Per-Layer Embeddings. 4.5B effective params. Runs on 8GB Macs and high-end iPhones. Apache 2.0.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-E4B"
+    ]
   },
   {
     "id": "gemma4-e4b-q8",
@@ -1962,7 +2189,10 @@
     "qualityScore": 80,
     "popularityScore": 82,
     "ollamaCommand": "ollama run gemma4:e4b-it-q8_0",
-    "notes": "Q8_0 variant of Gemma 4 E4B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-e4b-it-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Gemma 4 E4B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-e4b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-E4B"
+    ]
   },
   {
     "id": "gemma4-e2b-q4",
@@ -2005,7 +2235,10 @@
     "qualityScore": 70,
     "popularityScore": 76,
     "ollamaCommand": "ollama run gemma4:e2b-it-q8_0",
-    "notes": "Q8_0 variant of Gemma 4 E2B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-e2b-it-GGUF Hugging Face repo. Ollama tag registry-verified."
+    "notes": "Q8_0 variant of Gemma 4 E2B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-e2b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-26B-A4B"
+    ]
   },
   {
     "id": "llama4-scout-q4",
@@ -2030,7 +2263,10 @@
     "popularityScore": 86,
     "ollamaCommand": "ollama run llama4:scout",
     "notes": "Meta Llama 4 Scout: 109B total, 17B active MoE. 10M context. Multimodal. Best run on Mac Studio 96GB+ or 128GB.",
-    "moeActiveB": 17
+    "moeActiveB": 17,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+    ]
   },
   {
     "id": "llama4-maverick-q4",
@@ -2055,7 +2291,10 @@
     "popularityScore": 78,
     "ollamaCommand": "ollama run llama4:maverick",
     "notes": "Meta Llama 4 Maverick: 400B total, 17B active MoE. 1M context. Multimodal. Requires Mac Studio M3 Ultra 256GB+ for local.",
-    "moeActiveB": 17
+    "moeActiveB": 17,
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct"
+    ]
   },
   {
     "id": "mistral-medium-3.5-cloud",
@@ -2242,7 +2481,10 @@
     "speedScore": 73,
     "qualityScore": 100,
     "popularityScore": 98,
-    "notes": "Anthropic's current flagship and the most capable model for Claude Code. Best-in-class agentic tool use and long-horizon coding. Parameter count undisclosed (cloud API). Cloud only."
+    "notes": "Anthropic's current flagship and the most capable model for Claude Code. Best-in-class agentic tool use and long-horizon coding. Parameter count undisclosed (cloud API). Cloud only.",
+    "sources": [
+      "https://www.anthropic.com/claude"
+    ]
   },
   {
     "id": "gpt-5.5-cloud",
@@ -2264,7 +2506,10 @@
     "speedScore": 70,
     "qualityScore": 99,
     "popularityScore": 95,
-    "notes": "Apr 23, 2026 OpenAI flagship. Pro and Instant variants follow May 5. Cloud only. Parameter count undisclosed (cloud API)."
+    "notes": "Apr 23, 2026 OpenAI flagship. Pro and Instant variants follow May 5. Cloud only. Parameter count undisclosed (cloud API).",
+    "sources": [
+      "https://platform.openai.com/docs/models"
+    ]
   },
   {
     "id": "gemini-3.1-pro-cloud",
@@ -2287,7 +2532,10 @@
     "speedScore": 72,
     "qualityScore": 98,
     "popularityScore": 90,
-    "notes": "Apr 2026 Google flagship. Strong multimodal, 2M context. Cloud only. Parameter count undisclosed (cloud API)."
+    "notes": "Apr 2026 Google flagship. Strong multimodal, 2M context. Cloud only. Parameter count undisclosed (cloud API).",
+    "sources": [
+      "https://deepmind.google/technologies/gemini/"
+    ]
   },
   {
     "id": "grok-4.3-cloud",
@@ -2310,7 +2558,10 @@
     "speedScore": 74,
     "qualityScore": 96,
     "popularityScore": 82,
-    "notes": "Apr 17, 2026 xAI flagship. Full rollout May 6. 1M context (Apr 30 expansion). Cloud only. Parameter count undisclosed (cloud API)."
+    "notes": "Apr 17, 2026 xAI flagship. Full rollout May 6. 1M context (Apr 30 expansion). Cloud only. Parameter count undisclosed (cloud API).",
+    "sources": [
+      "https://x.ai/grok"
+    ]
   },
   {
     "id": "gemma4-12b-q4",
@@ -2358,7 +2609,10 @@
     "speedScore": 70,
     "qualityScore": 100,
     "popularityScore": 96,
-    "notes": "Jun 9, 2026 Anthropic release: the first publicly available Mythos-class model, a tier above Opus 4.8. Anthropic reports it took the open coding lead on their own benchmarks (precise scores not published in primary-source text). Parameter count undisclosed (cloud API). Cloud only."
+    "notes": "Jun 9, 2026 Anthropic release: the first publicly available Mythos-class model, a tier above Opus 4.8. Anthropic reports it took the open coding lead on their own benchmarks (precise scores not published in primary-source text). Parameter count undisclosed (cloud API). Cloud only.",
+    "sources": [
+      "https://www.anthropic.com/claude"
+    ]
   },
   {
     "id": "glm-5.2-cloud",
@@ -2464,7 +2718,10 @@
     "speedScore": 70,
     "qualityScore": 90,
     "popularityScore": 78,
-    "notes": "Jun 1, 2026 Alibaba Qwen release. Proprietary multimodal agent model (vision + GUI control + code) on a 1M-token context, via Alibaba Cloud Model Studio / Bailian API. API-only, no open weights. Parameter count undisclosed."
+    "notes": "Jun 1, 2026 Alibaba Qwen release. Proprietary multimodal agent model (vision + GUI control + code) on a 1M-token context, via Alibaba Cloud Model Studio / Bailian API. API-only, no open weights. Parameter count undisclosed.",
+    "sources": [
+      "https://qwen.ai"
+    ]
   },
   {
     "id": "nemotron-3-ultra-cloud",
@@ -2705,7 +2962,10 @@
     "ollamaCommand": "ollama run qwen3.6:35b-a3b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.6 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the larger 38.7GB weight file. Tag registry-verified 200 on the ollama.ai manifest API.",
     "moeActiveB": 3,
-    "kvKbPerToken": 20
+    "kvKbPerToken": 20,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+    ]
   },
   {
     "id": "qwen3.5-35b-a3b-q8",
@@ -2730,7 +2990,10 @@
     "ollamaCommand": "ollama run qwen3.5:35b-a3b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.5 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the 38.7GB weight file. Tag registry-verified 200.",
     "moeActiveB": 3,
-    "kvKbPerToken": 20
+    "kvKbPerToken": 20,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-35B-A3B"
+    ]
   },
   {
     "id": "qwen3.5-9b-q8",
@@ -2753,7 +3016,10 @@
     "popularityScore": 86,
     "ollamaCommand": "ollama run qwen3.5:9b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.5 9B, near lossless quality versus the Q4 default. Prefer it on 16GB or more RAM where the 10.7GB weight file still leaves headroom. Tag registry-verified 200.",
-    "kvKbPerToken": 32
+    "kvKbPerToken": 32,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.5-9B"
+    ]
   },
   {
     "id": "qwen3.6-27b-q8",
@@ -2776,7 +3042,10 @@
     "popularityScore": 92,
     "ollamaCommand": "ollama run qwen3.6:27b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.6 27B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 30GB weight file. Tag registry-verified 200.",
-    "kvKbPerToken": 64
+    "kvKbPerToken": 64,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.6-27B"
+    ]
   },
   {
     "id": "gemma4-12b-q8",
@@ -2798,7 +3067,10 @@
     "qualityScore": 92,
     "popularityScore": 80,
     "ollamaCommand": "ollama run gemma4:12b-it-q8_0",
-    "notes": "Q8_0 higher precision variant of Gemma 4 12B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 12.8GB weight file. Tag registry-verified 200."
+    "notes": "Q8_0 higher precision variant of Gemma 4 12B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 12.8GB weight file. Tag registry-verified 200.",
+    "sources": [
+      "https://huggingface.co/google/gemma-4-12b"
+    ]
   },
   {
     "id": "gemma4-26b-a4b-q8",
@@ -2822,7 +3094,10 @@
     "popularityScore": 86,
     "ollamaCommand": "ollama run gemma4:26b-a4b-it-q8_0",
     "notes": "Q8_0 higher precision variant of Gemma 4 26B-A4B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 28.1GB weight file. Tag registry-verified 200.",
-    "moeActiveB": 4
+    "moeActiveB": 4,
+    "sources": [
+      "https://huggingface.co/google/gemma-4-26B-A4B"
+    ]
   },
   {
     "id": "qwen3-next-80b-a3b-q8",
@@ -2847,7 +3122,10 @@
     "popularityScore": 80,
     "ollamaCommand": "ollama run qwen3-next:80b-a3b-instruct-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3-Next 80B-A3B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 84.8GB weight file still leaves headroom. Tag registry-verified 200.",
-    "kvKbPerToken": 24
+    "kvKbPerToken": 24,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct"
+    ]
   },
   {
     "id": "qwen3-14b-q8",
@@ -2868,7 +3146,10 @@
     "qualityScore": 90,
     "popularityScore": 84,
     "ollamaCommand": "ollama run qwen3:14b-q8_0",
-    "notes": "Q8_0 higher precision variant of Qwen3 14B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 15.9GB weight file. Tag registry-verified 200."
+    "notes": "Q8_0 higher precision variant of Qwen3 14B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 15.9GB weight file. Tag registry-verified 200.",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3-14B"
+    ]
   },
   {
     "id": "llama3.3-70b-q8",
@@ -2889,7 +3170,10 @@
     "qualityScore": 88,
     "popularityScore": 82,
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q8_0",
-    "notes": "Q8_0 higher precision variant of Llama 3.3 70B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 75GB weight file still leaves headroom. Tag registry-verified 200."
+    "notes": "Q8_0 higher precision variant of Llama 3.3 70B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 75GB weight file still leaves headroom. Tag registry-verified 200.",
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
+    ]
   },
   {
     "id": "llama3.3-70b-q6",
@@ -2910,7 +3194,10 @@
     "qualityScore": 87,
     "popularityScore": 82,
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q6_K",
-    "notes": "Q6_K middle ground variant of Llama 3.3 70B, between the Q4 default and the near lossless Q8 sibling. Prefer it on 96GB or more workstations where the 57.9GB weight file balances quality against RAM cost. Tag registry-verified 200."
+    "notes": "Q6_K middle ground variant of Llama 3.3 70B, between the Q4 default and the near lossless Q8 sibling. Prefer it on 96GB or more workstations where the 57.9GB weight file balances quality against RAM cost. Tag registry-verified 200.",
+    "sources": [
+      "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
+    ]
   },
   {
     "id": "kimi-k3-cloud",
