@@ -2373,11 +2373,43 @@
     "speedScore": 60,
     "qualityScore": 100,
     "popularityScore": 86,
-    "notes": "Apr 24, 2026. 1.6T total, 49B active MoE. MIT license. Not realistically runnable on consumer Mac. API $0.87 per 1M output tokens (DeepSeek pricing page, Jul 2026).",
+    "notes": "Apr 24, 2026. 1.6T total, 49B active MoE. MIT license. Not realistically runnable on consumer Mac. API $0.87 per 1M output tokens (DeepSeek pricing page, Jul 2026). An August 0813 revision refreshed the API weights; same architecture, same canonical page.",
     "moeActiveB": 49,
     "sources": [
       "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
       "https://api-docs.deepseek.com/quick_start/pricing"
+    ]
+  },
+  {
+    "id": "deepseek-v4.1-flash-cloud",
+    "name": "DeepSeek V4.1 Flash",
+    "family": "DeepSeek",
+    "sizeB": 552,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Agentic coding, Reasoning, Long context, Vision",
+    "publisherTier": "top",
+    "tags": [
+      "reasoning",
+      "coding",
+      "agent",
+      "moe",
+      "long-context",
+      "vision",
+      "multimodal",
+      "frontier"
+    ],
+    "speedScore": 70,
+    "qualityScore": 98,
+    "popularityScore": 91,
+    "notes": "Sep 10, 2026 refresh of V4 Flash, MIT. Multimodal (image + text) MoE: 552B backbone plus a 196B sparsely-accessed Engram memory, 8B active on prefill / 16B on decode, 1M context. FP8 weights on Hugging Face (~390k downloads in week 1). No Ollama library tag; far beyond consumer hardware locally.",
+    "moeActiveB": 16,
+    "sources": [
+      "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "https://api-docs.deepseek.com/updates/"
     ]
   },
   {
@@ -3354,6 +3386,35 @@
     ]
   },
   {
+    "id": "qwen3.8-2.4t-a95b-cloud",
+    "name": "Qwen3.8 2.4T A95B",
+    "family": "Qwen",
+    "sizeB": 2400,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Frontier reasoning, Agentic coding",
+    "publisherTier": "top",
+    "tags": [
+      "reasoning",
+      "coding",
+      "agent",
+      "moe",
+      "frontier"
+    ],
+    "speedScore": 55,
+    "qualityScore": 99,
+    "popularityScore": 78,
+    "notes": "Aug 12, 2026 Qwen flagship cloud MoE. 2.4T total parameters, 95B active (512 experts, 10 routed per token), BF16 weights on Hugging Face under the Qwen3.8-Max license (not Apache). Always-on thinking with adjustable reasoning effort. API-only in practice - no consumer hardware comes close.",
+    "moeActiveB": 95,
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+      "https://qwen.ai/"
+    ]
+  },
+  {
     "id": "granite4.2-3b-q4",
     "name": "Granite 4.2 3B",
     "family": "Granite",
@@ -3462,7 +3523,7 @@
     "family": "Muse",
     "sizeB": 29.8,
     "quantization": "Q4_K_M",
-    "minRamGb": 24,
+    "minRamGb": 32,
     "estimatedLoadGb": 16.9,
     "bestFor": "Chat",
     "publisherTier": "community",
@@ -3485,7 +3546,7 @@
     "family": "MiniCPM",
     "sizeB": 8.7,
     "quantization": "Q4_K_M",
-    "minRamGb": 8,
+    "minRamGb": 12,
     "estimatedLoadGb": 5.7,
     "bestFor": "Vision, Multimodal",
     "publisherTier": "major",
