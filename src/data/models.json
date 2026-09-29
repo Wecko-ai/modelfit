@@ -3830,5 +3830,29 @@
     "sources": [
       "https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512"
     ]
+  },
+  {
+    "id": "devstral-2-123b-q4",
+    "name": "Devstral 2 123B",
+    "family": "Mistral",
+    "sizeB": 123,
+    "quantization": "Q4_K_M",
+    "minRamGb": 96,
+    "estimatedLoadGb": 74.9,
+    "bestFor": "Agentic coding, Software engineering",
+    "publisherTier": "top",
+    "tags": [
+      "coding",
+      "agent",
+      "long-context"
+    ],
+    "speedScore": 15,
+    "qualityScore": 94,
+    "popularityScore": 74,
+    "ollamaCommand": "ollama run devstral-2:123b",
+    "notes": "Mistral's flagship coding agent (late 2025, modified MIT license) with a 256k context window. SWE Bench Verified 72.2% per Mistral's card, above its 24B sibling Devstral Small 2. It is dense, so every token reads all 123B weights: expect slow decode even on a Max or Ultra. The Ollama :123b pull is Q4_K_M at about 75 GB, which needs a 96GB machine. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512"
+    ]
   }
 ]
