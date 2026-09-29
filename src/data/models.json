@@ -3616,5 +3616,219 @@
     "sources": [
       "https://huggingface.co/zai-org/GLM-5.3-Flash"
     ]
+  },
+  {
+    "id": "glm-4.7-flash-q4",
+    "name": "GLM-4.7-Flash 30B-A3B",
+    "family": "Zhipu",
+    "sizeB": 30,
+    "moeActiveB": 3,
+    "quantization": "Q4_K_M",
+    "minRamGb": 32,
+    "estimatedLoadGb": 19.0,
+    "bestFor": "Coding, Agentic tasks, Reasoning",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "agent",
+      "reasoning",
+      "moe"
+    ],
+    "speedScore": 80,
+    "qualityScore": 90,
+    "popularityScore": 78,
+    "ollamaCommand": "ollama run glm-4.7-flash",
+    "notes": "Z.ai's local-class GLM (Jan 2026, MIT). A 30B-A3B MoE with compressed multi-latent attention, so decode speed tracks the 3B active path. SWE-bench Verified 59.2 per the model card, well ahead of Qwen3-30B-A3B-Thinking-2507 in the same table. The Ollama default pull is Q4_K_M at about 19 GB, so a 32GB Mac runs it with room for context. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/zai-org/GLM-4.7-Flash"
+    ]
+  },
+  {
+    "id": "nemotron-3-super-120b-q4",
+    "name": "Nemotron 3 Super 120B-A12B",
+    "family": "Nemotron",
+    "sizeB": 120,
+    "moeActiveB": 12,
+    "quantization": "Q4_K_M",
+    "minRamGb": 128,
+    "estimatedLoadGb": 86.8,
+    "bestFor": "Agentic workflows, Long context, Reasoning",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "reasoning",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 58,
+    "qualityScore": 93,
+    "popularityScore": 75,
+    "ollamaCommand": "ollama run nemotron-3-super:120b",
+    "notes": "NVIDIA's mid-size open model (March 11, 2026, NVIDIA Open Model License). 120B total with 12B active in a LatentMoE hybrid of Mamba-2, MoE and a few attention layers, plus Multi-Token Prediction. Context up to 1M tokens. The card reports MMLU-Pro 83.73 and SWE-Bench (OpenHands) 60.47. The Ollama :120b pull is Q4_K_M at about 87 GB, so it needs a 128GB machine. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
+    ]
+  },
+  {
+    "id": "olmo-3.1-32b-q4",
+    "name": "Olmo 3.1 32B Instruct",
+    "family": "Olmo",
+    "sizeB": 32,
+    "quantization": "Q4_K_M",
+    "minRamGb": 32,
+    "estimatedLoadGb": 19.5,
+    "bestFor": "General chat, Research, Fully open",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "mixed"
+    ],
+    "speedScore": 48,
+    "qualityScore": 84,
+    "popularityScore": 55,
+    "ollamaCommand": "ollama run olmo-3.1:32b",
+    "notes": "Ai2's fully open 32B dense model (Apache 2.0): weights, data and training code are all public, which is the reason to pick it. On raw capability it trails Qwen 3 32B in no-think mode on MMLU (80.9 vs 85.8) and GPQA (48.6 vs 54.4) in Ai2's own table. The Ollama pull is Q4_K_M at about 19 GB. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/allenai/Olmo-3.1-32B-Instruct"
+    ]
+  },
+  {
+    "id": "mimo-v2.6-distill-qwen-9b",
+    "name": "MiMo-V2.6-Distill-Qwen-9B",
+    "family": "MiMo",
+    "sizeB": 9,
+    "quantization": "Q4_K_M",
+    "minRamGb": 16,
+    "estimatedLoadGb": 5.8,
+    "bestFor": "Agentic coding, Small machines",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "agent"
+    ],
+    "speedScore": 74,
+    "qualityScore": 90,
+    "popularityScore": 60,
+    "notes": "Xiaomi's distillation of MiMo-V2.6 into Qwen3.5-9B (Sept 2026, MIT). Per the card, SWE Verified 61.1 vs 60.0 for the base Qwen3.5-9B and SWE Pro 44.6 vs 32.0. No Ollama library tag; run the GGUF through llama.cpp or LM Studio (bartowski Q4_K_M is about 6 GB, so a 16GB Mac runs it comfortably).",
+    "sources": [
+      "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B",
+      "https://huggingface.co/bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF"
+    ]
+  },
+  {
+    "id": "ling-3.0-flash",
+    "name": "Ling-3.0-flash",
+    "family": "Ling",
+    "sizeB": 124,
+    "moeActiveB": 5.1,
+    "quantization": "Q4_K_M",
+    "minRamGb": 128,
+    "estimatedLoadGb": 77.8,
+    "bestFor": "Agentic coding, Long context, Reasoning",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 62,
+    "qualityScore": 92,
+    "popularityScore": 55,
+    "notes": "inclusionAI (Ant Group) hybrid-linear MoE, Aug 2026, MIT. Total 124B, activated 5.1B, with Kimi Delta Attention and MLA stacked 5:1, trained up to 256K context. A vision-language sibling, Ling-3.0-flash-VL, shares the backbone and gained llama.cpp support on Sept 24, 2026. No Ollama tag: the bartowski Q4_K_M GGUF is about 78 GB (128GB machine); IQ4_XS at about 69 GB squeezes onto 96GB.",
+    "sources": [
+      "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+      "https://huggingface.co/inclusionAI/Ling-3.0-flash-VL",
+      "https://huggingface.co/bartowski/Ling-3.0-flash-GGUF"
+    ]
+  },
+  {
+    "id": "mimo-v2.6-flash-cloud",
+    "name": "Xiaomi MiMo-V2.6-Flash",
+    "family": "MiMo",
+    "sizeB": 309,
+    "moeActiveB": 15,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Agentic coding, Multimodal, Long context",
+    "publisherTier": "major",
+    "tags": [
+      "reasoning",
+      "coding",
+      "agent",
+      "moe",
+      "long-context",
+      "multimodal"
+    ],
+    "speedScore": 66,
+    "qualityScore": 96,
+    "popularityScore": 60,
+    "notes": "Sept 21, 2026 Xiaomi release (MIT, XiaomiMiMo/MiMo-V2.6-Flash-RL on HF), successor to MiMo-V2-Flash. Sparse MoE with 309B total / 15B activated parameters, native text, image, video and audio input, 1M tokens of context. No Ollama build; community GGUFs exist, so a ~Q4 build fits a 256GB-class machine via llama.cpp.",
+    "sources": [
+      "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL"
+    ]
+  },
+  {
+    "id": "mimo-v2.6-pro-cloud",
+    "name": "Xiaomi MiMo-V2.6-Pro",
+    "family": "MiMo",
+    "sizeB": 1020,
+    "moeActiveB": 42,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Frontier agentic coding, Multimodal",
+    "publisherTier": "major",
+    "tags": [
+      "reasoning",
+      "coding",
+      "agent",
+      "moe",
+      "long-context",
+      "multimodal",
+      "frontier"
+    ],
+    "speedScore": 58,
+    "qualityScore": 98,
+    "popularityScore": 62,
+    "notes": "Sept 21, 2026 Xiaomi flagship (MIT, XiaomiMiMo/MiMo-V2.6-Pro-RL on HF). Sparse MoE with 1.02T total / 42B activated parameters, omnimodal input and 1M tokens of context. Open weights, but beyond any consumer machine: API or a multi-GPU server.",
+    "sources": [
+      "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL"
+    ]
+  },
+  {
+    "id": "devstral-small-2-24b-q4",
+    "name": "Devstral Small 2 24B",
+    "family": "Mistral",
+    "sizeB": 24,
+    "quantization": "Q4_K_M",
+    "minRamGb": 24,
+    "estimatedLoadGb": 15.2,
+    "bestFor": "Agentic coding, Software engineering",
+    "publisherTier": "top",
+    "tags": [
+      "coding",
+      "agent",
+      "multimodal",
+      "long-context"
+    ],
+    "speedScore": 55,
+    "qualityScore": 91,
+    "popularityScore": 74,
+    "ollamaCommand": "ollama run devstral-small-2:24b",
+    "notes": "Mistral's 24B dense coding agent (late 2025, Apache 2.0) with a 256k context window and image input. SWE Bench Verified 68.0% per Mistral's card, level with GLM 4.6 at 355B in the same table. A coding specialist, so it is kept out of the general best-pick. The Ollama :24b pull is Q4_K_M at about 15 GB, which fits a 24GB Mac. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512"
+    ]
   }
 ]
