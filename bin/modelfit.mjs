@@ -53,6 +53,8 @@ BENCH
                          modelfit.io (CC BY 4.0). The only network call, opt-in.
     --model <tag>        Bench a different Ollama tag instead of the reference
     --no-pull            Never download the model; fail if it is not local
+    --cleanup            Remove the reference model when the bench ends, so
+                         nothing is left on disk (a model you already had is kept)
 
 After naming the best model, modelfit offers to install it via Ollama (interactive
 terminals only). Use --yes to install unattended, or --no-install to skip the prompt.
@@ -63,6 +65,7 @@ EXAMPLES
   modelfit --json                        # { best: { ollamaCommand, ... }, ... } (no prompt)
   modelfit --all                         # full ranked list
   modelfit --ram 64 --chip "Apple M4 Max"
+  npx -y @wecko-ai/modelfit bench --submit --cleanup   # measure, share, remove the model
 
 tok/s figures are estimates, not measured benchmarks. Data: ModelFit (CC BY 4.0).`;
 
@@ -85,6 +88,7 @@ function parseArgs(argv) {
       case '--no-install': o.noInstall = true; break;
       case '--submit': o.submit = true; break;
       case '--no-pull': o.noPull = true; break;
+      case '--cleanup': o.cleanup = true; break;
       case '--model': o.model = next(); break;
       case '-v': case '--version': o.version = true; break;
       case '-h': case '--help': o.help = true; break;
@@ -108,6 +112,8 @@ async function main() {
       submit: opts.submit,
       model: opts.model,
       noPull: opts.noPull,
+      cleanup: opts.cleanup,
+      onNotice: (msg) => console.error(msg),
       version: PKG.version,
     });
     if (opts.json) {

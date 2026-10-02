@@ -93,6 +93,19 @@ modelfit [options]            # default: THE best model for your machine
 -h, --help             Show help
 ```
 
+### `modelfit bench` (measure real tok/s)
+
+```
+npx -y @wecko-ai/modelfit bench --submit --cleanup
+```
+
+Downloads a small fixed reference model through Ollama (about 1 GB), runs one fixed
+prompt and prints the measured tok/s. `--submit` shares the result with the public
+measured dataset at modelfit.io (CC BY 4.0, chip, memory and speed only). `--cleanup`
+removes the reference model when the bench ends, so nothing is left on disk; a model you
+already had installed before the bench is never deleted. Without `--cleanup` the model
+stays installed and the bench prints the `ollama rm` command.
+
 ### `--json` (scripts & agents)
 
 ```bash
