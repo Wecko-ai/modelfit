@@ -1,7 +1,7 @@
 {
   "name": "@wecko-ai/modelfit",
-  "version": "1.5.1",
-  "description": "Detect your machine and get THE best local LLM (Ollama) it can run — from the ModelFit hardware database. Embeddable library + CLI. Offline, zero-dependency.",
+  "version": "1.5.2",
+  "description": "Detect your machine and get THE best local LLM (Ollama) it can run \u2014 from the ModelFit hardware database. Embeddable library + CLI. Offline, zero-dependency.",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -22,8 +22,8 @@
     "start": "node bin/modelfit.mjs",
     "sync-data": "node scripts/sync-data.mjs",
     "gen-golden": "node scripts/gen-golden.mjs",
-    "test": "node test/parity.mjs",
-    "prepublishOnly": "node test/parity.mjs"
+    "test": "node test/parity.mjs && node test/bench-parse.mjs",
+    "prepublishOnly": "node test/parity.mjs && node test/bench-parse.mjs"
   },
   "engines": {
     "node": ">=18"
