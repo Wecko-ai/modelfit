@@ -19,6 +19,20 @@ const BENCH_PROMPT = 'Explain in exactly three sentences why the sky is blue.';
 const SUBMIT_URL = 'https://modelfit.io/api/bench/submit/';
 const SAFE_TAG = /^[a-z0-9][a-z0-9._:\/-]*$/i;
 
+// `ollama run --verbose` prints BOTH "prompt eval rate" (prefill) and "eval rate"
+// (generation), prefill first. An unanchored /eval rate:/ matched the prefill line
+// and reported prompt-processing speed (8x the real decode rate on an M4) as tok/s.
+// Anchor to the start of the line so only the generation rate can match.
+// Fixed in 1.5.2; every submission from 1.5.1 and earlier carries the prefill rate.
+export function parseVerboseStats(text) {
+  const rate = String(text).match(/^\s*eval rate:\s*([\d.]+)\s*tokens?\/s/im);
+  const load = String(text).match(/^\s*load duration:\s*([\d.]+)\s*(ms|s)/im);
+  return {
+    evalTokensPerSec: rate ? Math.round(parseFloat(rate[1]) * 10) / 10 : null,
+    loadMs: load ? Math.round(parseFloat(load[1]) * (load[2].toLowerCase() === 's' ? 1000 : 1)) : null,
+  };
+}
+
 function ollamaVersion() {
   try {
     const out = spawnSync(ollamaBin(), ['--version'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
@@ -110,12 +124,10 @@ export async function runBench(opts = {}) {
   }
 
   const text = `${res.stdout || ''}\n${res.stderr || ''}`;
-  const rate = text.match(/eval rate:\s*([\d.]+)\s*tokens?\/s/i);
-  if (!rate) {
+  const stats = parseVerboseStats(text);
+  if (stats.evalTokensPerSec == null) {
     return { ok: false, error: 'bench-failed', hint: 'ollama run did not report an eval rate. Is the model working interactively?', cleanup, pulledNow };
   }
-  const load = text.match(/load duration:\s*([\d.]+)\s*(ms|s)/i);
-  const loadMs = load ? Math.round(parseFloat(load[1]) * (load[2].toLowerCase() === 's' ? 1000 : 1)) : null;
 
   const payload = {
     tool: 'modelfit',
@@ -124,8 +136,8 @@ export async function runBench(opts = {}) {
     ollamaVersion: ollamaVersion(),
     model: tag,
     promptId: BENCH_PROMPT_ID,
-    evalTokensPerSec: Math.round(parseFloat(rate[1]) * 10) / 10,
-    loadMs,
+    evalTokensPerSec: stats.evalTokensPerSec,
+    loadMs: stats.loadMs,
     timestamp: new Date().toISOString(),
   };
 
@@ -202,7 +214,7 @@ export function renderBench(result, { color = true } = {}) {
     `  hardware: ${hw.deviceLabel || hw.deviceType || 'unknown'} · ${hw.chip || ''} · ${hw.ramGb || '?'} GB`,
     p.ollamaVersion ? `  ollama: ${p.ollamaVersion}` : null,
     result.submitted
-      ? `  ${green('submitted')} to the public measured dataset (CC BY 4.0)`
+      ? `  ${green('submitted')} to the public measured dataset (CC BY 4.0). Your machine joins the leaderboard at https://modelfit.io/bench/ after the next site update.`
       : '  not submitted: rerun with `modelfit bench --submit --cleanup` to contribute this datapoint',
     result.submitError ? `  submit failed: ${result.submitError}` : null,
     ...cleanupLines(result, { green, dim }),
