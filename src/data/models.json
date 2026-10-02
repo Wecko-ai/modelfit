@@ -2486,9 +2486,8 @@
     "speedScore": 72,
     "qualityScore": 100,
     "popularityScore": 96,
-    "notes": "Apr 16, 2026 Anthropic flagship. SWE-Bench Verified 87.6%. $5 input / $25 output per 1M tokens. Superseded by Opus 4.8. Cloud only. Parameter count undisclosed (cloud API).",
+    "notes": "Apr 16, 2026 Anthropic flagship, superseded by Opus 4.8. Its independent SWE-Bench Verified score is on the vals.ai leaderboard and the ModelFit benchmark page. Cloud only. Parameter count undisclosed (cloud API).",
     "sources": [
-      "https://www.anthropic.com/pricing",
       "https://www.vals.ai/benchmarks/swebench"
     ]
   },
@@ -2884,10 +2883,10 @@
     "qualityScore": 85,
     "popularityScore": 45,
     "ollamaCommand": "ollama run north-mini-code-1.0:q4_K_M",
-    "notes": "Cohere's first developer-focused model (Jun 11, 2026), Apache 2.0. 30B MoE / 3B active, 256K context, up to 64K output. Artificial Analysis Coding Index 33.4 per Cohere. Coding specialist (not a general chat model).",
+    "notes": "Cohere's first developer-focused model (Jun 11, 2026), Apache 2.0. 30B MoE / 3B active, 256K context, up to 64K output, per Cohere's model card. Coding specialist (not a general chat model).",
     "moeActiveB": 3,
     "sources": [
-      "https://artificialanalysis.ai/"
+      "https://huggingface.co/CohereLabs/North-Mini-Code-1.0"
     ]
   },
   {
@@ -3363,9 +3362,9 @@
     "family": "Qwen",
     "sizeB": 125,
     "moeActiveB": 6,
-    "quantization": "IQ1_S",
+    "quantization": "Q4_K_XL",
     "minRamGb": 192,
-    "estimatedLoadGb": 123,
+    "estimatedLoadGb": 111.3,
     "bestFor": "Agentic coding, Reasoning, Multimodal",
     "publisherTier": "top",
     "tags": [
@@ -3380,9 +3379,10 @@
     "speedScore": 55,
     "qualityScore": 92,
     "popularityScore": 70,
-    "notes": "Qwen4 architecture preview (Aug 26, 2026), open weights under Qwen Community License 1.0. 125B params with 6B activated (512 experts, 10 routed + 1 shared), PLUS a 51B n-gram embedding table and 4B MTP layer - the table dominates GGUF size. Hybrid Gated DeltaNet + Qwen Sparse Attention. Native 262K context, extensible to 1M. Vision encoder. No Ollama tag at release; first GGUF (unsloth UD-IQ1_S) spans 3 shards up to 50GB each (~123GB total), so 256GB-class machines only. Production API version: Qwen3.8-Flash on Qwen Cloud (1M context default).",
+    "notes": "Qwen4 architecture preview (Aug 26, 2026), open weights under Qwen Community License 1.0. 125B params with 6B activated (512 experts, 10 routed + 1 shared), PLUS a 51B n-gram embedding table and 4B MTP layer, so GGUFs are larger than the active count suggests. Hybrid Gated DeltaNet + Qwen Sparse Attention. Native 262K context, extensible to 1M. Vision encoder. No Ollama tag; mainline llama.cpp runs it (qwen4exp architecture). The unsloth UD-Q4_K_XL GGUF is about 111 GB (192GB machine); UD-IQ4_XS at about 94 GB fits 128GB. Production API version: Qwen3.8-Flash on Qwen Cloud (1M context default).",
     "sources": [
-      "https://huggingface.co/Qwen/Qwen3.8-Flash-Next"
+      "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF"
     ]
   },
   {
@@ -3611,11 +3611,13 @@
     "speedScore": 78,
     "qualityScore": 88,
     "popularityScore": 80,
-    "notes": "Z.ai fast tier (Aug 25, 2026), 321B total MoE, MIT weights on Hugging Face. Cheap hosted workhorse; too large for consumer local hardware even at aggressive quants.",
+    "notes": "Z.ai fast tier (Aug 25, 2026), 321B total / 18B active MoE, natively multimodal, MIT weights on Hugging Face. Mainline llama.cpp supports it (glm5-next architecture): the unsloth UD-IQ4_XS GGUF is about 157 GB, so a 192GB-class machine can run it locally; most users will reach it through the API.",
     "openWeights": true,
     "sources": [
-      "https://huggingface.co/zai-org/GLM-5.3-Flash"
-    ]
+      "https://huggingface.co/zai-org/GLM-5.3-Flash",
+      "https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF"
+    ],
+    "moeActiveB": 18
   },
   {
     "id": "glm-4.7-flash-q4",
@@ -3625,7 +3627,7 @@
     "moeActiveB": 3,
     "quantization": "Q4_K_M",
     "minRamGb": 32,
-    "estimatedLoadGb": 19.0,
+    "estimatedLoadGb": 19,
     "bestFor": "Coding, Agentic tasks, Reasoning",
     "publisherTier": "major",
     "tags": [
@@ -3853,6 +3855,112 @@
     "notes": "Mistral's flagship coding agent (late 2025, modified MIT license) with a 256k context window. SWE Bench Verified 72.2% per Mistral's card, above its 24B sibling Devstral Small 2. It is dense, so every token reads all 123B weights: expect slow decode even on a Max or Ultra. The Ollama :123b pull is Q4_K_M at about 75 GB, which needs a 96GB machine. Tag registry-verified.",
     "sources": [
       "https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512"
+    ]
+  },
+  {
+    "id": "ministral-3-3b-q4",
+    "name": "Ministral 3 3B",
+    "family": "Mistral",
+    "sizeB": 3.4,
+    "quantization": "Q4_K_M",
+    "minRamGb": 6,
+    "estimatedLoadGb": 3,
+    "bestFor": "Chat, Vision, Edge",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "multimodal",
+      "long-context"
+    ],
+    "speedScore": 88,
+    "qualityScore": 74,
+    "popularityScore": 74,
+    "ollamaCommand": "ollama run ministral-3:3b",
+    "notes": "Mistral edge model (2512 release, Apache 2.0): 3.4B language model plus a 0.4B vision encoder, 256k context, text and image input. The Ollama :3b pull is Q4_K_M at about 3 GB. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512"
+    ]
+  },
+  {
+    "id": "ministral-3-8b-q4",
+    "name": "Ministral 3 8B",
+    "family": "Mistral",
+    "sizeB": 8.4,
+    "quantization": "Q4_K_M",
+    "minRamGb": 12,
+    "estimatedLoadGb": 6,
+    "bestFor": "Chat, Coding, Vision",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "multimodal",
+      "long-context"
+    ],
+    "speedScore": 75,
+    "qualityScore": 85,
+    "popularityScore": 74,
+    "ollamaCommand": "ollama run ministral-3:8b",
+    "notes": "Mistral edge model (2512 release, Apache 2.0): 8.4B language model plus a 0.4B vision encoder, 256k context, text and image input. WildBench 66.8 vs 66.3 for Qwen3-VL-8B-Instruct per Mistral's card. The Ollama :8b pull is Q4_K_M at about 6 GB. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512"
+    ]
+  },
+  {
+    "id": "ministral-3-14b-q4",
+    "name": "Ministral 3 14B",
+    "family": "Mistral",
+    "sizeB": 13.5,
+    "quantization": "Q4_K_M",
+    "minRamGb": 16,
+    "estimatedLoadGb": 9.1,
+    "bestFor": "Chat, Reasoning, Vision",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "reasoning",
+      "multimodal",
+      "long-context"
+    ],
+    "speedScore": 62,
+    "qualityScore": 88,
+    "popularityScore": 74,
+    "ollamaCommand": "ollama run ministral-3:14b",
+    "notes": "Mistral edge model (2512 release, Apache 2.0): 13.5B language model plus a 0.4B vision encoder, 256k context, text and image input. WildBench 68.5 vs 65.1 for Qwen3 14B per Mistral's card. The Ollama :14b pull is Q4_K_M at about 9 GB. Tag registry-verified.",
+    "sources": [
+      "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512"
+    ]
+  },
+  {
+    "id": "inkling-small-cloud",
+    "name": "Inkling Small",
+    "family": "Inkling",
+    "sizeB": 276,
+    "moeActiveB": 12,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Agentic coding, Multimodal, Reasoning",
+    "publisherTier": "major",
+    "tags": [
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "multimodal",
+      "quality"
+    ],
+    "speedScore": 64,
+    "qualityScore": 96,
+    "popularityScore": 70,
+    "notes": "Thinking Machines Lab open-weight MoE (Jul 2026, Apache 2.0): 276B total, 12B active, routed to 6 of 256 experts plus 2 shared. Text, image and audio input. SWE-bench Verified 80.2% per its model card. No Ollama tag and mainline llama.cpp does not load it yet; on a Mac the working path is MLX (the mlx-community 4-bit build is about 153 GB, a 192GB-class machine). Unsloth GGUFs are published for when llama.cpp support lands.",
+    "sources": [
+      "https://huggingface.co/thinkingmachines/Inkling-Small",
+      "https://huggingface.co/mlx-community/Inkling-Small-mlx-4bit",
+      "https://huggingface.co/unsloth/Inkling-Small-GGUF"
     ]
   }
 ]
