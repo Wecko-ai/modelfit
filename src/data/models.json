@@ -229,7 +229,7 @@
     ],
     "speedScore": 81,
     "qualityScore": 70,
-    "ollamaCommand": "ollama run mistral:7b-instruct-q4_K_M",
+    "ollamaCommand": "ollama run mistral:7b-instruct-v0.3-q4_K_M",
     "notes": "Good all-around quality in a mid-size footprint.",
     "popularityScore": 74,
     "sources": [
@@ -254,7 +254,7 @@
     "speedScore": 77,
     "qualityScore": 71,
     "popularityScore": 74,
-    "ollamaCommand": "ollama run mistral:7b-instruct-q5_K_M",
+    "ollamaCommand": "ollama run mistral:7b-instruct-v0.3-q5_K_M",
     "notes": "Q5_K_M variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified.",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
@@ -278,7 +278,7 @@
     "speedScore": 73,
     "qualityScore": 72,
     "popularityScore": 74,
-    "ollamaCommand": "ollama run mistral:7b-instruct-q8_0",
+    "ollamaCommand": "ollama run mistral:7b-instruct-v0.3-q8_0",
     "notes": "Q8_0 variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified.",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
@@ -445,7 +445,7 @@
     ],
     "speedScore": 88,
     "qualityScore": 65,
-    "ollamaCommand": "ollama run phi3:mini",
+    "ollamaCommand": "ollama run phi3:3.8b-mini-4k-instruct-q4_K_M",
     "notes": "Fast and surprisingly capable coding assistant.",
     "popularityScore": 64,
     "sources": [
@@ -469,7 +469,7 @@
     ],
     "speedScore": 58,
     "qualityScore": 75,
-    "ollamaCommand": "ollama run phi3:medium",
+    "ollamaCommand": "ollama run phi3:14b-medium-4k-instruct-q4_K_M",
     "notes": "Very strong coding quality on capable systems.",
     "popularityScore": 58,
     "sources": [
@@ -1047,7 +1047,7 @@
     ],
     "speedScore": 75,
     "qualityScore": 89,
-    "ollamaCommand": "ollama run qwen3:30b",
+    "ollamaCommand": "ollama run qwen3:30b-a3b-q4_K_M",
     "notes": "Large Qwen3 variant for high-quality outputs.",
     "popularityScore": 78,
     "moeActiveB": 3,
@@ -1516,7 +1516,7 @@
     "popularityScore": 85,
     "moeActiveB": 22,
     "sources": [
-      "https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507"
+      "https://huggingface.co/Qwen/Qwen3-235B-A22B"
     ]
   },
   {
