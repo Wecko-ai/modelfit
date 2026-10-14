@@ -1,7 +1,7 @@
 {
   "name": "@wecko-ai/modelfit",
-  "version": "1.5.2",
-  "description": "Detect your machine and get THE best local LLM (Ollama) it can run \u2014 from the ModelFit hardware database. Embeddable library + CLI. Offline, zero-dependency.",
+  "version": "1.5.3",
+  "description": "Detect your machine and get THE best local LLM (Ollama) it can run — from the ModelFit hardware database. Embeddable library + CLI. Offline, zero-dependency.",
   "type": "module",
   "publishConfig": {
     "access": "public"
