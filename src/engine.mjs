@@ -1,6 +1,6 @@
 // Faithful JavaScript port of lib/recommend.ts (getRecommendations).
 // Source of truth is the TS file in the parent repo; test/parity.mjs asserts this
-// port produces identical rankings. Keep them in sync — if you edit one, edit both
+// port produces identical rankings. Keep them in sync: if you edit one, edit both
 // and re-run `node test/parity.mjs`.
 
 import { readFileSync } from 'node:fs';
@@ -39,13 +39,13 @@ const CHIP_SPEED_BOOST = {
 };
 const chipSpeedBoost = (chip) => CHIP_SPEED_BOOST[chip] ?? 0;
 
-// Published unified-memory bandwidth (GB/s). Apple states the M-series figures;
+// Top-bin unified-memory bandwidth (GB/s). Apple states the M-series figures;
 // A-series are the widely reported LPDDR5/5X numbers. Used only for the roofline
-// ceiling below, never displayed, and a ceiling can only lower an estimate.
-// Max tiers are the top bin; lower-binned 14-inch SKUs run roughly 25% under.
+// ceiling below, and a ceiling can only lower an estimate. Lower bins and RAM-tied
+// configs live in DECODE_VARIANTS.
 const CHIP_BANDWIDTH_GBS = {
   'Apple M5 Ultra': 1228.8, // 1.2 TB/s, apple.com/mac-studio/specs (2026-08-26)
-  'Apple M6': 153,          // 16GB config; 24/32GB configs run 170 GB/s
+  'Apple M6': 153,          // 16GB config; 24/32GB run 170 GB/s, see DECODE_VARIANTS
   'Apple M5 Max': 614, 'Apple M5 Pro': 307, 'Apple M5': 153,
   'Apple M4 Max': 546, 'Apple M4 Pro': 273, 'Apple M4': 120,
   // No M4 Ultra exists: the 2025 Mac Studio tops out at M3 Ultra (819 GB/s).
@@ -55,7 +55,6 @@ const CHIP_BANDWIDTH_GBS = {
   'Apple A19 Pro': 68, 'Apple A19': 68, 'Apple A18 Pro': 60, 'Apple A18': 60,
   'Apple A17 Pro': 51.2, 'Apple A16': 51.2,
 };
-const chipBandwidthGbs = (chip) => CHIP_BANDWIDTH_GBS[chip] ?? null;
 
 // Throughput for the reference workload: 7B at Q4 (~4.1 GB of weights) on a well-cooled
 // machine with ample headroom. NOT hand-tuned. Values marked measured come from the
@@ -68,8 +67,8 @@ const CHIP_BASE_TPS = {
   'Apple M6': 32,                                             // derived: 153 x 0.80 (same bw as M5 at 16GB)
   'Apple M5 Max': 97, 'Apple M5 Pro': 57, 'Apple M5': 32,          // derived
   'Apple M4 Max': 83, 'Apple M4 Pro': 51, 'Apple M4': 24,          // measured
-  'Apple M3 Ultra': 90,                                             // derived
-  'Apple M3 Max': 66, 'Apple M3 Pro': 28, 'Apple M3': 21,          // M3 Pro derived
+  'Apple M3 Ultra': 90,                                             // derived; llama.cpp now lists 92.14, not adopted
+  'Apple M3 Max': 66, 'Apple M3 Pro': 28, 'Apple M3': 21,          // M3 Pro derived; llama.cpp now lists 30.7, not adopted
   'Apple M2 Ultra': 94, 'Apple M2 Max': 66, 'Apple M2 Pro': 39, 'Apple M2': 22,
   'Apple M1 Ultra': 84, 'Apple M1 Max': 61, 'Apple M1 Pro': 36, 'Apple M1': 14,
   // A-series: no comparable public measurement set, bandwidth-derived at a
@@ -77,8 +76,68 @@ const CHIP_BASE_TPS = {
   'Apple A19 Pro': 12, 'Apple A19': 11, 'Apple A18 Pro': 10, 'Apple A18': 9,
   'Apple A17 Pro': 8, 'Apple A16': 6,
 };
+
+// A chip bin or memory config whose decode inputs differ from the top-bin tables above.
+// Apple ties some bins to RAM: a 36GB M5 Max is always the 32-core GPU at 460 GB/s.
+// forcedRams: RAM sizes sold ONLY with this variant (RAM alone resolves it).
+// rams: sizes where the bin is one option among others (only an explicit gpuCores picks it).
+// Sources: Apple spec pages read raw 2026-10-16; base tok/s from the llama.cpp table
+// above (LLaMA 7B Q4_0 TG128 per GPU-core count). Pro bins share one bandwidth and
+// measure within 3% of each other, so they have no variant. 1:1 port of lib/recommend.ts.
+const DECODE_VARIANTS = {
+  // apple.com/mac-mini/specs. Base kept at the 153 GB/s value (gate 7).
+  'Apple M6': [{ forcedRams: [24, 32], bandwidthGbs: 170, baseTps: 32 }],
+  // apple.com/macbook-pro/specs, /mac-studio/specs. Derived 97 x 0.842 (M4 Max 69.95/83.06).
+  'Apple M5 Max': [{ gpuCores: 32, forcedRams: [36], bandwidthGbs: 460, baseTps: 82 }],
+  // apple.com/mac-studio/specs. Derived 135 x 0.959 (M3 Ultra 88.40/92.14).
+  'Apple M5 Ultra': [{ gpuCores: 64, rams: [96, 256], bandwidthGbs: 1228.8, baseTps: 130 }],
+  // support.apple.com/en-us/121553, /122211. Measured 69.95.
+  'Apple M4 Max': [{ gpuCores: 32, forcedRams: [36], bandwidthGbs: 410, baseTps: 70 }],
+  // support.apple.com/en-us/122211. Measured 88.40.
+  'Apple M3 Ultra': [{ gpuCores: 60, rams: [96, 256], bandwidthGbs: 819, baseTps: 88 }],
+  // support.apple.com/en-us/117736. Measured 56.58.
+  'Apple M3 Max': [{ gpuCores: 30, forcedRams: [36, 96], bandwidthGbs: 300, baseTps: 57 }],
+  // support.apple.com/en-us/111835. Measured 88.64.
+  'Apple M2 Ultra': [{ gpuCores: 60, rams: [64, 128, 192], bandwidthGbs: 800, baseTps: 89 }],
+  // support.apple.com/en-us/111340, /111838, /111835. Measured 60.99.
+  'Apple M2 Max': [{ gpuCores: 30, rams: [32, 64], bandwidthGbs: 400, baseTps: 61 }],
+  // support.apple.com/en-us/111900. Measured 74.93.
+  'Apple M1 Ultra': [{ gpuCores: 48, rams: [64, 128], bandwidthGbs: 800, baseTps: 75 }],
+  // support.apple.com/en-us/111902, /111901, /111900. Measured 54.61.
+  'Apple M1 Max': [{ gpuCores: 24, rams: [32, 64], bandwidthGbs: 400, baseTps: 55 }],
+};
+
+// RAM a variant is sold exclusively with wins (even over a contradicting gpuCores); then an
+// explicit gpuCores the RAM allows; else null = the top bin.
+export function decodeVariant(chip, ramGb, gpuCores) {
+  const variants = DECODE_VARIANTS[chip];
+  if (!variants) return null;
+  if (ramGb !== undefined) {
+    const forced = variants.find((v) => v.forcedRams?.includes(ramGb));
+    if (forced) return forced;
+  }
+  if (gpuCores !== undefined) {
+    const picked = variants.find(
+      (v) => v.gpuCores === gpuCores && (ramGb === undefined || (v.rams ?? v.forcedRams ?? []).includes(ramGb))
+    );
+    if (picked) return picked;
+  }
+  return null;
+}
+
+export function chipBandwidthGbs(chip, ramGb, gpuCores) {
+  const variant = decodeVariant(chip, ramGb, gpuCores);
+  return variant ? variant.bandwidthGbs : CHIP_BANDWIDTH_GBS[chip] ?? null;
+}
+
 // Unknown/non-enum chip: no basis for a throughput estimate, so null, not a made-up number (gate #7).
-const chipBaseTokensPerSec = (chip) => CHIP_BASE_TPS[chip] ?? null;
+// Gate 7 in code: a variant can only lower the base, never raise it.
+function chipBaseTokensPerSec(chip, ramGb, gpuCores) {
+  const top = CHIP_BASE_TPS[chip] ?? null;
+  if (top === null) return null;
+  const variant = decodeVariant(chip, ramGb, gpuCores);
+  return variant ? Math.min(variant.baseTps, top) : top;
+}
 
 const getFitLevel = (fitPct) => (fitPct >= 60 ? 'Excellent' : fitPct >= 25 ? 'OK' : 'Heavy');
 
@@ -127,7 +186,7 @@ function deviceThroughputFactor(deviceType) {
 function estimateLocalPerformance(model, input, ramBudget) {
   if (model.cloud_only) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null };
 
-  const chipBase = chipBaseTokensPerSec(input.chip);
+  const chipBase = chipBaseTokensPerSec(input.chip, input.ramGb, input.gpuCores);
   if (chipBase === null) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null };
 
   const base = chipBase * deviceThroughputFactor(input.deviceType);
@@ -145,7 +204,7 @@ function estimateLocalPerformance(model, input, ramBudget) {
 
   // Hard physical ceiling: a decoder cannot emit tokens faster than it streams the
   // weights it reads per token. Can only ever lower an estimate, never raise one.
-  const bandwidthGbs = chipBandwidthGbs(input.chip);
+  const bandwidthGbs = chipBandwidthGbs(input.chip, input.ramGb, input.gpuCores);
   const roofline = bandwidthGbs === null ? Infinity : bandwidthGbs / weightsGb;
 
   // Order matters: the roofline is applied LAST, so the lower bound can never lift an
