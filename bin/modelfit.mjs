@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// modelfit — detect this machine and name THE best local LLM it can run, from the
+// modelfit: detect this machine and name THE best local LLM it can run, from the
 // ModelFit database. Offline-first, zero dependencies. https://modelfit.io
 //
 // Usage:  npx @wecko-ai/modelfit       (or: npm i -g @wecko-ai/modelfit; modelfit)
@@ -20,7 +20,7 @@ const PKG = JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf8
 const PRIORITIES = { speed: 'Speed', quality: 'Quality', balanced: 'Balanced' };
 const USE_CASES = { translation: 'Translation', coding: 'Coding', chat: 'Chat', mixed: 'Mixed' };
 
-const HELP = `modelfit ${PKG.version} — the best local LLM for your machine (https://modelfit.io)
+const HELP = `modelfit ${PKG.version}: the best local LLM for your machine (https://modelfit.io)
 
 Detects your hardware and names THE single most capable local AI model (Ollama)
 it can run comfortably, from ModelFit's hardware-compatibility database.
@@ -37,6 +37,7 @@ OPTIONS
   --top <n>              Show the top N local models (ranked list)
   --ram <gb>             Override detected memory budget
   --chip <name>          Override detected chip (e.g. "Apple M4 Pro")
+  --gpu-cores <n>        Override the chip bin by GPU core count (e.g. 32 for a binned M5 Max)
   --device <type>        Override device (MacBook Pro | Mac Studio | ...)
   --use-case <type>      Bias the ranked list: coding | chat | translation | mixed
   --priority <type>      Bias the ranked list: speed | quality | balanced
@@ -81,6 +82,7 @@ function parseArgs(argv) {
       case '--top': o.top = Math.max(1, parseInt(next(), 10) || 3); break;
       case '--ram': o.ram = Math.max(1, parseInt(next(), 10) || 0) || undefined; break;
       case '--chip': o.chip = next(); break;
+      case '--gpu-cores': o.gpuCores = Math.max(1, parseInt(next(), 10) || 0) || undefined; break;
       case '--device': o.device = next(); break;
       case '--use-case': case '--usecase': o.useCase = USE_CASES[String(next()).toLowerCase()]; break;
       case '--priority': o.priority = PRIORITIES[String(next()).toLowerCase()]; break;

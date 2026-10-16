@@ -5,6 +5,6 @@ import { getRecommendations, type HardwareInput } from '../../lib/recommend';
 
 const grid: HardwareInput[] = JSON.parse(process.argv[2] ?? '[]');
 const out = grid.map((input) =>
-  getRecommendations(input).map((r) => ({ id: r.id, score: r.score }))
+  getRecommendations(input).map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec }))
 );
 process.stdout.write(JSON.stringify(out));

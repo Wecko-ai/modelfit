@@ -1,8 +1,8 @@
 // Engine guard. Three layers, all offline-safe:
 //  1. Structural sanity on the JS engine (always).
-//  2. Golden-snapshot parity — asserts the engine reproduces test/golden.json
+//  2. Golden-snapshot parity: asserts the engine reproduces test/golden.json
 //     (the committed source of truth; works in the standalone repo with no TS around).
-//  3. Live parity vs lib/recommend.ts via tsx — only when the monorepo is present;
+//  3. Live parity vs lib/recommend.ts via tsx, only when the monorepo is present;
 //     this is what keeps golden.json honest. Re-generate golden via scripts/gen-golden.mjs.
 // Run: node test/parity.mjs   (or npm test)
 
@@ -21,7 +21,9 @@ const GRID = golden.map((g) => g.input);
 
 let failures = 0;
 const fail = (msg) => { console.error(`✗ ${msg}`); failures++; };
-const same = (a, b) => a.length === b.length && a.every((x, i) => x.id === b[i].id && Math.abs(x.score - b[i].score) <= 0.01);
+// tok/s is compared too: a speed change that flips no verdict would otherwise go unseen.
+const sameTps = (x, y) => (x ?? null) === null ? (y ?? null) === null : y != null && Math.abs(x - y) <= 0.05;
+const same = (a, b) => a.length === b.length && a.every((x, i) => x.id === b[i].id && Math.abs(x.score - b[i].score) <= 0.01 && sameTps(x.tps, b[i].tps));
 
 // ── 1. Structural sanity ────────────────────────────────────────────────────
 for (const input of GRID) {
@@ -40,14 +42,14 @@ console.log(`✓ structural sanity passed (${GRID.length} inputs × ${DATASET.le
 // ── 2. Golden-snapshot parity (offline source of truth) ─────────────────────
 let goldMismatch = 0;
 golden.forEach((g, gi) => {
-  const got = getRecommendations(g.input).map((r) => ({ id: r.id, score: r.score }));
+  const got = getRecommendations(g.input).map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec }));
   if (!same(got, g.ranking)) {
     goldMismatch++;
     if (goldMismatch <= 5) fail(`golden[${gi}] (${g.input.chip}/${g.input.ramGb}GB): engine output differs from test/golden.json`);
   }
 });
-if (!goldMismatch) console.log(`✓ matches golden snapshot (${golden.length} inputs, ranking + scores)`);
-else fail(`${goldMismatch} input(s) drifted from golden.json — re-port the engine or regenerate golden if lib/recommend.ts changed`);
+if (!goldMismatch) console.log(`✓ matches golden snapshot (${golden.length} inputs, ranking + scores + tok/s)`);
+else fail(`${goldMismatch} input(s) drifted from golden.json: re-port the engine or regenerate golden if lib/recommend.ts changed`);
 
 // ── 3. Live parity vs the TS engine (monorepo only, best effort) ────────────
 let tsOut = null;
@@ -57,13 +59,13 @@ try {
   });
   tsOut = JSON.parse(raw);
 } catch {
-  console.log('· live TS parity skipped (standalone repo / tsx unavailable — golden snapshot is the guard here)');
+  console.log('· live TS parity skipped (standalone repo / tsx unavailable; golden snapshot is the guard here)');
 }
 if (tsOut) {
   let tsMismatch = 0;
   golden.forEach((g, gi) => { if (!same(g.ranking, tsOut[gi] ?? [])) tsMismatch++; });
   if (!tsMismatch) console.log(`✓ exact parity with lib/recommend.ts (golden.json is current)`);
-  else fail(`${tsMismatch} input(s): golden.json is STALE vs lib/recommend.ts — run: node scripts/gen-golden.mjs`);
+  else fail(`${tsMismatch} input(s): golden.json is STALE vs lib/recommend.ts. Run: node scripts/gen-golden.mjs`);
 }
 
 // ── 4. bestModel contract (the embeddable single-answer primitive) ──────────

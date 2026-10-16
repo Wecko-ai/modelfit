@@ -1,6 +1,6 @@
-// Cross-platform local hardware detection. 100% local — runs nothing over the network.
-// Produces a normalized profile + an engine input {deviceType, chip, ramGb} that the
-// ported recommend engine ranks against.
+// Cross-platform local hardware detection. 100% local, runs nothing over the network.
+// Produces a normalized profile + an engine input {deviceType, chip, ramGb, gpuCores} that
+// the ported recommend engine ranks against.
 
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
@@ -78,9 +78,29 @@ function normalizeDevice(raw) {
   return 'Mac Studio';
 }
 
+/** "proc 10:4:6:0" (total:perf:eff:...) -> 10. */
+function parseCpuCores(raw) {
+  const m = String(raw || '').match(/(\d+)/);
+  return m ? Number(m[1]) : null;
+}
+
+/** GPU core count of the Apple GPU ("sppci_cores": "40"), which identifies the chip bin. */
+function detectAppleGpuCores() {
+  const json = sh('system_profiler', ['SPDisplaysDataType', '-json'], 6000);
+  if (!json) return null;
+  try {
+    const gpus = JSON.parse(json).SPDisplaysDataType ?? [];
+    const apple = gpus.find((g) => /apple/i.test(String(g.sppci_model || ''))) ?? gpus[0];
+    const n = parseInt(String(apple?.sppci_cores || ''), 10);
+    return n > 0 ? n : null;
+  } catch {
+    return null;
+  }
+}
+
 function detectMac(profile) {
   // Prefer system_profiler JSON (chip + marketing model name), fall back to sysctl.
-  let machineName = '', chipRaw = '', memGb = 0;
+  let machineName = '', chipRaw = '', memGb = 0, cpuCores = null;
   const json = sh('system_profiler', ['SPHardwareDataType', '-json'], 6000);
   if (json) {
     try {
@@ -88,6 +108,7 @@ function detectMac(profile) {
       machineName = h.machine_name || '';
       chipRaw = h.chip_type || h.cpu_type || '';
       memGb = parseInt(String(h.physical_memory || ''), 10) || 0;
+      cpuCores = parseCpuCores(h.number_processors);
     } catch { /* fall through to sysctl */ }
   }
   if (!chipRaw) chipRaw = sh('sysctl', ['-n', 'machdep.cpu.brand_string']);
@@ -100,10 +121,14 @@ function detectMac(profile) {
   const ramGb = memGb || round(os.totalmem() / GB);
 
   if (isAppleSilicon) {
+    const gpuCores = detectAppleGpuCores();
+    const cores = [cpuCores && `${cpuCores}-core CPU`, gpuCores && `${gpuCores}-core GPU`].filter(Boolean).join(', ');
     return {
       ...profile,
       isAppleSilicon: true,
       ramGb,
+      cpuCores,
+      gpuCores,
       chip: normalizeChip(chipRaw),
       chipLabel: chipRaw || 'Apple Silicon',
       deviceType: normalizeDevice(machineName),
@@ -111,7 +136,7 @@ function detectMac(profile) {
       accelerator: { kind: 'unified', name: chipRaw || 'Apple Silicon' },
       budgetGb: ramGb,
       budgetSource: 'unified memory',
-      detail: `${machineName || 'Mac'} · ${chipRaw || 'Apple Silicon'} · ${ramGb} GB unified memory`,
+      detail: `${machineName || 'Mac'} · ${chipRaw || 'Apple Silicon'}${cores ? ` (${cores})` : ''} · ${ramGb} GB unified memory`,
     };
   }
   // Intel Mac
@@ -192,23 +217,26 @@ export function detectHardware() {
   if (platform === 'darwin') return { ...detectMac({ ...base, os: 'macOS' }) };
   if (platform === 'linux') return detectPc({ ...base, os: 'Linux' }, 'Linux');
   if (platform === 'win32') return detectPc({ ...base, os: 'Windows' }, 'Windows');
-  // Unknown OS — RAM-only fallback.
+  // Unknown OS: RAM-only fallback.
   return detectPc({ ...base, os: platform }, platform);
 }
 
 /**
- * Merge CLI overrides (--ram/--chip/--device) onto a detected profile and produce the
- * final engine input. Overrides win; budget follows --ram when given.
+ * Merge CLI overrides (--ram/--chip/--device/--gpu-cores) onto a detected profile and
+ * produce the final engine input. Overrides win; budget follows --ram when given. A
+ * --chip override drops the detected GPU core count, which belongs to the detected chip.
  */
 export function toEngineInput(profile, overrides = {}) {
   const ramGb = overrides.ram ?? profile.budgetGb ?? profile.ramGb;
   const chip = overrides.chip ?? profile.chip ?? 'Unknown';
   const deviceType = overrides.device ?? profile.deviceType;
+  const gpuCores = overrides.gpuCores ?? (overrides.chip ? undefined : profile.gpuCores ?? undefined);
   return {
     deviceType,
     chip,
     ramGb,
     priority: overrides.priority ?? 'Balanced',
     useCase: overrides.useCase ?? 'Mixed',
+    ...(gpuCores ? { gpuCores } : {}),
   };
 }
