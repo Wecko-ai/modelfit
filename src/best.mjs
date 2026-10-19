@@ -61,6 +61,8 @@ export function bestContract(pick, engineInput, profile) {
     quantization: pick.quantization,
     ollamaCommand: pick.ollamaCommand ?? null,
     estimatedTokensPerSec: pick.estimatedTokensPerSec,
+    // Typical error of estimatedTokensPerSec in percent (the engine's own figure), null when unavailable.
+    estimatedErrorPct: pick.estimatedErrorPct ?? null,
     fit: pick.fitLevel,
     localVerdict: pick.localVerdict,
     comfortable: pick.localVerdict === 'local_feasible',
@@ -76,7 +78,7 @@ export function bestContract(pick, engineInput, profile) {
     },
     reportUrl: reportUrl(engineInput.ramGb),
     source: SOURCE,
-    note: 'tokens/sec are estimates, not measured benchmarks.',
+    note: 'tokens/sec are estimates, not measured benchmarks. estimatedErrorPct is their typical error in percent (null when unavailable).',
   };
 }
 

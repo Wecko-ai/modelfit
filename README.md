@@ -15,14 +15,15 @@ npx @modelfit/cli
 
 ```
 ModelFit — the best local LLM for your machine   modelfit.io
-Detected  MacBook Pro · Apple M4 · 16 GB unified memory
+Detected  MacBook Pro · Apple M4 (10-core CPU, 10-core GPU) · 16 GB unified memory
 
-  ▶ Qwen3 14B   ~32 tok/s · runs comfortably
-    $ ollama run qwen3:14b-q4_K_M
+  ▶ Qwen3.5 9B Instruct (Q8)   est. 12 tok/s, typical error 5% · runs comfortably
+    $ ollama run qwen3.5:9b-q8_0
     The most capable model your machine can run. → https://modelfit.io/models/qwen/
 
-Also fits  Qwen3.5 9B · Qwen3 8B   (modelfit --all for the full list)
+Also fits  Qwen3.5 9B Instruct · Qwen3 8B   (modelfit --all for the full list)
 Estimates, not measured benchmarks · Data: ModelFit (CC BY 4.0)
+Typical error: median gap between the estimate and measured runs on hardware the model was not fitted on.
 ```
 
 It scales to the machine: 8 GB → a 7B, 16 GB → a 14B, 64 GB → Llama 3.1 70B.
@@ -55,11 +56,11 @@ import { bestModel } from '@modelfit/cli'
 
 const m = bestModel()            // auto-detects this machine
 // → {
-//     name: 'Qwen3 14B',
-//     ollamaCommand: 'ollama run qwen3:14b-q4_K_M',
-//     params: '14B', quantization: 'Q4_K_M',
-//     estimatedTokensPerSec: 31.9, comfortable: true,
-//     fit: 'OK', localVerdict: 'local_feasible',
+//     name: 'Qwen3.5 9B Instruct (Q8)',
+//     ollamaCommand: 'ollama run qwen3.5:9b-q8_0',
+//     params: '9B', quantization: 'Q8_0',
+//     estimatedTokensPerSec: 11.6, estimatedErrorPct: 5, comfortable: true,
+//     fit: 'Heavy', localVerdict: 'local_feasible',
 //     learnMoreUrl: 'https://modelfit.io/models/qwen/',
 //     hardware: { deviceType, chip, ramGb, detected },
 //     source: { name: 'ModelFit', url: 'https://modelfit.io/' }, ...
@@ -115,8 +116,8 @@ modelfit --json | jq '.best.ollamaCommand'
 ```json
 {
   "best": {
-    "name": "Qwen3 14B", "params": "14B", "ollamaCommand": "ollama run qwen3:14b-q4_K_M",
-    "comfortable": true, "estimatedTokensPerSec": 31.9, "fit": "OK",
+    "name": "Qwen3.5 9B Instruct (Q8)", "params": "9B", "ollamaCommand": "ollama run qwen3.5:9b-q8_0",
+    "comfortable": true, "estimatedTokensPerSec": 11.6, "estimatedErrorPct": 5, "fit": "Heavy",
     "learnMoreUrl": "https://modelfit.io/models/qwen/"
   },
   "alternatives": [ { "name": "Qwen3.5 9B", "ollamaCommand": "ollama run qwen3.5:9b", "...": "..." } ],
@@ -140,7 +141,9 @@ The bundled model database and ranking engine are kept in sync with
 
 ## Notes
 
-- **tok/s figures are estimates, not measured benchmarks.**
+- **tok/s figures are estimates, not measured benchmarks.** They print as "est. N tok/s, typical error X%";
+  `estimatedErrorPct` is that typical error: the median gap between the speed model and measured runs on
+  hardware it was not fitted on, for that backend and model size (null when unavailable).
 - Data is published under **CC BY 4.0**. Full dataset: <https://modelfit.io/data>.
 - PC/GPU support ranks against detected VRAM; Apple Silicon ranks against unified memory.
 

@@ -21,6 +21,19 @@ function paint(opts) {
   };
 }
 
+/**
+ * The one wording for a decode-speed estimate: "est. 42 tok/s, typical error 10%". The error is
+ * the engine's own (estimatedErrorPct: held-out median error of the fitted speed model for this
+ * backend and model size); when it is null (legacy path) the estimate prints alone.
+ */
+export function estLabel(tps, errorPct) {
+  if (tps == null) return '';
+  const base = `est. ${Math.round(tps)} tok/s`;
+  return errorPct == null ? base : `${base}, typical error ${Math.round(errorPct)}%`;
+}
+
+const ERROR_NOTE = 'Typical error: median gap between the estimate and measured runs on hardware the model was not fitted on.';
+
 /** Locally-runnable models (drops cloud_only + local_unlikely), best-first. */
 export function localRunnable(recs) {
   const runnable = recs.filter((r) => r.localVerdict !== 'cloud_only' && r.localVerdict !== 'local_unlikely');
@@ -36,6 +49,7 @@ function recRecord(r) {
     fit: r.fitLevel,
     localVerdict: r.localVerdict,
     estimatedTokensPerSec: r.estimatedTokensPerSec,
+    estimatedErrorPct: r.estimatedErrorPct ?? null,
     bestFor: clean(r.bestFor),
     why: clean(r.why),
     learnMoreUrl: modelUrl(r.family),
@@ -62,7 +76,7 @@ export function toJson(profile, input, recs, opts) {
     },
     reportUrl: reportUrl(input.ramGb),
     source: SOURCE,
-    note: 'tokens/sec are estimates, not measured benchmarks.',
+    note: 'tokens/sec are estimates, not measured benchmarks. estimatedErrorPct is their typical error in percent (null when unavailable).',
   };
 }
 
@@ -91,7 +105,7 @@ export function toBest(profile, input, recs, opts) {
     return L.join('\n');
   }
 
-  const tps = best.estimatedTokensPerSec != null ? `~${best.estimatedTokensPerSec} tok/s` : '';
+  const tps = estLabel(best.estimatedTokensPerSec, best.estimatedErrorPct);
   const comfort = best.localVerdict === 'local_feasible'
     ? c.green('runs comfortably')
     : c.yellow('runs, but slower — more RAM unlocks bigger models');
@@ -106,6 +120,7 @@ export function toBest(profile, input, recs, opts) {
     L.push(`${c.gray('Also fits')}  ${alts.map((r) => clean(r.name)).join(c.dim(' · '))}   ${c.dim('(modelfit --all for the full list)')}`);
   }
   L.push(c.dim('Estimates, not measured benchmarks · Data: ModelFit (CC BY 4.0)'));
+  if (best.estimatedErrorPct != null) L.push(c.dim(ERROR_NOTE));
   return L.join('\n');
 }
 
@@ -120,7 +135,7 @@ export function toList(profile, input, recs, opts) {
   L.push(c.bold(opts.all ? 'Ranked local models' : `Top ${shown.length} local models`));
   shown.forEach((r) => {
     const star = best && r.id === best.id ? c.green('▶') : ' ';
-    const tps = r.estimatedTokensPerSec != null ? `~${r.estimatedTokensPerSec} tok/s` : '';
+    const tps = estLabel(r.estimatedTokensPerSec, r.estimatedErrorPct);
     const fitColor = r.fitLevel === 'Excellent' ? c.green : r.fitLevel === 'OK' ? c.yellow : c.red;
     const meta = [fitColor(`${r.fitLevel} fit`), c.dim(tps), c.dim(clean(r.bestFor))].filter(Boolean).join(c.dim(' · '));
     L.push(` ${star} ${c.bold(clean(r.name))}   ${meta}`);
@@ -130,5 +145,6 @@ export function toList(profile, input, recs, opts) {
   L.push('');
   L.push(`${c.gray('Full report')}  ${reportUrl(input.ramGb)}`);
   L.push(c.dim('Estimates, not measured benchmarks · Data: ModelFit (CC BY 4.0)'));
+  if (shown.some((r) => r.estimatedErrorPct != null)) L.push(c.dim(ERROR_NOTE));
   return L.join('\n');
 }

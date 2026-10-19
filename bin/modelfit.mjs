@@ -68,7 +68,9 @@ EXAMPLES
   modelfit --ram 64 --chip "Apple M4 Max"
   npx -y @modelfit/cli bench --submit --cleanup   # measure, share, remove the model
 
-tok/s figures are estimates, not measured benchmarks. Data: ModelFit (CC BY 4.0).`;
+tok/s figures are estimates, not measured benchmarks, printed as "est. N tok/s, typical error X%".
+Typical error is the median gap between the estimate and measured runs on hardware the model
+was not fitted on (--json: estimatedErrorPct). Data: ModelFit (CC BY 4.0).`;
 
 function parseArgs(argv) {
   const o = {};
