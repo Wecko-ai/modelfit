@@ -1,0 +1,1872 @@
+{
+ "description": "Physical inputs of the speed engine per local catalog model, built by scripts/perf/build-model-perf.mjs from data/perf-models.json. Never hand-edit.",
+ "synthetic": {
+  "gbPerB": {
+   "Q4": 0.6254,
+   "Q8": 1.0769,
+   "MXFP4": 0.6597
+  },
+  "denseStreamFrac": 0.9851,
+  "kvBytesPerTokenPerB": 13312.2,
+  "attnFlopsPerCtxPerB": 55883.8,
+  "note": "medians over the catalog entries above (dense full-attention models for KV and attention)"
+ },
+ "models": {
+  "qwen2.5-1.5b-q4": {
+   "arch": "qwen2.5-1.5b",
+   "weightsGb": 0.986,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 0.986,
+   "paramsB": 1.544,
+   "activeB": 1.544,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 28672,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 172032,
+   "maxContext": 32768
+  },
+  "qwen2.5-3b-q4": {
+   "arch": "qwen2.5-3b",
+   "weightsGb": 1.9299,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.9299,
+   "paramsB": 3.086,
+   "activeB": 3.086,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 36864,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 294912,
+   "maxContext": 32768
+  },
+  "qwen2.5-7b-q4": {
+   "arch": "qwen2.5-7b",
+   "weightsGb": 4.6831,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.3479,
+   "paramsB": 7.615,
+   "activeB": 7.615,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 57344,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 401408,
+   "maxContext": 32768
+  },
+  "qwen2.5-14b-q4": {
+   "arch": "qwen2.5-14b",
+   "weightsGb": 8.9881,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.5143,
+   "paramsB": 14.769,
+   "activeB": 14.769,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 196608,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 983040,
+   "maxContext": 32768
+  },
+  "llama3.2-3b-q4": {
+   "arch": "llama-3.2-3b",
+   "weightsGb": 2.0194,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.0194,
+   "paramsB": 3.213,
+   "activeB": 3.213,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 114688,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 344064,
+   "maxContext": 131072
+  },
+  "llama3.1-8b-q4": {
+   "arch": "llama-3.1-8b",
+   "weightsGb": 4.9207,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.5988,
+   "paramsB": 8.03,
+   "activeB": 8.03,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 524288,
+   "maxContext": 131072
+  },
+  "llama3.1-8b-q8": {
+   "arch": "llama-3.1-8b",
+   "weightsGb": 8.5408,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 7.982,
+   "paramsB": 8.03,
+   "activeB": 8.03,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 524288,
+   "maxContext": 131072
+  },
+  "llama3.1-8b-q5": {
+   "arch": "llama-3.1-8b",
+   "weightsGb": 5.733,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 5.3579,
+   "paramsB": 8.03,
+   "activeB": 8.03,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 524288,
+   "maxContext": 131072
+  },
+  "llama3.1-70b-q4": {
+   "arch": "llama-3.1-70b",
+   "weightsGb": 42.5204,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 41.8872,
+   "paramsB": 70.552,
+   "activeB": 70.552,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 327680,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 2621440,
+   "maxContext": 131072
+  },
+  "mistral-7b-q4": {
+   "arch": "mistral-7b-v0.3",
+   "weightsGb": 4.3728,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.2918,
+   "paramsB": 7.248,
+   "activeB": 7.248,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 524288,
+   "maxContext": 32768
+  },
+  "mistral-7b-q5": {
+   "arch": "mistral-7b-v0.3",
+   "weightsGb": 5.1362,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 5.0411,
+   "paramsB": 7.248,
+   "activeB": 7.248,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 524288,
+   "maxContext": 32768
+  },
+  "mistral-7b-q8": {
+   "arch": "mistral-7b-v0.3",
+   "weightsGb": 7.7026,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 7.5599,
+   "paramsB": 7.248,
+   "activeB": 7.248,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 524288,
+   "maxContext": 32768
+  },
+  "mixtral-8x7b-q4": {
+   "arch": "mixtral-8x7b",
+   "weightsGb": 26.4436,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 7.2184,
+   "paramsB": 46.703,
+   "activeB": 12.88,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 524288,
+   "maxContext": 32768
+  },
+  "mistral-nemo-12b-q4": {
+   "arch": "mistral-nemo-12b",
+   "weightsGb": 7.0717,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 6.6842,
+   "paramsB": 12.247,
+   "activeB": 12.247,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 131072
+  },
+  "mistral-nemo-12b-q8": {
+   "arch": "mistral-nemo-12b",
+   "weightsGb": 13.0224,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 12.3088,
+   "paramsB": 12.247,
+   "activeB": 12.247,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 131072
+  },
+  "gemma2-2b-q4": {
+   "arch": "gemma-2-2b",
+   "weightsGb": 1.7086,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.7086,
+   "paramsB": 2.614,
+   "activeB": 2.614,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 53248,
+    "swaBytesPerToken": 53248,
+    "window": 4096
+   },
+   "attnFlopsPerCtx": 106496,
+   "maxContext": 8192
+  },
+  "gemma2-9b-q4": {
+   "arch": "gemma-2-9b",
+   "weightsGb": 5.7611,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 5.7611,
+   "paramsB": 9.241,
+   "activeB": 9.241,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 172032,
+    "swaBytesPerToken": 172032,
+    "window": 4096
+   },
+   "attnFlopsPerCtx": 344064,
+   "maxContext": 8192
+  },
+  "gemma2-27b-q4": {
+   "arch": "gemma-2-27b",
+   "weightsGb": 16.6454,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 16.6454,
+   "paramsB": 27.226,
+   "activeB": 27.226,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 188416,
+    "swaBytesPerToken": 188416,
+    "window": 4096
+   },
+   "attnFlopsPerCtx": 376832,
+   "maxContext": 8192
+  },
+  "phi3-mini-q4": {
+   "arch": "phi-3-mini",
+   "weightsGb": 2.3932,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.3315,
+   "paramsB": 3.821,
+   "activeB": 3.821,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 393216,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 4096
+  },
+  "phi3-medium-q4": {
+   "arch": "phi-3-medium",
+   "weightsGb": 8.5668,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.4661,
+   "paramsB": 13.96,
+   "activeB": 13.96,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 204800,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 819200,
+   "maxContext": 4096
+  },
+  "phi4-14b-q4": {
+   "arch": "phi-4",
+   "weightsGb": 9.0531,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.7358,
+   "paramsB": 14.659,
+   "activeB": 14.659,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 204800,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 819200,
+   "maxContext": 16384
+  },
+  "phi4-14b-q8": {
+   "arch": "phi-4",
+   "weightsGb": 15.5805,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 15.0344,
+   "paramsB": 14.659,
+   "activeB": 14.659,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 204800,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 819200,
+   "maxContext": 16384
+  },
+  "qwen2.5-coder-7b-q4": {
+   "arch": "qwen2.5-coder-7b",
+   "weightsGb": 4.6831,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.3479,
+   "paramsB": 7.615,
+   "activeB": 7.615,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 57344,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 401408,
+   "maxContext": 32768
+  },
+  "qwen2.5-coder-14b-q4": {
+   "arch": "qwen2.5-coder-14b",
+   "weightsGb": 8.9881,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.5143,
+   "paramsB": 14.769,
+   "activeB": 14.769,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 196608,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 983040,
+   "maxContext": 32768
+  },
+  "llama3.2-1b-q4": {
+   "arch": "llama-3.2-1b",
+   "weightsGb": 0.8077,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 0.8077,
+   "paramsB": 1.236,
+   "activeB": 1.236,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 32768,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 131072
+  },
+  "mistral-small-22b-q4": {
+   "arch": "mistral-small-22b",
+   "weightsGb": 12.5692,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 12.4554,
+   "paramsB": 22.247,
+   "activeB": 22.247,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 229376,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 1376256,
+   "maxContext": 32768
+  },
+  "qwen2.5-0.5b-q4": {
+   "arch": "qwen2.5-0.5b",
+   "weightsGb": 0.3978,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 0.3978,
+   "paramsB": 0.494,
+   "activeB": 0.494,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 12288,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 86016,
+   "maxContext": 32768
+  },
+  "gemma-3-1b-q4": {
+   "arch": "gemma-3-1b",
+   "weightsGb": 0.8061,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 0.8061,
+   "paramsB": 1,
+   "activeB": 1,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 4096,
+    "swaBytesPerToken": 22528,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 16384,
+   "maxContext": 32768
+  },
+  "gemma-3-1b-q8": {
+   "arch": "gemma-3-1b",
+   "weightsGb": 1.0693,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.0693,
+   "paramsB": 1,
+   "activeB": 1,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 4096,
+    "swaBytesPerToken": 22528,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 16384,
+   "maxContext": 32768
+  },
+  "phi4-mini-3.8b-q4": {
+   "arch": "phi-4-mini",
+   "weightsGb": 2.4919,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.4919,
+   "paramsB": 3.836,
+   "activeB": 3.836,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 131072
+  },
+  "phi4-mini-3.8b-q8": {
+   "arch": "phi-4-mini",
+   "weightsGb": 4.0846,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.0846,
+   "paramsB": 3.836,
+   "activeB": 3.836,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 131072,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 131072
+  },
+  "smollm2-360m-q4": {
+   "arch": "smollm2-360m",
+   "weightsGb": 0.7256,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 0.7256,
+   "paramsB": 0.362,
+   "activeB": 0.362,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 40960,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 122880,
+   "maxContext": 8192
+  },
+  "llama3.3-70b-q4": {
+   "arch": "llama-3.3-70b",
+   "weightsGb": 42.5204,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 41.8872,
+   "paramsB": 70.552,
+   "activeB": 70.552,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 327680,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 2621440,
+   "maxContext": 131072
+  },
+  "llama-3.1-405b-q4": {
+   "arch": "llama-3.1-405b",
+   "weightsGb": 243.0696,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 241.8111,
+   "paramsB": 405.849,
+   "activeB": 405.849,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 516096,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 8257536,
+   "maxContext": 131072
+  },
+  "deepseek-r1-671b-q4": {
+   "arch": "deepseek-r1-671b",
+   "weightsGb": 404.4302,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 22.7128,
+   "paramsB": 672.149,
+   "activeB": 38.675,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 70272,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 1748992,
+   "maxContext": 163840
+  },
+  "qwen3-8b-q4": {
+   "arch": "qwen3-8b",
+   "weightsGb": 5.2254,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.8283,
+   "paramsB": 8.19,
+   "activeB": 8.19,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 147456,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 589824,
+   "maxContext": 40960
+  },
+  "qwen3-8b-q8": {
+   "arch": "qwen3-8b",
+   "weightsGb": 8.8511,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.1785,
+   "paramsB": 8.19,
+   "activeB": 8.19,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 147456,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 589824,
+   "maxContext": 40960
+  },
+  "qwen3-14b-q4": {
+   "arch": "qwen3-14b",
+   "weightsGb": 9.2762,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.7876,
+   "paramsB": 14.768,
+   "activeB": 14.768,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 819200,
+   "maxContext": 40960
+  },
+  "qwen3-30b-q4": {
+   "arch": "qwen3-30b-a3b",
+   "weightsGb": 18.6225,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.8552,
+   "paramsB": 30.532,
+   "activeB": 3.353,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 98304,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 786432,
+   "maxContext": 40960
+  },
+  "qwen3-30b-a3b-q8": {
+   "arch": "qwen3-30b-a3b",
+   "weightsGb": 32.5311,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 3.2408,
+   "paramsB": 30.532,
+   "activeB": 3.353,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 98304,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 786432,
+   "maxContext": 40960
+  },
+  "gemma3-4b-q4": {
+   "arch": "gemma-3-4b",
+   "weightsGb": 2.499,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.499,
+   "paramsB": 3.88,
+   "activeB": 3.88,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 118784,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 40960,
+   "maxContext": 131072
+  },
+  "gemma3-4b-q8": {
+   "arch": "gemma-3-4b",
+   "weightsGb": 4.1395,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.1395,
+   "paramsB": 3.88,
+   "activeB": 3.88,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 118784,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 40960,
+   "maxContext": 131072
+  },
+  "gemma3-12b-q4": {
+   "arch": "gemma-3-12b",
+   "weightsGb": 7.3098,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 7.3098,
+   "paramsB": 11.765,
+   "activeB": 11.765,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 327680,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 131072
+  },
+  "gemma3-27b-q4": {
+   "arch": "gemma-3-27b",
+   "weightsGb": 16.5557,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 16.5557,
+   "paramsB": 27.008,
+   "activeB": 27.008,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 81920,
+    "swaBytesPerToken": 425984,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 163840,
+   "maxContext": 131072
+  },
+  "deepseek-r1-distill-qwen-7b-q4": {
+   "arch": "deepseek-r1-distill-qwen-7b",
+   "weightsGb": 4.6831,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.3479,
+   "paramsB": 7.615,
+   "activeB": 7.615,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 57344,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 401408,
+   "maxContext": 131072
+  },
+  "deepseek-r1-distill-qwen-7b-q8": {
+   "arch": "deepseek-r1-distill-qwen-7b",
+   "weightsGb": 8.0985,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 7.5189,
+   "paramsB": 7.615,
+   "activeB": 7.615,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 57344,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 401408,
+   "maxContext": 131072
+  },
+  "deepseek-r1-distill-qwen-14b-q4": {
+   "arch": "deepseek-r1-distill-qwen-14b",
+   "weightsGb": 8.9881,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.5143,
+   "paramsB": 14.769,
+   "activeB": 14.769,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 196608,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 983040,
+   "maxContext": 131072
+  },
+  "deepseek-r1-distill-qwen-14b-q8": {
+   "arch": "deepseek-r1-distill-qwen-14b",
+   "weightsGb": 15.7016,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 14.8739,
+   "paramsB": 14.769,
+   "activeB": 14.769,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 196608,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 983040,
+   "maxContext": 131072
+  },
+  "deepseek-r1-distill-llama-70b-q4": {
+   "arch": "deepseek-r1-distill-llama-70b",
+   "weightsGb": 42.5204,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 41.8872,
+   "paramsB": 70.552,
+   "activeB": 70.552,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 327680,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 2621440,
+   "maxContext": 131072
+  },
+  "qwen3-235b-a22b-cloud": {
+   "arch": "qwen3-235b-a22b",
+   "weightsGb": 142.4126,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 13.0651,
+   "paramsB": 235.093,
+   "activeB": 22.19,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 192512,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 3080192,
+   "maxContext": 40960
+  },
+  "mistral-small-3.1-cloud": {
+   "arch": "mistral-small-3.1-24b",
+   "weightsGb": 15.4869,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 15.046,
+   "paramsB": 23.572,
+   "activeB": 23.572,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 131072
+  },
+  "mistral-small-3.1-24b-q8": {
+   "arch": "mistral-small-3.1-24b",
+   "weightsGb": 26.1299,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 25.386,
+   "paramsB": 23.572,
+   "activeB": 23.572,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 131072
+  },
+  "qwen3.5-0.8b-q4": {
+   "arch": "qwen3.5-0.8b",
+   "weightsGb": 0.8118,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 0.8118,
+   "paramsB": 0.644,
+   "activeB": 0.644,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 12288,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 49152,
+   "maxContext": 262144
+  },
+  "qwen3.5-2b-q4": {
+   "arch": "qwen3.5-2b",
+   "weightsGb": 2.012,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.012,
+   "paramsB": 1.666,
+   "activeB": 1.666,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 12288,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 49152,
+   "maxContext": 262144
+  },
+  "qwen3.5-4b-q4": {
+   "arch": "qwen3.5-4b",
+   "weightsGb": 2.6486,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.6486,
+   "paramsB": 3.739,
+   "activeB": 3.739,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 32768,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "qwen3.5-4b-q8": {
+   "arch": "qwen3.5-4b",
+   "weightsGb": 4.4824,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.4824,
+   "paramsB": 3.739,
+   "activeB": 3.739,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 32768,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "qwen3.5-9b-q4": {
+   "arch": "qwen3.5-9b",
+   "weightsGb": 5.6291,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.9316,
+   "paramsB": 8.208,
+   "activeB": 8.208,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 32768,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "qwen3.5-35b-a3b-q4": {
+   "arch": "qwen3.5-35b-a3b",
+   "weightsGb": 21.1668,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.4261,
+   "paramsB": 34.005,
+   "activeB": 2.8,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 163840,
+   "maxContext": 262144
+  },
+  "qwen3.5-27b-q4": {
+   "arch": "qwen3.5-27b",
+   "weightsGb": 16.5474,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 15.6835,
+   "paramsB": 24.353,
+   "activeB": 24.353,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 262144
+  },
+  "qwen3.5-27b-q8": {
+   "arch": "qwen3.5-27b",
+   "weightsGb": 29.0481,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 27.5316,
+   "paramsB": 24.353,
+   "activeB": 24.353,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 262144
+  },
+  "qwen3.5-122b-a10b-q4": {
+   "arch": "qwen3.5-122b-a10b",
+   "weightsGb": 81.37,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.737,
+   "paramsB": 120.094,
+   "activeB": 7.754,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 24576,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 262144
+  },
+  "lfm2-24b-a2b-q4": {
+   "arch": "lfm2-24b-a2b",
+   "weightsGb": 14.4157,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.3028,
+   "paramsB": 23.655,
+   "activeB": 2.138,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 81920,
+   "maxContext": 128000
+  },
+  "lfm2.5-8b-a1b-q4": {
+   "arch": "lfm2.5-8b-a1b",
+   "weightsGb": 5.1561,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 0.9703,
+   "paramsB": 8.354,
+   "activeB": 1.572,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 12288,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 49152,
+   "maxContext": 128000
+  },
+  "granite4.1-3b-q4": {
+   "arch": "granite-4.1-3b",
+   "weightsGb": 2.0995,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.0995,
+   "paramsB": 3.403,
+   "activeB": 3.403,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 81920,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 409600,
+   "maxContext": 131072
+  },
+  "granite4.1-8b-q4": {
+   "arch": "granite-4.1-8b",
+   "weightsGb": 5.3479,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 5.3479,
+   "paramsB": 8.38,
+   "activeB": 8.38,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 131072
+  },
+  "qwen3.6-27b-q4": {
+   "arch": "qwen3.6-27b",
+   "weightsGb": 16.8379,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 15.9589,
+   "paramsB": 24.353,
+   "activeB": 24.353,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 262144
+  },
+  "qwen3.8-27b-q4": {
+   "arch": "qwen3.8-27b",
+   "weightsGb": 16.8107,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 15.9331,
+   "paramsB": 24.353,
+   "activeB": 24.353,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 262144
+  },
+  "qwen3.8-27b-q8": {
+   "arch": "qwen3.8-27b",
+   "weightsGb": 29.0471,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 27.5306,
+   "paramsB": 24.353,
+   "activeB": 24.353,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 262144
+  },
+  "qwen3.6-35b-a3b-q4": {
+   "arch": "qwen3.6-35b-a3b",
+   "weightsGb": 21.7185,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.4633,
+   "paramsB": 34.005,
+   "activeB": 2.8,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 163840,
+   "maxContext": 262144
+  },
+  "gemma4-31b-q4": {
+   "arch": "gemma-4-31b",
+   "weightsGb": 18.67,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 18.67,
+   "paramsB": 30.146,
+   "activeB": 30.146,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 819200,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 327680,
+   "maxContext": 262144
+  },
+  "gemma4-31b-q8": {
+   "arch": "gemma-4-31b",
+   "weightsGb": 32.6357,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 32.6357,
+   "paramsB": 30.146,
+   "activeB": 30.146,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 819200,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 327680,
+   "maxContext": 262144
+  },
+  "gemma4-26b-a4b-q4": {
+   "arch": "gemma-4-26b-a4b",
+   "weightsGb": 17.0744,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.2288,
+   "paramsB": 24.625,
+   "activeB": 3.214,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 40960,
+    "swaBytesPerToken": 204800,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 81920,
+   "maxContext": 262144
+  },
+  "gemma4-e4b-q4": {
+   "arch": "gemma-4-e4b",
+   "weightsGb": 5.4934,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 3.3849,
+   "paramsB": 7.343,
+   "activeB": 7.343,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 14336,
+    "swaBytesPerToken": 71680,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 57344,
+   "maxContext": 131072
+  },
+  "gemma4-e4b-q8": {
+   "arch": "gemma-4-e4b",
+   "weightsGb": 8.0312,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.9486,
+   "paramsB": 7.343,
+   "activeB": 7.343,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 14336,
+    "swaBytesPerToken": 71680,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 57344,
+   "maxContext": 131072
+  },
+  "gemma4-e2b-q4": {
+   "arch": "gemma-4-e2b",
+   "weightsGb": 3.5025,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.4407,
+   "paramsB": 3.99,
+   "activeB": 3.99,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 7168,
+    "swaBytesPerToken": 28672,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 57344,
+   "maxContext": 131072
+  },
+  "gemma4-e2b-q8": {
+   "arch": "gemma-4-e2b",
+   "weightsGb": 4.9675,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.0433,
+   "paramsB": 3.99,
+   "activeB": 3.99,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 7168,
+    "swaBytesPerToken": 28672,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 57344,
+   "maxContext": 131072
+  },
+  "llama4-scout-q4": {
+   "arch": "llama-4-scout",
+   "weightsGb": 67.4368,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 6.6941,
+   "paramsB": 101.73,
+   "activeB": 11.133,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 196608,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 983040,
+   "maxContext": 10485760
+  },
+  "llama4-maverick-q4": {
+   "arch": "llama-4-maverick",
+   "weightsGb": 244.8441,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 6.2719,
+   "paramsB": 394.672,
+   "activeB": 11.144,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 196608,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 983040,
+   "maxContext": 1048576
+  },
+  "gemma4-12b-q4": {
+   "arch": "gemma-4-12b",
+   "weightsGb": 7.3814,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 7.3814,
+   "paramsB": 11.765,
+   "activeB": 11.765,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 327680,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "nemotron-cascade-2-30b-a3b-q6": {
+   "arch": "nemotron-cascade-2-30b-a3b",
+   "weightsGb": 24.2724,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.8391,
+   "paramsB": 103.115,
+   "activeB": 8.165,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 0,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 0,
+   "maxContext": 262144
+  },
+  "laguna-xs2-q4": {
+   "arch": "laguna-xs-2",
+   "weightsGb": 23.0981,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.6991,
+   "paramsB": 33.063,
+   "activeB": 2.638,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 40960,
+    "swaBytesPerToken": 122880,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 245760,
+   "maxContext": 262144
+  },
+  "north-mini-code-1-q4": {
+   "arch": "north-mini-code-1",
+   "weightsGb": 18.594,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.0083,
+   "paramsB": 30.47,
+   "activeB": 3.291,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 26624,
+    "swaBytesPerToken": 73728,
+    "window": 4096
+   },
+   "attnFlopsPerCtx": 212992,
+   "maxContext": 500000
+  },
+  "gpt-oss-120b": {
+   "arch": "gpt-oss-120b",
+   "weightsGb": 65.3698,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.872,
+   "paramsB": 116.789,
+   "activeB": 5.71,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 36864,
+    "swaBytesPerToken": 36864,
+    "window": 128
+   },
+   "attnFlopsPerCtx": 294912,
+   "maxContext": 131072
+  },
+  "gpt-oss-20b": {
+   "arch": "gpt-oss-20b",
+   "weightsGb": 13.7934,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.3797,
+   "paramsB": 20.908,
+   "activeB": 4.186,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 24576,
+    "swaBytesPerToken": 24576,
+    "window": 128
+   },
+   "attnFlopsPerCtx": 196608,
+   "maxContext": 131072
+  },
+  "qwen3-next-80b-a3b": {
+   "arch": "qwen3-next-80b-a3b",
+   "weightsGb": 50.3513,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.7727,
+   "paramsB": 78.888,
+   "activeB": 3.089,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 24576,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 196608,
+   "maxContext": 262144
+  },
+  "qwen3.6-35b-a3b-q8": {
+   "arch": "qwen3.6-35b-a3b",
+   "weightsGb": 37.8021,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.547,
+   "paramsB": 34.005,
+   "activeB": 2.8,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 163840,
+   "maxContext": 262144
+  },
+  "qwen3.5-35b-a3b-q8": {
+   "arch": "qwen3.5-35b-a3b",
+   "weightsGb": 37.803,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.547,
+   "paramsB": 34.005,
+   "activeB": 2.8,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 163840,
+   "maxContext": 262144
+  },
+  "qwen3.5-9b-q8": {
+   "arch": "qwen3.5-9b",
+   "weightsGb": 9.5275,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.3469,
+   "paramsB": 8.208,
+   "activeB": 8.208,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 32768,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "qwen3.6-27b-q8": {
+   "arch": "qwen3.6-27b",
+   "weightsGb": 29.0471,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 27.5306,
+   "paramsB": 24.353,
+   "activeB": 24.353,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
+   "maxContext": 262144
+  },
+  "gemma4-12b-q8": {
+   "arch": "gemma-4-12b",
+   "weightsGb": 12.6696,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 12.6696,
+   "paramsB": 11.765,
+   "activeB": 11.765,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 327680,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "gemma4-26b-a4b-q8": {
+   "arch": "gemma-4-26b-a4b",
+   "weightsGb": 26.8599,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 3.5062,
+   "paramsB": 24.625,
+   "activeB": 3.214,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 40960,
+    "swaBytesPerToken": 204800,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 81920,
+   "maxContext": 262144
+  },
+  "qwen3-next-80b-a3b-q8": {
+   "arch": "qwen3-next-80b-a3b",
+   "weightsGb": 84.812,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.986,
+   "paramsB": 78.888,
+   "activeB": 3.089,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 24576,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 196608,
+   "maxContext": 262144
+  },
+  "qwen3-14b-q8": {
+   "arch": "qwen3-14b",
+   "weightsGb": 15.8951,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 15.0578,
+   "paramsB": 14.768,
+   "activeB": 14.768,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 819200,
+   "maxContext": 40960
+  },
+  "llama3.3-70b-q8": {
+   "arch": "llama-3.3-70b",
+   "weightsGb": 74.9751,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 73.8585,
+   "paramsB": 70.552,
+   "activeB": 70.552,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 327680,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 2621440,
+   "maxContext": 131072
+  },
+  "llama3.3-70b-q6": {
+   "arch": "llama-3.3-70b",
+   "weightsGb": 57.8881,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 57.0261,
+   "paramsB": 70.552,
+   "activeB": 70.552,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 327680,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 2621440,
+   "maxContext": 131072
+  },
+  "laguna-xs-2.1-q4": {
+   "arch": "laguna-xs-2.1",
+   "weightsGb": 20.2743,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.4914,
+   "paramsB": 33.063,
+   "activeB": 2.638,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 40960,
+    "swaBytesPerToken": 122880,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 245760,
+   "maxContext": 262144
+  },
+  "laguna-s-2.1-q4": {
+   "arch": "laguna-s-2.1",
+   "weightsGb": 96.0318,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 5.7802,
+   "paramsB": 116.429,
+   "activeB": 7.316,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 49152,
+    "swaBytesPerToken": 147456,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 294912,
+   "maxContext": 1048576
+  },
+  "ornith-9b-q4": {
+   "arch": "ornith-1.0-9b",
+   "weightsGb": 5.6291,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.9316,
+   "paramsB": 8.208,
+   "activeB": 8.208,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 32768,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "ornith-35b-q4": {
+   "arch": "ornith-1.0-35b",
+   "weightsGb": 21.1668,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.4261,
+   "paramsB": 34.005,
+   "activeB": 2.8,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 163840,
+   "maxContext": 262144
+  },
+  "qwen3.8-flash-next": {
+   "arch": "qwen3.8-flash-next",
+   "weightsGb": 119.599,
+   "weightsSource": "gguf Q4_K_M (no Q4_K_XL file)",
+   "streamedGb": 4.5357,
+   "paramsB": 123.766,
+   "activeB": 5.329,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 24576,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 294912,
+   "maxContext": 262144
+  },
+  "granite4.2-3b-q4": {
+   "arch": "granite-4.2-3b",
+   "weightsGb": 2.244,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.0865,
+   "paramsB": 3.66,
+   "activeB": 3.66,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 81920,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 409600,
+   "maxContext": 131072
+  },
+  "granite4.2-8b-q4": {
+   "arch": "granite-4.2-8b",
+   "weightsGb": 5.3479,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 5.0979,
+   "paramsB": 8.791,
+   "activeB": 8.791,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 131072
+  },
+  "granite4.2-30b-q4": {
+   "arch": "granite-4.2-30b",
+   "weightsGb": 17.7215,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 17.4726,
+   "paramsB": 29.276,
+   "activeB": 29.276,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 262144,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 1048576,
+   "maxContext": 131072
+  },
+  "nemotron-3.5-lightning-30b-q4": {
+   "arch": "nemotron-3.5-lightning-30b-a3b",
+   "weightsGb": 25.4307,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.9269,
+   "paramsB": 103.115,
+   "activeB": 8.165,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 6144,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 98304,
+   "maxContext": 1048576
+  },
+  "muse-glimmer-30b-q4": {
+   "arch": "muse-glimmer-30b",
+   "weightsGb": 16.7567,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 15.9042,
+   "paramsB": 26.436,
+   "activeB": 26.436,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 13312,
+    "swaBytesPerToken": 39936,
+    "window": 2048
+   },
+   "attnFlopsPerCtx": 212992,
+   "maxContext": 131072
+  },
+  "minicpm-v4.5-8b-q4": {
+   "arch": "minicpm-v-4.5-8b",
+   "weightsGb": 5.0267,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.6452,
+   "paramsB": 8.189,
+   "activeB": 8.189,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 147456,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 589824,
+   "maxContext": 40960
+  },
+  "glm-4.7-flash-q4": {
+   "arch": "glm-4.7-flash",
+   "weightsGb": 19.0193,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.1416,
+   "paramsB": 29.709,
+   "activeB": 3.662,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 54144,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 385024,
+   "maxContext": 202752
+  },
+  "nemotron-3-super-120b-q4": {
+   "arch": "nemotron-3-super-120b-a12b",
+   "weightsGb": 86.8278,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 4.2659,
+   "paramsB": 1498.415,
+   "activeB": 74.155,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 0,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 0,
+   "maxContext": 262144
+  },
+  "olmo-3.1-32b-q4": {
+   "arch": "olmo-3.1-32b",
+   "weightsGb": 19.4824,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 19.1721,
+   "paramsB": 32.232,
+   "activeB": 32.232,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 196608,
+    "window": 4096
+   },
+   "attnFlopsPerCtx": 327680,
+   "maxContext": 65536
+  },
+  "mimo-v2.6-distill-qwen-9b": {
+   "arch": "mimo-v2.6-distill-qwen-9b",
+   "weightsGb": 5.841,
+   "weightsSource": "gguf",
+   "streamedGb": 5.1173,
+   "paramsB": 8.208,
+   "activeB": 8.208,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 32768,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "ling-3.0-flash": {
+   "arch": "ling-3.0-flash",
+   "weightsGb": 77.805,
+   "weightsSource": "gguf",
+   "streamedGb": 2.788,
+   "paramsB": 123.745,
+   "activeB": 4.837,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 48384,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 114688,
+   "maxContext": 262144
+  },
+  "devstral-small-2-24b-q4": {
+   "arch": "devstral-small-2-24b",
+   "weightsGb": 15.1774,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 14.7453,
+   "paramsB": 23.572,
+   "activeB": 23.572,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 393216
+  },
+  "devstral-2-123b-q4": {
+   "arch": "devstral-2-123b",
+   "weightsGb": 74.8976,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 73.9328,
+   "paramsB": 125.024,
+   "activeB": 125.024,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 360448,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 4325376,
+   "maxContext": 262144
+  },
+  "ministral-3-3b-q4": {
+   "arch": "ministral-3-3b",
+   "weightsGb": 2.9538,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 2.9538,
+   "paramsB": 3.429,
+   "activeB": 3.429,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 106496,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 425984,
+   "maxContext": 262144
+  },
+  "ministral-3-8b-q4": {
+   "arch": "ministral-3-8b",
+   "weightsGb": 6.0222,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 5.6414,
+   "paramsB": 8.489,
+   "activeB": 8.489,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 139264,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 557056,
+   "maxContext": 262144
+  },
+  "ministral-3-14b-q4": {
+   "arch": "ministral-3-14b",
+   "weightsGb": 9.0825,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 8.6312,
+   "paramsB": 13.506,
+   "activeB": 13.506,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 163840,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 655360,
+   "maxContext": 262144
+  }
+ }
+}

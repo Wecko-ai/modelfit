@@ -1,0 +1,375 @@
+{
+ "description": "Fitted speed-model constants. Written by npx tsx scripts/perf/score.mjs --predictor physics --write-fit from data/perf-measurements.json. Never hand-edit.",
+ "variant": "physics-no-era,arch,tier,mem,shared-apple",
+ "ledgerRuns": 4829,
+ "decode": {
+  "eta": {
+   "cuda": 0.728882,
+   "metal": 0.83586,
+   "mlx": 0.893996,
+   "rocm": 0.70285,
+   "vulkan-amd": 0.721311,
+   "vulkan-apple": 0.811827,
+   "vulkan-nvidia": 0.699426
+  },
+  "c": {
+   "cuda": 1.48234,
+   "metal": 1.65139,
+   "mlx": 3.86163,
+   "rocm": 3.19016,
+   "vulkan-amd": 2.55438,
+   "vulkan-apple": 11.4954,
+   "vulkan-nvidia": 1.35739
+  },
+  "dev": {
+   "cuda|arch:nv-ada": {
+    "eta": 1.1662,
+    "c": 0.919609
+   },
+   "cuda|arch:nv-ampere": {
+    "eta": 1.12295,
+    "c": 1.09533
+   },
+   "cuda|arch:nv-blackwell": {
+    "eta": 1.13935,
+    "c": 0.956899
+   },
+   "cuda|arch:nv-hopper": {
+    "eta": 1.17464,
+    "c": 1.12386
+   },
+   "cuda|arch:nv-old": {
+    "eta": 0.614632,
+    "c": 1.01994
+   },
+   "cuda|arch:nv-pascal": {
+    "eta": 0.672166,
+    "c": 1.0637
+   },
+   "cuda|arch:nv-turing": {
+    "eta": 0.967853,
+    "c": 0.900581
+   },
+   "cuda|arch:nv-volta": {
+    "eta": 1.42694,
+    "c": 0.944832
+   },
+   "cuda|mem:gddr6": {
+    "eta": 1.00104,
+    "c": 0.96729
+   },
+   "cuda|mem:gddr6x": {
+    "eta": 1.04649,
+    "c": 1.03463
+   },
+   "cuda|mem:gddr7": {
+    "eta": 1.10414,
+    "c": 0.962082
+   },
+   "cuda|mem:gpu-other": {
+    "eta": 1.20877,
+    "c": 0.962832
+   },
+   "cuda|mem:hbm": {
+    "eta": 0.693131,
+    "c": 1.08453
+   },
+   "cuda|mem:lpddr": {
+    "eta": 1.03188,
+    "c": 0.994613
+   },
+   "gen:A16": {
+    "eta": 0.92993,
+    "c": 1.03791
+   },
+   "gen:A17": {
+    "eta": 0.975767,
+    "c": 1.04266
+   },
+   "gen:A18": {
+    "eta": 1.0094,
+    "c": 1.01331
+   },
+   "gen:A19": {
+    "eta": 1.11391,
+    "c": 0.948513
+   },
+   "gen:M1": {
+    "eta": 0.881042,
+    "c": 1.40323
+   },
+   "gen:M2": {
+    "eta": 0.969249,
+    "c": 1.20217
+   },
+   "gen:M3": {
+    "eta": 1.01552,
+    "c": 0.926374
+   },
+   "gen:M4": {
+    "eta": 0.974211,
+    "c": 0.909648
+   },
+   "gen:M5": {
+    "eta": 1.03229,
+    "c": 0.758128
+   },
+   "gen:M6": {
+    "eta": 1.11097,
+    "c": 0.894062
+   },
+   "metal|arch:amd-rdna2": {
+    "eta": 1.01161,
+    "c": 0.997806
+   },
+   "metal|mem:gddr6": {
+    "eta": 1.01161,
+    "c": 0.997806
+   },
+   "rocm|arch:amd-cdna": {
+    "eta": 0.970873,
+    "c": 1.03982
+   },
+   "rocm|arch:amd-gcn": {
+    "eta": 0.82261,
+    "c": 1.00762
+   },
+   "rocm|arch:amd-rdna2": {
+    "eta": 0.983759,
+    "c": 0.972559
+   },
+   "rocm|arch:amd-rdna3": {
+    "eta": 1.04432,
+    "c": 0.946625
+   },
+   "rocm|arch:amd-rdna35": {
+    "eta": 1.09174,
+    "c": 0.991298
+   },
+   "rocm|arch:amd-rdna4": {
+    "eta": 1.11636,
+    "c": 1.0458
+   },
+   "rocm|mem:gddr6": {
+    "eta": 1.1469,
+    "c": 0.962817
+   },
+   "rocm|mem:hbm": {
+    "eta": 0.79865,
+    "c": 1.04774
+   },
+   "rocm|mem:lpddr": {
+    "eta": 1.09174,
+    "c": 0.991298
+   },
+   "tier:apple-a": {
+    "eta": 1.02025,
+    "c": 1.04013
+   },
+   "tier:apple-base": {
+    "eta": 1.02612,
+    "c": 0.805563
+   },
+   "tier:apple-max": {
+    "eta": 0.957555,
+    "c": 0.96289
+   },
+   "tier:apple-pro": {
+    "eta": 1.03375,
+    "c": 0.78753
+   },
+   "tier:apple-ultra": {
+    "eta": 0.9539,
+    "c": 1.57733
+   },
+   "vulkan-amd|arch:amd-cdna": {
+    "eta": 0.897797,
+    "c": 1.04283
+   },
+   "vulkan-amd|arch:amd-gcn": {
+    "eta": 0.862311,
+    "c": 1.0578
+   },
+   "vulkan-amd|arch:amd-rdna2": {
+    "eta": 1.05686,
+    "c": 1.26144
+   },
+   "vulkan-amd|arch:amd-rdna3": {
+    "eta": 0.99627,
+    "c": 0.850905
+   },
+   "vulkan-amd|arch:amd-rdna35": {
+    "eta": 1.10528,
+    "c": 0.993359
+   },
+   "vulkan-amd|arch:amd-rdna4": {
+    "eta": 1.10992,
+    "c": 0.850207
+   },
+   "vulkan-amd|mem:gddr6": {
+    "eta": 1.16865,
+    "c": 0.912585
+   },
+   "vulkan-amd|mem:hbm": {
+    "eta": 0.77418,
+    "c": 1.10311
+   },
+   "vulkan-amd|mem:lpddr": {
+    "eta": 1.10528,
+    "c": 0.993359
+   },
+   "vulkan-nvidia|arch:nv-ada": {
+    "eta": 1.20811,
+    "c": 1.03895
+   },
+   "vulkan-nvidia|arch:nv-ampere": {
+    "eta": 1.08195,
+    "c": 1.04515
+   },
+   "vulkan-nvidia|arch:nv-blackwell": {
+    "eta": 1.05702,
+    "c": 0.981263
+   },
+   "vulkan-nvidia|arch:nv-old": {
+    "eta": 0.789633,
+    "c": 1.01559
+   },
+   "vulkan-nvidia|arch:nv-pascal": {
+    "eta": 0.80747,
+    "c": 1.03844
+   },
+   "vulkan-nvidia|arch:nv-turing": {
+    "eta": 0.843357,
+    "c": 0.948744
+   },
+   "vulkan-nvidia|arch:nv-volta": {
+    "eta": 1.34599,
+    "c": 0.937979
+   },
+   "vulkan-nvidia|mem:gddr6": {
+    "eta": 1.02189,
+    "c": 0.91308
+   },
+   "vulkan-nvidia|mem:gddr6x": {
+    "eta": 1.13267,
+    "c": 1.06752
+   },
+   "vulkan-nvidia|mem:gddr7": {
+    "eta": 1.03443,
+    "c": 0.982799
+   },
+   "vulkan-nvidia|mem:gpu-other": {
+    "eta": 1.14726,
+    "c": 0.984879
+   },
+   "vulkan-nvidia|mem:hbm": {
+    "eta": 0.712439,
+    "c": 1.06157
+   },
+   "vulkan-nvidia|mem:lpddr": {
+    "eta": 1.02184,
+    "c": 0.998437
+   }
+  },
+  "alpha": 1.05053,
+  "moe": 1.65791,
+  "cmg": 0.282565,
+  "ollama": 1
+ },
+ "prefill": {
+  "etac": {
+   "cuda|F16": 0.660889,
+   "cuda|MXFP4": 0.327501,
+   "cuda|Q4": 0.568538,
+   "cuda|Q8": 0.087165,
+   "cuda|other": 0.270324,
+   "metal|F16": 0.0981721,
+   "metal|MXFP4": 0.10886,
+   "metal|Q4": 0.0985076,
+   "metal|Q8": 0.0952833,
+   "metal|other": 0.0719227,
+   "mlx|Q4": 0.113138,
+   "mlx|Q8": 0.102967,
+   "rocm|F16": 0.00134016,
+   "rocm|MXFP4": 0.0834628,
+   "rocm|Q4": 0.57718,
+   "rocm|Q8": 0.107024,
+   "rocm|other": 0.0585783,
+   "vulkan-amd|F16": 0.0773723,
+   "vulkan-amd|MXFP4": 0.133797,
+   "vulkan-amd|Q4": 0.293457,
+   "vulkan-amd|Q8": 0.146332,
+   "vulkan-amd|other": 0.185126,
+   "vulkan-nvidia|MXFP4": 0.191382,
+   "vulkan-nvidia|Q4": 0.516095,
+   "vulkan-nvidia|Q8": 0.554755,
+   "vulkan-nvidia|other": 0.535203
+  },
+  "cpp": {
+   "cuda": 0.0383053,
+   "metal": 3.56131e-237,
+   "mlx": 0.307192,
+   "rocm": 0.13943,
+   "vulkan-amd": 0.0173552,
+   "vulkan-nvidia": 0.0391973
+  },
+  "core": {
+   "A16": 2.30896,
+   "A17": 2.42819,
+   "A18": 2.43112,
+   "A19": 7.67253,
+   "M1": 2.01009,
+   "M2": 2.07761,
+   "M3": 2.9903,
+   "M4": 3.47134,
+   "M5": 10.1098,
+   "M6": 12.3011
+  },
+  "beta": 3.21596
+ },
+ "bands": {
+  "all": 0.107,
+  "CUDA": 0.079,
+  "CUDA|10-20B": 0.148,
+  "CUDA|2-5B": 0.059,
+  "CUDA|20-40B": 0.043,
+  "CUDA|5-10B": 0.067,
+  "CUDA|MoE": 0.142,
+  "CUDA|unknown": 0.101,
+  "Metal": 0.075,
+  "Metal|<2B": 0.031,
+  "Metal|5-10B": 0.073,
+  "MLX": 0.122,
+  "MLX|<2B": 0.227,
+  "MLX|10-20B": 0.064,
+  "MLX|2-5B": 0.139,
+  "MLX|20-40B": 0.106,
+  "MLX|5-10B": 0.111,
+  "MLX|MoE": 0.163,
+  "MLX|unknown": 0.091,
+  "ROCm/Vulkan": 0.117,
+  "ROCm/Vulkan|20-40B": 0.511,
+  "ROCm/Vulkan|5-10B": 0.112,
+  "ROCm/Vulkan|MoE": 0.255
+ },
+ "heldOut": {
+  "decode": {
+   "rows": 4055,
+   "scored": 3124,
+   "hardware": 104,
+   "medianApe": 0.1066467752347181,
+   "p90Ape": 0.3781918299294783,
+   "medianBias": -0.0029360351323694566,
+   "hwBalancedMedianApe": 0.08522211400387686
+  },
+  "prefill": {
+   "rows": 4283,
+   "scored": 2989,
+   "hardware": 95,
+   "medianApe": 0.25380567156214034,
+   "p90Ape": 0.8227133025689654,
+   "medianBias": -0.05544543094576898,
+   "hwBalancedMedianApe": 0.28027025390343596
+  }
+ }
+}

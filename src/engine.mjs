@@ -7,6 +7,15 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
+import {
+  appleGeneration,
+  appleTier,
+  decodeTokensPerSec,
+  modelPerfInputs,
+  timeToFirstTokenSec,
+  typicalErrorPct,
+} from './perf-model.mjs';
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /** The bundled snapshot of data/models.json (synced via scripts/sync-data.mjs). */
@@ -183,11 +192,66 @@ function deviceThroughputFactor(deviceType) {
   return 0.9;
 }
 
-function estimateLocalPerformance(model, input, ramBudget) {
-  if (model.cloud_only) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null };
+// Context every published decode estimate is quoted at, and the first-token prompt length
+// (lib/recommend.ts PUBLISHED_CONTEXT_TOKENS, FIRST_TOKEN_PROMPT_TOKENS).
+export const PUBLISHED_CONTEXT_TOKENS = 4096;
+export const FIRST_TOKEN_PROMPT_TOKENS = 1024;
 
+// GPU cores of each chip's top measured bin (lib/prefill.ts PP512_Q4_0, last row per chip), the
+// fallback core count for prompt reading when no bin is picked.
+const TOP_BIN_GPU_CORES = {
+  'Apple M1': 8, 'Apple M1 Pro': 16, 'Apple M1 Max': 32, 'Apple M1 Ultra': 64,
+  'Apple M2': 10, 'Apple M2 Pro': 19, 'Apple M2 Max': 38, 'Apple M2 Ultra': 76,
+  'Apple M3': 10, 'Apple M3 Pro': 18, 'Apple M3 Max': 40, 'Apple M3 Ultra': 80,
+  'Apple M4': 10, 'Apple M4 Pro': 20, 'Apple M4 Max': 40,
+  'Apple M5': 10, 'Apple M5 Pro': 20, 'Apple M5 Max': 40, 'Apple M5 Ultra': 80,
+  'Apple M6': 12,
+};
+
+/** An Apple chip as the fitted speed model sees it (1:1 port of applePerfHardware). */
+export function applePerfHardware(chip, ramGb, gpuCores) {
+  const bw = chipBandwidthGbs(chip, ramGb, gpuCores);
+  if (bw === null) return null;
+  const gen = appleGeneration(chip);
+  const cores = gpuCores ?? decodeVariant(chip, ramGb, gpuCores)?.gpuCores ?? TOP_BIN_GPU_CORES[chip] ?? null;
+  return {
+    family: 'metal',
+    keys: [`tier:${appleTier(chip)}`, `gen:${gen}`],
+    pools: [{ bandwidthGbs: bw, share: 1 }],
+    fp16Tflops: null,
+    appleGen: gen,
+    gpuCores: cores,
+  };
+}
+
+function estimateLocalPerformance(model, input, ramBudget) {
+  if (model.cloud_only) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null, estimatedErrorPct: null };
+
+  // Catalog models run through the fitted speed model (perf-model.mjs).
+  const perf = model.id ? modelPerfInputs(model.id) : null;
+  const hw = perf ? applePerfHardware(input.chip, input.ramGb, input.gpuCores) : null;
+  if (perf && hw) {
+    let tps = decodeTokensPerSec(perf, hw, PUBLISHED_CONTEXT_TOKENS);
+    if (tps !== null) {
+      // Over the wired-memory budget: the previous pressure penalty, unmeasured, kept as it was.
+      if (model.estimatedLoadGb > ramBudget) tps *= clamp(0.35, 1, (ramBudget / model.estimatedLoadGb) * 0.9);
+      // Gate 7: never above the bandwidth ceiling of the bytes this model streams per token.
+      tps = Math.min(tps, hw.pools[0].bandwidthGbs / perf.streamedGb);
+      const prompt = timeToFirstTokenSec(perf, model.quantization, hw, FIRST_TOKEN_PROMPT_TOKENS);
+      const firstToken = prompt !== null
+        ? prompt + 1 / tps
+        : 0.45 + 10 / tps + (model.sizeB >= 30 ? 0.8 : 0) + (model.estimatedLoadGb > ramBudget ? 2.4 : 0);
+      return {
+        estimatedTokensPerSec: Number(tps.toFixed(1)),
+        estimatedFirstTokenSec: Number(clamp(0.1, 600, firstToken).toFixed(1)),
+        estimatedErrorPct: typicalErrorPct(perf, 'metal'),
+      };
+    }
+  }
+
+  // Anything else (a model with no verified inputs) keeps the previous formula.
   const chipBase = chipBaseTokensPerSec(input.chip, input.ramGb, input.gpuCores);
-  if (chipBase === null) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null };
+  if (chipBase === null) return { estimatedTokensPerSec: null, estimatedFirstTokenSec: null, estimatedErrorPct: null };
 
   const base = chipBase * deviceThroughputFactor(input.deviceType);
   // MoE decode speed tracks active params, blended with total: effective = sqrt(active * total).
@@ -221,6 +285,7 @@ function estimateLocalPerformance(model, input, ramBudget) {
   return {
     estimatedTokensPerSec: Number(estimatedTokensPerSec.toFixed(1)),
     estimatedFirstTokenSec: Number(estimatedFirstTokenSec.toFixed(1)),
+    estimatedErrorPct: null,
   };
 }
 
@@ -298,7 +363,7 @@ export function getRecommendations(input) {
 
       const fitPct = clamp(0, 100, ((ramBudget - model.estimatedLoadGb) / ramBudget) * 100);
       const fitLevel = getFitLevel(fitPct);
-      const { estimatedTokensPerSec, estimatedFirstTokenSec } = estimateLocalPerformance(model, input, ramBudget);
+      const { estimatedTokensPerSec, estimatedFirstTokenSec, estimatedErrorPct } = estimateLocalPerformance(model, input, ramBudget);
       const localVerdict = getLocalVerdict(model, ramBudget, estimatedTokensPerSec);
 
       const oomPenalty = !model.cloud_only && model.estimatedLoadGb > ramBudget ? 40 : 0;
@@ -329,6 +394,7 @@ export function getRecommendations(input) {
         localVerdict,
         estimatedTokensPerSec,
         estimatedFirstTokenSec,
+        estimatedErrorPct,
         score: Number(finalScore.toFixed(2)),
         why: buildWhy(model, fitLevel, input, localVerdict),
       };

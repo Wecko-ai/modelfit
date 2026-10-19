@@ -86,6 +86,28 @@ function syncSlugs(repo) {
   console.log(`✓ slugs.json synced (${Object.keys(families).length} families)`);
 }
 
+/**
+ * The speed model's generated inputs: data/derived/perf-fit.json (fitted constants) and
+ * data/derived/model-perf.json (per-model physical inputs). Validated for shape: numbers only
+ * where numbers belong, so a corrupted file cannot ship.
+ */
+function syncPerf(repo) {
+  for (const name of ['perf-fit.json', 'model-perf.json']) {
+    const src = join(repo, 'data', 'derived', name);
+    if (!existsSync(src)) { console.log(`· ${name} kept (data/derived/${name} not found)`); continue; }
+    const data = JSON.parse(readFileSync(src, 'utf8'));
+    if (name === 'perf-fit.json') {
+      const ok = data?.decode && typeof data.decode.alpha === 'number' && data.decode.eta && data.prefill && data.bands;
+      if (!ok) invalid(`${name}: missing decode/prefill/bands sections`, src);
+    } else {
+      const ok = data?.models && Object.values(data.models).every((m) => typeof m.weightsGb === 'number' && typeof m.streamedGb === 'number' && m.kv && typeof m.kv.fullBytesPerToken === 'number');
+      if (!ok) invalid(`${name}: a model lacks numeric weightsGb, streamedGb or kv`, src);
+    }
+    copyFileSync(src, join(OUT, name));
+    console.log(`✓ ${name} synced`);
+  }
+}
+
 const repo = findRepo();
 if (!repo) {
   console.log('· No modelfit checkout found — keeping the committed snapshot (canonical data in this repo).');
@@ -94,4 +116,5 @@ if (!repo) {
 }
 syncModels(repo);
 syncSlugs(repo);
+syncPerf(repo);
 console.log('Sync complete.');
