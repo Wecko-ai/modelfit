@@ -15,6 +15,7 @@ import {
   timeToFirstTokenSec,
   typicalErrorPct,
 } from './perf-model.mjs';
+import { baseModelId } from './model-groups.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -158,7 +159,74 @@ function segmentBoost(useCase, tags) {
 function quantizationPenalty(q) {
   if (q.startsWith('Q5')) return 3;
   if (q.startsWith('Q6') || q.startsWith('Q8')) return 5;
+  // IQ4_XS (about 4.25 bits a weight) is there for the RAM tier below Q4_K_M: where both fit, the
+  // K-quant ranks first. Below 4 bits the quality loss is the cost: a 3-bit build ranks under its
+  // 4-bit sibling.
+  if (q.startsWith('IQ4')) return 1;
+  if (/^I?Q3/.test(q)) return 6;
+  if (/^I?Q[12]/.test(q)) return 12;
   return 0;
+}
+
+// Recency: no penalty up to RECENCY_GRACE_MONTHS behind the newest model in the catalog, then
+// RECENCY_PER_MONTH points a month, capped at RECENCY_MAX. The reference is the newest
+// releaseDate in the dataset, never the clock, so a ranking only moves when the catalog does.
+const RECENCY_GRACE_MONTHS = 6;
+const RECENCY_PER_MONTH = 1;
+const RECENCY_MAX = 10;
+const MONTH_MS = 30.44 * 24 * 3600 * 1000;
+const RECENCY_REFERENCE_MS = Math.max(0, ...DATASET.map((m) => (m.releaseDate ? Date.parse(m.releaseDate) : 0)));
+
+export function recencyPenalty(releaseDate) {
+  if (!releaseDate) return 0;
+  const months = (RECENCY_REFERENCE_MS - Date.parse(releaseDate)) / MONTH_MS;
+  return clamp(0, RECENCY_MAX, (months - RECENCY_GRACE_MONTHS) * RECENCY_PER_MONTH);
+}
+
+// Speed score (0-100) from the engine's own decode estimate: piecewise linear in log2(tok/s)
+// through 1 tok/s 0, 5 tok/s 20, 10 tok/s 45, 20 tok/s 70, 40 tok/s 90, 80+ tok/s 100.
+// 1:1 with lib/recency.ts engineSpeedScore.
+const SPEED_ANCHORS = [[1, 0], [5, 20], [10, 45], [20, 70], [40, 90], [80, 100]];
+export function engineSpeedScore(tokensPerSec) {
+  if (!(tokensPerSec > SPEED_ANCHORS[0][0])) return 0;
+  for (let i = 1; i < SPEED_ANCHORS.length; i++) {
+    const [t1, s1] = SPEED_ANCHORS[i];
+    if (tokensPerSec <= t1) {
+      const [t0, s0] = SPEED_ANCHORS[i - 1];
+      return s0 + ((s1 - s0) * Math.log2(tokensPerSec / t0)) / Math.log2(t1 / t0);
+    }
+  }
+  return 100;
+}
+
+// Lineage: a row whose successor (any quant of that base model) runs comfortably on the same
+// machine drops by LINEAGE_PENALTY, or more when needed to rank under the best comfortable build of
+// that successor. Successors resolve first, so a chain stays in order. 1:1 with lib/recency.ts.
+export const LINEAGE_PENALTY = 8;
+function lineageScores(rows) {
+  const feasibleByBase = new Map();
+  for (const r of rows) {
+    if (r.localVerdict !== 'local_feasible') continue;
+    const k = baseModelId(r);
+    const list = feasibleByBase.get(k);
+    if (list) list.push(r);
+    else feasibleByBase.set(k, [r]);
+  }
+  const memo = new Map();
+  const final = (r) => {
+    const hit = memo.get(r.id);
+    if (hit !== undefined) return hit;
+    let s = r.score;
+    const succ = r.successor ? feasibleByBase.get(r.successor) : undefined;
+    if (succ && succ.length) {
+      const best = Math.max(...succ.map(final));
+      s = r.score - Math.max(LINEAGE_PENALTY, r.score - best + 0.1);
+    }
+    memo.set(r.id, s);
+    return s;
+  };
+  for (const r of rows) final(r);
+  return memo;
 }
 
 // Weight size in GB per billion params, by quantization. Decode is memory-bound, so
@@ -347,7 +415,7 @@ export function getRecommendations(input) {
 
   const chipBoost = chipSpeedBoost(input.chip);
 
-  return [...DATASET]
+  const scored = [...DATASET]
     .map((model) => {
       const utilizationRatio = model.cloud_only ? 0 : model.estimatedLoadGb / ramBudget;
       // Utilization is measured against the 70-85% RAM budget (ramBudgetRatio), so even 100% here still
@@ -358,7 +426,7 @@ export function getRecommendations(input) {
           : utilizationRatio < 0.3 ? 45
             : utilizationRatio < 0.5 ? 70
               : utilizationRatio <= 0.85 ? 92
-                : utilizationRatio <= 1.0 ? 72
+                : utilizationRatio <= 1.0 ? 92 - ((utilizationRatio - 0.85) / 0.15) * 20
                   : 10;
 
       const fitPct = clamp(0, 100, ((ramBudget - model.estimatedLoadGb) / ramBudget) * 100);
@@ -373,9 +441,13 @@ export function getRecommendations(input) {
             : localVerdict === 'local_unlikely' ? 30
               : 35;
 
+      // Speed: the engine's own estimate (engineSpeedScore); the hand speedScore (+ chip boost)
+      // only for cloud rows and rows with no estimate.
       const adjustedSpeed = model.cloud_only
         ? clamp(0, 100, model.speedScore)
-        : clamp(0, 100, model.speedScore + chipBoost);
+        : estimatedTokensPerSec !== null
+          ? engineSpeedScore(estimatedTokensPerSec)
+          : clamp(0, 100, model.speedScore + chipBoost);
 
       const baseRank =
         0.35 * sweetSpotScore + qualW * model.qualityScore +
@@ -384,8 +456,9 @@ export function getRecommendations(input) {
       const boost = segmentBoost(input.useCase, model.tags);
       const thermal = thermalPenalty(input.deviceType, model.sizeB, ramBudget);
       const quant = quantizationPenalty(model.quantization);
+      const recency = recencyPenalty(model.releaseDate);
 
-      const finalScore = clamp(0, 100, baseRank + boost - thermal - quant - oomPenalty - verdictPenalty);
+      const finalScore = clamp(0, 100, baseRank + boost - thermal - quant - recency - oomPenalty - verdictPenalty);
 
       return {
         ...model,
@@ -395,9 +468,13 @@ export function getRecommendations(input) {
         estimatedTokensPerSec,
         estimatedFirstTokenSec,
         estimatedErrorPct,
-        score: Number(finalScore.toFixed(2)),
+        score: finalScore,
         why: buildWhy(model, fitLevel, input, localVerdict),
       };
-    })
+    });
+
+  const lineage = lineageScores(scored);
+  return scored
+    .map((r) => ({ ...r, score: Number(clamp(0, 100, lineage.get(r.id) ?? r.score).toFixed(2)) }))
     .sort((a, b) => b.score - a.score);
 }

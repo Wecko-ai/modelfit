@@ -12,6 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
 import { getRecommendations, DATASET } from '../src/engine.mjs';
 import { bestModel } from '../src/best.mjs';
+import { groupVariants } from '../src/model-groups.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, '..', '..');
@@ -24,6 +25,7 @@ const fail = (msg) => { console.error(`✗ ${msg}`); failures++; };
 // tok/s is compared too: a speed change that flips no verdict would otherwise go unseen.
 const sameTps = (x, y) => (x ?? null) === null ? (y ?? null) === null : y != null && Math.abs(x - y) <= 0.05;
 const same = (a, b) => a.length === b.length && a.every((x, i) => x.id === b[i].id && Math.abs(x.score - b[i].score) <= 0.01 && sameTps(x.tps, b[i].tps));
+const sameIds = (a = [], b = []) => a.length === b.length && a.every((x, i) => x === b[i]);
 
 // ── 1. Structural sanity ────────────────────────────────────────────────────
 for (const input of GRID) {
@@ -42,13 +44,14 @@ console.log(`✓ structural sanity passed (${GRID.length} inputs × ${DATASET.le
 // ── 2. Golden-snapshot parity (offline source of truth) ─────────────────────
 let goldMismatch = 0;
 golden.forEach((g, gi) => {
-  const got = getRecommendations(g.input).map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec }));
-  if (!same(got, g.ranking)) {
+  const recs = getRecommendations(g.input);
+  const got = recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec }));
+  if (!same(got, g.ranking) || !sameIds(groupVariants(recs).map((r) => r.id), g.grouped)) {
     goldMismatch++;
     if (goldMismatch <= 5) fail(`golden[${gi}] (${g.input.chip}/${g.input.ramGb}GB): engine output differs from test/golden.json`);
   }
 });
-if (!goldMismatch) console.log(`✓ matches golden snapshot (${golden.length} inputs, ranking + scores + tok/s)`);
+if (!goldMismatch) console.log(`✓ matches golden snapshot (${golden.length} inputs, ranking + scores + tok/s + grouped list)`);
 else fail(`${goldMismatch} input(s) drifted from golden.json: re-port the engine or regenerate golden if lib/recommend.ts changed`);
 
 // ── 3. Live parity vs the TS engine (monorepo only, best effort) ────────────
@@ -63,7 +66,10 @@ try {
 }
 if (tsOut) {
   let tsMismatch = 0;
-  golden.forEach((g, gi) => { if (!same(g.ranking, tsOut[gi] ?? [])) tsMismatch++; });
+  golden.forEach((g, gi) => {
+    const ts = tsOut[gi] ?? { ranking: [], grouped: [] };
+    if (!same(g.ranking, ts.ranking ?? []) || !sameIds(g.grouped, ts.grouped)) tsMismatch++;
+  });
   if (!tsMismatch) console.log(`✓ exact parity with lib/recommend.ts (golden.json is current)`);
   else fail(`${tsMismatch} input(s): golden.json is STALE vs lib/recommend.ts. Run: node scripts/gen-golden.mjs`);
 }

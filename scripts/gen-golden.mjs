@@ -6,6 +6,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { getRecommendations } from '../src/engine.mjs';
+import { groupVariants } from '../src/model-groups.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -28,10 +29,14 @@ const GRID = [
   { deviceType: 'Mac Mini', chip: 'Apple M5 Pro', ramGb: 24, priority: 'Balanced', useCase: 'Mixed', gpuCores: 16 },
 ];
 
-const golden = GRID.map((input) => ({
-  input,
-  ranking: getRecommendations(input).map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec })),
-}));
+const golden = GRID.map((input) => {
+  const recs = getRecommendations(input);
+  return {
+    input,
+    ranking: recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec })),
+    grouped: groupVariants(recs).map((r) => r.id),
+  };
+});
 
 writeFileSync(join(__dirname, '..', 'test', 'golden.json'), JSON.stringify(golden, null, 0) + '\n');
 console.log(`✓ wrote test/golden.json (${golden.length} inputs × ${golden[0].ranking.length} models)`);

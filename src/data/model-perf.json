@@ -2,7 +2,7 @@
  "description": "Physical inputs of the speed engine per local catalog model, built by scripts/perf/build-model-perf.mjs from data/perf-models.json. Never hand-edit.",
  "synthetic": {
   "gbPerB": {
-   "Q4": 0.6254,
+   "Q4": 0.6263,
    "Q8": 1.0769,
    "MXFP4": 0.6597
   },
@@ -1280,16 +1280,16 @@
    "arch": "nemotron-cascade-2-30b-a3b",
    "weightsGb": 24.2724,
    "weightsSource": "ollama-manifest",
-   "streamedGb": 1.8391,
-   "paramsB": 103.115,
-   "activeB": 8.165,
+   "streamedGb": 2.4808,
+   "paramsB": 31.578,
+   "activeB": 3.58,
    "moe": true,
    "kv": {
-    "fullBytesPerToken": 0,
+    "fullBytesPerToken": 6144,
     "swaBytesPerToken": 0,
     "window": null
    },
-   "attnFlopsPerCtx": 0,
+   "attnFlopsPerCtx": 98304,
    "maxContext": 262144
   },
   "laguna-xs2-q4": {
@@ -1598,9 +1598,41 @@
   },
   "qwen3.8-flash-next": {
    "arch": "qwen3.8-flash-next",
-   "weightsGb": 119.599,
-   "weightsSource": "gguf Q4_K_M (no Q4_K_XL file)",
-   "streamedGb": 4.5357,
+   "weightsGb": 111.3347,
+   "weightsSource": "gguf",
+   "streamedGb": 4.2222,
+   "paramsB": 123.766,
+   "activeB": 5.329,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 24576,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 294912,
+   "maxContext": 262144
+  },
+  "qwen3.8-flash-next-q4xs": {
+   "arch": "qwen3.8-flash-next",
+   "weightsGb": 93.6826,
+   "weightsSource": "gguf",
+   "streamedGb": 3.5528,
+   "paramsB": 123.766,
+   "activeB": 5.329,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 24576,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 294912,
+   "maxContext": 262144
+  },
+  "qwen3.8-flash-next-q3": {
+   "arch": "qwen3.8-flash-next",
+   "weightsGb": 89.9864,
+   "weightsSource": "gguf",
+   "streamedGb": 3.4126,
    "paramsB": 123.766,
    "activeB": 5.329,
    "moe": true,
@@ -1664,9 +1696,25 @@
    "arch": "nemotron-3.5-lightning-30b-a3b",
    "weightsGb": 25.4307,
    "weightsSource": "ollama-manifest",
-   "streamedGb": 1.9269,
-   "paramsB": 103.115,
-   "activeB": 8.165,
+   "streamedGb": 2.5992,
+   "paramsB": 31.578,
+   "activeB": 3.58,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 6144,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 98304,
+   "maxContext": 1048576
+  },
+  "nemotron-3.5-lightning-30b-q4xs": {
+   "arch": "nemotron-3.5-lightning-30b-a3b",
+   "weightsGb": 18.9184,
+   "weightsSource": "gguf",
+   "streamedGb": 1.9336,
+   "paramsB": 31.578,
+   "activeB": 3.58,
    "moe": true,
    "kv": {
     "fullBytesPerToken": 6144,
@@ -1728,16 +1776,32 @@
    "arch": "nemotron-3-super-120b-a12b",
    "weightsGb": 86.8278,
    "weightsSource": "ollama-manifest",
-   "streamedGb": 4.2659,
-   "paramsB": 1498.415,
-   "activeB": 74.155,
+   "streamedGb": 8.8021,
+   "paramsB": 120.668,
+   "activeB": 12.769,
    "moe": true,
    "kv": {
-    "fullBytesPerToken": 0,
+    "fullBytesPerToken": 8192,
     "swaBytesPerToken": 0,
     "window": null
    },
-   "attnFlopsPerCtx": 0,
+   "attnFlopsPerCtx": 131072,
+   "maxContext": 262144
+  },
+  "nemotron-3-super-120b-q4xs": {
+   "arch": "nemotron-3-super-120b-a12b",
+   "weightsGb": 64.4847,
+   "weightsSource": "gguf",
+   "streamedGb": 6.5371,
+   "paramsB": 120.668,
+   "activeB": 12.769,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 8192,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 131072,
    "maxContext": 262144
   },
   "olmo-3.1-32b-q4": {
@@ -1781,7 +1845,23 @@
    "activeB": 4.837,
    "moe": true,
    "kv": {
-    "fullBytesPerToken": 48384,
+    "fullBytesPerToken": 8064,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 114688,
+   "maxContext": 262144
+  },
+  "ling-3.0-flash-q4xs": {
+   "arch": "ling-3.0-flash",
+   "weightsGb": 68.7392,
+   "weightsSource": "gguf",
+   "streamedGb": 2.4631,
+   "paramsB": 123.745,
+   "activeB": 4.837,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 8064,
     "swaBytesPerToken": 0,
     "window": null
    },

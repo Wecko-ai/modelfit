@@ -9,6 +9,8 @@
 import { spawnSync } from 'node:child_process';
 import { detectHardware } from './detect.mjs';
 import { ollamaInstalled, ollamaBin, pullModel } from './install.mjs';
+import { DATASET } from './engine.mjs';
+import { modelPerfInputs } from './perf-model.mjs';
 
 // Fixed reference: small enough to run everywhere, big enough to be
 // bandwidth-bound on every tracked device. Bump ONLY with BENCH_PROMPT_ID.
@@ -159,6 +161,19 @@ export async function runBench(opts = {}) {
   }
 }
 
+/**
+ * Download size in GB of an Ollama tag when the bundled catalog knows it, else null: the model
+ * layer of the tag's registry manifest (data/model-perf.json, weightsSource "ollama-manifest"),
+ * found through the catalog row whose ollamaCommand is exactly `ollama run <tag>`. It is not the
+ * catalog's estimatedLoadGb, which is a memory figure (1.5 GB for this 0.99 GB reference model).
+ * The bench never queries the registry itself: nothing leaves the machine unless --submit.
+ */
+export function knownPullGb(tag) {
+  const row = DATASET.find((m) => m.ollamaCommand === `ollama run ${tag}`);
+  const perf = row ? modelPerfInputs(row.id) : null;
+  return perf && perf.weightsSource === 'ollama-manifest' ? perf.weightsGb : null;
+}
+
 /** What the bench is about to do, shown before any download. */
 export function benchNotice(tag, { preexisting, cleanup, noPull }) {
   const lines = [];
@@ -168,7 +183,11 @@ export function benchNotice(tag, { preexisting, cleanup, noPull }) {
   } else if (noPull) {
     lines.push(`modelfit bench: ${tag} is not installed and --no-pull is set.`);
   } else {
-    lines.push(`modelfit bench: downloading the reference model ${tag} (about 1 GB), then running one fixed prompt.`);
+    // The size is stated only when the catalog knows it; a --model tag it does not know gets no size.
+    const gb = knownPullGb(tag);
+    const what = tag === BENCH_MODEL ? 'the reference model' : 'the model';
+    const size = gb == null ? '' : ` (${gb >= 10 ? gb.toFixed(1) : gb.toFixed(2)} GB)`;
+    lines.push(`modelfit bench: downloading ${what} ${tag}${size}, then running one fixed prompt.`);
     lines.push(cleanup
       ? '  --cleanup: the model will be removed when the bench ends, nothing is left on your machine.'
       : '  The model stays installed afterwards. Add --cleanup to remove it automatically.');

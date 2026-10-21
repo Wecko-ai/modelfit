@@ -4,6 +4,7 @@
 
 import { modelUrl, reportUrl, gpuUrl, SOURCE } from './links.mjs';
 import { selectBest, bestContract } from './best.mjs';
+import { baseModelId, groupVariants } from './model-groups.mjs';
 
 const useColor = (opts) => !opts.noColor && !process.env.NO_COLOR && process.stdout.isTTY;
 
@@ -34,11 +35,14 @@ export function estLabel(tps, errorPct) {
 
 const ERROR_NOTE = 'Typical error: median gap between the estimate and measured runs on hardware the model was not fitted on.';
 
-/** Locally-runnable models (drops cloud_only + local_unlikely), best-first. */
+/** Locally-runnable models (drops cloud_only + local_unlikely), best-first, one row per model
+ *  (quant builds of the same model fold into `variants`, as on the site). */
 export function localRunnable(recs) {
   const runnable = recs.filter((r) => r.localVerdict !== 'cloud_only' && r.localVerdict !== 'local_unlikely');
-  return runnable.length ? runnable : recs.filter((r) => r.localVerdict !== 'cloud_only');
+  return groupVariants(runnable.length ? runnable : recs.filter((r) => r.localVerdict !== 'cloud_only'));
 }
+
+const sameModel = (a, b) => !!a && !!b && baseModelId(a) === baseModelId(b);
 
 function recRecord(r) {
   return {
@@ -53,6 +57,8 @@ function recRecord(r) {
     bestFor: clean(r.bestFor),
     why: clean(r.why),
     learnMoreUrl: modelUrl(r.family),
+    // Other quantizations of the same model that were ranked (additive field).
+    otherQuantizations: (r.variants ?? []).map((v) => v.quantization),
   };
 }
 
@@ -63,7 +69,7 @@ export function toJson(profile, input, recs, opts) {
   const altCount = opts.all ? list.length : (opts.top ?? 3);
   return {
     best: bestContract(best, input, profile),
-    alternatives: list.filter((r) => r.id !== best?.id).slice(0, Math.max(0, altCount)).map(recRecord),
+    alternatives: list.filter((r) => !sameModel(r, best)).slice(0, Math.max(0, altCount)).map(recRecord),
     hardware: {
       os: profile.os,
       device: profile.deviceLabel,
@@ -115,7 +121,7 @@ export function toBest(profile, input, recs, opts) {
   L.push(`    ${c.dim('The most capable model your machine can run.')} ${c.dim('→')} ${c.dim(modelUrl(best.family))}`);
   L.push('');
 
-  const alts = localRunnable(recs).filter((r) => r.id !== best.id).slice(0, 2);
+  const alts = localRunnable(recs).filter((r) => !sameModel(r, best)).slice(0, 2);
   if (alts.length) {
     L.push(`${c.gray('Also fits')}  ${alts.map((r) => clean(r.name)).join(c.dim(' · '))}   ${c.dim('(modelfit --all for the full list)')}`);
   }
@@ -134,7 +140,7 @@ export function toList(profile, input, recs, opts) {
 
   L.push(c.bold(opts.all ? 'Ranked local models' : `Top ${shown.length} local models`));
   shown.forEach((r) => {
-    const star = best && r.id === best.id ? c.green('▶') : ' ';
+    const star = sameModel(r, best) ? c.green('▶') : ' ';
     const tps = estLabel(r.estimatedTokensPerSec, r.estimatedErrorPct);
     const fitColor = r.fitLevel === 'Excellent' ? c.green : r.fitLevel === 'OK' ? c.yellow : c.red;
     const meta = [fitColor(`${r.fitLevel} fit`), c.dim(tps), c.dim(clean(r.bestFor))].filter(Boolean).join(c.dim(' · '));

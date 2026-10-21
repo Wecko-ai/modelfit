@@ -18,6 +18,8 @@
     "ollamaCommand": "ollama run qwen2.5:1.5b-instruct-q4_K_M",
     "notes": "Very light general assistant for constrained devices.",
     "popularityScore": 58,
+    "releaseDate": "2024-09-17",
+    "successor": "qwen3.5-2b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct"
     ]
@@ -42,6 +44,8 @@
     "ollamaCommand": "ollama run qwen2.5:3b-instruct-q4_K_M",
     "notes": "Strong small model with better reasoning than 1.5B.",
     "popularityScore": 64,
+    "releaseDate": "2024-09-17",
+    "successor": "qwen3.5-4b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct"
     ]
@@ -66,6 +70,8 @@
     "ollamaCommand": "ollama run qwen2.5:7b-instruct-q4_K_M",
     "notes": "Balanced option for everyday coding and chat.",
     "popularityScore": 72,
+    "releaseDate": "2024-09-16",
+    "successor": "qwen3-8b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct"
     ]
@@ -90,6 +96,8 @@
     "ollamaCommand": "ollama run qwen2.5:14b-instruct-q4_K_M",
     "notes": "High quality if RAM allows.",
     "popularityScore": 68,
+    "releaseDate": "2024-09-16",
+    "successor": "qwen3-14b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct"
     ]
@@ -113,6 +121,7 @@
     "ollamaCommand": "ollama run llama3.2:3b-instruct-q4_K_M",
     "notes": "Fast assistant with broad ecosystem support.",
     "popularityScore": 72,
+    "releaseDate": "2024-09-18",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct"
     ]
@@ -137,6 +146,7 @@
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q4_K_M",
     "notes": "Reliable default for local assistants.",
     "popularityScore": 78,
+    "releaseDate": "2024-07-18",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
     ]
@@ -161,6 +171,7 @@
     "popularityScore": 78,
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q8_0",
     "notes": "Q8_0 variant of Llama 3.1 8B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Meta-Llama-3.1-8B-Instruct-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2024-07-18",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
     ]
@@ -184,6 +195,7 @@
     "ollamaCommand": "ollama run llama3.1:8b-instruct-q5_K_M",
     "notes": "Higher fidelity at modest speed cost.",
     "popularityScore": 68,
+    "releaseDate": "2024-07-18",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct"
     ]
@@ -208,6 +220,8 @@
     "ollamaCommand": "ollama run llama3.1:70b-instruct-q4_K_M",
     "notes": "Top quality but very hardware heavy.",
     "popularityScore": 62,
+    "releaseDate": "2024-07-16",
+    "successor": "llama3.3-70b",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.1-70B-Instruct"
     ]
@@ -232,6 +246,8 @@
     "ollamaCommand": "ollama run mistral:7b-instruct-v0.3-q4_K_M",
     "notes": "Good all-around quality in a mid-size footprint.",
     "popularityScore": 74,
+    "releaseDate": "2024-05-22",
+    "successor": "ministral-3-8b",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
     ]
@@ -256,6 +272,8 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run mistral:7b-instruct-v0.3-q5_K_M",
     "notes": "Q5_K_M variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2024-05-22",
+    "successor": "ministral-3-8b",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
     ]
@@ -280,6 +298,8 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run mistral:7b-instruct-v0.3-q8_0",
     "notes": "Q8_0 variant of Mistral 7B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-7B-Instruct-v0.3-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2024-05-22",
+    "successor": "ministral-3-8b",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
     ]
@@ -306,6 +326,7 @@
     "notes": "MoE quality boost with large memory demand.",
     "popularityScore": 72,
     "moeActiveB": 13,
+    "releaseDate": "2023-12-10",
     "sources": [
       "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1"
     ]
@@ -330,6 +351,8 @@
     "ollamaCommand": "ollama run mistral-nemo:12b",
     "notes": "Strong multilingual quality at moderate size.",
     "popularityScore": 78,
+    "releaseDate": "2024-07-17",
+    "successor": "ministral-3-14b",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407"
     ]
@@ -354,6 +377,8 @@
     "popularityScore": 78,
     "ollamaCommand": "ollama run mistral-nemo:12b-instruct-2407-q8_0",
     "notes": "Q8_0 variant of Mistral Nemo 12B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Mistral-Nemo-Instruct-2407-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2024-07-17",
+    "successor": "ministral-3-14b",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407"
     ]
@@ -377,6 +402,8 @@
     "ollamaCommand": "ollama run gemma2:2b-instruct-q4_K_M",
     "notes": "Small and very responsive for simple tasks.",
     "popularityScore": 62,
+    "releaseDate": "2024-07-31",
+    "successor": "gemma4-e2b",
     "sources": [
       "https://huggingface.co/google/gemma-2-2b-it"
     ]
@@ -401,6 +428,8 @@
     "ollamaCommand": "ollama run gemma2:9b-instruct-q4_K_M",
     "notes": "High quality on mid-to-high RAM machines.",
     "popularityScore": 68,
+    "releaseDate": "2024-06-24",
+    "successor": "gemma3-12b",
     "sources": [
       "https://huggingface.co/google/gemma-2-9b-it"
     ]
@@ -425,6 +454,8 @@
     "ollamaCommand": "ollama run gemma2:27b-instruct-q4_K_M",
     "notes": "Excellent output quality with high memory cost.",
     "popularityScore": 58,
+    "releaseDate": "2024-06-24",
+    "successor": "gemma3-27b",
     "sources": [
       "https://huggingface.co/google/gemma-2-27b-it"
     ]
@@ -448,6 +479,8 @@
     "ollamaCommand": "ollama run phi3:3.8b-mini-4k-instruct-q4_K_M",
     "notes": "Fast and surprisingly capable coding assistant.",
     "popularityScore": 64,
+    "releaseDate": "2024-04-22",
+    "successor": "phi4-mini-3.8b",
     "sources": [
       "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct"
     ]
@@ -472,6 +505,8 @@
     "ollamaCommand": "ollama run phi3:14b-medium-4k-instruct-q4_K_M",
     "notes": "Very strong coding quality on capable systems.",
     "popularityScore": 58,
+    "releaseDate": "2024-05-07",
+    "successor": "phi4-14b",
     "sources": [
       "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct"
     ]
@@ -496,6 +531,7 @@
     "ollamaCommand": "ollama run phi4:14b-q4_K_M",
     "notes": "High reasoning quality with slower throughput.",
     "popularityScore": 64,
+    "releaseDate": "2024-12-11",
     "sources": [
       "https://huggingface.co/microsoft/phi-4"
     ]
@@ -520,6 +556,7 @@
     "popularityScore": 64,
     "ollamaCommand": "ollama run phi4:14b-q8_0",
     "notes": "Q8_0 variant of Phi-4 14B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Phi-4-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2024-12-11",
     "sources": [
       "https://huggingface.co/microsoft/phi-4"
     ]
@@ -543,6 +580,7 @@
     "ollamaCommand": "ollama run qwen2.5-coder:7b",
     "notes": "Code-focused balance of speed and quality.",
     "popularityScore": 72,
+    "releaseDate": "2024-09-17",
     "sources": [
       "https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct"
     ]
@@ -566,6 +604,7 @@
     "ollamaCommand": "ollama run qwen2.5-coder:14b",
     "notes": "Great code generation for higher-memory machines.",
     "popularityScore": 68,
+    "releaseDate": "2024-11-06",
     "sources": [
       "https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct"
     ]
@@ -589,6 +628,7 @@
     "ollamaCommand": "ollama run llama3.2:1b-instruct-q4_K_M",
     "notes": "Ultra-fast baseline model for lightweight tasks.",
     "popularityScore": 60,
+    "releaseDate": "2024-09-18",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct"
     ]
@@ -613,6 +653,8 @@
     "ollamaCommand": "ollama run mistral-small:22b",
     "notes": "Strong quality for advanced local use.",
     "popularityScore": 61,
+    "releaseDate": "2024-09-17",
+    "successor": "mistral-small-3.1",
     "sources": [
       "https://huggingface.co/mistralai"
     ]
@@ -759,6 +801,8 @@
     "ollamaCommand": "ollama run qwen2.5:0.5b-instruct-q4_K_M",
     "notes": "Ultra-lightweight model used in Keiro, ideal for mobile devices.",
     "popularityScore": 62,
+    "releaseDate": "2024-09-16",
+    "successor": "qwen3.5-0.8b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct"
     ]
@@ -783,6 +827,7 @@
     "ollamaCommand": "ollama run gemma3:1b",
     "notes": "Latest Gemma generation with improved efficiency for mobile use.",
     "popularityScore": 78,
+    "releaseDate": "2025-03-10",
     "sources": [
       "https://huggingface.co/google/gemma-3-1b-it"
     ]
@@ -807,6 +852,7 @@
     "popularityScore": 78,
     "ollamaCommand": "ollama run gemma3:1b-it-q8_0",
     "notes": "Q8_0 variant of Gemma 3 1B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/gemma-3-1b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-03-10",
     "sources": [
       "https://huggingface.co/google/gemma-3-1b-it"
     ]
@@ -830,6 +876,7 @@
     "ollamaCommand": "ollama run phi4-mini:3.8b",
     "notes": "Latest Phi-4 mini variant with enhanced reasoning capabilities.",
     "popularityScore": 75,
+    "releaseDate": "2025-02-19",
     "sources": [
       "https://huggingface.co/microsoft/Phi-4-mini-instruct"
     ]
@@ -853,6 +900,7 @@
     "popularityScore": 75,
     "ollamaCommand": "ollama run phi4-mini:3.8b-q8_0",
     "notes": "Q8_0 variant of Phi-4 Mini 3.8B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Phi-4-mini-instruct-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-02-19",
     "sources": [
       "https://huggingface.co/microsoft/Phi-4-mini-instruct"
     ]
@@ -876,6 +924,7 @@
     "ollamaCommand": "ollama run smollm2:360m",
     "notes": "Extremely lightweight model for embedded devices and IoT.",
     "popularityScore": 65,
+    "releaseDate": "2024-10-31",
     "sources": [
       "https://huggingface.co/HuggingFaceTB/SmolLM2-360M-Instruct"
     ]
@@ -900,6 +949,7 @@
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q4_K_M",
     "notes": "Latest Llama 3.3 with improved reasoning and coding capabilities.",
     "popularityScore": 82,
+    "releaseDate": "2024-11-26",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
     ]
@@ -926,6 +976,8 @@
     "popularityScore": 75,
     "ollamaCommand": "ollama run llama3.1:405b-instruct-q4_K_M",
     "notes": "Requires 256GB+ RAM. Best for Mac Studio M3 Ultra and Mac Pro with large memory.",
+    "releaseDate": "2024-07-16",
+    "successor": "llama4-maverick",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct"
     ]
@@ -953,6 +1005,7 @@
     "ollamaCommand": "ollama run deepseek-r1:671b-q4_K_M",
     "notes": "Requires 400GB+ RAM. Runs on Mac Studio M3 Ultra 512GB only.",
     "moeActiveB": 37,
+    "releaseDate": "2025-01-20",
     "sources": [
       "https://huggingface.co/deepseek-ai/DeepSeek-R1"
     ]
@@ -977,6 +1030,8 @@
     "ollamaCommand": "ollama run qwen3:8b-q4_K_M",
     "notes": "Latest Qwen3 generation with enhanced reasoning.",
     "popularityScore": 88,
+    "releaseDate": "2025-04-27",
+    "successor": "qwen3.5-9b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-8B"
     ]
@@ -1001,6 +1056,8 @@
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3:8b-q8_0",
     "notes": "Q8_0 variant of Qwen3 8B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3-8B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-04-27",
+    "successor": "qwen3.5-9b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-8B"
     ]
@@ -1025,6 +1082,7 @@
     "ollamaCommand": "ollama run qwen3:14b-q4_K_M",
     "notes": "Mid-range Qwen3 with excellent coding performance.",
     "popularityScore": 84,
+    "releaseDate": "2025-04-27",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-14B"
     ]
@@ -1051,6 +1109,8 @@
     "notes": "Large Qwen3 variant for high-quality outputs.",
     "popularityScore": 78,
     "moeActiveB": 3,
+    "releaseDate": "2025-04-27",
+    "successor": "qwen3.5-35b-a3b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-30B-A3B"
     ]
@@ -1077,6 +1137,8 @@
     "popularityScore": 78,
     "ollamaCommand": "ollama run qwen3:30b-a3b-q8_0",
     "notes": "Q8_0 variant of Qwen3 30B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3-30B-A3B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-04-27",
+    "successor": "qwen3.5-35b-a3b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-30B-A3B"
     ]
@@ -1100,6 +1162,8 @@
     "ollamaCommand": "ollama run gemma3:4b",
     "notes": "Latest Gemma3 with improved reasoning and efficiency.",
     "popularityScore": 81,
+    "releaseDate": "2025-03-10",
+    "successor": "gemma4-e4b",
     "sources": [
       "https://huggingface.co/google/gemma-3-4b-it"
     ]
@@ -1123,6 +1187,8 @@
     "popularityScore": 81,
     "ollamaCommand": "ollama run gemma3:4b-it-q8_0",
     "notes": "Q8_0 variant of Gemma 3 4B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/gemma-3-4b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-03-10",
+    "successor": "gemma4-e4b",
     "sources": [
       "https://huggingface.co/google/gemma-3-4b-it"
     ]
@@ -1147,6 +1213,8 @@
     "ollamaCommand": "ollama run gemma3:12b",
     "notes": "Mid-range Gemma3 with balanced performance.",
     "popularityScore": 76,
+    "releaseDate": "2025-03-10",
+    "successor": "gemma4-12b",
     "sources": [
       "https://huggingface.co/google/gemma-3-12b-it"
     ]
@@ -1171,6 +1239,8 @@
     "ollamaCommand": "ollama run gemma3:27b",
     "notes": "Large Gemma3 variant with excellent output quality.",
     "popularityScore": 71,
+    "releaseDate": "2025-03-10",
+    "successor": "gemma4-31b",
     "sources": [
       "https://huggingface.co/google/gemma-3-27b-it"
     ]
@@ -1195,6 +1265,7 @@
     "ollamaCommand": "ollama run deepseek-r1:7b",
     "notes": "Distilled DeepSeek-R1 reasoning model based on Qwen.",
     "popularityScore": 68,
+    "releaseDate": "2025-01-20",
     "sources": [
       "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
     ]
@@ -1219,6 +1290,7 @@
     "popularityScore": 68,
     "ollamaCommand": "ollama run deepseek-r1:7b-qwen-distill-q8_0",
     "notes": "Q8_0 variant of DeepSeek-R1 Distill Qwen 7B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/DeepSeek-R1-Distill-Qwen-7B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-01-20",
     "sources": [
       "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
     ]
@@ -1243,6 +1315,7 @@
     "ollamaCommand": "ollama run deepseek-r1:14b",
     "notes": "Larger distilled DeepSeek-R1 with enhanced reasoning capabilities.",
     "popularityScore": 66,
+    "releaseDate": "2025-01-20",
     "sources": [
       "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
     ]
@@ -1267,6 +1340,7 @@
     "popularityScore": 66,
     "ollamaCommand": "ollama run deepseek-r1:14b-qwen-distill-q8_0",
     "notes": "Q8_0 variant of DeepSeek-R1 Distill Qwen 14B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-01-20",
     "sources": [
       "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
     ]
@@ -1291,6 +1365,7 @@
     "ollamaCommand": "ollama run deepseek-r1:70b",
     "notes": "Large distilled DeepSeek-R1 for maximum reasoning quality.",
     "popularityScore": 60,
+    "releaseDate": "2025-01-20",
     "sources": [
       "https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-70B"
     ]
@@ -1515,6 +1590,7 @@
     "notes": "Massive MoE model with 22B active parameters. Requires 192GB+ RAM.",
     "popularityScore": 85,
     "moeActiveB": 22,
+    "releaseDate": "2025-04-27",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-235B-A22B"
     ]
@@ -1540,6 +1616,7 @@
     "ollamaCommand": "ollama run mistral-small3.1:24b",
     "notes": "Mistral Small 3.1, latest iteration with improved efficiency. Runs locally on 24GB+ RAM.",
     "popularityScore": 70,
+    "releaseDate": "2025-03-11",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503"
     ]
@@ -1564,6 +1641,7 @@
     "popularityScore": 70,
     "ollamaCommand": "ollama run mistral-small3.1:24b-instruct-2503-q8_0",
     "notes": "Q8_0 variant of Mistral Small 3.1. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Mistral-Small-3.1-24B-Instruct-2503-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2025-03-11",
     "sources": [
       "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503"
     ]
@@ -1642,6 +1720,7 @@
     "ollamaCommand": "ollama run qwen3.5:0.8b",
     "notes": "Ultra-light Qwen3.5 with native multimodal. 262K context. Ideal for mobile and IoT edge devices.",
     "kvKbPerToken": 12,
+    "releaseDate": "2026-02-28",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-0.8B"
     ]
@@ -1667,6 +1746,7 @@
     "ollamaCommand": "ollama run qwen3.5:2b",
     "notes": "Fast small Qwen3.5 with native multimodal and 262K context. Great for edge tasks and quick chat.",
     "kvKbPerToken": 12,
+    "releaseDate": "2026-02-28",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-2B"
     ]
@@ -1692,6 +1772,7 @@
     "ollamaCommand": "ollama run qwen3.5:4b",
     "notes": "88.8 MMLU-Redux beats 20B-class models. Native multimodal, 262K context. Best quality-per-GB ratio in its class.",
     "kvKbPerToken": 32,
+    "releaseDate": "2026-02-27",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-4B"
     ]
@@ -1717,6 +1798,7 @@
     "popularityScore": 88,
     "ollamaCommand": "ollama run qwen3.5:4b-q8_0",
     "notes": "Q8_0 variant of Qwen3.5 4B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3.5-4B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2026-02-27",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-4B"
     ]
@@ -1743,6 +1825,7 @@
     "ollamaCommand": "ollama run qwen3.5:9b",
     "notes": "91.1 MMLU-Redux rivals 30B+ models. Native multimodal, 262K context. Near-frontier quality under 10GB RAM.",
     "kvKbPerToken": 32,
+    "releaseDate": "2026-02-27",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-9B"
     ]
@@ -1771,6 +1854,8 @@
     "notes": "MoE model (35B total, 3B active). Surpasses Qwen3-235B-A22B. Runs on 24GB Mac/RAM. Better architecture beats bigger parameter counts.",
     "moeActiveB": 3,
     "kvKbPerToken": 20,
+    "releaseDate": "2026-02-24",
+    "successor": "qwen3.6-35b-a3b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-35B-A3B"
     ]
@@ -1796,6 +1881,8 @@
     "ollamaCommand": "ollama run qwen3.5:27b",
     "notes": "Mid-size model narrowing the gap between medium and frontier models. Excellent for complex agent scenarios.",
     "kvKbPerToken": 64,
+    "releaseDate": "2026-02-24",
+    "successor": "qwen3.6-27b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-27B"
     ]
@@ -1821,6 +1908,8 @@
     "popularityScore": 82,
     "ollamaCommand": "ollama run qwen3.5:27b-q8_0",
     "notes": "Q8_0 variant of Qwen3.5 27B Instruct. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/Qwen_Qwen3.5-27B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2026-02-24",
+    "successor": "qwen3.6-27b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-27B"
     ]
@@ -1849,6 +1938,7 @@
     "notes": "MoE model (122B total, 10B active). Closes the gap between medium-sized and frontier models. Best for complex agent scenarios. Requires high-end Mac Studio.",
     "moeActiveB": 10,
     "kvKbPerToken": 24,
+    "releaseDate": "2026-02-24",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-122B-A10B"
     ]
@@ -1876,6 +1966,7 @@
     "ollamaCommand": "ollama run lfm2:24b-a2b",
     "notes": "LiquidAI flagship hybrid MoE (24B total, 2.3B active per the model card). Powers the LocalCowork open-source agent app over MCP. 112 tok/s on AMD CPU, 293 tok/s on H100, per LiquidAI. Requires 16GB+ unified memory. Best for privacy-sensitive enterprise workflows with zero cloud.",
     "moeActiveB": 2,
+    "releaseDate": "2026-02-24",
     "sources": [
       "https://huggingface.co/LiquidAI/LFM2-24B-A2B"
     ]
@@ -1903,6 +1994,7 @@
     "ollamaCommand": "ollama run lfm2.5:8b-a1b-q4_K_M",
     "notes": "LiquidAI hybrid conv+GQA model (8.3B total, 1.5B active per token). IFEval 91.84, MATH500 88.76 per official HF model card. 128K context, native tool calling, 10 languages. ~5 GB at Q4_K_M, runs on most Apple Silicon Macs. Not its strongest area: heavy coding.",
     "moeActiveB": 1.5,
+    "releaseDate": "2026-05-28",
     "sources": [
       "https://huggingface.co/LiquidAI/LFM2.5-8B-A1B"
     ]
@@ -1928,6 +2020,8 @@
     "popularityScore": 56,
     "ollamaCommand": "ollama run granite4.1:3b",
     "notes": "IBM dense 3B (June 2026), Apache 2.0. MMLU 67.02 per IBM model card. 131K context, 12 languages. Safe pick for any Apple Silicon Mac, including 8 GB machines.",
+    "releaseDate": "2026-04-06",
+    "successor": "granite4.2-3b",
     "sources": [
       "https://huggingface.co/ibm-granite/granite-4.1-3b"
     ]
@@ -1953,6 +2047,8 @@
     "popularityScore": 62,
     "ollamaCommand": "ollama run granite4.1:8b",
     "notes": "IBM dense 8B (June 2026), Apache 2.0. MMLU 73.84 per IBM model card. 131K context, OpenAI-style tool calling, 12 languages. Safe general-purpose pick for a 16GB Mac.",
+    "releaseDate": "2026-04-06",
+    "successor": "granite4.2-8b",
     "sources": [
       "https://huggingface.co/ibm-granite/granite-4.1-8b"
     ]
@@ -1979,6 +2075,8 @@
     "ollamaCommand": "ollama run qwen3.6:27b",
     "notes": "Apr 2026 flagship dense Qwen. 262K context, extensible to 1M. SWE-Bench Verified 77.2, MMLU-Pro 86.2 per Qwen's model card. Apache 2.0. Strongest dense open-weight coder ModelFit tracks at this size.",
     "kvKbPerToken": 64,
+    "releaseDate": "2026-04-21",
+    "successor": "qwen3.8-27b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.6-27B"
     ]
@@ -2006,6 +2104,7 @@
     "ollamaCommand": "ollama run qwen3.8:27b",
     "notes": "Aug 2026 flagship dense Qwen with native vision-language. Apache 2.0. 262K context, extensible to 1M. MTP decoding. Terminal Bench 2.1 73.0, SWE-bench Pro 61.7 per Qwen card.",
     "kvKbPerToken": 64,
+    "releaseDate": "2026-08-05",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.8-27B",
       "https://huggingface.co/bartowski/Qwen3.8-27B-GGUF",
@@ -2035,6 +2134,7 @@
     "popularityScore": 95,
     "ollamaCommand": "ollama run qwen3.8:27b-q8_0",
     "notes": "Q8_0 variant of Qwen3.8 27B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the unsloth/Qwen3.8-27B-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2026-08-05",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.8-27B",
       "https://huggingface.co/bartowski/Qwen3.8-27B-GGUF",
@@ -2065,6 +2165,7 @@
     "notes": "Apr 2026 MoE (35B total, 3B active). Successor to Qwen3.5-35B-A3B with better reasoning and tool calling. 262K context. MoE routing keeps decode fast for its size on Apple Silicon.",
     "moeActiveB": 3,
     "kvKbPerToken": 20,
+    "releaseDate": "2026-04-15",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
     ]
@@ -2090,6 +2191,7 @@
     "popularityScore": 84,
     "ollamaCommand": "ollama run gemma4:31b",
     "notes": "Apr 2, 2026 release from Google DeepMind. Dense 31B. MMLU-Pro 85.2, GPQA Diamond 84.3. Apache 2.0. Multimodal text+image.",
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-31B"
     ]
@@ -2115,6 +2217,7 @@
     "popularityScore": 84,
     "ollamaCommand": "ollama run gemma4:31b-it-q8_0",
     "notes": "Q8_0 variant of Gemma 4 31B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-31b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-31B"
     ]
@@ -2142,6 +2245,7 @@
     "ollamaCommand": "ollama run gemma4:26b",
     "notes": "Apr 2026 MoE, named 26B-A4B but 25.2B total / 3.8B active per Google's spec table. MMLU-Pro 82.6, GPQA Diamond 82.3. Apache 2.0. Strong throughput on 24GB Mac via MLX.",
     "moeActiveB": 4,
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-26B-A4B"
     ]
@@ -2166,6 +2270,7 @@
     "popularityScore": 82,
     "ollamaCommand": "ollama run gemma4:e4b",
     "notes": "Apr 2026 on-device Gemma 4 with Per-Layer Embeddings. 4.5B effective params. Runs on 8GB Macs and high-end iPhones. Apache 2.0.",
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-E4B"
     ]
@@ -2190,6 +2295,7 @@
     "popularityScore": 82,
     "ollamaCommand": "ollama run gemma4:e4b-it-q8_0",
     "notes": "Q8_0 variant of Gemma 4 E4B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-e4b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-E4B"
     ]
@@ -2213,6 +2319,7 @@
     "popularityScore": 76,
     "ollamaCommand": "ollama run gemma4:e2b",
     "notes": "Apr 2026 ultra-light Gemma 4. 2.3B effective params per Google's card. Among the fastest builds in the 2026 batch on Apple Silicon. iPhone-class device target.",
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-26B-A4B"
     ]
@@ -2236,6 +2343,7 @@
     "popularityScore": 76,
     "ollamaCommand": "ollama run gemma4:e2b-it-q8_0",
     "notes": "Q8_0 variant of Gemma 4 E2B. Heavier build, higher precision than the Q4 default; file size is the real GGUF from the bartowski/google_gemma-4-e2b-it-GGUF Hugging Face repo. Ollama tag registry-verified.",
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-26B-A4B"
     ]
@@ -2264,6 +2372,7 @@
     "ollamaCommand": "ollama run llama4:scout",
     "notes": "Meta Llama 4 Scout: 109B total, 17B active MoE. 10M context. Multimodal. Best run on Mac Studio 96GB+ or 128GB.",
     "moeActiveB": 17,
+    "releaseDate": "2025-04-02",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
     ]
@@ -2292,6 +2401,7 @@
     "ollamaCommand": "ollama run llama4:maverick",
     "notes": "Meta Llama 4 Maverick: 400B total, 17B active MoE. 1M context. Multimodal. Requires Mac Studio M3 Ultra 256GB+ for local.",
     "moeActiveB": 17,
+    "releaseDate": "2025-04-01",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-4-Maverick-17B-128E-Instruct"
     ]
@@ -2615,6 +2725,7 @@
     "popularityScore": 80,
     "ollamaCommand": "ollama run gemma4:12b",
     "notes": "Jun 3, 2026 Google DeepMind release. Unified encoder-free dense 12B, multimodal (text/image/audio), 256K context. MMLU-Pro 77.2, GPQA Diamond 78.8, LiveCodeBench v6 72.0. Beats Gemma 3 27B and runs comfortably on a 16GB Mac. Open weights.",
+    "releaseDate": "2026-06-03",
     "sources": [
       "https://huggingface.co/google/gemma-4-12b"
     ]
@@ -2833,6 +2944,8 @@
     "ollamaCommand": "ollama run nemotron-cascade-2:30b",
     "notes": "NVIDIA release (Mar 19, 2026; Ollama tag added Jun 2026). 30B MoE with 3B active params, 256K context, thinking + instruct modes. Gold-medal performance at the 2025 IMO and IOI (IOI score 439.3) per NVIDIA's model card. The :30b tag ships ~24GB (Q6_K), so it wants a 32GB machine.",
     "moeActiveB": 3,
+    "kvKbPerToken": 6,
+    "releaseDate": "2026-03-18",
     "sources": [
       "https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B"
     ]
@@ -2859,6 +2972,8 @@
     "ollamaCommand": "ollama run laguna-xs.2:q4_K_M",
     "notes": "Poolside AI open-weight (Apache 2.0) coding model, June 2026. 33B MoE / 3B active, 128K context. Per Poolside's model card: SWE-bench Verified 69.9%, SWE-bench Multilingual 57.7%, SWE-bench Pro 46.3%, Terminal-Bench 2.0 35.7%. Coding specialist (not a general chat model).",
     "moeActiveB": 3,
+    "releaseDate": "2026-04-23",
+    "successor": "laguna-xs-2.1",
     "sources": [
       "https://huggingface.co/poolside/Laguna-XS.2"
     ]
@@ -2885,6 +3000,7 @@
     "ollamaCommand": "ollama run north-mini-code-1.0:q4_K_M",
     "notes": "Cohere's first developer-focused model (Jun 11, 2026), Apache 2.0. 30B MoE / 3B active, 256K context, up to 64K output, per Cohere's model card. Coding specialist (not a general chat model).",
     "moeActiveB": 3,
+    "releaseDate": "2026-06-05",
     "sources": [
       "https://huggingface.co/CohereLabs/North-Mini-Code-1.0"
     ]
@@ -2912,6 +3028,7 @@
     "popularityScore": 88,
     "ollamaCommand": "ollama run gpt-oss:120b",
     "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 117B total, 5.1B active per token (per official HF card). Native MXFP4, 65GB via Ollama, strong reasoning and tool use on 96GB+ machines.",
+    "releaseDate": "2025-08-04",
     "sources": [
       "https://huggingface.co/openai/gpt-oss-120b"
     ]
@@ -2938,6 +3055,7 @@
     "popularityScore": 85,
     "ollamaCommand": "ollama run gpt-oss:20b",
     "notes": "OpenAI open-weight MoE (Aug 2025), Apache 2.0: 21B total, 3.6B active per token (per official HF card). Native MXFP4, 14GB via Ollama, fits 24GB machines with headroom.",
+    "releaseDate": "2025-08-04",
     "sources": [
       "https://huggingface.co/openai/gpt-oss-20b"
     ]
@@ -2966,6 +3084,7 @@
     "ollamaCommand": "ollama run qwen3-next:80b",
     "notes": "Qwen hybrid-attention MoE (Sep 2025): 80B total, 3B activated (per official HF card). 50GB via Ollama, the sweet spot for 72-96GB workstations and Macs.",
     "kvKbPerToken": 24,
+    "releaseDate": "2025-09-09",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct"
     ]
@@ -2994,6 +3113,7 @@
     "notes": "Q8_0 higher precision variant of Qwen3.6 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the larger 38.7GB weight file. Tag registry-verified 200 on the ollama.ai manifest API.",
     "moeActiveB": 3,
     "kvKbPerToken": 20,
+    "releaseDate": "2026-04-15",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
     ]
@@ -3022,6 +3142,8 @@
     "notes": "Q8_0 higher precision variant of Qwen3.5 35B-A3B, near lossless quality versus the Q4 default. Prefer it with 64GB or more RAM headroom for the 38.7GB weight file. Tag registry-verified 200.",
     "moeActiveB": 3,
     "kvKbPerToken": 20,
+    "releaseDate": "2026-02-24",
+    "successor": "qwen3.6-35b-a3b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-35B-A3B"
     ]
@@ -3048,6 +3170,7 @@
     "ollamaCommand": "ollama run qwen3.5:9b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.5 9B, near lossless quality versus the Q4 default. Prefer it on 16GB or more RAM where the 10.7GB weight file still leaves headroom. Tag registry-verified 200.",
     "kvKbPerToken": 32,
+    "releaseDate": "2026-02-27",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.5-9B"
     ]
@@ -3074,6 +3197,8 @@
     "ollamaCommand": "ollama run qwen3.6:27b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3.6 27B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 30GB weight file. Tag registry-verified 200.",
     "kvKbPerToken": 64,
+    "releaseDate": "2026-04-21",
+    "successor": "qwen3.8-27b",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.6-27B"
     ]
@@ -3099,6 +3224,7 @@
     "popularityScore": 80,
     "ollamaCommand": "ollama run gemma4:12b-it-q8_0",
     "notes": "Q8_0 higher precision variant of Gemma 4 12B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 12.8GB weight file. Tag registry-verified 200.",
+    "releaseDate": "2026-06-03",
     "sources": [
       "https://huggingface.co/google/gemma-4-12b"
     ]
@@ -3126,6 +3252,7 @@
     "ollamaCommand": "ollama run gemma4:26b-a4b-it-q8_0",
     "notes": "Q8_0 higher precision variant of Gemma 4 26B-A4B, near lossless quality versus the Q4 default. Prefer it with 48GB or more RAM headroom for the 28.1GB weight file. Tag registry-verified 200.",
     "moeActiveB": 4,
+    "releaseDate": "2026-03-31",
     "sources": [
       "https://huggingface.co/google/gemma-4-26B-A4B"
     ]
@@ -3154,6 +3281,7 @@
     "ollamaCommand": "ollama run qwen3-next:80b-a3b-instruct-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3-Next 80B-A3B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 84.8GB weight file still leaves headroom. Tag registry-verified 200.",
     "kvKbPerToken": 24,
+    "releaseDate": "2025-09-09",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Instruct"
     ]
@@ -3178,6 +3306,7 @@
     "popularityScore": 84,
     "ollamaCommand": "ollama run qwen3:14b-q8_0",
     "notes": "Q8_0 higher precision variant of Qwen3 14B, near lossless quality versus the Q4 default. Prefer it with 24GB or more RAM headroom for the 15.9GB weight file. Tag registry-verified 200.",
+    "releaseDate": "2025-04-27",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3-14B"
     ]
@@ -3202,6 +3331,7 @@
     "popularityScore": 82,
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q8_0",
     "notes": "Q8_0 higher precision variant of Llama 3.3 70B, near lossless quality versus the Q4 default. Prefer it on 128GB or more workstations where the 75GB weight file still leaves headroom. Tag registry-verified 200.",
+    "releaseDate": "2024-11-26",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
     ]
@@ -3226,6 +3356,7 @@
     "popularityScore": 82,
     "ollamaCommand": "ollama run llama3.3:70b-instruct-q6_K",
     "notes": "Q6_K middle ground variant of Llama 3.3 70B, between the Q4 default and the near lossless Q8 sibling. Prefer it on 96GB or more workstations where the 57.9GB weight file balances quality against RAM cost. Tag registry-verified 200.",
+    "releaseDate": "2024-11-26",
     "sources": [
       "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
     ]
@@ -3279,6 +3410,7 @@
     "ollamaCommand": "ollama run laguna-xs-2.1:q4_K_M",
     "moeActiveB": 3,
     "notes": "Jul 2026 MoE from poolside (33B total, 3B active) built for agentic coding and long-horizon work on local machines. Fast decode for its size thanks to the small active set.",
+    "releaseDate": "2026-06-20",
     "sources": [
       "https://huggingface.co/poolside/Laguna-XS-2.1"
     ]
@@ -3305,6 +3437,7 @@
     "ollamaCommand": "ollama run laguna-s-2.1:q4_K_M",
     "moeActiveB": 8,
     "notes": "Jul 2026 flagship coding MoE from poolside (118B total, 8B active), aimed at long-horizon agentic work. Q4 load fills a 128GB machine; the largest open coding model with a native Ollama library tag.",
+    "releaseDate": "2026-07-13",
     "sources": [
       "https://huggingface.co/poolside/Laguna-S-2.1"
     ]
@@ -3328,6 +3461,7 @@
     "popularityScore": 76,
     "ollamaCommand": "ollama run ornith:9b",
     "notes": "Jul 2026 self-improving agentic coder from Deep Reinforce (MIT), post-trained on top of Gemma 4 and Qwen 3.5. Publisher reports coding-agent results near 35B-class models; a standout pick for 16GB Macs.",
+    "releaseDate": "2026-06-21",
     "sources": [
       "https://huggingface.co/deepreinforce-ai/Ornith-1.0-9B"
     ]
@@ -3352,6 +3486,7 @@
     "popularityScore": 72,
     "ollamaCommand": "ollama run ornith:35b",
     "notes": "Jul 2026 MoE member of the Ornith agentic-coding family (MIT), sized for single-GPU and 32GB-Mac deployment. Publisher claims state-of-the-art coding-agent results among open models of its size.",
+    "releaseDate": "2026-06-21",
     "sources": [
       "https://huggingface.co/deepreinforce-ai/Ornith-1.0-35B"
     ]
@@ -3380,6 +3515,67 @@
     "qualityScore": 92,
     "popularityScore": 70,
     "notes": "Qwen4 architecture preview (Aug 26, 2026), open weights under Qwen Community License 1.0. 125B params with 6B activated (512 experts, 10 routed + 1 shared), PLUS a 51B n-gram embedding table and 4B MTP layer, so GGUFs are larger than the active count suggests. Hybrid Gated DeltaNet + Qwen Sparse Attention. Native 262K context, extensible to 1M. Vision encoder. No Ollama tag; mainline llama.cpp runs it (qwen4exp architecture). The unsloth UD-Q4_K_XL GGUF is about 111 GB (192GB machine); UD-IQ4_XS at about 94 GB fits 128GB. Production API version: Qwen3.8-Flash on Qwen Cloud (1M context default).",
+    "releaseDate": "2026-08-24",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF"
+    ]
+  },
+  {
+    "id": "qwen3.8-flash-next-q4xs",
+    "name": "Qwen3.8-Flash-Next (IQ4_XS)",
+    "family": "Qwen",
+    "sizeB": 125,
+    "moeActiveB": 6,
+    "quantization": "IQ4_XS",
+    "minRamGb": 128,
+    "estimatedLoadGb": 93.7,
+    "bestFor": "Agentic coding, Reasoning, Multimodal",
+    "publisherTier": "top",
+    "tags": [
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "frontier",
+      "multimodal",
+      "chat"
+    ],
+    "speedScore": 57,
+    "qualityScore": 91,
+    "popularityScore": 70,
+    "notes": "IQ4_XS variant of Qwen3.8-Flash-Next: the unsloth UD-IQ4_XS GGUF is about 94 GB, so it fits a 128GB machine where the Q4_K_XL default (about 111 GB) does not. Slightly lower precision than the Q4_K_XL build. No Ollama tag; mainline llama.cpp runs it (qwen4exp architecture).",
+    "releaseDate": "2026-08-24",
+    "sources": [
+      "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
+      "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF"
+    ]
+  },
+  {
+    "id": "qwen3.8-flash-next-q3",
+    "name": "Qwen3.8-Flash-Next (Q3)",
+    "family": "Qwen",
+    "sizeB": 125,
+    "moeActiveB": 6,
+    "quantization": "Q3_K_XL",
+    "minRamGb": 128,
+    "estimatedLoadGb": 90,
+    "bestFor": "Agentic coding, Reasoning, Multimodal",
+    "publisherTier": "top",
+    "tags": [
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "frontier",
+      "multimodal",
+      "chat"
+    ],
+    "speedScore": 58,
+    "qualityScore": 89,
+    "popularityScore": 70,
+    "notes": "Q3_K_XL variant of Qwen3.8-Flash-Next: the unsloth UD-Q3_K_XL GGUF is about 90 GB, so it fits a 128GB machine with more room left for context than the IQ4_XS build. Expect more quality loss than the 4-bit builds. No Ollama tag; mainline llama.cpp runs it (qwen4exp architecture).",
+    "releaseDate": "2026-08-24",
     "sources": [
       "https://huggingface.co/Qwen/Qwen3.8-Flash-Next",
       "https://huggingface.co/unsloth/Qwen3.8-Flash-Next-GGUF"
@@ -3435,6 +3631,7 @@
     "popularityScore": 64,
     "ollamaCommand": "ollama run granite4.2:3b",
     "notes": "IBM Granite 4.2 small instruct model (Aug 2026), Apache 2.0. Dense 3.7B with 131K context. Ollama pull is about 2 GB; runs on anything. Tag registry-verified.",
+    "releaseDate": "2026-08-07",
     "sources": [
       "https://huggingface.co/ibm-granite/granite-4.2-3b"
     ]
@@ -3459,6 +3656,7 @@
     "popularityScore": 66,
     "ollamaCommand": "ollama run granite4.2:8b",
     "notes": "IBM Granite 4.2 mid-size instruct model (Aug 2026), Apache 2.0. Dense 8.8B with 131K context. Ollama pull about 5 GB, comfortable on 8GB machines. Tag registry-verified.",
+    "releaseDate": "2026-08-07",
     "sources": [
       "https://huggingface.co/ibm-granite/granite-4.2-8b"
     ]
@@ -3484,6 +3682,7 @@
     "popularityScore": 66,
     "ollamaCommand": "ollama run granite4.2:30b",
     "notes": "IBM Granite 4.2 flagship dense model (Aug 2026), Apache 2.0. 29B with 131K context. The :30b pull is listed at 18GB on the Ollama library page, so it wants a 24GB machine. Tag registry-verified.",
+    "releaseDate": "2026-08-07",
     "sources": [
       "https://huggingface.co/ibm-granite/granite-4.2-30b",
       "https://ollama.com/library/granite4.2:30b"
@@ -3498,7 +3697,7 @@
     "kvKbPerToken": 6,
     "quantization": "Q4_K_M",
     "minRamGb": 36,
-    "estimatedLoadGb": 23.7,
+    "estimatedLoadGb": 25.4,
     "bestFor": "Agentic, Coding, Long context",
     "publisherTier": "major",
     "tags": [
@@ -3512,9 +3711,39 @@
     "qualityScore": 86,
     "popularityScore": 78,
     "ollamaCommand": "ollama run nemotron-3.5-lightning:30b",
-    "notes": "NVIDIA hybrid Mamba-MoE (Aug 2026): 30B total with 3B active, 52 layers of which only 6 are full attention (2 KV heads), so KV-cache is a fraction of a dense 30B and context scales to 1M tokens. NVFP4 official build; the Ollama :30b pull is about 24 GB and wants a 36GB machine. Tag registry-verified.",
+    "notes": "NVIDIA hybrid Mamba-MoE (Aug 2026): 30B total with 3B active, 52 layers of which only 6 are full attention (2 KV heads), so KV-cache is a fraction of a dense 30B and context scales to 1M tokens. The Ollama :30b pull is a Q4_K_M GGUF of about 25 GB (registry manifest), so it wants a 36GB machine; the config comes from NVIDIA's NVFP4 repo. Tag registry-verified.",
+    "releaseDate": "2026-08-04",
     "sources": [
       "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4"
+    ]
+  },
+  {
+    "id": "nemotron-3.5-lightning-30b-q4xs",
+    "name": "Nemotron 3.5 Lightning 30B-A3B (IQ4_XS)",
+    "family": "Nemotron",
+    "sizeB": 30,
+    "moeActiveB": 3,
+    "kvKbPerToken": 6,
+    "quantization": "IQ4_XS",
+    "minRamGb": 32,
+    "estimatedLoadGb": 18.9,
+    "bestFor": "Agentic, Coding, Long context",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 91,
+    "qualityScore": 85,
+    "popularityScore": 78,
+    "notes": "IQ4_XS variant of Nemotron 3.5 Lightning 30B-A3B: the bartowski IQ4_XS GGUF is about 19 GB, so it fits a 32GB machine where the Ollama :30b pull (about 25 GB) wants 36GB. Slightly lower precision than Q4_K_M. No Ollama tag for this build; runs through llama.cpp.",
+    "releaseDate": "2026-08-04",
+    "sources": [
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+      "https://huggingface.co/bartowski/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF"
     ]
   },
   {
@@ -3536,6 +3765,7 @@
     "popularityScore": 55,
     "ollamaCommand": "ollama run muse-glimmer:30b",
     "notes": "Community 30B general chat model (Aug 2026, meta-models org on Hugging Face). Limited public evaluation data; treat quality as unverified. Ollama pull about 17 GB, fits a 24GB machine. Tag registry-verified.",
+    "releaseDate": "2026-08-09",
     "sources": [
       "https://huggingface.co/meta-models/Muse-Glimmer-30B"
     ]
@@ -3560,6 +3790,7 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run minicpm-v4.5:8b",
     "notes": "OpenBMB vision-language model (Aug 2025), Apache 2.0: 8.7B with image understanding, a strong local pick for screenshots and document parsing. Ollama pull about 6 GB. Tag registry-verified.",
+    "releaseDate": "2025-08-24",
     "sources": [
       "https://huggingface.co/openbmb/MiniCPM-V-4_5"
     ]
@@ -3642,6 +3873,7 @@
     "popularityScore": 78,
     "ollamaCommand": "ollama run glm-4.7-flash",
     "notes": "Z.ai's local-class GLM (Jan 2026, MIT). A 30B-A3B MoE with compressed multi-latent attention, so decode speed tracks the 3B active path. SWE-bench Verified 59.2 per the model card, well ahead of Qwen3-30B-A3B-Thinking-2507 in the same table. The Ollama default pull is Q4_K_M at about 19 GB, so a 32GB Mac runs it with room for context. Tag registry-verified.",
+    "releaseDate": "2026-01-19",
     "sources": [
       "https://huggingface.co/zai-org/GLM-4.7-Flash"
     ]
@@ -3652,6 +3884,7 @@
     "family": "Nemotron",
     "sizeB": 120,
     "moeActiveB": 12,
+    "kvKbPerToken": 8,
     "quantization": "Q4_K_M",
     "minRamGb": 128,
     "estimatedLoadGb": 86.8,
@@ -3669,8 +3902,38 @@
     "popularityScore": 75,
     "ollamaCommand": "ollama run nemotron-3-super:120b",
     "notes": "NVIDIA's mid-size open model (March 11, 2026, NVIDIA Open Model License). 120B total with 12B active in a LatentMoE hybrid of Mamba-2, MoE and a few attention layers, plus Multi-Token Prediction. Context up to 1M tokens. The card reports MMLU-Pro 83.73 and SWE-Bench (OpenHands) 60.47. The Ollama :120b pull is Q4_K_M at about 87 GB, so it needs a 128GB machine. Tag registry-verified.",
+    "releaseDate": "2026-03-10",
     "sources": [
       "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
+    ]
+  },
+  {
+    "id": "nemotron-3-super-120b-q4xs",
+    "name": "Nemotron 3 Super 120B-A12B (IQ4_XS)",
+    "family": "Nemotron",
+    "sizeB": 120,
+    "moeActiveB": 12,
+    "kvKbPerToken": 8,
+    "quantization": "IQ4_XS",
+    "minRamGb": 96,
+    "estimatedLoadGb": 64.5,
+    "bestFor": "Agentic workflows, Long context, Reasoning",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "reasoning",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 60,
+    "qualityScore": 92,
+    "popularityScore": 75,
+    "notes": "IQ4_XS variant of Nemotron 3 Super 120B-A12B: the unsloth UD-IQ4_XS GGUF is about 65 GB, so it fits a 96GB machine where the Ollama Q4_K_M pull (about 87 GB) needs 128GB. Slightly lower precision than Q4_K_M. No Ollama tag for this build; runs through llama.cpp.",
+    "releaseDate": "2026-03-10",
+    "sources": [
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+      "https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF"
     ]
   },
   {
@@ -3692,6 +3955,7 @@
     "popularityScore": 55,
     "ollamaCommand": "ollama run olmo-3.1:32b",
     "notes": "Ai2's fully open 32B dense model (Apache 2.0): weights, data and training code are all public, which is the reason to pick it. On raw capability it trails Qwen 3 32B in no-think mode on MMLU (80.9 vs 85.8) and GPQA (48.6 vs 54.4) in Ai2's own table. The Ollama pull is Q4_K_M at about 19 GB. Tag registry-verified.",
+    "releaseDate": "2025-12-10",
     "sources": [
       "https://huggingface.co/allenai/Olmo-3.1-32B-Instruct"
     ]
@@ -3715,6 +3979,7 @@
     "qualityScore": 90,
     "popularityScore": 60,
     "notes": "Xiaomi's distillation of MiMo-V2.6 into Qwen3.5-9B (Sept 2026, MIT). Per the card, SWE Verified 61.1 vs 60.0 for the base Qwen3.5-9B and SWE Pro 44.6 vs 32.0. No Ollama library tag; run the GGUF through llama.cpp or LM Studio (bartowski Q4_K_M is about 6 GB, so a 16GB Mac runs it comfortably).",
+    "releaseDate": "2026-09-21",
     "sources": [
       "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B",
       "https://huggingface.co/bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF"
@@ -3743,6 +4008,37 @@
     "qualityScore": 92,
     "popularityScore": 55,
     "notes": "inclusionAI (Ant Group) hybrid-linear MoE, Aug 2026, MIT. Total 124B, activated 5.1B, with Kimi Delta Attention and MLA stacked 5:1, trained up to 256K context. A vision-language sibling, Ling-3.0-flash-VL, shares the backbone and gained llama.cpp support on Sept 24, 2026. No Ollama tag: the bartowski Q4_K_M GGUF is about 78 GB (128GB machine); IQ4_XS at about 69 GB squeezes onto 96GB.",
+    "releaseDate": "2026-08-02",
+    "sources": [
+      "https://huggingface.co/inclusionAI/Ling-3.0-flash",
+      "https://huggingface.co/inclusionAI/Ling-3.0-flash-VL",
+      "https://huggingface.co/bartowski/Ling-3.0-flash-GGUF"
+    ]
+  },
+  {
+    "id": "ling-3.0-flash-q4xs",
+    "name": "Ling-3.0-flash (IQ4_XS)",
+    "family": "Ling",
+    "sizeB": 124,
+    "moeActiveB": 5.1,
+    "quantization": "IQ4_XS",
+    "minRamGb": 96,
+    "estimatedLoadGb": 68.7,
+    "bestFor": "Agentic coding, Long context, Reasoning",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 64,
+    "qualityScore": 91,
+    "popularityScore": 55,
+    "notes": "IQ4_XS variant of Ling-3.0-flash: the bartowski IQ4_XS GGUF is about 69 GB, so it fits a 96GB machine where the Q4_K_M default (about 78 GB) needs 128GB. Slightly lower precision than Q4_K_M. No Ollama tag; runs through llama.cpp.",
+    "releaseDate": "2026-08-02",
     "sources": [
       "https://huggingface.co/inclusionAI/Ling-3.0-flash",
       "https://huggingface.co/inclusionAI/Ling-3.0-flash-VL",
@@ -3829,6 +4125,7 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run devstral-small-2:24b",
     "notes": "Mistral's 24B dense coding agent (late 2025, Apache 2.0) with a 256k context window and image input. SWE Bench Verified 68.0% per Mistral's card, level with GLM 4.6 at 355B in the same table. A coding specialist, so it is kept out of the general best-pick. The Ollama :24b pull is Q4_K_M at about 15 GB, which fits a 24GB Mac. Tag registry-verified.",
+    "releaseDate": "2025-12-09",
     "sources": [
       "https://huggingface.co/mistralai/Devstral-Small-2-24B-Instruct-2512"
     ]
@@ -3853,6 +4150,7 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run devstral-2:123b",
     "notes": "Mistral's flagship coding agent (late 2025, modified MIT license) with a 256k context window. SWE Bench Verified 72.2% per Mistral's card, above its 24B sibling Devstral Small 2. It is dense, so every token reads all 123B weights: expect slow decode even on a Max or Ultra. The Ollama :123b pull is Q4_K_M at about 75 GB, which needs a 96GB machine. Tag registry-verified.",
+    "releaseDate": "2025-12-09",
     "sources": [
       "https://huggingface.co/mistralai/Devstral-2-123B-Instruct-2512"
     ]
@@ -3877,6 +4175,7 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run ministral-3:3b",
     "notes": "Mistral edge model (2512 release, Apache 2.0): 3.4B language model plus a 0.4B vision encoder, 256k context, text and image input. The Ollama :3b pull is Q4_K_M at about 3 GB. Tag registry-verified.",
+    "releaseDate": "2025-12-02",
     "sources": [
       "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512"
     ]
@@ -3902,6 +4201,7 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run ministral-3:8b",
     "notes": "Mistral edge model (2512 release, Apache 2.0): 8.4B language model plus a 0.4B vision encoder, 256k context, text and image input. WildBench 66.8 vs 66.3 for Qwen3-VL-8B-Instruct per Mistral's card. The Ollama :8b pull is Q4_K_M at about 6 GB. Tag registry-verified.",
+    "releaseDate": "2025-12-02",
     "sources": [
       "https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512"
     ]
@@ -3928,6 +4228,7 @@
     "popularityScore": 74,
     "ollamaCommand": "ollama run ministral-3:14b",
     "notes": "Mistral edge model (2512 release, Apache 2.0): 13.5B language model plus a 0.4B vision encoder, 256k context, text and image input. WildBench 68.5 vs 65.1 for Qwen3 14B per Mistral's card. The Ollama :14b pull is Q4_K_M at about 9 GB. Tag registry-verified.",
+    "releaseDate": "2025-12-02",
     "sources": [
       "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512"
     ]
