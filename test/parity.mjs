@@ -94,5 +94,22 @@ if (tsOut) {
   console.log('✓ bestModel: scales with RAM, always a runnable general-purpose model');
 }
 
+// ── 5. Chip strings named after Object.prototype members ────────────────────
+// A --chip flag or a bench row such as 'constructor' must read as an unknown chip, never as a
+// prototype member of the engine tables (that threw on the site, 2026-10-22).
+{
+  const names = ['constructor', '__proto__', 'toString', 'valueOf', 'hasOwnProperty'];
+  for (const chip of names) {
+    try {
+      const recs = getRecommendations({ ...GRID[0], chip, ramGb: 16, gpuCores: 40 });
+      const local = recs.find((r) => r.localVerdict !== 'cloud_only');
+      if (local && local.estimatedTokensPerSec != null) fail(`chip "${chip}": got a speed estimate for an unknown chip`);
+    } catch (e) {
+      fail(`chip "${chip}": getRecommendations threw ${e}`);
+    }
+  }
+  console.log('✓ prototype-named chips read as unknown chips');
+}
+
 if (failures) { console.error(`\n${failures} check(s) failed.`); process.exit(1); }
 console.log('\nAll checks passed.');

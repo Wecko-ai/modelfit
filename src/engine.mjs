@@ -35,6 +35,10 @@ export function ramBudgetRatio(ramGb) {
 
 const clamp = (min, max, value) => Math.min(max, Math.max(min, value));
 
+// Own keys only: a chip string such as 'constructor' or '__proto__' (a --chip flag, a bench
+// submission) must never resolve to an Object.prototype member of the tables below.
+const own = (table, key) => (Object.prototype.hasOwnProperty.call(table, key) ? table[key] : undefined);
+
 const CHIP_SPEED_BOOST = {
   'Apple M5 Ultra': 15,
   'Apple M6': 9,
@@ -47,7 +51,7 @@ const CHIP_SPEED_BOOST = {
   'Apple A19 Pro': 6, 'Apple A18 Pro': 5, 'Apple A19': 4, 'Apple A18': 3,
   'Apple A17 Pro': 2, 'Apple A16': 0,
 };
-const chipSpeedBoost = (chip) => CHIP_SPEED_BOOST[chip] ?? 0;
+const chipSpeedBoost = (chip) => own(CHIP_SPEED_BOOST, chip) ?? 0;
 
 // Top-bin unified-memory bandwidth (GB/s). Apple states the M-series figures;
 // A-series are the widely reported LPDDR5/5X numbers. Used only for the roofline
@@ -120,7 +124,7 @@ const DECODE_VARIANTS = {
 // RAM a variant is sold exclusively with wins (even over a contradicting gpuCores); then an
 // explicit gpuCores the RAM allows; else null = the top bin.
 export function decodeVariant(chip, ramGb, gpuCores) {
-  const variants = DECODE_VARIANTS[chip];
+  const variants = own(DECODE_VARIANTS, chip);
   if (!variants) return null;
   if (ramGb !== undefined) {
     const forced = variants.find((v) => v.forcedRams?.includes(ramGb));
@@ -137,13 +141,13 @@ export function decodeVariant(chip, ramGb, gpuCores) {
 
 export function chipBandwidthGbs(chip, ramGb, gpuCores) {
   const variant = decodeVariant(chip, ramGb, gpuCores);
-  return variant ? variant.bandwidthGbs : CHIP_BANDWIDTH_GBS[chip] ?? null;
+  return variant ? variant.bandwidthGbs : own(CHIP_BANDWIDTH_GBS, chip) ?? null;
 }
 
 // Unknown/non-enum chip: no basis for a throughput estimate, so null, not a made-up number (gate #7).
 // Gate 7 in code: a variant can only lower the base, never raise it.
 function chipBaseTokensPerSec(chip, ramGb, gpuCores) {
-  const top = CHIP_BASE_TPS[chip] ?? null;
+  const top = own(CHIP_BASE_TPS, chip) ?? null;
   if (top === null) return null;
   const variant = decodeVariant(chip, ramGb, gpuCores);
   return variant ? Math.min(variant.baseTps, top) : top;
@@ -281,7 +285,7 @@ export function applePerfHardware(chip, ramGb, gpuCores) {
   const bw = chipBandwidthGbs(chip, ramGb, gpuCores);
   if (bw === null) return null;
   const gen = appleGeneration(chip);
-  const cores = gpuCores ?? decodeVariant(chip, ramGb, gpuCores)?.gpuCores ?? TOP_BIN_GPU_CORES[chip] ?? null;
+  const cores = gpuCores ?? decodeVariant(chip, ramGb, gpuCores)?.gpuCores ?? own(TOP_BIN_GPU_CORES, chip) ?? null;
   return {
     family: 'metal',
     keys: [`tier:${appleTier(chip)}`, `gen:${gen}`],

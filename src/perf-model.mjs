@@ -16,7 +16,7 @@ const MODELS = PERF.models;
 
 /** Verified physical inputs of a catalog model, or null when it has none (cloud entries). */
 export function modelPerfInputs(id) {
-  return MODELS[id] ?? null;
+  return Object.prototype.hasOwnProperty.call(MODELS, id) ? MODELS[id] : null;
 }
 
 const dev = (family, key) => FIT.decode.dev[key] ?? FIT.decode.dev[`${family}|${key}`] ?? {};
