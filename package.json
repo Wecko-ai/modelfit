@@ -22,7 +22,7 @@
     "start": "node bin/modelfit.mjs",
     "sync-data": "node scripts/sync-data.mjs",
     "gen-golden": "node scripts/gen-golden.mjs",
-    "test": "node test/parity.mjs && node test/bench-parse.mjs",
+    "test": "node test/parity.mjs && node test/bench-parse.mjs && node test/detect.mjs",
     "prepublishOnly": "node test/parity.mjs && node test/bench-parse.mjs"
   },
   "engines": {

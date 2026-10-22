@@ -8,7 +8,7 @@ const grid: HardwareInput[] = JSON.parse(process.argv[2] ?? '[]');
 const out = grid.map((input) => {
   const recs = getRecommendations(input);
   return {
-    ranking: recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec })),
+    ranking: recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec, ft: r.estimatedFirstTokenSec, err: r.estimatedErrorPct })),
     // One row per model, as ranked lists show it (lib/model-groups.ts groupVariants).
     grouped: groupVariants(recs).map((r) => r.id),
   };

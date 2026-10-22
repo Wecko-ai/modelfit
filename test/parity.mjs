@@ -22,9 +22,12 @@ const GRID = golden.map((g) => g.input);
 
 let failures = 0;
 const fail = (msg) => { console.error(`✗ ${msg}`); failures++; };
-// tok/s is compared too: a speed change that flips no verdict would otherwise go unseen.
-const sameTps = (x, y) => (x ?? null) === null ? (y ?? null) === null : y != null && Math.abs(x - y) <= 0.05;
-const same = (a, b) => a.length === b.length && a.every((x, i) => x.id === b[i].id && Math.abs(x.score - b[i].score) <= 0.01 && sameTps(x.tps, b[i].tps));
+// tok/s, first-token time and typical error are compared too: a speed change that flips no
+// verdict would otherwise go unseen. All three are rounded by the engine (0.1 s, 0.1 tok/s, 5 %).
+const sameNum = (x, y, tol) => (x ?? null) === null ? (y ?? null) === null : y != null && Math.abs(x - y) <= tol;
+const same = (a, b) => a.length === b.length && a.every((x, i) =>
+  x.id === b[i].id && Math.abs(x.score - b[i].score) <= 0.01 &&
+  sameNum(x.tps, b[i].tps, 0.05) && sameNum(x.ft, b[i].ft, 0.05) && sameNum(x.err, b[i].err, 0.5));
 const sameIds = (a = [], b = []) => a.length === b.length && a.every((x, i) => x === b[i]);
 
 // ── 1. Structural sanity ────────────────────────────────────────────────────
@@ -45,13 +48,13 @@ console.log(`✓ structural sanity passed (${GRID.length} inputs × ${DATASET.le
 let goldMismatch = 0;
 golden.forEach((g, gi) => {
   const recs = getRecommendations(g.input);
-  const got = recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec }));
+  const got = recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec, ft: r.estimatedFirstTokenSec, err: r.estimatedErrorPct }));
   if (!same(got, g.ranking) || !sameIds(groupVariants(recs).map((r) => r.id), g.grouped)) {
     goldMismatch++;
     if (goldMismatch <= 5) fail(`golden[${gi}] (${g.input.chip}/${g.input.ramGb}GB): engine output differs from test/golden.json`);
   }
 });
-if (!goldMismatch) console.log(`✓ matches golden snapshot (${golden.length} inputs, ranking + scores + tok/s + grouped list)`);
+if (!goldMismatch) console.log(`✓ matches golden snapshot (${golden.length} inputs, ranking + scores + tok/s + first token + error + grouped list)`);
 else fail(`${goldMismatch} input(s) drifted from golden.json: re-port the engine or regenerate golden if lib/recommend.ts changed`);
 
 // ── 3. Live parity vs the TS engine (monorepo only, best effort) ────────────

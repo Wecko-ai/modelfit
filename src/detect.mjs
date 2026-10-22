@@ -84,33 +84,38 @@ function parseCpuCores(raw) {
   return m ? Number(m[1]) : null;
 }
 
-/** GPU core count of the Apple GPU ("sppci_cores": "40"), which identifies the chip bin. */
-function detectAppleGpuCores() {
-  const json = sh('system_profiler', ['SPDisplaysDataType', '-json'], 6000);
-  if (!json) return null;
-  try {
-    const gpus = JSON.parse(json).SPDisplaysDataType ?? [];
-    const apple = gpus.find((g) => /apple/i.test(String(g.sppci_model || ''))) ?? gpus[0];
-    const n = parseInt(String(apple?.sppci_cores || ''), 10);
-    return n > 0 ? n : null;
-  } catch {
-    return null;
-  }
+/** GPU core count of the Apple GPU ("sppci_cores": "40") in SPDisplaysDataType, which identifies the chip bin. */
+export function appleGpuCores(displays) {
+  const gpus = Array.isArray(displays) ? displays : [];
+  const apple = gpus.find((g) => /apple/i.test(String(g?.sppci_model || ''))) ?? gpus[0];
+  const n = parseInt(String(apple?.sppci_cores || ''), 10);
+  return n > 0 ? n : null;
 }
 
-function detectMac(profile) {
-  // Prefer system_profiler JSON (chip + marketing model name), fall back to sysctl.
-  let machineName = '', chipRaw = '', memGb = 0, cpuCores = null;
-  const json = sh('system_profiler', ['SPHardwareDataType', '-json'], 6000);
-  if (json) {
-    try {
-      const h = JSON.parse(json).SPHardwareDataType?.[0] ?? {};
-      machineName = h.machine_name || '';
-      chipRaw = h.chip_type || h.cpu_type || '';
-      memGb = parseInt(String(h.physical_memory || ''), 10) || 0;
-      cpuCores = parseCpuCores(h.number_processors);
-    } catch { /* fall through to sysctl */ }
-  }
+/** The fields detectMac reads from one `system_profiler SPHardwareDataType [SPDisplaysDataType] -json`. */
+export function parseMacProfiler(json) {
+  const out = { machineName: '', chipRaw: '', memGb: 0, cpuCores: null, displays: null };
+  if (!json) return out;
+  try {
+    const data = JSON.parse(json);
+    const h = data.SPHardwareDataType?.[0] ?? {};
+    out.machineName = h.machine_name || '';
+    out.chipRaw = h.chip_type || h.cpu_type || '';
+    out.memGb = parseInt(String(h.physical_memory || ''), 10) || 0;
+    out.cpuCores = parseCpuCores(h.number_processors);
+    out.displays = data.SPDisplaysDataType ?? null;
+  } catch { /* fall through to sysctl */ }
+  return out;
+}
+
+function detectMac(profile, { gpuCores: wantGpuCores = true } = {}) {
+  // Prefer system_profiler JSON (chip + marketing model name), fall back to sysctl. One call reads
+  // both data types: the display query alone costs about 0.4 s, so it is skipped when the caller
+  // overrides the chip or the bin anyway.
+  const types = wantGpuCores ? ['SPHardwareDataType', 'SPDisplaysDataType'] : ['SPHardwareDataType'];
+  const parsed = parseMacProfiler(sh('system_profiler', [...types, '-json'], 8000));
+  const { machineName, cpuCores, displays } = parsed;
+  let { chipRaw, memGb } = parsed;
   if (!chipRaw) chipRaw = sh('sysctl', ['-n', 'machdep.cpu.brand_string']);
   if (!memGb) {
     const bytes = parseInt(sh('sysctl', ['-n', 'hw.memsize']), 10);
@@ -121,7 +126,7 @@ function detectMac(profile) {
   const ramGb = memGb || round(os.totalmem() / GB);
 
   if (isAppleSilicon) {
-    const gpuCores = detectAppleGpuCores();
+    const gpuCores = wantGpuCores ? appleGpuCores(displays) : null;
     const cores = [cpuCores && `${cpuCores}-core CPU`, gpuCores && `${gpuCores}-core GPU`].filter(Boolean).join(', ');
     return {
       ...profile,
@@ -210,11 +215,15 @@ function detectPc(profile, osName) {
 }
 
 /** Detect the host. Returns a normalized profile (see docs/cli-plan). */
-export function detectHardware() {
+/**
+ * Detect this machine. `{ gpuCores: false }` skips the Apple GPU core count (the slow display
+ * query), for callers that override the chip or the bin; the profile then carries gpuCores null.
+ */
+export function detectHardware({ gpuCores = true } = {}) {
   const platform = os.platform();
   const base = { platform, arch: os.arch(), detectedRamGb: round(os.totalmem() / GB) };
 
-  if (platform === 'darwin') return { ...detectMac({ ...base, os: 'macOS' }) };
+  if (platform === 'darwin') return { ...detectMac({ ...base, os: 'macOS' }, { gpuCores }) };
   if (platform === 'linux') return detectPc({ ...base, os: 'Linux' }, 'Linux');
   if (platform === 'win32') return detectPc({ ...base, os: 'Windows' }, 'Windows');
   // Unknown OS: RAM-only fallback.

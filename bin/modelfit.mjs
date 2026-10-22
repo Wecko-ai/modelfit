@@ -135,7 +135,8 @@ async function main() {
     return;
   }
 
-  const profile = detectHardware();
+  // An overridden chip or bin makes the detected GPU core count moot: skip the slow display query.
+  const profile = detectHardware({ gpuCores: opts.chip == null && opts.gpuCores == null });
   const input = toEngineInput(profile, opts);
   const recs = getRecommendations(input);
 

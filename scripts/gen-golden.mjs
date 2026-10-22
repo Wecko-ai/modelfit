@@ -27,13 +27,19 @@ const GRID = [
   { deviceType: 'MacBook Pro', chip: 'Apple M1 Max', ramGb: 32, priority: 'Balanced', useCase: 'Chat', gpuCores: 24 },
   { deviceType: 'Mac Studio', chip: 'Apple M2 Ultra', ramGb: 64, priority: 'Speed', useCase: 'Mixed', gpuCores: 60 },
   { deviceType: 'Mac Mini', chip: 'Apple M5 Pro', ramGb: 24, priority: 'Balanced', useCase: 'Mixed', gpuCores: 16 },
+  // Prompt-reading cores (prefillGpuCores): a gpuCores the RAM contradicts, one above the top bin,
+  // one that is no bin of the chip, and the 8-core M5 Air bin.
+  { deviceType: 'MacBook Pro', chip: 'Apple M5 Max', ramGb: 36, priority: 'Balanced', useCase: 'Mixed', gpuCores: 40 },
+  { deviceType: 'Mac Studio', chip: 'Apple M5 Max', ramGb: 128, priority: 'Balanced', useCase: 'Coding', gpuCores: 400 },
+  { deviceType: 'Mac Mini', chip: 'Apple M5 Pro', ramGb: 48, priority: 'Balanced', useCase: 'Mixed', gpuCores: 18 },
+  { deviceType: 'MacBook Air', chip: 'Apple M5', ramGb: 16, priority: 'Balanced', useCase: 'Chat', gpuCores: 8 },
 ];
 
 const golden = GRID.map((input) => {
   const recs = getRecommendations(input);
   return {
     input,
-    ranking: recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec })),
+    ranking: recs.map((r) => ({ id: r.id, score: r.score, tps: r.estimatedTokensPerSec, ft: r.estimatedFirstTokenSec, err: r.estimatedErrorPct })),
     grouped: groupVariants(recs).map((r) => r.id),
   };
 });
