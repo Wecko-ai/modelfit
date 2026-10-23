@@ -2,13 +2,13 @@
  "description": "Physical inputs of the speed engine per local catalog model, built by scripts/perf/build-model-perf.mjs from data/perf-models.json. Never hand-edit.",
  "synthetic": {
   "gbPerB": {
-   "Q4": 0.6263,
+   "Q4": 0.6274,
    "Q8": 1.0769,
    "MXFP4": 0.6597
   },
-  "denseStreamFrac": 0.9851,
-  "kvBytesPerTokenPerB": 13312.2,
-  "attnFlopsPerCtxPerB": 55883.8,
+  "denseStreamFrac": 0.9841,
+  "kvBytesPerTokenPerB": 12130.9,
+  "attnFlopsPerCtxPerB": 55471.3,
   "note": "medians over the catalog entries above (dense full-attention models for KV and attention)"
  },
  "models": {
@@ -1946,6 +1946,86 @@
     "window": null
    },
    "attnFlopsPerCtx": 655360,
+   "maxContext": 262144
+  },
+  "flint-40b": {
+   "arch": "flint-40b-a2.5b",
+   "weightsGb": 22.8631,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 1.2851,
+   "paramsB": 39.489,
+   "activeB": 2.527,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 28672,
+    "swaBytesPerToken": 71680,
+    "window": 513
+   },
+   "attnFlopsPerCtx": 229376,
+   "maxContext": 262144
+  },
+  "mellum2.1-12b-q4": {
+   "arch": "mellum2.1-12b-a2.5b",
+   "weightsGb": 8.0713,
+   "weightsSource": "gguf",
+   "streamedGb": 1.4698,
+   "paramsB": 12.15,
+   "activeB": 2.439,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 14336,
+    "swaBytesPerToken": 43008,
+    "window": 1024
+   },
+   "attnFlopsPerCtx": 114688,
+   "maxContext": 131072
+  },
+  "kolibri-1-q4": {
+   "arch": "kolibri-1",
+   "weightsGb": 49.7592,
+   "weightsSource": "gguf",
+   "streamedGb": 2.0825,
+   "paramsB": 77.906,
+   "activeB": 3.588,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 81920,
+    "window": 513
+   },
+   "attnFlopsPerCtx": 245760,
+   "maxContext": 262144
+  },
+  "kolibri-1-q4xs": {
+   "arch": "kolibri-1",
+   "weightsGb": 43.6329,
+   "weightsSource": "gguf",
+   "streamedGb": 1.8261,
+   "paramsB": 77.906,
+   "activeB": 3.588,
+   "moe": true,
+   "kv": {
+    "fullBytesPerToken": 20480,
+    "swaBytesPerToken": 81920,
+    "window": 513
+   },
+   "attnFlopsPerCtx": 245760,
+   "maxContext": 262144
+  },
+  "arex-2-27b-q4": {
+   "arch": "arex-2",
+   "weightsGb": 17.2034,
+   "weightsSource": "gguf",
+   "streamedGb": 16.3053,
+   "paramsB": 24.353,
+   "activeB": 24.353,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 65536,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 393216,
    "maxContext": 262144
   }
  }

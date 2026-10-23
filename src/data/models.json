@@ -4263,5 +4263,241 @@
       "https://huggingface.co/mlx-community/Inkling-Small-mlx-4bit",
       "https://huggingface.co/unsloth/Inkling-Small-GGUF"
     ]
+  },
+  {
+    "id": "flint-40b",
+    "name": "Flint 40B-A2.5B",
+    "family": "Flint",
+    "sizeB": 39.8,
+    "moeActiveB": 2.5,
+    "kvKbPerToken": 28,
+    "quantization": "NVFP4",
+    "minRamGb": 36,
+    "estimatedLoadGb": 22.9,
+    "bestFor": "Agentic coding, Long context",
+    "publisherTier": "emerging",
+    "tags": [
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 86,
+    "qualityScore": 92,
+    "popularityScore": 72,
+    "ollamaCommand": "ollama run flint:40b",
+    "notes": "Recursive's coding-agent MoE (Oct 2026, Apache 2.0): 39.8B total with about 2.5B active per token, 49 layers of which 14 use full attention and 35 a 513-token sliding window, so the KV cache stays small up to its 262,144-token context. Per Recursive's model card: SWE-bench Verified 74.2% and Terminal-Bench 2.1 54.9%. The Ollama :40b pull is a single NVFP4 GGUF of about 23 GB (registry manifest, it asks for Ollama 0.40.9 or newer), so it wants a 36GB machine. Coding specialist (not a general chat model). Tag registry-verified.",
+    "releaseDate": "2026-10-21",
+    "sources": [
+      "https://huggingface.co/RecursiveSI/flint",
+      "https://huggingface.co/unsloth/flint-GGUF"
+    ]
+  },
+  {
+    "id": "mellum2.1-12b-q4",
+    "name": "Mellum2.1 12B-A2.5B Thinking",
+    "family": "Mellum",
+    "sizeB": 12.1,
+    "moeActiveB": 2.5,
+    "kvKbPerToken": 14,
+    "quantization": "Q4_K_M",
+    "minRamGb": 16,
+    "estimatedLoadGb": 8.1,
+    "bestFor": "Agentic coding, Small machines",
+    "publisherTier": "major",
+    "tags": [
+      "coding",
+      "agent",
+      "reasoning",
+      "moe"
+    ],
+    "speedScore": 88,
+    "qualityScore": 85,
+    "popularityScore": 76,
+    "notes": "JetBrains' open coding model (Oct 2026, Apache 2.0): a 12B mixture of experts with 2.5B active per token, 28 layers of which 7 use full attention and the rest a 1,024-token sliding window, and a 131,072-token context. Per JetBrains' model card: LiveCodeBench v6 82.0 and SWE-bench Verified 47.0, against 75.4 and 50.0 for Qwen3.5 9B in the same table. No Ollama library tag; JetBrains publishes official GGUFs, and the Q4_K_M file is about 8 GB, so a 16GB Mac runs it with room for context. Coding specialist (not a general chat model).",
+    "releaseDate": "2026-10-08",
+    "sources": [
+      "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+      "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF"
+    ]
+  },
+  {
+    "id": "kolibri-1-q4",
+    "name": "Kolibri 1",
+    "family": "Kolibri",
+    "sizeB": 78.1,
+    "moeActiveB": 3.5,
+    "kvKbPerToken": 20,
+    "quantization": "Q4_K_M",
+    "minRamGb": 96,
+    "estimatedLoadGb": 49.8,
+    "bestFor": "Reasoning, German, Long context",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "reasoning",
+      "coding",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 66,
+    "qualityScore": 93,
+    "popularityScore": 75,
+    "notes": "Aleph Alpha's German and English reasoning MoE (Oct 3, 2026, Apache 2.0): 78B total with about 3.5B active per token, 50 layers in a 4:1 mix of sliding-window and full attention, and a 262,144-token native context. Per Aleph Alpha's model card (English): GPQA Diamond 84.3 and LiveCodeBench v6 85.9. Mainline llama.cpp loads it since mid-October 2026; there is no Ollama library tag. The bartowski Q4_K_M GGUF is about 50 GB (96GB machine); the IQ4_XS build at about 44 GB fits 64GB.",
+    "releaseDate": "2026-10-03",
+    "sources": [
+      "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "https://huggingface.co/bartowski/Kolibri-1-GGUF",
+      "https://github.com/ggml-org/llama.cpp/pull/30673"
+    ]
+  },
+  {
+    "id": "kolibri-1-q4xs",
+    "name": "Kolibri 1 (IQ4_XS)",
+    "family": "Kolibri",
+    "sizeB": 78.1,
+    "moeActiveB": 3.5,
+    "kvKbPerToken": 20,
+    "quantization": "IQ4_XS",
+    "minRamGb": 64,
+    "estimatedLoadGb": 43.6,
+    "bestFor": "Reasoning, German, Long context",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "reasoning",
+      "coding",
+      "agent",
+      "moe",
+      "long-context"
+    ],
+    "speedScore": 68,
+    "qualityScore": 92,
+    "popularityScore": 75,
+    "notes": "The IQ4_XS build of Aleph Alpha's Kolibri 1 (78B total, about 3.5B active, German and English): the bartowski GGUF is about 44 GB against about 50 GB for Q4_K_M, which brings it down to a 64GB machine for a small quality cost. Runs in mainline llama.cpp; no Ollama library tag.",
+    "releaseDate": "2026-10-03",
+    "sources": [
+      "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+      "https://huggingface.co/bartowski/Kolibri-1-GGUF"
+    ]
+  },
+  {
+    "id": "arex-2-27b-q4",
+    "name": "AREX-2 27B",
+    "family": "AREX",
+    "sizeB": 27.4,
+    "kvKbPerToken": 64,
+    "quantization": "Q4_K_M",
+    "minRamGb": 32,
+    "estimatedLoadGb": 17.2,
+    "bestFor": "Agents, Deep research, Coding",
+    "publisherTier": "major",
+    "tags": [
+      "agent",
+      "coding",
+      "reasoning",
+      "long-context",
+      "vision"
+    ],
+    "speedScore": 62,
+    "qualityScore": 92,
+    "popularityScore": 60,
+    "notes": "BAAI's long-horizon agent model (Sept 2026, Apache 2.0), post-trained from Qwen3.8 27B and sharing its architecture: 64 layers of which 16 use full attention, a 262,144-token context and image input. It improves a solution over several rounds (propose, measure, reflect, revise). Per BAAI's model card: Frontier-CS 70.7 and MLE-Lite 81.8, against 23.4 and 39.4 for Qwen3.6-35B-A3B in the same table. No Ollama library tag; the bartowski Q4_K_M GGUF is about 17 GB, so it wants a 32GB machine. Agent specialist: for general chat, its base Qwen3.8 27B is the pick.",
+    "releaseDate": "2026-09-29",
+    "sources": [
+      "https://huggingface.co/BAAI/AREX-2",
+      "https://huggingface.co/bartowski/BAAI_AREX-2-GGUF"
+    ]
+  },
+  {
+    "id": "muse-spark-open-cloud",
+    "name": "Muse Spark Open",
+    "family": "Muse",
+    "sizeB": 816,
+    "moeActiveB": 42,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Agentic coding, Multimodal, Long context",
+    "publisherTier": "top",
+    "tags": [
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "multimodal",
+      "long-context",
+      "frontier"
+    ],
+    "speedScore": 60,
+    "qualityScore": 96,
+    "popularityScore": 78,
+    "notes": "Meta's open-weight Muse model (Sept 2026): a mixture of experts with about 816B total and 42B active parameters per token, text, image, audio and video input, and a context window of up to 1M tokens. BF16 and NVFP4 checkpoints are on Hugging Face (access on request). Mainline llama.cpp and MLX support it, but even its 2-bit GGUF runs to hundreds of gigabytes, so ollama run muse-spark-open:cloud streams it from Ollama Cloud for nearly everyone.",
+    "sources": [
+      "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "https://huggingface.co/blog/meta-muse-spark-open"
+    ]
+  },
+  {
+    "id": "minimax-m3.1-flash-cloud",
+    "name": "MiniMax M3.1 Flash",
+    "family": "MiniMax",
+    "sizeB": 428,
+    "moeActiveB": 23,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Coding, Agentic, Computer use",
+    "publisherTier": "major",
+    "tags": [
+      "coding",
+      "agent",
+      "moe",
+      "multimodal",
+      "long-context",
+      "quality"
+    ],
+    "speedScore": 70,
+    "qualityScore": 94,
+    "popularityScore": 72,
+    "notes": "MiniMax's next Flash model (Oct 2026): a native multimodal MoE (text, image and video input) with about 428B total and 23B active parameters per token and a context window of up to 1M tokens, built for coding, agents, computer use and cybersecurity. Per MiniMax's model card: DeepSWE v1.1 73.7% and OSWorld V2 61.7. Weights on Hugging Face under the MiniMax community license; ollama run minimax-m3.1-flash:cloud streams it from Ollama Cloud.",
+    "sources": [
+      "https://huggingface.co/MiniMaxAI/MiniMax-M3.1-Flash"
+    ]
+  },
+  {
+    "id": "beam-1.0-cloud",
+    "name": "Beam 1.0",
+    "family": "Beam",
+    "sizeB": 501,
+    "moeActiveB": 23.4,
+    "quantization": "API",
+    "cloud_only": true,
+    "openWeights": true,
+    "minRamGb": 0,
+    "estimatedLoadGb": 0,
+    "bestFor": "Agentic coding, Reasoning, Long context",
+    "publisherTier": "emerging",
+    "tags": [
+      "coding",
+      "agent",
+      "reasoning",
+      "moe",
+      "long-context",
+      "quality"
+    ],
+    "speedScore": 66,
+    "qualityScore": 94,
+    "popularityScore": 70,
+    "notes": "Reflection's open-weight model (Oct 2026, Apache 2.0): a text-only MoE with 501B total and 23.4B active parameters, 52 layers mixing gated GQA and sliding-window attention, and a 1M-token context window. Per Reflection's model card (BF16): SWE-bench Verified 81.6% and Terminal Bench v2.1 80.1%. BF16, FP8 and NVFP4 checkpoints are on Hugging Face and mainline llama.cpp supports it; most users will reach it through ollama run beam:cloud on Ollama Cloud.",
+    "sources": [
+      "https://huggingface.co/reflection/Beam-1.0-501B-A23B"
+    ]
   }
 ]
