@@ -10,7 +10,7 @@ import { toBest, toList, toJson } from '../src/render.mjs';
 import { selectBest } from '../src/best.mjs';
 import { offerInstall, ask } from '../src/install.mjs';
 import {
-  runBench, renderBench, submitBench, submitRefusal, describeSubmission, benchChoicesForThisMachine,
+  runBench, renderBench, submitBench, submitRefusal, describeSubmission, benchChoicesForThisMachine, xShareUrl,
   normalizeHandle, formatGb, BENCH_MODEL, BENCH_LADDER,
 } from '../src/bench.mjs';
 import { readFileSync } from 'node:fs';
@@ -193,9 +193,22 @@ async function bench(opts) {
       console.log('  Not submitted. Nothing left this machine.');
       return;
     }
+    if (!opts.handle) {
+      // Optional: Enter skips it. A handle shows on the card, never on the leaderboard.
+      const h = (await ask('  Your X handle for the card (optional, Enter to skip): @')).trim();
+      if (h) {
+        try {
+          const handle = normalizeHandle(h);
+          if (handle) result.payload = { ...result.payload, handle };
+        } catch {
+          console.log('  Not a valid X handle, the card will go without one.');
+        }
+      }
+    }
     result = { ...result, ...(await submitBench(result.payload)) };
     if (result.submitted && result.listed && result.link) {
       console.log(`\n  Submitted. Your result page, with the card to post: ${result.link}`);
+      console.log(`  Post it on X: ${xShareUrl(result.payload, result.link)}`);
     } else if (result.submitted && result.listed) {
       console.log('\n  Submitted. See the leaderboard at https://modelfit.io/bench/');
     } else if (result.submitted) {

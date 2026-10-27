@@ -277,3 +277,18 @@ try {
   assert.match(sent, /@modelfit_/);
 }
 console.log('✓ result card');
+
+// X share link: the result line, the result page as the link and via @modelfit_, nothing else.
+{
+  const { xShareUrl } = await import('../src/bench.mjs');
+  const url = new URL(xShareUrl({
+    model: 'qwen3.8:27b',
+    evalTokensPerSec: 43,
+    hardware: { deviceType: 'Mac Studio', chip: 'Apple M2 Ultra', ramGb: 128 },
+  }, 'https://modelfit.io/r/pquamsn5ih/'));
+  assert.equal(url.origin + url.pathname, 'https://x.com/intent/post');
+  assert.equal(url.searchParams.get('via'), 'modelfit_');
+  assert.equal(url.searchParams.get('url'), 'https://modelfit.io/r/pquamsn5ih/');
+  assert.equal(url.searchParams.get('text'), 'Qwen3.8 27B: 43.0 tok/s on my Mac Studio Apple M2 Ultra 128 GB. Can your machine beat it?');
+  console.log('✓ X share link');
+}

@@ -448,6 +448,22 @@ export async function submitBench(payload, { url = submitUrl() } = {}) {
   }
 }
 
+/**
+ * A ready-to-post X link for a listed run: the result in one line, the result page as the link
+ * (X shows its card) and `via @modelfit_`. Built from the payload only; nothing is sent.
+ */
+export function xShareUrl(payload, link) {
+  const hw = payload?.hardware || {};
+  const name = catalogRowForTag(payload?.model)?.name || payload?.model;
+  const machine = hw.accelerator?.kind === 'gpu'
+    ? hw.accelerator.name
+    : [hw.deviceLabel || hw.deviceType, hw.chipLabel || hw.chip, hw.ramGb && `${hw.ramGb} GB`].filter(Boolean).join(' ');
+  const rate = Number(payload?.evalTokensPerSec).toFixed(1);
+  const text = `${name}: ${rate} tok/s on my ${machine}. Can your machine beat it?`;
+  const q = new URLSearchParams({ text, url: link, via: 'modelfit_' });
+  return `https://x.com/intent/post?${q}`;
+}
+
 /** What a submit sends, one line per field group, for the question before it. */
 export function describeSubmission(payload, { url = submitUrl() } = {}) {
   const hw = payload.hardware || {};
@@ -586,6 +602,7 @@ export function renderBench(result, { color = true, big = true } = {}) {
   for (const w of result.warnings || []) lines.push(dim(`  note: ${w}`));
   if (result.submitted && result.listed) {
     lines.push(`  ${green('submitted')}: your result page is ${result.link || 'on modelfit.io/bench/'}`);
+    if (result.link) lines.push(`  Post it on X: ${xShareUrl(result.payload, result.link)}`);
   } else if (result.submitted) {
     lines.push(`  stored, but not listed on the leaderboard: ${REASONS[result.reason] || result.reason}.`);
   } else if (result.submitError) {
