@@ -2,11 +2,11 @@
  "description": "Physical inputs of the speed engine per local catalog model, built by scripts/perf/build-model-perf.mjs from data/perf-models.json. Never hand-edit.",
  "synthetic": {
   "gbPerB": {
-   "Q4": 0.6274,
+   "Q4": 0.6285,
    "Q8": 1.0769,
    "MXFP4": 0.6597
   },
-  "denseStreamFrac": 0.9841,
+  "denseStreamFrac": 0.9851,
   "kvBytesPerTokenPerB": 12130.9,
   "attnFlopsPerCtxPerB": 55471.3,
   "note": "medians over the catalog entries above (dense full-attention models for KV and attention)"
@@ -2027,6 +2027,54 @@
    },
    "attnFlopsPerCtx": 393216,
    "maxContext": 262144
+  },
+  "nemotron-3.5-bolt-e4b-q4": {
+   "arch": "nemotron-3.5-bolt-e4b",
+   "weightsGb": 6.1804,
+   "weightsSource": "ollama-manifest",
+   "streamedGb": 3.8082,
+   "paramsB": 7.343,
+   "activeB": 7.343,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 14336,
+    "swaBytesPerToken": 71680,
+    "window": 512
+   },
+   "attnFlopsPerCtx": 57344,
+   "maxContext": 65536
+  },
+  "granite-switch-4.1-8b-q4": {
+   "arch": "granite-switch-4.1-8b",
+   "weightsGb": 6.4124,
+   "weightsSource": "gguf",
+   "streamedGb": 6.4124,
+   "paramsB": 8.779,
+   "activeB": 8.779,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 172032,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 688128,
+   "maxContext": 131072
+  },
+  "granite-switch-4.1-30b-q4": {
+   "arch": "granite-switch-4.1-30b",
+   "weightsGb": 21.0355,
+   "weightsSource": "gguf",
+   "streamedGb": 21.0355,
+   "paramsB": 29.754,
+   "activeB": 29.754,
+   "moe": false,
+   "kv": {
+    "fullBytesPerToken": 270336,
+    "swaBytesPerToken": 0,
+    "window": null
+   },
+   "attnFlopsPerCtx": 1081344,
+   "maxContext": 131072
   }
  }
 }

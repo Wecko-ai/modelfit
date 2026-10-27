@@ -4500,5 +4500,84 @@
     "sources": [
       "https://huggingface.co/reflection/Beam-1.0-501B-A23B"
     ]
+  },
+  {
+    "id": "nemotron-3.5-bolt-e4b-q4",
+    "name": "NVIDIA Nemotron 3.5 Bolt E4B",
+    "family": "Nemotron",
+    "sizeB": 4,
+    "quantization": "Q4_K_M",
+    "minRamGb": 12,
+    "estimatedLoadGb": 7.9,
+    "bestFor": "Voice assistants, Tool calling, Chat",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "agent",
+      "tool-calling",
+      "multimodal",
+      "mobile"
+    ],
+    "speedScore": 90,
+    "qualityScore": 80,
+    "popularityScore": 75,
+    "ollamaCommand": "ollama run nemotron-3.5-bolt:e4b",
+    "notes": "NVIDIA post-train of Google's Gemma 4 E4B (Oct 23, 2026, OpenMDW-1.1): 8B total with 4B effective parameters, same architecture as the base, context up to 64K tokens. Built for voice and device assistants, multi-turn tool use and short conversational replies, with a reasoning switch. Per NVIDIA's model card (Q4_K_M): MultiChallenge 55.60 and IFBench 64.00. The Ollama :e4b pull is 7.9GB: the Q4_K_M weights plus a vision projector and a DFlash draft model, and it needs Ollama 0.40.10 or newer (:latest is the 74B model). Tag registry-verified.",
+    "releaseDate": "2026-10-23",
+    "sources": [
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-4GB",
+      "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-E4B-BF16",
+      "https://ollama.com/library/nemotron-3.5-bolt"
+    ]
+  },
+  {
+    "id": "granite-switch-4.1-8b-q4",
+    "name": "Granite Switch 4.1 8B",
+    "family": "Granite",
+    "sizeB": 8.8,
+    "quantization": "Q4_K_M",
+    "minRamGb": 12,
+    "estimatedLoadGb": 6.4,
+    "bestFor": "Chat, Decisions, Safety checks",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "agent",
+      "long-context"
+    ],
+    "speedScore": 76,
+    "qualityScore": 80,
+    "popularityScore": 64,
+    "notes": "IBM Granite 4.1 8B with two adapters composed into one checkpoint (Oct 14, 2026, Apache 2.0): Decision answers labelled multiple-choice questions with a probability per option, Guardian Core flags safety risks, both switched on through the chat template. 128K context. IBM's official Q4_K_M GGUF is about 6.4 GB and loads in mainline llama.cpp (graniteswitch architecture); the GGUF leaves out the speech-to-text encoder of the full model. No Ollama library tag.",
+    "releaseDate": "2026-10-14",
+    "sources": [
+      "https://huggingface.co/ibm-granite/granite-switch-4.1-8b",
+      "https://huggingface.co/ibm-granite/granite-switch-4.1-8b-GGUF"
+    ]
+  },
+  {
+    "id": "granite-switch-4.1-30b-q4",
+    "name": "Granite Switch 4.1 30B",
+    "family": "Granite",
+    "sizeB": 30,
+    "quantization": "Q4_K_M",
+    "minRamGb": 32,
+    "estimatedLoadGb": 21,
+    "bestFor": "Chat, Decisions, Safety checks",
+    "publisherTier": "major",
+    "tags": [
+      "chat",
+      "agent",
+      "long-context"
+    ],
+    "speedScore": 60,
+    "qualityScore": 81,
+    "popularityScore": 64,
+    "notes": "IBM Granite 4.1 30B with the same two composed adapters as the 8B (Oct 14, 2026, Apache 2.0): Decision for labelled multiple-choice decisions and Guardian Core for safety risks, switched on through the chat template. 128K context. IBM's official Q4_K_M GGUF is about 21 GB, so it wants a 32GB machine with little room for context; mainline llama.cpp loads it (graniteswitch architecture), without the speech encoder. No Ollama library tag.",
+    "releaseDate": "2026-10-14",
+    "sources": [
+      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b",
+      "https://huggingface.co/ibm-granite/granite-switch-4.1-30b-GGUF"
+    ]
   }
 ]
