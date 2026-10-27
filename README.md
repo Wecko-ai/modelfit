@@ -39,6 +39,7 @@ Or via [Homebrew](https://github.com/modelfit-io/homebrew-tap):
 
 ```bash
 brew tap modelfit-io/tap
+brew trust modelfit-io/tap   # Homebrew loads third-party taps only once trusted
 brew install modelfit
 ```
 
