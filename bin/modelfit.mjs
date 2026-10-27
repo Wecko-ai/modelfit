@@ -75,7 +75,7 @@ EXAMPLES
   modelfit --json                        # { best: { ollamaCommand, ... }, ... } (no prompt)
   modelfit --all                         # full ranked list
   modelfit --ram 64 --chip "Apple M4 Max"
-  npx -y @modelfit/cli@latest bench               # measure, then choose to share
+  npx @modelfit/cli@latest bench                  # measure, then choose to share
 
 tok/s figures are estimates, not measured benchmarks, printed as "est. N tok/s, typical error X%".
 Typical error is the median gap between the estimate and measured runs on hardware the model

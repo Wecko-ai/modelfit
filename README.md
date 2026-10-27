@@ -10,7 +10,7 @@ dependencies**, sends **no telemetry**, and is an **embeddable library** so any 
 app can ship with the right default model out of the box.
 
 ```
-npx @modelfit/cli
+npx @modelfit/cli@latest
 ```
 
 ```
@@ -31,7 +31,7 @@ It scales to the machine: 8 GB → a 7B, 16 GB → a 14B, 64 GB → Llama 3.1 70
 ## Install
 
 ```bash
-npx @modelfit/cli            # no install, always latest
+npx @modelfit/cli@latest     # no install, always the latest release
 npm i -g @modelfit/cli       # then run: modelfit
 ```
 
@@ -97,7 +97,7 @@ modelfit [options]            # default: THE best model for your machine
 ### `modelfit bench` (measure real tok/s)
 
 ```
-npx -y @modelfit/cli@latest bench
+npx @modelfit/cli@latest bench
 ```
 
 Proposes the leaderboard model that fits your machine (Qwen3.8 27B, else Qwen3.5 9B, else

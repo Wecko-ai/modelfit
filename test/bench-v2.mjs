@@ -124,7 +124,7 @@ console.log('✓ payload matches submission contract v2');
 // Handles, tags, catalog.
 assert.equal(normalizeHandle(''), null);
 assert.equal(normalizeHandle(undefined), null);
-assert.equal(normalizeHandle('modelfit'), 'modelfit');
+assert.equal(normalizeHandle('you'), 'you');
 for (const bad of ['@', 'a'.repeat(16), 'we cko', '@we-cko', '<script>']) assert.throws(() => normalizeHandle(bad), bad);
 assert.ok(HANDLE_RE.test('@A_1'));
 assert.equal(normalizeTag('llama3'), 'llama3:latest');
@@ -210,7 +210,7 @@ const server = http.createServer((req, res) => {
       return res.end();
     }
     if (req.url === '/auth/api/bench/submit/') {
-      assert.equal(req.headers.authorization, `Basic ${Buffer.from('modelfit:s3cret').toString('base64')}`);
+      assert.equal(req.headers.authorization, `Basic ${Buffer.from('user:s3cret').toString('base64')}`);
       return res.end(JSON.stringify({ ok: true, id: 'abcdefgh23', path: '/r/abcdefgh23/', cardPath: '/r/abcdefgh23/card.png?v=1', listed: true, reason: null }));
     }
     if (req.url === '/listed/api/bench/submit/') {
@@ -239,7 +239,7 @@ try {
   assert.deepEqual(listed, { submitted: true, listed: true, id: 'abcdefgh23', reason: null, link: `${base}/r/abcdefgh23/` });
   const redirected = await submitBench(payload, { url: `${base}/listed/api/bench/submit` });
   assert.equal(redirected.link, `${base}/r/abcdefgh23/`, 'follows one 308 to the trailing slash');
-  const authed = await submitBench(payload, { url: `http://modelfit:s3cret@127.0.0.1:${port}/auth/api/bench/submit/` });
+  const authed = await submitBench(payload, { url: `http://user:s3cret@127.0.0.1:${port}/auth/api/bench/submit/` });
   assert.equal(authed.link, `${base}/r/abcdefgh23/`, 'basic auth sent, never printed back');
   const unlisted = await submitBench(payload, { url: `${base}/unlisted/api/bench/submit/` });
   assert.equal(unlisted.listed, false);

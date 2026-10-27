@@ -204,7 +204,7 @@ export function loadWarnings(psModels, tag) {
   return out;
 }
 
-/** '@ModelFit_ai' -> 'ModelFit_ai'; null for an empty value; throws on a malformed handle. */
+/** '@you_42' -> 'you_42'; null for an empty value; throws on a malformed handle. */
 export function normalizeHandle(raw) {
   if (raw == null || raw === '') return null;
   const h = String(raw).trim();
