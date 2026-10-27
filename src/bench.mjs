@@ -95,6 +95,20 @@ function removeModel(tag) {
   return { removed: gone, size: entry?.size || null, error: gone ? null : `ollama rm exited with code ${status}` };
 }
 
+/** Disk size of a local model as `ollama list` prints it ('4.0 GB'), or null. */
+export function benchModelSize(tag) {
+  return localModel(tag)?.size ?? null;
+}
+
+/**
+ * Remove a model this bench downloaded, when the user says so after the run. The caller only offers
+ * it for `pulledNow` (a model the user already had is never offered). Same shape as runBench's cleanup.
+ */
+export function removeBenchModel(tag) {
+  if (!SAFE_TAG.test(tag)) return { model: tag, removed: false, size: null, error: 'unsafe-model-tag', keptPreexisting: false };
+  return { model: tag, ...removeModel(tag), keptPreexisting: false };
+}
+
 const median = (values) => {
   const s = [...values].sort((a, b) => a - b);
   const mid = Math.floor(s.length / 2);
@@ -276,6 +290,8 @@ export function benchChoicesForThisMachine(profile = detectHardware()) {
  *   handle    - optional X handle shown on the result card
  *   cleanup   - remove the model afterwards if this bench downloaded it
  *               (a model the user already had is never deleted)
+ *   askCleanup - the caller asks, once the run is over, whether to remove a model this bench
+ *               downloaded (the interactive CLI); only changes the notice
  *   onNotice  - callback(string) for the pre-run notice and progress (the CLI prints to stderr)
  *   timeoutMs - cap for one generation (default 15 min)
  *   version   - CLI version string for the payload
@@ -312,7 +328,7 @@ export async function runBench(opts = {}) {
     installed = [];
   }
   const preexisting = installed.some((m) => normalizeTag(m?.name || m?.model) === normalizeTag(tag));
-  notice(benchNotice(tag, { preexisting, cleanup: Boolean(opts.cleanup), noPull: Boolean(opts.noPull) }));
+  notice(benchNotice(tag, { preexisting, cleanup: Boolean(opts.cleanup), noPull: Boolean(opts.noPull), ask: Boolean(opts.askCleanup) }));
   let pulledNow = false;
   if (!preexisting) {
     if (opts.noPull) return { ok: false, error: 'model-not-pulled', hint: `Run: ollama pull ${tag}` };
@@ -504,7 +520,7 @@ export function formatGb(gb) {
 }
 
 /** What the bench is about to do, shown before any download. */
-export function benchNotice(tag, { preexisting, cleanup, noPull }) {
+export function benchNotice(tag, { preexisting, cleanup, noPull, ask = false }) {
   const runs = `${BENCH_PROMPTS.length - 1} fixed prompts`;
   const lines = [];
   if (preexisting) {
@@ -520,15 +536,18 @@ export function benchNotice(tag, { preexisting, cleanup, noPull }) {
     lines.push(`modelfit bench: downloading ${what} ${tag}${size}, then running ${runs}.`);
     lines.push(cleanup
       ? '  --cleanup: the model will be removed when the bench ends, nothing is left on your machine.'
-      : '  The model stays installed afterwards. Add --cleanup to remove it automatically.');
+      : ask
+        ? '  When the bench ends, you choose whether to keep it or remove it from disk.'
+        : '  The model stays installed afterwards. Add --cleanup to remove it automatically.');
   }
   return lines.join('\n');
 }
 
-function cleanupLines(result, { green, dim }) {
+function cleanupLines(result, { green, dim, askCleanup = false }) {
   const c = result.cleanup;
   if (!c) {
-    if (result.pulledNow && result.payload) {
+    // The interactive CLI asks after the run instead (removeBenchModel).
+    if (result.pulledNow && result.payload && !askCleanup) {
       return [dim(`  ${result.payload.model} is still installed. Remove it with: ollama rm ${result.payload.model} (or rerun with --cleanup)`)];
     }
     return [];
@@ -563,13 +582,13 @@ export function machineLine(hw = {}) {
 }
 
 /** Human-readable rendering of a bench result: a framed card when it worked. */
-export function renderBench(result, { color = true, big = true } = {}) {
+export function renderBench(result, { color = true, big = true, askCleanup = false } = {}) {
   const paint = (code) => (s) => (color ? `\x1b[${code}m${s}\x1b[0m` : s);
   const bold = paint('1');
   const dim = paint('2');
   const green = paint('32');
   if (!result.ok) {
-    return [`bench: ${result.error}${result.hint ? `\n${result.hint}` : ''}`, ...cleanupLines(result, { green, dim })].join('\n');
+    return [`bench: ${result.error}${result.hint ? `\n${result.hint}` : ''}`, ...cleanupLines(result, { green, dim, askCleanup })].join('\n');
   }
   const p = result.payload;
   const row = catalogRowForTag(p.model);
@@ -608,6 +627,12 @@ export function renderBench(result, { color = true, big = true } = {}) {
   } else if (result.submitError) {
     lines.push(`  not submitted: ${result.submitError}`);
   }
-  lines.push(...cleanupLines(result, { green, dim }));
+  lines.push(...cleanupLines(result, { green, dim, askCleanup }));
   return lines.join('\n');
+}
+
+/** The line that reports a cleanup the user asked for after the run (removeBenchModel). */
+export function renderCleanup(cleanup, { color = true } = {}) {
+  const paint = (code) => (s) => (color ? `\x1b[${code}m${s}\x1b[0m` : s);
+  return cleanupLines({ cleanup }, { green: paint('32'), dim: paint('2') }).join('\n');
 }

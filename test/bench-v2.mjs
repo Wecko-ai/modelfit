@@ -11,7 +11,7 @@ import { BENCH_PROMPTS, WARMUP_PROMPT } from '../src/bench-prompts.mjs';
 import {
   BENCH_PROMPT_ID, BENCH_OPTIONS, HANDLE_RE, toRun, benchMedians, measureRuns, buildPayload, ollamaBlock,
   loadWarnings, normalizeHandle, normalizeTag, benchChoices, submitBench, submitRefusal, catalogRowForTag,
-  renderBench, bigNumber, describeSubmission,
+  renderBench, bigNumber, describeSubmission, renderCleanup, removeBenchModel,
 } from '../src/bench.mjs';
 
 // NDJSON: objects split across chunks, a last line without newline, blank lines.
@@ -277,6 +277,23 @@ try {
   assert.match(sent, /@modelfit_/);
 }
 console.log('✓ result card');
+
+// After the run: the "still installed" hint, unless the interactive CLI asks instead; the line a
+// removal asked for after the run prints; an unsafe tag is never handed to ollama rm.
+{
+  const pulled = { ok: true, payload, warnings: [], pulledNow: true, cleanup: null };
+  assert.match(renderBench(pulled, { color: false }), /qwen3\.5:4b is still installed\. Remove it with: ollama rm qwen3\.5:4b/);
+  assert.doesNotMatch(renderBench(pulled, { color: false, askCleanup: true }), /still installed/);
+  const failed = { ok: false, error: 'generate-failed', payload, pulledNow: true, cleanup: null };
+  assert.doesNotMatch(renderBench(failed, { color: false, askCleanup: true }), /still installed/);
+  assert.equal(
+    renderCleanup({ model: 'qwen3.5:4b', removed: true, size: '4.0 GB', error: null, keptPreexisting: false }, { color: false }),
+    '  All cleaned up: qwen3.5:4b (4.0 GB) removed, nothing from this bench is left on your machine.',
+  );
+  assert.match(renderCleanup({ model: 'qwen3.5:4b', removed: false, size: null, error: 'ollama rm exited with code 1', keptPreexisting: false }, { color: false }), /Remove it by hand with: ollama rm qwen3\.5:4b/);
+  assert.equal(removeBenchModel('x; rm -rf /').error, 'unsafe-model-tag');
+}
+console.log('✓ cleanup after the run: hint, asked removal, unsafe tag');
 
 // X share link: the result line, the result page as the link and via @modelfit_, nothing else.
 {

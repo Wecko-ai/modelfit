@@ -11,7 +11,7 @@ import { selectBest } from '../src/best.mjs';
 import { offerInstall, ask } from '../src/install.mjs';
 import {
   runBench, renderBench, submitBench, submitRefusal, describeSubmission, benchChoicesForThisMachine, xShareUrl,
-  normalizeHandle, formatGb, BENCH_MODEL, BENCH_LADDER,
+  normalizeHandle, formatGb, BENCH_MODEL, BENCH_LADDER, benchModelSize, removeBenchModel, renderCleanup,
 } from '../src/bench.mjs';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -63,7 +63,8 @@ BENCH
                          be submitted)
     --no-pull            Never download the model; fail if it is not local
     --cleanup            Remove the model when the bench ends, so nothing is left
-                         on disk (a model you already had is kept)
+                         on disk (a model you already had is kept). Without it, a
+                         run in a terminal asks at the end
     --json               Print the result as JSON (never asks anything)
 
 After naming the best model, modelfit offers to install it via Ollama (interactive
@@ -141,9 +142,26 @@ async function pickModel() {
   }
 }
 
+/**
+ * Interactive only, once everything else is done: offer to remove the model this bench downloaded.
+ * A model the user already had is never offered; Enter keeps it (a re-run would download it again).
+ */
+async function offerCleanup(model, result, color) {
+  if (!result.pulledNow) return;
+  const size = benchModelSize(model);
+  const a = await ask(`\nRemove ${model} from disk${size ? ` (${size})` : ''}? [y/N] `);
+  if (!/^y(es)?$/i.test(a.trim())) {
+    console.log(`  Kept ${model}. Remove it later with: ollama rm ${model}`);
+    return;
+  }
+  console.log(renderCleanup(removeBenchModel(model), { color }));
+}
+
 async function bench(opts) {
   const interactive = Boolean(process.stdin.isTTY && process.stdout.isTTY) && !opts.json;
   const color = !opts.noColor && !process.env.NO_COLOR;
+  // With --cleanup the bench removes the model itself; otherwise an interactive run asks at the end.
+  const askCleanup = interactive && !opts.cleanup;
   try {
     normalizeHandle(opts.handle);
   } catch (err) {
@@ -164,6 +182,7 @@ async function bench(opts) {
     handle: opts.handle,
     noPull: opts.noPull,
     cleanup: opts.cleanup,
+    askCleanup,
     onNotice: (msg) => console.error(msg),
     version: PKG.version,
   });
@@ -176,47 +195,52 @@ async function bench(opts) {
     return;
   }
 
-  console.log(renderBench(result, { color, big: interactive }));
+  console.log(renderBench(result, { color, big: interactive, askCleanup }));
   if (!result.ok) {
     process.exitCode = 1;
-    return;
+  } else if (!opts.submit && interactive) {
+    result = await offerSubmit(model, result, opts);
   }
-  if (!opts.submit && interactive) {
-    if (submitRefusal(model)) {
-      console.log(`  ${model} is not a ModelFit-validated model, so it cannot join the leaderboard.`);
-      return;
-    }
-    console.log('');
-    for (const l of describeSubmission(result.payload)) console.log(l);
-    const a = await ask('Submit to the leaderboard? [Y/n] ');
-    if (/^n(o)?$/i.test(a)) {
-      console.log('  Not submitted. Nothing left this machine.');
-      return;
-    }
-    if (!opts.handle) {
-      // Optional: Enter skips it. A handle shows on the card, never on the leaderboard.
-      const h = (await ask('  Your X handle for the card (optional, Enter to skip): @')).trim();
-      if (h) {
-        try {
-          const handle = normalizeHandle(h);
-          if (handle) result.payload = { ...result.payload, handle };
-        } catch {
-          console.log('  Not a valid X handle, the card will go without one.');
-        }
+  if (askCleanup) await offerCleanup(model, result, color);
+}
+
+/** Interactive only: show what would be sent, ask, then submit. Returns the result with the submission. */
+async function offerSubmit(model, result, opts) {
+  if (submitRefusal(model)) {
+    console.log(`  ${model} is not a ModelFit-validated model, so it cannot join the leaderboard.`);
+    return result;
+  }
+  console.log('');
+  for (const l of describeSubmission(result.payload)) console.log(l);
+  const a = await ask('Submit to the leaderboard? [Y/n] ');
+  if (/^n(o)?$/i.test(a)) {
+    console.log('  Not submitted. Nothing left this machine.');
+    return result;
+  }
+  if (!opts.handle) {
+    // Optional: Enter skips it. A handle shows on the card, never on the leaderboard.
+    const h = (await ask('  Your X handle for the card (optional, Enter to skip): @')).trim();
+    if (h) {
+      try {
+        const handle = normalizeHandle(h);
+        if (handle) result.payload = { ...result.payload, handle };
+      } catch {
+        console.log('  Not a valid X handle, the card will go without one.');
       }
     }
-    result = { ...result, ...(await submitBench(result.payload)) };
-    if (result.submitted && result.listed && result.link) {
-      console.log(`\n  Submitted. Your result page, with the card to post: ${result.link}`);
-      console.log(`  Post it on X: ${xShareUrl(result.payload, result.link)}`);
-    } else if (result.submitted && result.listed) {
-      console.log('\n  Submitted. See the leaderboard at https://modelfit.io/bench/');
-    } else if (result.submitted) {
-      console.log(`\n  Stored, but not listed on the leaderboard (${result.reason}).`);
-    } else {
-      console.log(`\n  Not submitted: ${result.submitError}`);
-    }
   }
+  const sent = { ...result, ...(await submitBench(result.payload)) };
+  if (sent.submitted && sent.listed && sent.link) {
+    console.log(`\n  Submitted. Your result page, with the card to post: ${sent.link}`);
+    console.log(`  Post it on X: ${xShareUrl(sent.payload, sent.link)}`);
+  } else if (sent.submitted && sent.listed) {
+    console.log('\n  Submitted. See the leaderboard at https://modelfit.io/bench/');
+  } else if (sent.submitted) {
+    console.log(`\n  Stored, but not listed on the leaderboard (${sent.reason}).`);
+  } else {
+    console.log(`\n  Not submitted: ${sent.submitError}`);
+  }
+  return sent;
 }
 
 async function main() {

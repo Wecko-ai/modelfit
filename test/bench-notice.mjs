@@ -23,5 +23,9 @@ assert.equal(knownPullGb('someone/unlisted-model:7b'), null);
 // nothing is downloaded when the model is already local or --no-pull is set: no size either
 assert.doesNotMatch(benchNotice(BENCH_MODEL, { ...fresh, preexisting: true }), /GB/);
 assert.doesNotMatch(benchNotice(BENCH_MODEL, { ...fresh, noPull: true }), /GB/);
+// the interactive CLI asks after the run: the notice says so instead of pointing at --cleanup
+assert.match(benchNotice(BENCH_MODEL, { ...fresh, ask: true }), /When the bench ends, you choose whether to keep it or remove it from disk\./);
+assert.doesNotMatch(benchNotice(BENCH_MODEL, { ...fresh, ask: true }), /--cleanup/);
+assert.match(benchNotice(BENCH_MODEL, { ...fresh, ask: true, cleanup: true }), /--cleanup: the model will be removed/);
 
 console.log('✓ bench notice states the real download size or none');
