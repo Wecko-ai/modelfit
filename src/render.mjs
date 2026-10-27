@@ -9,7 +9,7 @@ import { baseModelId, groupVariants } from './model-groups.mjs';
 const useColor = (opts) => !opts.noColor && !process.env.NO_COLOR && process.stdout.isTTY;
 
 // Strip control chars from any dataset/hardware string before it reaches the
-// terminal — a poisoned dataset must not inject ANSI/cursor sequences (CWE-150).
+// terminal: a poisoned dataset must not inject ANSI/cursor sequences (CWE-150).
 // Apply BEFORE paint(): paint's own color codes are internal and safe.
 const clean = (s) => String(s ?? '').replace(/[\x00-\x1f\x7f]/g, '');
 
@@ -92,7 +92,7 @@ function header(c, profile, input, opts) {
     ? `${clean(input.deviceType)} · ${clean(input.chip)} · ${input.ramGb} GB ${c.dim('(override)')}`
     : clean(profile.detail);
   return [
-    `${c.bold(c.cyan('ModelFit'))} ${c.dim('— the best local LLM for your machine')}   ${c.dim('modelfit.io')}`,
+    `${c.bold(c.cyan('ModelFit'))} ${c.dim('· the best local LLM for your machine')}   ${c.dim('modelfit.io')}`,
     `${c.gray(overridden ? 'Target  ' : 'Detected')}  ${c.bold(line)}`,
     '',
   ];
@@ -114,7 +114,7 @@ export function toBest(profile, input, recs, opts) {
   const tps = estLabel(best.estimatedTokensPerSec, best.estimatedErrorPct);
   const comfort = best.localVerdict === 'local_feasible'
     ? c.green('runs comfortably')
-    : c.yellow('runs, but slower — more RAM unlocks bigger models');
+    : c.yellow('runs, but slower: more RAM unlocks bigger models');
 
   L.push(`  ${c.green('▶')} ${c.bold(clean(best.name))}   ${[tps, comfort].filter(Boolean).join(c.dim(' · '))}`);
   if (best.ollamaCommand) L.push(`    ${c.green('$')} ${clean(best.ollamaCommand)}`);

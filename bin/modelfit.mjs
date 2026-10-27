@@ -8,8 +8,11 @@ import { detectHardware, toEngineInput } from '../src/detect.mjs';
 import { getRecommendations } from '../src/engine.mjs';
 import { toBest, toList, toJson } from '../src/render.mjs';
 import { selectBest } from '../src/best.mjs';
-import { offerInstall } from '../src/install.mjs';
-import { runBench, renderBench } from '../src/bench.mjs';
+import { offerInstall, ask } from '../src/install.mjs';
+import {
+  runBench, renderBench, submitBench, submitRefusal, describeSubmission, benchChoicesForThisMachine,
+  normalizeHandle, formatGb, BENCH_MODEL, BENCH_LADDER,
+} from '../src/bench.mjs';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -48,14 +51,20 @@ OPTIONS
   -h, --help             Show this help
 
 BENCH
-  modelfit bench         Measure REAL tokens/sec on this machine (fixed reference
-                         model + prompt, comparable across machines; needs Ollama)
-    --submit             Contribute the result to the public measured dataset at
-                         modelfit.io (CC BY 4.0). The only network call, opt-in.
-    --model <tag>        Bench a different Ollama tag instead of the reference
+  modelfit bench         Measure REAL tokens/sec on this machine (fixed prompts and
+                         sampling, comparable across machines; needs Ollama). In a
+                         terminal it proposes the leaderboard model that fits
+                         (Qwen3.8 27B, else Qwen3.5 9B, else Qwen3.5 4B), then asks
+                         before submitting. Elsewhere it runs the 1.5B reference model.
+    --submit             Submit to the leaderboard at modelfit.io/bench (CC BY 4.0)
+                         without asking. The only network call, opt-in.
+    --handle <@you>      Show your X handle on your result card (optional)
+    --model <tag>        Bench this Ollama tag (only ModelFit-validated models can
+                         be submitted)
     --no-pull            Never download the model; fail if it is not local
-    --cleanup            Remove the reference model when the bench ends, so
-                         nothing is left on disk (a model you already had is kept)
+    --cleanup            Remove the model when the bench ends, so nothing is left
+                         on disk (a model you already had is kept)
+    --json               Print the result as JSON (never asks anything)
 
 After naming the best model, modelfit offers to install it via Ollama (interactive
 terminals only). Use --yes to install unattended, or --no-install to skip the prompt.
@@ -66,7 +75,7 @@ EXAMPLES
   modelfit --json                        # { best: { ollamaCommand, ... }, ... } (no prompt)
   modelfit --all                         # full ranked list
   modelfit --ram 64 --chip "Apple M4 Max"
-  npx -y @modelfit/cli bench --submit --cleanup   # measure, share, remove the model
+  npx -y @modelfit/cli@latest bench               # measure, then choose to share
 
 tok/s figures are estimates, not measured benchmarks, printed as "est. N tok/s, typical error X%".
 Typical error is the median gap between the estimate and measured runs on hardware the model
@@ -94,6 +103,7 @@ function parseArgs(argv) {
       case '--no-pull': o.noPull = true; break;
       case '--cleanup': o.cleanup = true; break;
       case '--model': o.model = next(); break;
+      case '--handle': o.handle = next() ?? ''; break;
       case '-v': case '--version': o.version = true; break;
       case '-h': case '--help': o.help = true; break;
       default:
@@ -101,6 +111,99 @@ function parseArgs(argv) {
     }
   }
   return o;
+}
+
+/** Ask which model to measure (TTY only). Resolves a tag, or null to quit. */
+async function pickModel() {
+  const { ladder, others } = benchChoicesForThisMachine();
+  const choices = [...ladder, ...others];
+  if (!choices.length) return BENCH_MODEL;
+  const line = (c, i) => {
+    const size = c.pullGb != null ? `${formatGb(c.pullGb)} download` : 'size unknown';
+    const est = c.estTokPerSec != null ? `, est. ${c.estTokPerSec} tok/s` : '';
+    return `  ${String(i + 1).padStart(2)}) ${c.name} (${c.tag})  ${size}${est}`;
+  };
+  console.log('\nmodelfit bench: pick a model to measure (ModelFit-validated, fits this machine)');
+  if (ladder.length) {
+    console.log(`  Leaderboard models${ladder[0].tag === BENCH_LADDER[0] ? '' : ` (${BENCH_LADDER[0]} does not fit here)`}:`);
+    ladder.forEach((c, i) => console.log(line(c, i)));
+  }
+  if (others.length) {
+    console.log('  Other validated models that fit:');
+    others.forEach((c, i) => console.log(line(c, ladder.length + i)));
+  }
+  for (;;) {
+    const a = (await ask(`Choose 1-${choices.length} [1], q to quit: `)).toLowerCase();
+    if (a === 'q') return null;
+    if (a === '') return choices[0].tag;
+    const n = Number(a);
+    if (Number.isInteger(n) && n >= 1 && n <= choices.length) return choices[n - 1].tag;
+  }
+}
+
+async function bench(opts) {
+  const interactive = Boolean(process.stdin.isTTY && process.stdout.isTTY) && !opts.json;
+  const color = !opts.noColor && !process.env.NO_COLOR;
+  try {
+    normalizeHandle(opts.handle);
+  } catch (err) {
+    console.error(`bench: ${err.message}`);
+    process.exitCode = 2;
+    return;
+  }
+  let model = opts.model;
+  if (!model) model = interactive ? await pickModel() : BENCH_MODEL;
+  if (!model) return;
+  if (opts.submit && submitRefusal(model)) {
+    console.error(`modelfit bench: ${model} is not a ModelFit-validated model: it runs here, but the leaderboard will refuse it.`);
+  }
+
+  let result = await runBench({
+    submit: opts.submit,
+    model,
+    handle: opts.handle,
+    noPull: opts.noPull,
+    cleanup: opts.cleanup,
+    onNotice: (msg) => console.error(msg),
+    version: PKG.version,
+  });
+
+  if (opts.json) {
+    const { submitted, listed, reason, id, link, submitError } = result;
+    const submission = opts.submit && result.ok ? { submitted, listed, reason, id, link, submitError } : undefined;
+    console.log(JSON.stringify(result.ok ? { ...result.payload, ...(submission ? { submission } : {}) } : result, null, 2));
+    if (!result.ok) process.exitCode = 1;
+    return;
+  }
+
+  console.log(renderBench(result, { color, big: interactive }));
+  if (!result.ok) {
+    process.exitCode = 1;
+    return;
+  }
+  if (!opts.submit && interactive) {
+    if (submitRefusal(model)) {
+      console.log(`  ${model} is not a ModelFit-validated model, so it cannot join the leaderboard.`);
+      return;
+    }
+    console.log('');
+    for (const l of describeSubmission(result.payload)) console.log(l);
+    const a = await ask('Submit to the leaderboard? [Y/n] ');
+    if (/^n(o)?$/i.test(a)) {
+      console.log('  Not submitted. Nothing left this machine.');
+      return;
+    }
+    result = { ...result, ...(await submitBench(result.payload)) };
+    if (result.submitted && result.listed && result.link) {
+      console.log(`\n  Submitted. Your result page, with the card to post: ${result.link}`);
+    } else if (result.submitted && result.listed) {
+      console.log('\n  Submitted. See the leaderboard at https://modelfit.io/bench/');
+    } else if (result.submitted) {
+      console.log(`\n  Stored, but not listed on the leaderboard (${result.reason}).`);
+    } else {
+      console.log(`\n  Not submitted: ${result.submitError}`);
+    }
+  }
 }
 
 async function main() {
@@ -112,20 +215,7 @@ async function main() {
 
   // `modelfit bench` subcommand: positional, must be the first token.
   if (argv[0] === 'bench') {
-    const result = await runBench({
-      submit: opts.submit,
-      model: opts.model,
-      noPull: opts.noPull,
-      cleanup: opts.cleanup,
-      onNotice: (msg) => console.error(msg),
-      version: PKG.version,
-    });
-    if (opts.json) {
-      console.log(JSON.stringify(result.ok ? result.payload : result, null, 2));
-    } else {
-      console.log(renderBench(result, { color: !opts.noColor && !process.env.NO_COLOR }));
-    }
-    if (!result.ok) process.exitCode = 1;
+    await bench(opts);
     return;
   }
 

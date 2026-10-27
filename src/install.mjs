@@ -36,22 +36,26 @@ export function parseModelTag(ollamaCommand) {
   if (!ollamaCommand) return null;
   const m = ollamaCommand.match(/ollama\s+(?:run|pull)\s+(\S+)/);
   if (!m) return null;
-  // A tag must look like a model tag — anything else (e.g. "-rf", "--insecure")
+  // A tag must look like a model tag: anything else (e.g. "-rf", "--insecure")
   // would reach ollama as a flag (CWE-88).
   return /^[a-z0-9][a-z0-9._:\/-]*$/i.test(m[1]) ? m[1] : null;
 }
 
-function ask(question) {
+/** One line of input from the terminal. Callers check for a TTY first. */
+export function ask(question) {
   return new Promise((resolve) => {
     const rl = createInterface({ input: process.stdin, output: process.stdout });
     rl.question(question, (a) => { rl.close(); resolve(a.trim()); });
   });
 }
 
-/** Pull the model, streaming Ollama's own progress to the terminal. Returns exit code. */
-export function pullModel(tag) {
+/**
+ * Pull the model, streaming Ollama's own progress to the terminal. Returns exit code. `stdio`
+ * lets the bench send the progress to stderr, so its --json output stays clean.
+ */
+export function pullModel(tag, { stdio = 'inherit' } = {}) {
   // '--' stops option parsing: a tag can never be read as a flag (CWE-88).
-  return spawnSync(ollamaBin(), ['pull', '--', tag], { stdio: 'inherit' }).status ?? 1;
+  return spawnSync(ollamaBin(), ['pull', '--', tag], { stdio }).status ?? 1;
 }
 
 /**
@@ -69,11 +73,11 @@ export async function offerInstall(best, opts = {}) {
 
   const auto = !!opts.yes;
   const interactive = process.stdin.isTTY && process.stdout.isTTY;
-  if (!auto && !interactive) return false; // can't prompt — don't guess
+  if (!auto && !interactive) return false; // can't prompt, don't guess
 
   if (!ollamaInstalled()) {
     console.log('');
-    console.log('Ollama is not installed — needed to run local models.');
+    console.log('Ollama is not installed: it is needed to run local models.');
     console.log('  macOS:  brew install ollama');
     console.log('  Other:  https://ollama.com/download');
     console.log(`Then:   ollama pull ${tag}`);

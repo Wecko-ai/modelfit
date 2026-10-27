@@ -160,14 +160,22 @@ function detectMac(profile, { gpuCores: wantGpuCores = true } = {}) {
   };
 }
 
-/** Best-effort NVIDIA detection via nvidia-smi (Linux + Windows). */
-function detectNvidia() {
-  const out = sh('nvidia-smi', ['--query-gpu=name,memory.total', '--format=csv,noheader,nounits']);
-  if (!out) return null;
-  const [name, vram] = out.split('\n')[0].split(',').map((s) => s.trim());
+/**
+ * First GPU of `nvidia-smi --query-gpu=name,memory.total --format=csv,noheader,nounits` output,
+ * plus the number of GPUs listed (one per line). Null when nothing usable is listed.
+ */
+export function parseNvidiaSmi(out) {
+  const rows = String(out || '').split('\n').map((l) => l.trim()).filter(Boolean);
+  if (!rows.length) return null;
+  const [name, vram] = rows[0].split(',').map((s) => s.trim());
   const vramGb = round((parseInt(vram, 10) || 0) / 1024);
   if (!name || !vramGb) return null;
-  return { name, vramGb, slug: gpuSlug(name) };
+  return { name, vramGb, slug: gpuSlug(name), count: rows.length };
+}
+
+/** Best-effort NVIDIA detection via nvidia-smi (Linux + Windows). */
+function detectNvidia() {
+  return parseNvidiaSmi(sh('nvidia-smi', ['--query-gpu=name,memory.total', '--format=csv,noheader,nounits']));
 }
 
 /** "NVIDIA GeForce RTX 5070 Ti" -> "rtx-5070-ti" (best effort, for /gpu/<slug>/). */
@@ -194,6 +202,7 @@ function detectPc(profile, osName) {
       deviceType: gpu.name, // non-enum -> engine uses neutral throughput, no thermal penalty
       deviceLabel: `${osName} PC`,
       accelerator: { kind: 'gpu', name: gpu.name, vramGb: gpu.vramGb, slug: gpu.slug },
+      gpuCount: gpu.count,
       budgetGb: gpu.vramGb,
       budgetSource: 'GPU VRAM',
       detail: `${osName} · ${gpu.name} · ${gpu.vramGb} GB VRAM (${ramGb} GB system RAM)`,
