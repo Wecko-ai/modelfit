@@ -156,7 +156,8 @@ function chipBaseTokensPerSec(chip, ramGb, gpuCores) {
 const getFitLevel = (fitPct) => (fitPct >= 60 ? 'Excellent' : fitPct >= 25 ? 'OK' : 'Heavy');
 
 function segmentBoost(useCase, tags) {
-  if (useCase === 'Mixed') return 3;
+  // Mixed: a specialist without the chat or mixed tag gets no boost (lib/recommend.ts).
+  if (useCase === 'Mixed') return tags.includes('chat') || tags.includes('mixed') ? 3 : 0;
   return tags.includes(useCase.toLowerCase()) ? 6 : -2;
 }
 
