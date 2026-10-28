@@ -33,6 +33,8 @@ const GRID = [
   { deviceType: 'Mac Studio', chip: 'Apple M5 Max', ramGb: 128, priority: 'Balanced', useCase: 'Coding', gpuCores: 400 },
   { deviceType: 'Mac Mini', chip: 'Apple M5 Pro', ramGb: 48, priority: 'Balanced', useCase: 'Mixed', gpuCores: 18 },
   { deviceType: 'MacBook Air', chip: 'Apple M5', ramGb: 16, priority: 'Balanced', useCase: 'Chat', gpuCores: 8 },
+  // The 10-core M6 iMac: a lower bin of a chip whose variant is tied to RAM, not to a bin.
+  { deviceType: 'iMac', chip: 'Apple M6', ramGb: 24, priority: 'Balanced', useCase: 'Mixed', gpuCores: 10 },
 ];
 
 const golden = GRID.map((input) => {

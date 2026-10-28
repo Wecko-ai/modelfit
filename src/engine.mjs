@@ -263,6 +263,7 @@ function deviceThroughputFactor(deviceType) {
   // models sustained thermals, so the spread is small.
   if (deviceType === 'Mac Studio') return 1.05;
   if (deviceType === 'Mac Mini') return 1;
+  if (deviceType === 'iMac') return 1;
   if (deviceType === 'MacBook Pro') return 1;
   if (deviceType === 'MacBook Air') return 0.9;
   if (deviceType === 'iPhone 17 Pro Max') return 0.7;
@@ -285,11 +286,12 @@ export function chipGpuBins(chip) {
 }
 
 // GPU cores the prompt-reading estimate runs on (1:1 port of prefillGpuCores): the bin
-// decodeVariant resolves on a chip whose bins differ in decode, else its top bin; on the others a
-// known bin of the chip, else its top bin. Never a raw --gpu-cores, never above the top bin.
+// decodeVariant resolves on a chip whose bins differ in decode, else its top bin; on the others
+// (and the M6, whose variant is tied to RAM) a known bin of the chip, else its top bin. Never a
+// raw --gpu-cores, never above the top bin.
 export function prefillGpuCores(chip, ramGb, gpuCores) {
   const top = own(GPU_BINS, chip)?.top ?? null;
-  if (own(DECODE_VARIANTS, chip)) return decodeVariant(chip, ramGb, gpuCores)?.gpuCores ?? top;
+  if (own(DECODE_VARIANTS, chip)?.some((v) => v.gpuCores !== undefined)) return decodeVariant(chip, ramGb, gpuCores)?.gpuCores ?? top;
   if (gpuCores !== undefined && top !== null && gpuCores <= top && chipGpuBins(chip).includes(gpuCores)) return gpuCores;
   return top;
 }

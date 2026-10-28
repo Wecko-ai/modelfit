@@ -39,7 +39,7 @@ const KNOWN_CHIPS = new Set([
   'Apple A16', 'Apple A17 Pro', 'Apple A18', 'Apple A18 Pro', 'Apple A19', 'Apple A19 Pro',
 ]);
 const KNOWN_DEVICES = new Set([
-  'MacBook Air', 'MacBook Pro', 'Mac Studio', 'Mac Mini',
+  'MacBook Air', 'MacBook Pro', 'Mac Studio', 'Mac Mini', 'iMac',
 ]);
 
 function sh(cmd, args, timeout = 4000) {
@@ -74,7 +74,8 @@ function normalizeDevice(raw) {
   if (/macbook/i.test(raw)) return 'MacBook Pro';
   if (/mac studio/i.test(raw)) return 'Mac Studio';
   if (/mac mini/i.test(raw)) return 'Mac Mini';
-  // iMac / Mac Pro / unknown desktop -> neutral desktop profile
+  if (/imac/i.test(raw)) return 'iMac';
+  // Mac Pro / unknown desktop -> neutral desktop profile
   return 'Mac Studio';
 }
 
